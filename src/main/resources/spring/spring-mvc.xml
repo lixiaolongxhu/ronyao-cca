@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+							http://www.springframework.org/schema/tx
+							http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+    						http://www.springframework.org/schema/context 
+    						http://www.springframework.org/schema/context/spring-context-3.1.xsd    
+							http://www.springframework.org/schema/mvc 
+							http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
+	default-autowire="byType">
+	
+	<!-- 数据库配置信息，mina配置信息 
+	 <bean id="systemProperties" 
+         class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+          <property name="location" value="classpath:/config/config.ini"/>
+    </bean>-->
+
+	<!-- mvc注解 -->
+	<mvc:annotation-driven />
+	
+	<!-- session拦截器 -->
+	<mvc:interceptors>  
+		<mvc:interceptor>   
+        	<mvc:mapping path="/router" /> <!-- ExtRedirectSpring  -->  
+        	<mvc:mapping path="/manager" /> <!-- 设备控制  --> 
+        	<mvc:mapping path="/ptz" /> <!-- 云台控制控制  --> 
+        	<bean class="com.ronyao.cca.ui.SessionInterceptor"></bean>   
+    	</mvc:interceptor>   
+	</mvc:interceptors> 
+
+	<!-- extdirect 相关配置 -->
+	<context:component-scan base-package="ch.ralscha.extdirectspring" />
+	<context:component-scan base-package="com.ronyao.cca.ui.ext" />
+
+
+	<!-- 如果有多个 DispatcherServlet 请把关于数据库和server部分的bean在web.xml中使用spring 的 listener加载 -->
+
+	<!-- 自动扫描controller bean，把作了注解的类转换为bean -->
+	<context:component-scan base-package="com.ronyao.cca.controller.v2" />
+	<context:component-scan base-package="com.ronyao.cca.ctl.manager" />
+	<context:component-scan base-package="com.ronyao.cca.ss.controller" />
+	<context:component-scan base-package="com.ronyao.cca.ss.httpclient" />
+	<context:component-scan base-package="com.ronyao.cca.ui" />
+	<context:component-scan base-package="com.ronyao.cca.ui.controller" />
+	<context:component-scan base-package="com.ronyao.http.push.controller" />
+	<context:component-scan base-package="com.ronyao.cca.platform.controller" />
+	
+	<!-- 文件上传配置 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">  
+		    <value>104857600</value>  
+		</property>  
+		<property name="maxInMemorySize">  
+		    <value>4096</value>  
+		</property>     
+	</bean> 
+
+	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+
+</beans>

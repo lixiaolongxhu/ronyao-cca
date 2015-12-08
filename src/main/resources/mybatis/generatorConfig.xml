@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+      PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+      "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\user\.m2\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+
+	<context id="cca" targetRuntime="MyBatis3">
+	
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/cca?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="123456">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- generate Model -->
+		<javaModelGenerator targetPackage="com.ronyao.cca.db.model"
+			targetProject="cca/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<!-- generate xml -->
+		<sqlMapGenerator targetPackage="com.ronyao.cca.db.dao"
+			targetProject="cca/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- generate Mapper -->
+		<javaClientGenerator type="ANNOTATEDMAPPER"
+			targetPackage="com.ronyao.cca.db.dao" targetProject="cca/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		<!-- 需要自动生成的表 -->
+		<!-- 
+		<table schema="" tableName="video" domainObjectName="Video">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+
+		<table schema="" tableName="controller" domainObjectName="Controller">
+		</table>
+
+		<table schema="" tableName="ctl_cha" domainObjectName="CtlChannel">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+
+		<table schema="" tableName="encoder_type" domainObjectName="EncoderType">
+		</table> 
+		
+		<table schema="" tableName="resource" domainObjectName="Resource">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+			<columnOverride column="class" property="cls" />  
+		</table>
+		
+		<table schema="" tableName="view_res_with_cat" domainObjectName="ViewResourceWithCat">
+			<columnOverride column="class" property="cls" /> 
+		</table>
+		<table schema="" tableName="res_type_cat" domainObjectName="ResourceTypeCat">
+		</table>
+	
+		-->
+		
+		<!-- 用户权限相关表    begin -->
+		<table schema="" tableName="user" domainObjectName="User">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="user_log" domainObjectName="UserLog">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<!-- 用户权限相关表    end -->
+		
+		
+	</context>
+</generatorConfiguration>  

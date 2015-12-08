@@ -1,0 +1,242 @@
+/*Panel 边缘高亮*/
+
+.borderred  .x-panel-header, .borderred  .x-panel-body {
+	border-color: red;
+}
+
+/*树的图标*/
+.resType1 {
+    background-image: url("../res/mark/1.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType2 {
+    background-image: url("../res/mark/2.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}  
+
+.resType3 {
+    background-image: url("../res/mark/3.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType4 {
+    background-image: url("../res/mark/4.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType5 {
+    background-image: url("../res/mark/5.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType6 {
+    background-image: url("../res/mark/6.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType7 {
+    background-image: url("../res/mark/7.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType8 {
+    background-image: url("../res/mark/8.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType9 {
+    background-image: url("../res/mark/9.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType10 {
+    background-image: url("../res/mark/10.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType11 {
+    background-image: url("../res/mark/11.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType12 {
+    background-image: url("../res/mark/12.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+.resType13 {
+    background-image: url("../res/mark/13.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+.resType101 {
+    background-image: url("../res/mark/101.png");
+	background-repeat: no-repeat;
+	height: 16px;
+    width: 16px;
+}
+
+/*其他小图标*/
+
+.s_add {
+	background-image: url("../res/icon/add.png");
+}
+
+.s_del {
+	background-image: url("../res/icon/delete.png");
+}
+
+.s_edit {
+	background-image: url("../res/icon/edit.png");
+}
+
+.s_resource {
+	background-image: url("../res/icon/resource.png");
+}
+
+.s_video {
+	background-image: url("../res/icon/video.png");
+}
+
+.s_gis {
+	background-image: url("../res/icon/gis.png");
+}
+
+.s_alarm {
+	background-image: url("../res/icon/alarm.png");
+}
+
+.s_alarma {
+	background-image: url("../res/icon/alarm.gif");
+}
+
+.s_control {
+	background-image: url("../res/icon/control.png");
+}
+
+.s_dvr {
+	background-image: url("../res/icon/dvr.png");
+}
+
+.s_camera {
+	background-image: url("../res/icon/camera.png");
+}
+
+.s_equipment {
+	background-image: url("../res/icon/equipment.png");
+}
+
+.s_equipmentcha {
+	background-image: url("../res/icon/equipmentcha.png");
+}
+
+.s_position {
+	background-image: url("../res/icon/position.png");
+}
+
+.s_history {
+	background-image: url("../res/icon/history.png");
+}
+
+.s_film {
+	background-image: url("../res/icon/film.png");
+}
+
+.s_query {
+	background-image: url("../res/icon/query.png");
+}
+
+.s_temp {
+	background-image: url("../res/icon/temp.png");
+}
+
+.s_action {
+	background-image: url("../res/icon/action.png");
+}
+
+.s_exit {
+	background-image: url("../res/icon/exit.png");
+}
+
+.s_sync {
+	background-image: url("../res/icon/sync.png");
+}
+
+.s_user {
+	background-image: url("../res/icon/user.png");
+}
+
+.s_wind {
+	background-image: url("../res/icon/wind.png");
+}
+.s_water {
+	background-image: url("../res/mark/10.png");
+}
+
+.s_sf6 {
+	background-image: url("../res/mark/12.png");
+}
+
+.s_oxySen {
+	background-image: url("../res/mark/13.png");
+}
+
+.s_locator {
+	background-image: url("../res/icon/locator.png");
+}
+
+.s_alarmRule {
+	background-image: url("../res/icon/alarmRule.png");
+}
+
+.s_alarmRuleAction {
+	background-image: url("../res/icon/alarmRuleAction.png");
+}
+
+.s_webcam{
+	background-image: url("../res/icon/webcam.png");
+}
+
+.s_key{
+	background-image: url("../res/icon/key.png");
+}
+.s_useralarm{
+	background-image: url("../res/icon/alarmRule.png");
+}
+.s_changcount{
+	background-image: url("../res/icon/changCount.png");
+}
+
+.s_userLog{
+	background-image: url("../res/icon/userLog.png");
+}
+
+.s_sscfg{
+	background-image: url("../res/icon/server.ico");
+}
