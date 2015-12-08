@@ -92,6 +92,13 @@
 	<logger name="org.springframework.web">
 		<level value="warn" />
 	</logger>
+	
+	<!-- extjs+spring  extdirectspring -->
+  	<category name="ch.ralscha.extdirectspring" additivity="true">
+        <priority value="debug" />
+        <appender-ref ref="console.CONSOLE" />
+    </category>
+   
 
 	<!-- Root Logger -->
 	<root>

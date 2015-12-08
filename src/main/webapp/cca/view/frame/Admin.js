@@ -7,38 +7,22 @@ Ext.define('RYIVS.view.frame.Admin', {
 	region : 'center',
 	layout : 'border',
 	items : [ {
-		xtype : 'resGrid',
+		xtype : 'leftMenu',
 		region : 'west',
 		width : 300
+		
 	}, {
 		region : 'center',
 		xtype : 'tabpanel',
-		activeTab : 0,
+		activeTab : 0,			
 		items : [ {
-			xtype : 'gridEditController'
+			xtype : 'centerPanel',
+			html :'界面中部',
+			title : '主界面'
 		}
-//			, {
-//			xtype : 'gridEditEncoder'
-//		}, {
-//			xtype : 'streamServer'		
-//		}, {
-//			xtype : 'gridEditRfid'
-//		}, {
-//			xtype : 'gridEditAlarmRule'
-//		}, /*{
-//			xtype : 'eventRule'
-//		},*/ {
-//			xtype : 'gridEditLocator'
-//		}, {
-//			xtype : 'gisEditor'
-//		}, {
-//			xtype : 'gridEditUser'
-//		}, {
-//			xtype : 'gridEditUserAlarm'
-//		} , {
-//			xtype : 'gridEditUserLog'
-//		} 
-	]
+		
+		
+		]
 	} ],
 
 	bbar : [ {

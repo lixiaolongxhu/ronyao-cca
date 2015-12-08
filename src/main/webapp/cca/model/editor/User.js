@@ -3,13 +3,8 @@
  */
 Ext.define('RYIVS.model.editor.User', {
 	extend : 'Ext.data.Model',
-	fields : [ 'id', 'rank', 'uname', 'passwd', 'type', 'rname', 'telephone', 'mobile'],
+	fields : [ 'id', 'loginname', 'password'],
 	
-	validations : [ {
-		type : 'length',
-		field : 'uname',
-		min : 1
-	}],
 	
 	proxy : {
 		type : 'direct',

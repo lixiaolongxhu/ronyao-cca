@@ -1,23 +1,26 @@
-//用户编辑
-Ext.define('RYIVS.view.editor.User', {
-	requires : [ 'RYIVS.lib.GridEditBase' ],
-	extend : 'RYIVS.lib.GridEditBase',
-	alias : 'widget.gridEditUser',
-	title : '用户管理',
+/**企业资质信息管理.
+ * 
+ */
+Ext.define('RYIVS.view.editor.Aptitude', {
+	extend : 'Ext.grid.Panel',
+	alias : 'widget.aptitude',
+	title : '企业资质信息',
 	iconCls : 's_user',
+	region : 'center',
+	
 	// 定义 Model
 	model : 'RYIVS.model.editor.User',
 	// 定义 autoload
 	autoload : true,
 	// 定义 colums
 	columns : [ {
-		text : 'ID',
+		text : '企业资质信息',
 		width : 40,
 		sortable : true,
 		dataIndex : 'id',
 		flex : 1
 	}, {
-		text : '用户名',
+		text : '企业资质信息',
 		width : 40,
 		sortable : true,
 		dataIndex : 'loginname',
@@ -26,9 +29,8 @@ Ext.define('RYIVS.view.editor.User', {
 			allowBlank : false
 		},
 		flex : 1
-	}
-	, {
-		header : '用户密码',
+	}, {
+		header : '企业资质信息',
 		width : 40,
 		dataIndex : 'password',
 		flex : 2,
@@ -37,7 +39,7 @@ Ext.define('RYIVS.view.editor.User', {
 			allowBlank : false
 		}
 	}
-//		, {
+//	, {
 //		text : '用户类型',
 //		dataIndex : 'type',
 //		flex : 1,
@@ -95,6 +97,28 @@ Ext.define('RYIVS.view.editor.User', {
 //			xtype : 'textfield',
 //			allowBlank : true
 //		}
-//	}
-		]
+//	} 
+	],
+	//设置没有数据显示文本
+	viewConfig: {
+		emptyText:'<div style="text-align:center; padding:50px; color:gray">没有数据可显示</div>',
+        deferEmptyText:false
+    },
+    
+	initComponent : function() {
+		
+		// 4 model 和 store 配置
+		this.store = new Ext.data.Store({
+			// Store所对应的模型
+			model : this.model,
+			autoSync : true,
+			// 是否自动加载
+			autoLoad : this.autoload
+
+		});
+
+		this.callParent(arguments);
+		
+	}
+	
 });

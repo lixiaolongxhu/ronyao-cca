@@ -21,12 +21,9 @@ Ext.application({
 
 	appFolder : 'cca',
 
-	controllers : ['frame.Admin', 'monitor.south', 'editor.Locator', 'editor.Rfid', 'gis.GisLayerEditor','gis.GisLayerManager','gis.GisLayerList',
-					'editor.Controller', 'editor.Encoder', 'editor.AlarmRule', 
-					'editor.ResGrid', 'gis.GisEditor', 'editor.User', 'editor.UserLog',
-					'common.EditPassword','video.PlayerWin', 'common.DbConstant',
-					'video.PtzPos', 'editor.UserAlarm','common.UserFolder',
-					'gis.FileUpload', 'editor.EventRule', 'editor.StreamServer'],
+	controllers : ['frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
+					'editor.Aptitude','editor.User'
+				  ],
 
 
 	launch : function() {

@@ -22,7 +22,7 @@
 
 		<!-- generate Model -->
 		<javaModelGenerator targetPackage="com.ronyao.cca.db.model"
-			targetProject="cca/src/main/java">
+			targetProject="ronyao-cca/src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
@@ -30,13 +30,13 @@
 
 		<!-- generate xml -->
 		<sqlMapGenerator targetPackage="com.ronyao.cca.db.dao"
-			targetProject="cca/src/main/java">
+			targetProject="ronyao-cca/src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- generate Mapper -->
 		<javaClientGenerator type="ANNOTATEDMAPPER"
-			targetPackage="com.ronyao.cca.db.dao" targetProject="cca/src/main/java">
+			targetPackage="com.ronyao.cca.db.dao" targetProject="ronyao-cca/src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
@@ -75,6 +75,18 @@
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 		<table schema="" tableName="user_log" domainObjectName="UserLog">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="user_role_link" domainObjectName="UserRoleLink">
+		
+		</table>
+		<table schema="" tableName="role_permission_link" domainObjectName="rolePermissionLink">
+		
+		</table>
+		<table schema="" tableName="role" domainObjectName="Role">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="permission" domainObjectName="Permission">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
 		<!-- 用户权限相关表    end -->
