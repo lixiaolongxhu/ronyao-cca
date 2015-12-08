@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-08 16:35:18
+Date: 2015-12-08 17:08:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,14 +41,18 @@ CREATE TABLE `behavior` (
 -- ----------------------------
 DROP TABLE IF EXISTS `enterprise`;
 CREATE TABLE `enterprise` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业基本信息表',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业资质信息表',
   `supervisorUnit` varchar(40) DEFAULT '' COMMENT '主管单位',
   `name` varchar(20) DEFAULT '' COMMENT '企业简称',
-  `fullName` varchar(40) DEFAULT '',
-  `aptitude` tinyint(4) DEFAULT '1' COMMENT '企业资质 1总承包 2 专业承包',
-  `rank` tinyint(4) DEFAULT '3' COMMENT '企业对应资质的级别 分为 1级 2级 3级(默认)',
-  `bigEquipmentNum` tinyint(4) DEFAULT '0' COMMENT '大张牵设备数',
-  `smallEquipmentNum` tinyint(4) DEFAULT '0' COMMENT '小张牵设备数',
+  `fullName` varchar(40) DEFAULT '' COMMENT '企业全称',
+  `property` tinyint(4) DEFAULT '2' COMMENT '企业性质 1 全民 2 集体',
+  `register` int(11) DEFAULT '0' COMMENT '注册资本金(万元)',
+  `assets` int(11) DEFAULT '0' COMMENT '企业净资产(万元)',
+  `workers` int(11) DEFAULT '0' COMMENT '在职职工数',
+  `overallRank` tinyint(4) DEFAULT '0' COMMENT '资质 总承包 等级',
+  `professionRank` tinyint(4) DEFAULT '0' COMMENT '资质 专业承包  等级',
+  `output` int(11) DEFAULT '0' COMMENT '近三年的产值(万元)',
+  `project` tinyint(4) DEFAULT '0' COMMENT '近三年工程数量',
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -56,6 +60,27 @@ CREATE TABLE `enterprise` (
 
 -- ----------------------------
 -- Records of enterprise
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for enterprise_file
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_file`;
+CREATE TABLE `enterprise_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业资质信息上传的附件表',
+  `enterpriseId` int(11) DEFAULT NULL,
+  `fileType` tinyint(4) DEFAULT '1' COMMENT '上传的文件类型 1 图片',
+  `aptitudeType` tinyint(4) DEFAULT '1' COMMENT ' 企业资质类型1  总承包 ,2 专业承包 ',
+  `path` varchar(50) DEFAULT '' COMMENT '文件存储的路径',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updatTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `enterprise_file_id_fk` (`enterpriseId`),
+  CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_file
 -- ----------------------------
 
 -- ----------------------------
@@ -119,6 +144,7 @@ INSERT INTO `permission` VALUES ('16', '5', '承载能力计算结果', '', '2',
 INSERT INTO `permission` VALUES ('17', '5', '不良行为影响', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('20', '5', '施工企业评估分类', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('21', '5', '评估情况与近三年承揽情况的比较', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('22', '21', '工程数量对比情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('23', '21', '产值对比情况', '', '2', '', '0', '1', null, null);
@@ -128,7 +154,6 @@ INSERT INTO `permission` VALUES ('26', '24', '各施工单位已承揽工程情�
 INSERT INTO `permission` VALUES ('27', '26', '在建工程情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('28', '26', '中标未开工情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('29', '24', '施工单位剩余承载能力', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('30', '5', '施工企业评估分类', '', '2', '', '0', '1', null, null);
 
 -- ----------------------------
 -- Table structure for person
