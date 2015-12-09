@@ -22,7 +22,8 @@ Ext.application({
 	appFolder : 'cca',
 
 	controllers : ['frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
-					'editor.Aptitude','editor.User'
+					
+					'editor.Enterprise','editor.EnterprisePer','editor.User'
 				  ],
 
 

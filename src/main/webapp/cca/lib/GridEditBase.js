@@ -59,6 +59,7 @@ Ext.define('RYIVS.lib.GridEditBase', {
 				msg : '请再次确认删除，删除该数据将删除与之相关联的数据',
 				buttons : Ext.Msg.YESNO,
 				fn : function(rst) {
+					
 					var ctlType = this.ownerCt.ownerCt.ownerCt.xtype;
 					var temp = this.ownerCt.ownerCt;
 					if (rst != 'no') {
@@ -70,19 +71,19 @@ Ext.define('RYIVS.lib.GridEditBase', {
 						}
 					}
 					
-					//级联刷新资源列表
-					if(temp.xtype == 'gridEditRfid') {
-						ctlType = 'gridEditRfid';
-					}
-					switch(ctlType) {
-//						case 'gridEditLocator':
-						case 'gridEditController'://控制器
-						case 'gridEditEncoder'://视频编辑
-						case 'gridEditRfid'://定位点
-							var resGrid = Ext.ComponentQuery.query('resGrid')[0];
-							resGrid.store.load();
-							break;
-					}
+//					//级联刷新资源列表
+//					if(temp.xtype == 'gridEditRfid') {
+//						ctlType = 'gridEditRfid';
+//					}
+//					switch(ctlType) {
+////						case 'gridEditLocator':
+//						case 'gridEditController'://控制器
+//						case 'gridEditEncoder'://视频编辑
+//						case 'gridEditRfid'://定位点
+//							var resGrid = Ext.ComponentQuery.query('resGrid')[0];
+//							resGrid.store.load();
+//							break;
+//					}
 				},
 				scope : this,
 				icon : Ext.window.MessageBox.QUESTION
@@ -158,6 +159,7 @@ Ext.define('RYIVS.lib.GridEditBase', {
 					me.getEditor().cancelEdit();
 					me.editing = false;
 					me.fireEvent('canceledit', me.context);
+					//重新加载stores数据 刷新前端grid界面
 					if (me.autoRecoverOnCancel) {
 						me.grid.store.load();
 					}
@@ -178,15 +180,15 @@ Ext.define('RYIVS.lib.GridEditBase', {
 		// 3 添加插件
 		this.plugins = [ this.rowEditing ];
 
-		// 4 model 和 store 配置
-		this.store = new Ext.data.Store({
-			// Store所对应的模型
-			model : this.model,
-			autoSync : true,
-			// 是否自动加载
-			autoLoad : this.autoload
-
-		});
+//		// 4 model 和 store 配置
+//		this.store = new Ext.data.Store({
+//			// Store所对应的模型
+//			model : this.model,
+//			autoSync : true,
+//			// 是否自动加载
+//			autoLoad : this.autoload
+//
+//		});
 
 		// 5 配置主子表关系
 		if (this.master) {

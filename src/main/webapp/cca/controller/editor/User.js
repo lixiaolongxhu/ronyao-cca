@@ -5,6 +5,7 @@ Ext.define('RYIVS.controller.editor.User', {
 	extend : 'Ext.app.Controller',
 	models : [ 'editor.User' ],
 	views : [ 'editor.User' ],
+	stores :['editor.User'],
 	init : function() {
 		this.control({
 			'gridEditUser' : {

@@ -39,7 +39,7 @@ Ext.define('RYIVS.view.common.StateBar', {
 		text : '退出系统',
 		handler : function(b, e) {
 			Ext.Ajax.request({
-				url : 'srv/logout',
+				url : 'ui/logout',
 				success : function(response) {
 					location.href = "index.jsp";
 				}

@@ -10,9 +10,9 @@
 // 控制器通道对应的资源类型
 //ry.constant.ctrChaResType = [ [ 2, '电子围栏' ], [ 3, '消防' ], [ 4, '风机' ], [ 5, '空调' ], [ 6, '温湿度传感' ], [ 7, '灯光' ], [ 8, '风速' ] ];
 
-// 控制器通道对应的资源类型
-ry.constant.ctrChaResType = [
-<c:forEach items = "${ctlCharResType}" var = "res" varStatus = "status">
+// 施工企业简称名称列表
+ry.constant.enterprise_name = [
+<c:forEach items = "${enterprise}" var = "res" varStatus = "status">
 	<c:choose>
 		<c:when test="${status.last}">
 			[${res.id},'${res.name}']
@@ -23,6 +23,13 @@ ry.constant.ctrChaResType = [
 	</c:choose>
 </c:forEach>
 ];
+
+
+
+
+
+
+
 
 // 资源类型
 ry.constant.resourceType = [

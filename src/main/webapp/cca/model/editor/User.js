@@ -5,23 +5,18 @@ Ext.define('RYIVS.model.editor.User', {
 	extend : 'Ext.data.Model',
 	fields : [ 'id', 'loginname', 'password'],
 	
-	
-	proxy : {
-		type : 'direct',
-		api : {
-			read : actionUser.read,
-			create : actionUser.create,
-			update : actionUser.update,
-			destroy : actionUser.destroy
-		},
-
-		reader : {
-			type : 'json',
-			root : 'records'
-		},
-
-		writer : {
-			type : 'json'
-		}
+	validations : [
+	{
+		type : 'length',
+		field : 'loginname',
+		min : 4
+	},
+	{
+		type : 'length',
+		field : 'password',
+		min : 4
 	}
+	]
+	
+
 });

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-08 17:08:49
+Date: 2015-12-09 17:26:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,11 +56,17 @@ CREATE TABLE `enterprise` (
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise
 -- ----------------------------
+INSERT INTO `enterprise` VALUES ('1', '四川成都', '企业简称', '四川成都公司', '2', '0', '0', '0', '0', '0', '0', '0', '', '');
+INSERT INTO `enterprise` VALUES ('4', '可入的', '范德萨范德萨发生大幅度', '法撒旦法士大夫撒旦法', '2', '0', '0', '0', '0', '0', '0', '0', '', '');
+INSERT INTO `enterprise` VALUES ('9', '3423141234', '21432143214', '4123423', '2', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 12:36:49', '');
+INSERT INTO `enterprise` VALUES ('16', '123213', '3213123', '3213123', '2', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 12:36:49', '');
+INSERT INTO `enterprise` VALUES ('17', 'fsadfasdf', 'fsadfdsa', 'fsdafsadfads', '1', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 12:36:49', '');
+INSERT INTO `enterprise` VALUES ('69', '发撒旦法撒旦法', '防守打法俄方', '发撒旦法撒旦法', '2', '0', '0', '0', '3', '3', '0', '0', '2015-12-09 14:55:05', '');
 
 -- ----------------------------
 -- Table structure for enterprise_file
@@ -82,6 +88,43 @@ CREATE TABLE `enterprise_file` (
 -- ----------------------------
 -- Records of enterprise_file
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for enterprise_person
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_person`;
+CREATE TABLE `enterprise_person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业持证人员',
+  `enterpriseId` int(11) DEFAULT NULL COMMENT '企业基本信息表外键',
+  `constructorOne` tinyint(4) DEFAULT '0' COMMENT '国家注册建造师  一级人数',
+  `constructorTwo` tinyint(4) DEFAULT '0' COMMENT '国家注册建造师 二级',
+  `constructorTotal` tinyint(4) DEFAULT '0' COMMENT '国家注册建造师  人数 合计',
+  `staffMiddle` tinyint(4) DEFAULT '0' COMMENT '中级以上职称人员  中级  ',
+  `staffHigh` tinyint(4) DEFAULT '0' COMMENT '中级以上职称人员  高级',
+  `staffTotal` tinyint(4) DEFAULT '0' COMMENT '中级以上职称人员  合计',
+  `skillMiddle` tinyint(4) DEFAULT '0' COMMENT '中级工以上技术人员   中级',
+  `skillHigh` tinyint(4) DEFAULT '0' COMMENT '中级工以上技术人员   高级',
+  `skillTech` tinyint(4) DEFAULT '0' COMMENT '中级工以上技术人员  技师',
+  `skillTechHigh` tinyint(4) DEFAULT '0' COMMENT '中级工以上技术人员  高级技师',
+  `skillTotal` tinyint(4) DEFAULT NULL COMMENT '中级工以上技术人员   合计',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `enterprise_per_id_fk` (`enterpriseId`),
+  CONSTRAINT `enterprise_per_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_person
+-- ----------------------------
+INSERT INTO `enterprise_person` VALUES ('17', '16', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:12:38', '');
+INSERT INTO `enterprise_person` VALUES ('22', '9', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:29:07', '');
+INSERT INTO `enterprise_person` VALUES ('31', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:29:27', '');
+INSERT INTO `enterprise_person` VALUES ('34', '16', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:35:07', '');
+INSERT INTO `enterprise_person` VALUES ('38', '4', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:35:19', '');
+INSERT INTO `enterprise_person` VALUES ('49', '17', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:46:17', '');
+INSERT INTO `enterprise_person` VALUES ('50', '69', '1', '2', '3', '2', '2', '4', '1', '2', '3', '4', '10', '2015-12-09 16:49:48', '2015-12-09 17:02:03');
+INSERT INTO `enterprise_person` VALUES ('51', '9', '1', '2', '3', '3', '4', '7', '5', '6', '7', '7', '25', '2015-12-09 17:02:49', '');
 
 -- ----------------------------
 -- Table structure for equipment_bear
@@ -121,14 +164,14 @@ CREATE TABLE `permission` (
   `updateTime` varchar(0) DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `permission_name_index` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES ('1', '2', '资质信息', 'gridEditUser', '2', '2级菜单', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('2', '0', '企业基本信息', 'gridEditUser', '2', '1级菜单', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('3', '2', '人员信息', 'aptitude', '2', '2级菜单', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('1', '2', '资质信息', 'enterprise', '2', '2级菜单', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('2', '0', '企业基本信息', '', '2', '1级菜单', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('3', '2', '人员信息', 'enterprisePer', '2', '2级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('5', '0', '施工承载能力评估', '', '2', '1级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('6', '5', '评估标准', '', '2', '2级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('7', '6', '企业资质对施工承载能力评估', '', '2', '3级菜单', '0', '1', null, null);
@@ -260,17 +303,19 @@ CREATE TABLE `user` (
   `realName` varchar(20) DEFAULT '' COMMENT '真实姓名',
   `nickname` varchar(20) DEFAULT '' COMMENT '昵称',
   `portraitPath` varchar(50) DEFAULT '' COMMENT '头像图片的相对路径',
-  `status` tinyint(8) NOT NULL DEFAULT '1' COMMENT '1,正常状态，2，取消关注(冻结状态),',
-  `createTime` varchar(20) NOT NULL DEFAULT '' COMMENT '记录创建时间',
+  `status` tinyint(8) DEFAULT '1' COMMENT '1,正常状态，2，取消关注(冻结状态),',
+  `createTime` varchar(20) DEFAULT '' COMMENT '记录创建时间',
   `updateTime` varchar(20) DEFAULT '' COMMENT '记录修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_loginName_index` (`loginName`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', 'admin', '', '', '', '', '1', '', '');
+INSERT INTO `user` VALUES ('2', '4213', '3241234', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('78', 'user', 'user', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for user_log
@@ -286,7 +331,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -380,6 +425,179 @@ INSERT INTO `user_log` VALUES ('86', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('87', '1', '会话超时，用户退出.', '2015-12-08 16:33:07', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('88', '1', '操作模块:会话管理,用户登陆.', '2015-12-08 16:33:43', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('89', '1', '会话超时，用户退出.', '2015-12-08 16:34:49', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('90', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:31:59', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('91', '1', '会话超时，用户退出.', '2015-12-09 09:34:22', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('92', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:34:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('93', '1', '会话超时，用户退出.', '2015-12-09 09:36:28', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('94', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:38:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('95', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:39:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('96', '1', '会话超时，用户退出.', '2015-12-09 09:39:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('97', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:41:34', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('98', '1', '会话超时，用户退出.', '2015-12-09 09:41:58', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('99', '1', '会话超时，用户退出.', '2015-12-09 09:42:40', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('100', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:43:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('101', '1', '会话超时，用户退出.', '2015-12-09 09:44:10', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('102', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:44:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('103', '1', '会话超时，用户退出.', '2015-12-09 09:46:04', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('104', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:47:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('105', '1', '会话超时，用户退出.', '2015-12-09 09:48:16', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('106', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:49:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('107', '1', '会话超时，用户退出.', '2015-12-09 09:50:52', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('108', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:57:27', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('109', '1', '会话超时，用户退出.', '2015-12-09 09:58:34', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('110', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:59:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('111', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 09:59:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('112', '1', '会话超时，用户退出.', '2015-12-09 10:00:28', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('113', '1', '会话超时，用户退出.', '2015-12-09 10:00:52', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('114', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:03:25', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('115', '1', '会话超时，用户退出.', '2015-12-09 10:06:10', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('116', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:12:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('117', '1', '会话超时，用户退出.', '2015-12-09 10:13:23', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('118', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:13:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('119', '1', '会话超时，用户退出.', '2015-12-09 10:18:11', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('120', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:21:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('121', '1', '会话超时，用户退出.', '2015-12-09 10:22:11', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('122', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:29:21', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('123', '1', '会话超时，用户退出.', '2015-12-09 10:30:29', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('124', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:32:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('125', '1', '会话超时，用户退出.', '2015-12-09 10:34:41', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('126', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:34:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('127', '1', '会话超时，用户退出.', '2015-12-09 10:37:11', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('128', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:39:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('129', '1', '会话超时，用户退出.', '2015-12-09 10:40:53', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('130', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:46:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('131', '1', '会话超时，用户退出.', '2015-12-09 10:48:47', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('132', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:49:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('133', '1', '会话超时，用户退出.', '2015-12-09 10:50:59', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('134', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:51:39', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('135', '1', '会话超时，用户退出.', '2015-12-09 10:52:47', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('136', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:54:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('137', '1', '会话超时，用户退出.', '2015-12-09 10:56:11', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('138', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 10:57:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('139', '1', '会话超时，用户退出.', '2015-12-09 10:58:53', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('140', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 11:00:25', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('141', '1', '会话超时，用户退出.', '2015-12-09 11:05:53', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('142', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 11:07:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('143', '1', '会话超时，用户退出.', '2015-12-09 11:10:23', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('144', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 11:13:01', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('145', '1', '会话超时，用户退出.', '2015-12-09 11:15:47', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('146', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 11:25:35', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('147', '1', '会话超时，用户退出.', '2015-12-09 11:32:14', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('148', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:36:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('149', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:40:25', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('150', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:41:52', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('151', '1', '会话超时，用户退出.', '2015-12-09 12:42:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('152', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:43:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('153', '1', '会话超时，用户退出.', '2015-12-09 12:44:00', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('154', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:44:36', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('155', '1', '会话超时，用户退出.', '2015-12-09 12:44:48', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('156', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:47:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('157', '1', '会话超时，用户退出.', '2015-12-09 12:48:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('158', '1', '会话超时，用户退出.', '2015-12-09 12:53:00', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('159', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:53:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('160', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:54:52', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('161', '1', '会话超时，用户退出.', '2015-12-09 12:55:31', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('162', '1', '会话超时，用户退出.', '2015-12-09 12:56:07', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('163', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:56:18', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('164', '1', '会话超时，用户退出.', '2015-12-09 12:58:01', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('165', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 12:59:06', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('166', '1', '会话超时，用户退出.', '2015-12-09 13:01:41', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('167', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:01:54', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('168', '1', '会话超时，用户退出.', '2015-12-09 13:03:23', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('169', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:04:52', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('170', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:06:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('171', '1', '会话超时，用户退出.', '2015-12-09 13:06:46', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('172', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:09:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('173', '1', '会话超时，用户退出.', '2015-12-09 13:09:52', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('174', '1', '会话超时，用户退出.', '2015-12-09 13:12:04', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('175', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:12:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('176', '1', '会话超时，用户退出.', '2015-12-09 13:14:52', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('177', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:15:20', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('178', '1', '会话超时，用户退出.', '2015-12-09 13:16:34', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('179', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:16:45', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('180', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:26:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('181', '1', '会话超时，用户退出.', '2015-12-09 13:29:35', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('182', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:29:55', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('183', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:30:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('184', '1', '会话超时，用户退出.', '2015-12-09 13:31:11', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('185', '1', '会话超时，用户退出.', '2015-12-09 13:32:29', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('186', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:34:32', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('187', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:35:45', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('188', '1', '会话超时，用户退出.', '2015-12-09 13:36:29', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('189', '1', '会话超时，用户退出.', '2015-12-09 13:37:41', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('190', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:38:02', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('191', '1', '会话超时，用户退出.', '2015-12-09 13:39:29', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('192', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:40:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('193', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:43:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('194', '1', '会话超时，用户退出.', '2015-12-09 13:44:17', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('195', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:48:20', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('196', '1', '会话超时，用户退出.', '2015-12-09 13:48:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('197', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:50:54', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('198', '1', '会话超时，用户退出.', '2015-12-09 13:55:25', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('199', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 13:56:54', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('200', '1', '会话超时，用户退出.', '2015-12-09 13:59:31', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('201', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:00:49', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('202', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:03:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('203', '1', '会话超时，用户退出.', '2015-12-09 14:03:31', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('204', '1', '会话超时，用户退出.', '2015-12-09 14:04:19', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('205', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:05:49', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('206', '1', '会话超时，用户退出.', '2015-12-09 14:08:25', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('207', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:08:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('208', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:09:27', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('209', '1', '会话超时，用户退出.', '2015-12-09 14:10:13', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('210', '1', '会话超时，用户退出.', '2015-12-09 14:10:43', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('211', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:16:21', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('212', '1', '会话超时，用户退出.', '2015-12-09 14:17:25', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('213', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:17:39', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('214', '1', '会话超时，用户退出.', '2015-12-09 14:19:31', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('215', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:21:32', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('216', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:22:10', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('217', '1', '会话超时，用户退出.', '2015-12-09 14:22:50', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('218', '1', '会话超时，用户退出.', '2015-12-09 14:23:44', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('219', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:25:47', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('220', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:49:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('221', '1', '会话超时，用户退出.', '2015-12-09 14:52:04', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('222', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:54:15', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('223', '1', '操作模块:会话管理,用户注销.', '2015-12-09 14:55:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('224', '1', '会话超时，用户退出.', '2015-12-09 14:56:46', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('225', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 14:57:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('226', '1', '会话超时，用户退出.', '2015-12-09 15:03:23', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('227', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:06:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('228', '1', '会话超时，用户退出.', '2015-12-09 16:08:21', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('229', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:08:35', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('230', '1', '会话超时，用户退出.', '2015-12-09 16:09:57', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('231', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:10:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('232', '1', '会话超时，用户退出.', '2015-12-09 16:15:09', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('233', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:20:06', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('234', '1', '会话超时，用户退出.', '2015-12-09 16:21:51', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('235', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:23:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('236', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:28:57', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('237', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:30:59', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('238', '1', '会话超时，用户退出.', '2015-12-09 16:32:43', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('239', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:33:47', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('240', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:34:56', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('241', '1', '会话超时，用户退出.', '2015-12-09 16:36:22', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('242', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:36:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('243', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:38:32', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('244', '1', '会话超时，用户退出.', '2015-12-09 16:39:54', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('245', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:41:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('246', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:43:11', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('247', '1', '会话超时，用户退出.', '2015-12-09 16:43:12', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('248', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:45:59', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('249', '1', '会话超时，用户退出.', '2015-12-09 16:47:20', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('250', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 16:49:34', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('251', '1', '会话超时，用户退出.', '2015-12-09 16:50:56', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('252', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:01:17', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('253', '1', '会话超时，用户退出.', '2015-12-09 17:05:02', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('254', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:05:59', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('255', '1', '会话超时，用户退出.', '2015-12-09 17:07:38', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('256', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:16:26', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('257', '1', '会话超时，用户退出.', '2015-12-09 17:21:32', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('258', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:22:06', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('259', '1', '会话超时，用户退出.', '2015-12-09 17:23:14', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('260', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:23:21', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('261', '1', '会话超时，用户退出.', '2015-12-09 17:24:26', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('262', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:25:42', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
@@ -394,8 +612,8 @@ CREATE TABLE `user_role_link` (
   PRIMARY KEY (`userId`,`roleId`),
   KEY `user_role_link_roleUuid` (`roleId`),
   KEY `user_role_link_userId` (`userId`),
-  CONSTRAINT `userId_role_fk` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
-  CONSTRAINT `roleId_fk` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
+  CONSTRAINT `roleId_fk` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`),
+  CONSTRAINT `userId_role_fk` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

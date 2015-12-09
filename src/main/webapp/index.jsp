@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="js/CusFieldVtypes.js"></script>
 		
 		<!--读取db中的常量-->
-		<script type="text/javascript" src="controllers/global"></script>
+		<script type="text/javascript" src="controllers/global"></script> 
 		
 		<!--extjs-direct-spring 配制文件-->
 		<script src="controllers/api-debug.js?group=store,form"></script>

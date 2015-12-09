@@ -1,14 +1,16 @@
-//用户编辑
+/**用户编辑
+ * 
+ */
 Ext.define('RYIVS.view.editor.User', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.gridEditUser',
 	title : '用户管理',
 	iconCls : 's_user',
-	// 定义 Model
-	model : 'RYIVS.model.editor.User',
+	// 定义 store
+	store : 'editor.User',
 	// 定义 autoload
-	autoload : true,
+	autoload : false,
 	// 定义 colums
 	columns : [ {
 		text : 'ID',
@@ -26,8 +28,7 @@ Ext.define('RYIVS.view.editor.User', {
 			allowBlank : false
 		},
 		flex : 1
-	}
-	, {
+	}, {
 		header : '用户密码',
 		width : 40,
 		dataIndex : 'password',
@@ -96,5 +97,6 @@ Ext.define('RYIVS.view.editor.User', {
 //			allowBlank : true
 //		}
 //	}
-		]
+	
+	]
 });

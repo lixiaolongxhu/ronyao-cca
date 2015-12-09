@@ -73,31 +73,33 @@ ry.constant.trans = function(index, type) {
 }
 
 
-// 空调控制类型
-ry.constant.airCtlType = [[ 1, '制冷' ], [ 2, '制热' ], [ 3, '除湿' ] ];
-ry.constant.airType = [[0, '关闭'], [ 1, '制冷' ], [ 2, '制热' ], [ 3, '除湿' ] ];
-//联动-空调控制
-ry.constant.link_air = [
-    {parm1:"0", parm1Name:"关闭"},
-    {parm1:"1", parm1Name:"制冷"},
-    {parm1:"2", parm1Name:"制热"},
-    {parm1:"3", parm1Name:"除湿"}
-]
+// 企业性质
+ry.constant.enterprise_property = [[ 1, '全名' ], [ 2, '集体' ] ];
+//企业资质
+ry.constant.enterprise_aptitude = [[1, '一级'], [ 2, '二级' ], [ 3, '三级' ],[-1,'无等级'] ];
 
-//开关量控制类型
-ry.constant.ctlType = [[0, '关闭'], [1, '开启']]
-//联动-开关量
-ry.constant.link_switch = [
-    {parm1:"0", parm1Name:"关闭"},
-    {parm1:"1", parm1Name:"开启"}
-]
-
-
-// 用户组
-ry.constant.usergroup = [ [ 1, '管理组' ], [ 2, '监控组' ] ];
-
-//GOOSE 告警类型
-ry.constant.gooseAlarmType = [[1,'intermediate'], [2,'off'], [3, 'on'], [4,'bad'], [5, 'off'], [6, 'on']];
+////联动-空调控制
+//ry.constant.link_air = [
+//    {parm1:"0", parm1Name:"关闭"},
+//    {parm1:"1", parm1Name:"制冷"},
+//    {parm1:"2", parm1Name:"制热"},
+//    {parm1:"3", parm1Name:"除湿"}
+//]
+//
+////开关量控制类型
+//ry.constant.ctlType = [[0, '关闭'], [1, '开启']]
+////联动-开关量
+//ry.constant.link_switch = [
+//    {parm1:"0", parm1Name:"关闭"},
+//    {parm1:"1", parm1Name:"开启"}
+//]
+//
+//
+//// 用户组
+//ry.constant.usergroup = [ [ 1, '管理组' ], [ 2, '监控组' ] ];
+//
+////GOOSE 告警类型
+//ry.constant.gooseAlarmType = [[1,'intermediate'], [2,'off'], [3, 'on'], [4,'bad'], [5, 'off'], [6, 'on']];
 
 
 /**

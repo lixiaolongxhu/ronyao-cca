@@ -91,6 +91,27 @@
 		</table>
 		<!-- 用户权限相关表    end -->
 		
+		<!-- 业务相关的表    begin -->
+		
+		<table schema="" tableName="behavior" domainObjectName="Behavior">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="enterprise" domainObjectName="Enterprise">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="enterprise_file" domainObjectName="EnterpriseFile">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="enterprise_person" domainObjectName="EnterprisePerson">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		<table schema="" tableName="equipment_bear" domainObjectName="EquipmentBear">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		
+		
+		<!-- 业务先关的表    end      -->
 		
 	</context>
 </generatorConfiguration>  

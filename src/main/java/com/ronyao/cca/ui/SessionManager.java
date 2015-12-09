@@ -7,6 +7,7 @@ package com.ronyao.cca.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.ronyao.cca.db.dao.EnterpriseMapper;
 import com.ronyao.cca.db.dao.UserMapper;
+import com.ronyao.cca.db.model.Enterprise;
+import com.ronyao.cca.db.model.EnterpriseExample;
 import com.ronyao.cca.db.model.User;
 import com.ronyao.cca.db.model.UserExample;
 
@@ -36,6 +40,8 @@ public class SessionManager {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Resource
+	private  EnterpriseMapper enterpriseMapper;
 
 
 	@Value("#{systemProperties.getProperty('config.debug.level')}")
@@ -114,44 +120,17 @@ public class SessionManager {
 		model.addAttribute("debugLevel", debugLevel);
 		return "WebConfig";
 	};
+	
+	
 	//获取DB const 变量
 	@RequestMapping(value = "/global")
 	public String getGlobalConfig(Model model) {
-//		//res_type
-//		ResTypeExample resTypeExample = new ResTypeExample();
-//		List<ResType> resTypeList = resTypeMapper.selectByExample(resTypeExample);
-//		model.addAttribute("resType", resTypeList);
-//		//ctlCharResType
-//		List<ResType> resCharTypeList = new ArrayList<ResType>();
-//		for(ResType res : resTypeList)  {
-//			//过滤掉摄像机，人员定位和文件夹类型
-//			if((res.getId() == 0) || (res.getId() == 1) || (res.getId() == 9)) {
-//				continue;
-//			}
-//			resCharTypeList.add(res);
-//		}
-//		model.addAttribute("ctlCharResType", resCharTypeList);
-//		//res_cat
-//		ResCatExample resCatExample = new ResCatExample();
-//		List<ResCat> resCatList = resCatMapper.selectByExample(resCatExample);
-//		model.addAttribute("resCat",resCatList);
-//		//alamr_type
-//		AlarmTypeExample almTypeExample = new AlarmTypeExample();
-//		List<AlarmType> almTypeList = almTypeMapper.selectByExample(almTypeExample);
-//		model.addAttribute("almType",almTypeList);
-//		//user_type
-//		UserTypeExample userTypeExample = new UserTypeExample();
-//		List<UserType> userTypeList = userTypeMapper.selectByExample(userTypeExample);
-//		model.addAttribute("userType", userTypeList);
-//		//user_rank
-//		UserRankExample userRankExample = new UserRankExample();
-//		List<UserRank> userRankList = userRankMapper.selectByExample(userRankExample);
-//		model.addAttribute("userRank", userRankList);
-//		//action
-//		ActionExample actionExample = new ActionExample();
-//		List<Action> actionList = actionMapper.selectByExample(actionExample);
-//		model.addAttribute("action", actionList);
-		
+		//enterprise 查询企业名称列表
+		EnterpriseExample enterExample = new EnterpriseExample();
+		enterExample.setDistinct(true);
+		enterExample.setOrderByClause(" createTime desc  ");
+		List<Enterprise> enterList = enterpriseMapper.selectByExample(enterExample);
+		model.addAttribute("enterprise", enterList);
 		return "DBConst";
 	};
 	
