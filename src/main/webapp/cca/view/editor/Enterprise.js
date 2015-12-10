@@ -129,13 +129,13 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				editable : false,
 				displayField : 'display',
 				valueField : 'value',
-				store : ry.constant.enterprise_aptitude, //调用外部js常量
+				store : ry.constant.enterprise_aptitude_rank, //调用外部js常量
 				queryMode : 'local',
 				emptyText : '请选择',	
 				forceSelection : true //必须选择一项
 			},
 			renderer : function(val) {
-				return  ry.constant.trans(val,ry.constant.enterprise_aptitude);
+				return  ry.constant.trans(val,ry.constant.enterprise_aptitude_rank);
 			}
 		}, {
 			text : '专业承包(等级)',
@@ -149,13 +149,13 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				editable : false,
 				displayField : 'display',
 				valueField : 'value',
-				store : ry.constant.enterprise_aptitude, //调用外部js常量
+				store : ry.constant.enterprise_aptitude_rank, //调用外部js常量
 				queryMode : 'local',
 				emptyText : '请选择',	
 				forceSelection : true //必须选择一项
 			},
 			renderer : function(val) {
-				return  ry.constant.trans(val,ry.constant.enterprise_aptitude);
+				return  ry.constant.trans(val,ry.constant.enterprise_aptitude_rank);
 			}
 			
 	  }]	

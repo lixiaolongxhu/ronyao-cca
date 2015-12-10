@@ -23,7 +23,7 @@ Ext.application({
 
 	controllers : ['frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
 					
-					'editor.Enterprise','editor.EnterprisePer','editor.User'
+					'editor.Enterprise','editor.EnterprisePer','editor.EnterpriseApt','editor.User','editor.EnterprisePerSta','editor.EquipmentBear'
 				  ],
 
 

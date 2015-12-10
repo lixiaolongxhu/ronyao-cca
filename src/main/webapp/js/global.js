@@ -6,19 +6,7 @@ Ext.Ajax.on('requestcomplete', function(conn, response, options, e) {
 			var rst = response.responseText;
 			// session 过期处理
 			if (rst.indexOf("{timeout:", 0) != -1) {
-				/*Ext.Msg.show({
-							title : '警告',
-							msg : '会话过期，请重新登录!',
-							buttons : Ext.Msg.OK,
-							icon : Ext.Msg.WARNING,
-							scope : this,
-							fn : function(btn) {
-								if (btn == 'ok') {*/
-									window.location.href = "index.jsp";
-								/*}
-							}
-						});*/
-
+					window.location.href = "index.jsp";
 			}
 		}); 
 
@@ -59,7 +47,7 @@ function freezeUI(freeze) {
 	Ext.ComponentQuery.query("viewport")[0].setLoading(freeze);
 }
 
-// ----------------------------常量-----------------------------
+// ----------------------------常量  begin-----------------------------
 Ext.namespace('ry.constant');
 
 // 把Index翻译成对应的字符串
@@ -75,8 +63,13 @@ ry.constant.trans = function(index, type) {
 
 // 企业性质
 ry.constant.enterprise_property = [[ 1, '全名' ], [ 2, '集体' ] ];
-//企业资质
-ry.constant.enterprise_aptitude = [[1, '一级'], [ 2, '二级' ], [ 3, '三级' ],[-1,'无等级'] ];
+
+// 企业岗位: 是否允许其他岗位进行兼职
+ry.constant.post_classify_job =[[1,"不允许"],[2,'允许']];
+
+// 线路专业  设备承载距离计算方式
+ry.constant.equipment_lineType =[[1,'单回'],[2,'双回']]
+
 
 ////联动-空调控制
 //ry.constant.link_air = [
@@ -86,8 +79,6 @@ ry.constant.enterprise_aptitude = [[1, '一级'], [ 2, '二级' ], [ 3, '三级'
 //    {parm1:"3", parm1Name:"除湿"}
 //]
 //
-////开关量控制类型
-//ry.constant.ctlType = [[0, '关闭'], [1, '开启']]
 ////联动-开关量
 //ry.constant.link_switch = [
 //    {parm1:"0", parm1Name:"关闭"},
@@ -95,11 +86,9 @@ ry.constant.enterprise_aptitude = [[1, '一级'], [ 2, '二级' ], [ 3, '三级'
 //]
 //
 //
-//// 用户组
-//ry.constant.usergroup = [ [ 1, '管理组' ], [ 2, '监控组' ] ];
-//
-////GOOSE 告警类型
-//ry.constant.gooseAlarmType = [[1,'intermediate'], [2,'off'], [3, 'on'], [4,'bad'], [5, 'off'], [6, 'on']];
+
+
+// ----------------------------常量   end-----------------------------
 
 
 /**

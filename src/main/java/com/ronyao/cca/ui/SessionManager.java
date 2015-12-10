@@ -1,17 +1,12 @@
 package com.ronyao.cca.ui;
 
-/*
- * 登陆的用户管理
- */
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -23,17 +18,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.ronyao.cca.db.dao.AptitudeClassifyMapper;
+import com.ronyao.cca.db.dao.AptitudeRankClassifyMapper;
 import com.ronyao.cca.db.dao.EnterpriseMapper;
+import com.ronyao.cca.db.dao.PostClassifyMapper;
 import com.ronyao.cca.db.dao.UserMapper;
+import com.ronyao.cca.db.dao.VoltageRankClassifyMapper;
+import com.ronyao.cca.db.model.AptitudeClassify;
+import com.ronyao.cca.db.model.AptitudeClassifyExample;
+import com.ronyao.cca.db.model.AptitudeRankClassify;
+import com.ronyao.cca.db.model.AptitudeRankClassifyExample;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterpriseExample;
+import com.ronyao.cca.db.model.PostClassify;
+import com.ronyao.cca.db.model.PostClassifyExample;
 import com.ronyao.cca.db.model.User;
 import com.ronyao.cca.db.model.UserExample;
+import com.ronyao.cca.db.model.VoltageRankClassify;
+import com.ronyao.cca.db.model.VoltageRankClassifyExample;
 
+/**登陆的用户管理.
+ * 
+ */
 
 @Controller
 @Scope("session")
 public class SessionManager {
+	
+	private static  final Logger LOG = LoggerFactory.getLogger(SessionManager.class);
 
 	private User user;
 
@@ -43,11 +55,23 @@ public class SessionManager {
 	@Resource
 	private  EnterpriseMapper enterpriseMapper;
 
+	@Resource
+	private AptitudeClassifyMapper  aptitudeClassfiyMapper;
+	
+	@Resource
+	private PostClassifyMapper  postClassifyMapper;
 
+	@Resource
+	private AptitudeRankClassifyMapper  aptitudeRankClassifyMapper;
+	
+	@Resource
+	private VoltageRankClassifyMapper   voltageRankClassifyMapper;
+	
+	
 	@Value("#{systemProperties.getProperty('config.debug.level')}")
 	private int debugLevel;
 	
-	static Logger log = org.slf4j.LoggerFactory.getLogger(SessionManager.class);
+	
 
 	/*
 	 * 登陆过程
@@ -63,7 +87,7 @@ public class SessionManager {
 		List<User> users = userMapper.selectByExample(userExample);
 		if (users.size() > 0) {
 			user = users.get(0);
-			log.info("用户：" + user.getLoginname() + " 登陆成功。");
+			LOG.info("用户：" + user.getLoginname() + " 登陆成功。");
 			session.setAttribute("loginUser", this.user);
 			return "";
 		}
@@ -125,12 +149,33 @@ public class SessionManager {
 	//获取DB const 变量
 	@RequestMapping(value = "/global")
 	public String getGlobalConfig(Model model) {
+		
 		//enterprise 查询企业名称列表
 		EnterpriseExample enterExample = new EnterpriseExample();
 		enterExample.setDistinct(true);
 		enterExample.setOrderByClause(" createTime desc  ");
 		List<Enterprise> enterList = enterpriseMapper.selectByExample(enterExample);
 		model.addAttribute("enterprise", enterList);
+		
+		//查询企业资质分类
+		AptitudeClassifyExample  aptitudeExample=new AptitudeClassifyExample();
+		List<AptitudeClassify>  aptitudeClassifyList=aptitudeClassfiyMapper.selectByExample(aptitudeExample);
+		model.addAttribute("aptitudeClassify",aptitudeClassifyList);
+		
+		//查询企业资质等级
+		AptitudeRankClassifyExample  aptitudeRankExample=new AptitudeRankClassifyExample();
+		List<AptitudeRankClassify>  aptitudeRankClassifyList=aptitudeRankClassifyMapper.selectByExample(aptitudeRankExample);
+		model.addAttribute("aptitudeRankClassify",aptitudeRankClassifyList);
+		
+		//施工企业岗位名称分类列表
+		PostClassifyExample  postExample=new PostClassifyExample();
+		List<PostClassify> postList=postClassifyMapper.selectByExample(postExample);
+		model.addAttribute("postClassify",postList);
+		
+		//电压等级分类
+		VoltageRankClassifyExample    voltageExample=new VoltageRankClassifyExample();
+		List<VoltageRankClassify>  voltageList=voltageRankClassifyMapper.selectByExample(voltageExample);
+		model.addAttribute("voltageRankClassify",voltageList);
 		return "DBConst";
 	};
 	

@@ -10,10 +10,44 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-09 17:26:53
+Date: 2015-12-10 14:58:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for aptituderank_classify
+-- ----------------------------
+DROP TABLE IF EXISTS `aptituderank_classify`;
+CREATE TABLE `aptituderank_classify` (
+  `id` tinyint(4) NOT NULL COMMENT '企业资质信息等级',
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of aptituderank_classify
+-- ----------------------------
+INSERT INTO `aptituderank_classify` VALUES ('-1', '无等级');
+INSERT INTO `aptituderank_classify` VALUES ('1', '一级');
+INSERT INTO `aptituderank_classify` VALUES ('2', '二级');
+INSERT INTO `aptituderank_classify` VALUES ('3', '三级');
+
+-- ----------------------------
+-- Table structure for aptitude_classify
+-- ----------------------------
+DROP TABLE IF EXISTS `aptitude_classify`;
+CREATE TABLE `aptitude_classify` (
+  `id` tinyint(4) NOT NULL COMMENT '企业资产分类表   1 总承包 2 专业承包',
+  `name` varchar(20) DEFAULT '' COMMENT '企业资质信息分类',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of aptitude_classify
+-- ----------------------------
+INSERT INTO `aptitude_classify` VALUES ('1', '总承包');
+INSERT INTO `aptitude_classify` VALUES ('2', '专业承包');
 
 -- ----------------------------
 -- Table structure for behavior
@@ -55,18 +89,52 @@ CREATE TABLE `enterprise` (
   `project` tinyint(4) DEFAULT '0' COMMENT '近三年工程数量',
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `enter_overallRank_id_fk` (`overallRank`),
+  KEY `enter_professionRank_id_fk` (`professionRank`),
+  CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`),
+  CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise
 -- ----------------------------
-INSERT INTO `enterprise` VALUES ('1', '四川成都', '企业简称', '四川成都公司', '2', '0', '0', '0', '0', '0', '0', '0', '', '');
-INSERT INTO `enterprise` VALUES ('4', '可入的', '范德萨范德萨发生大幅度', '法撒旦法士大夫撒旦法', '2', '0', '0', '0', '0', '0', '0', '0', '', '');
-INSERT INTO `enterprise` VALUES ('9', '3423141234', '21432143214', '4123423', '2', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 12:36:49', '');
-INSERT INTO `enterprise` VALUES ('16', '123213', '3213123', '3213123', '2', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 12:36:49', '');
-INSERT INTO `enterprise` VALUES ('17', 'fsadfasdf', 'fsadfdsa', 'fsdafsadfads', '1', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 12:36:49', '');
+INSERT INTO `enterprise` VALUES ('1', '四川成都', '企业简称', '四川成都公司', '2', '0', '0', '0', '1', '1', '0', '0', '', '');
+INSERT INTO `enterprise` VALUES ('4', '可入的', '范德萨范德萨发生大幅度', '法撒旦法士大夫撒旦法', '2', '0', '0', '0', '1', '1', '0', '0', '', '');
+INSERT INTO `enterprise` VALUES ('9', '3423141234', '21432143214', '4123423', '2', '0', '0', '0', '1', '1', '0', '0', '2015-12-09 12:36:49', '');
+INSERT INTO `enterprise` VALUES ('16', '123213', '3213123', '3213123', '2', '0', '0', '0', '1', '1', '0', '0', '2015-12-09 12:36:49', '');
+INSERT INTO `enterprise` VALUES ('17', 'fsadfasdf', 'fsadfdsa', 'fsdafsadfads', '1', '0', '0', '0', '1', '1', '0', '0', '2015-12-09 12:36:49', '');
 INSERT INTO `enterprise` VALUES ('69', '发撒旦法撒旦法', '防守打法俄方', '发撒旦法撒旦法', '2', '0', '0', '0', '3', '3', '0', '0', '2015-12-09 14:55:05', '');
+INSERT INTO `enterprise` VALUES ('70', 'fsadfsadsdfdasf', 'sdafsdaf', 'asdfsdaf', '2', '0', '0', '0', '-1', '-1', '0', '0', '2015-12-10 09:22:23', '');
+
+-- ----------------------------
+-- Table structure for enterprise_aptitude
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_aptitude`;
+CREATE TABLE `enterprise_aptitude` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业资质标准分类 表',
+  `aptitudeId` tinyint(4) DEFAULT '1' COMMENT '资质分类',
+  `aptitudeRank` tinyint(4) DEFAULT '0' COMMENT '企业资质等级 ',
+  `qualifications` varchar(50) DEFAULT '' COMMENT '资质要求',
+  `practicing` varchar(100) DEFAULT '' COMMENT '执业资格',
+  `charge` varchar(255) DEFAULT '' COMMENT '技术负责人',
+  `technical` varchar(255) DEFAULT '' COMMENT '技术人员',
+  `skills` varchar(255) DEFAULT '' COMMENT '技能人员',
+  `jobRange` varchar(255) DEFAULT '' COMMENT '承包范围',
+  `createTime` varchar(20) DEFAULT '',
+  `updateTime` varchar(20) DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `enter_aptiude_id_fk` (`aptitudeId`),
+  KEY `enter_aptiudeRank_id_fk` (`aptitudeRank`),
+  CONSTRAINT `enter_aptiudeRank_id_fk` FOREIGN KEY (`aptitudeRank`) REFERENCES `aptituderank_classify` (`id`),
+  CONSTRAINT `enter_aptiude_id_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_aptitude
+-- ----------------------------
+INSERT INTO `enterprise_aptitude` VALUES ('2', '2', '2', '佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:34:01', '2015-12-10 10:40:14');
+INSERT INTO `enterprise_aptitude` VALUES ('3', '2', '2', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:39:22', '');
 
 -- ----------------------------
 -- Table structure for enterprise_file
@@ -127,25 +195,61 @@ INSERT INTO `enterprise_person` VALUES ('50', '69', '1', '2', '3', '2', '2', '4'
 INSERT INTO `enterprise_person` VALUES ('51', '9', '1', '2', '3', '3', '4', '7', '5', '6', '7', '7', '25', '2015-12-09 17:02:49', '');
 
 -- ----------------------------
+-- Table structure for enterprise_per_standard
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_per_standard`;
+CREATE TABLE `enterprise_per_standard` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业自身主要人员评估(施工项目部人员构成)',
+  `postClassifyId` tinyint(4) DEFAULT NULL COMMENT '岗位名称外键关联',
+  `holderRequire` varchar(255) DEFAULT '' COMMENT '持证要求',
+  `lineFlatNum` tinyint(4) DEFAULT '1' COMMENT '线路工程,平地需要人员个数',
+  `lineMountainNum` tinyint(4) DEFAULT '1' COMMENT '线路工程,山区需要人员个数',
+  `powerNum` tinyint(4) DEFAULT '0' COMMENT '变电工程  需要人数',
+  `job` tinyint(4) DEFAULT '1' COMMENT '该岗位是否允许其他岗位人员兼职   1 不允许   2 允许',
+  `remark` varchar(255) DEFAULT '' COMMENT '备注',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `per_standard_postClassifyId_fk` (`postClassifyId`) USING BTREE,
+  CONSTRAINT `per_standard_postClassifyId_fk` FOREIGN KEY (`postClassifyId`) REFERENCES `post_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_per_standard
+-- ----------------------------
+INSERT INTO `enterprise_per_standard` VALUES ('1', '1', 'fdsfdsf法国法士大夫防守打法的发放四大fsa', '1', '1', '1', '1', 'sdafasdfsdf沙发垫范甘迪发郭德纲 大范甘迪个', '2015-12-10 13:27:49', '2015-12-10 13:34:50');
+INSERT INTO `enterprise_per_standard` VALUES ('3', '2', 'fsafsadf fdsfsadfds是短发是飞洒地方 士大夫撒旦', '1', '1', '1', '1', '发的发撒旦发送到法撒旦', '2015-12-10 13:40:01', '');
+INSERT INTO `enterprise_per_standard` VALUES ('4', '6', '发发士大夫发的发阿三发送到方法撒旦法阿什顿飞', '2', '2', '2', '2', '发生法撒旦法是飞洒第三方师德师风a', '2015-12-10 13:40:26', '2015-12-10 13:41:12');
+INSERT INTO `enterprise_per_standard` VALUES ('7', '3', '在想方设法所发生的的发松岛枫搜索岛发松岛枫士大夫撒地方', '1', '1', '1', '1', '分身乏术法撒旦法师法鼎飞丹砂发圣诞送士大夫撒地方十大啥的发送到撒旦法速度多少发送到发', '2015-12-10 13:43:54', '');
+
+-- ----------------------------
 -- Table structure for equipment_bear
 -- ----------------------------
 DROP TABLE IF EXISTS `equipment_bear`;
 CREATE TABLE `equipment_bear` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '线路专业 张牵设备承载力 配置信息表',
   `name` varchar(40) DEFAULT '' COMMENT '设备名称说明',
-  `voltageLevel` int(11) DEFAULT '0' COMMENT '电压等级 kv',
+  `voltageRankId` tinyint(4) DEFAULT NULL COMMENT '电压等级 kv',
   `lineType` tinyint(4) DEFAULT '2' COMMENT '线路类型 1 单回  2 双回',
   `linePlain` tinyint(4) DEFAULT '0' COMMENT '平原,丘陵导线展放率(km/月.套)',
   `lineBrae` tinyint(4) DEFAULT '0' COMMENT '山区 导线展放率(km/月.套)',
-  `explain` text COMMENT '设备的详细说明信息',
+  `explains` varchar(225) DEFAULT NULL COMMENT '设备的详细说明信息',
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `voltagerankid_fk` (`voltageRankId`,`lineType`) USING BTREE,
+  CONSTRAINT `voltagerankid_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of equipment_bear
 -- ----------------------------
+INSERT INTO `equipment_bear` VALUES ('5', '放散阀风飒飒的撒放四大', '2', '2', '1', '1', '', '2015-12-10 14:52:36', '');
+INSERT INTO `equipment_bear` VALUES ('6', '发士大夫撒safetyas', '1', '1', '1', '1', '法撒旦法师法但是', '2015-12-10 14:52:52', '');
+INSERT INTO `equipment_bear` VALUES ('7', '发送到法撒旦发松岛枫', '3', '1', '1', '1', '', '2015-12-10 14:53:45', '');
+INSERT INTO `equipment_bear` VALUES ('8', '风飒飒的范德萨范德萨范德萨发生的三大范德萨发的啥', '4', '1', '1', '1', '', '2015-12-10 14:53:57', '');
+INSERT INTO `equipment_bear` VALUES ('10', '撒旦法隔热特委托日期尔特天然气问题热武器b', '1', '2', '1', '1', '当然 are撒旦安仁坊a', '2015-12-10 14:55:30', '');
+INSERT INTO `equipment_bear` VALUES ('13', '士大夫撒地方松岛枫松岛枫爱妃撒放四大', '3', '2', '1', '1', '', '2015-12-10 14:56:08', '');
 
 -- ----------------------------
 -- Table structure for permission
@@ -174,9 +278,9 @@ INSERT INTO `permission` VALUES ('2', '0', '企业基本信息', '', '2', '1级�
 INSERT INTO `permission` VALUES ('3', '2', '人员信息', 'enterprisePer', '2', '2级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('5', '0', '施工承载能力评估', '', '2', '1级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('6', '5', '评估标准', '', '2', '2级菜单', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('7', '6', '企业资质对施工承载能力评估', '', '2', '3级菜单', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('8', '6', '企业自身主要人员评估标准', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('9', '6', '机具设备对工程承载力的评估', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('7', '6', '企业资质对施工承载能力评估', 'enterpriseApt', '2', '3级菜单', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('8', '6', '企业自身主要人员评估标准', 'enterprisePerSta', '2', '企业自身主要人员评估(施工项目部人员构成)', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('9', '6', '机具设备对工程承载力的评估', 'equipmentBear', '2', '张牵设备承载力配置信息', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('10', '6', '施工项目团队工程施工产值', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('11', '6', '施工企业不良行文分类标准', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('12', '5', '现场管理人员', '', '2', '', '0', '1', null, null);
@@ -230,6 +334,28 @@ CREATE TABLE `person` (
 -- ----------------------------
 -- Records of person
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for post_classify
+-- ----------------------------
+DROP TABLE IF EXISTS `post_classify`;
+CREATE TABLE `post_classify` (
+  `id` tinyint(4) NOT NULL COMMENT '施工企业基本岗位表',
+  `name` varchar(100) DEFAULT '' COMMENT '岗位名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of post_classify
+-- ----------------------------
+INSERT INTO `post_classify` VALUES ('1', '项目经理');
+INSERT INTO `post_classify` VALUES ('2', '项目总工');
+INSERT INTO `post_classify` VALUES ('3', '安全员');
+INSERT INTO `post_classify` VALUES ('4', '质检员');
+INSERT INTO `post_classify` VALUES ('5', '技术员');
+INSERT INTO `post_classify` VALUES ('6', '造价员,资料员,综合员,管理员,材料员,协调员');
+INSERT INTO `post_classify` VALUES ('7', '施工队长(班组长)');
+INSERT INTO `post_classify` VALUES ('8', '施工队技术员,质检员,兼职安全员');
 
 -- ----------------------------
 -- Table structure for project_config
@@ -331,7 +457,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -598,6 +724,35 @@ INSERT INTO `user_log` VALUES ('259', '1', '会话超时，用户退出.', '2015
 INSERT INTO `user_log` VALUES ('260', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:23:21', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('261', '1', '会话超时，用户退出.', '2015-12-09 17:24:26', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('262', '1', '操作模块:会话管理,用户登陆.', '2015-12-09 17:25:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('263', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 09:21:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('264', '1', '会话超时，用户退出.', '2015-12-10 09:23:27', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('265', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 09:39:31', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('266', '1', '会话超时，用户退出.', '2015-12-10 09:41:04', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('267', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 10:15:59', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('268', '1', '会话超时，用户退出.', '2015-12-10 10:17:52', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('269', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 10:22:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('270', '1', '会话超时，用户退出.', '2015-12-10 10:23:39', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('271', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 10:26:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('272', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 10:30:01', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('273', '1', '会话超时，用户退出.', '2015-12-10 10:37:18', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('274', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 10:38:26', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('275', '1', '会话超时，用户退出.', '2015-12-10 10:42:42', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('276', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 13:19:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('277', '1', '会话超时，用户退出.', '2015-12-10 13:20:45', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('278', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 13:21:01', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('279', '1', '会话超时，用户退出.', '2015-12-10 13:23:50', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('280', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 13:26:11', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('281', '1', '会话超时，用户退出.', '2015-12-10 13:27:22', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('282', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 13:27:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('283', '1', '会话超时，用户退出.', '2015-12-10 13:29:57', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('284', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 13:34:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('285', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 13:39:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('286', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:31:36', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('287', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:34:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('288', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:43:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('289', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:51:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('290', '1', '操作模块:会话管理,用户注销.', '2015-12-10 14:57:02', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('291', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:57:08', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
@@ -619,3 +774,22 @@ CREATE TABLE `user_role_link` (
 -- ----------------------------
 -- Records of user_role_link
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for voltage_rank_classify
+-- ----------------------------
+DROP TABLE IF EXISTS `voltage_rank_classify`;
+CREATE TABLE `voltage_rank_classify` (
+  `id` tinyint(4) NOT NULL COMMENT '电压等级分类表',
+  `name` varchar(20) DEFAULT '' COMMENT '电压等级名称',
+  `value` int(8) DEFAULT '0' COMMENT '对应的电压  对应单位 kv',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of voltage_rank_classify
+-- ----------------------------
+INSERT INTO `voltage_rank_classify` VALUES ('1', '500kv以上', '1000');
+INSERT INTO `voltage_rank_classify` VALUES ('2', '500kv', '500');
+INSERT INTO `voltage_rank_classify` VALUES ('3', '220kv', '220');
+INSERT INTO `voltage_rank_classify` VALUES ('4', '110kv', '110');

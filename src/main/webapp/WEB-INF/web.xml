@@ -83,5 +83,10 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- 配置session  过期时间  分钟-->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 
 </web-app>

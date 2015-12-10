@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/javascript; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-//读取数据库常量
+//读取数据库常量(字典数据)
 
-// 用户组
+// 用户组(示例)
 //ry.constant.usergroup = [ [ 1, '管理组' ], [ 2, '监控组' ] ];
-// 空调控制类型
-//ry.constant.airCtlType = [ [ 1, '制冷' ], [ 2, '制热' ], [ 3, '除湿' ] ];
-// 控制器通道对应的资源类型
-//ry.constant.ctrChaResType = [ [ 2, '电子围栏' ], [ 3, '消防' ], [ 4, '风机' ], [ 5, '空调' ], [ 6, '温湿度传感' ], [ 7, '灯光' ], [ 8, '风速' ] ];
 
 // 施工企业简称名称列表
 ry.constant.enterprise_name = [
@@ -25,15 +21,9 @@ ry.constant.enterprise_name = [
 ];
 
 
-
-
-
-
-
-
-// 资源类型
-ry.constant.resourceType = [
-<c:forEach items = "${resType}" var = "res" varStatus = "status">
+// 企业资质分类
+ry.constant.enterprise_aptitude_classify = [
+<c:forEach items = "${aptitudeClassify}" var = "res" varStatus = "status">
 	<c:choose>
 		<c:when test="${status.last}">
 			[${res.id},'${res.name}']
@@ -45,9 +35,9 @@ ry.constant.resourceType = [
 </c:forEach>
 ];
 
-// 控制器通道类型
-ry.constant.ctrChaType = [
-<c:forEach items = "${resCat}" var = "res" varStatus = "status">
+//企业资质等级   ry.constant.enterprise_aptitude_rank = [[1, '一级'], [ 2, '二级' ], [ 3, '三级' ],[-1,'无等级'] ];
+ry.constant.enterprise_aptitude_rank = [
+<c:forEach items = "${aptitudeRankClassify}" var = "res" varStatus = "status">
 	<c:choose>
 		<c:when test="${status.last}">
 			[${res.id},'${res.name}']
@@ -59,9 +49,10 @@ ry.constant.ctrChaType = [
 </c:forEach>
 ];
 
-// 告警类型
-ry.constant.almtype = [
-<c:forEach items = "${almType}" var = "res" varStatus = "status">
+
+// 施工企业岗位名称分类列表
+ry.constant.post_classify_name = [
+<c:forEach items = "${postClassify}" var = "res" varStatus = "status">
 	<c:choose>
 		<c:when test="${status.last}">
 			[${res.id},'${res.name}']
@@ -73,37 +64,9 @@ ry.constant.almtype = [
 </c:forEach>
 ];
 
-// 联动的动作类型
-ry.constant.actiontype = [
-<c:forEach items = "${action}" var = "res" varStatus = "status">
-	<c:choose>
-		<c:when test="${status.last}">
-			[${res.id},'${res.name}']
-		</c:when>
-		<c:otherwise>
-			[${res.id},'${res.name}'],
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
-];
-
-// 用户类型
-ry.constant.usertype = [
-<c:forEach items = "${userType}" var = "res" varStatus = "status">
-	<c:choose>
-		<c:when test="${status.last}">
-			[${res.id},'${res.name}']
-		</c:when>
-		<c:otherwise>
-			[${res.id},'${res.name}'],
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
-];
-
-// 用户等级
-ry.constant.userRank = [
-<c:forEach items = "${userRank}" var = "res" varStatus = "status">
+// 电压等级分类名称列表
+ry.constant.voltageRankClassify_name = [
+<c:forEach items = "${voltageRankClassify}" var = "res" varStatus = "status">
 	<c:choose>
 		<c:when test="${status.last}">
 			[${res.id},'${res.name}']
