@@ -12,7 +12,13 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
+	forceFit :true,
+	
+	//引入grid 特征 - 列求和
+	features: [{
+        ftype: 'summary'
+    }],
+	
 	// 定义 colums
 	columns : [ {
 		text : 'ID',
@@ -64,12 +70,18 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 				
 				flex : 1,
 				editor : {
-				allowBlank : false,
-				xtype : 'numberfield',
-				minValue : 1,
-				autoStripChars : true,
-				allowDecimals : false
-			}
+					allowBlank : false,
+					xtype : 'numberfield',
+					minValue : 1,
+					autoStripChars : true,
+					allowDecimals : false,
+				
+ 				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			},{
 				text : '山区',
 				width : 100,
@@ -81,7 +93,12 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+					
+				},
+				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 } 
 	
@@ -98,7 +115,11 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 			minValue : 1,
 			autoStripChars : true,
 			allowDecimals : false
-		}
+		},
+		summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+		summaryRenderer: function(value, summaryData, dataIndex) {
+            return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+        }
 	},
 	
 	{

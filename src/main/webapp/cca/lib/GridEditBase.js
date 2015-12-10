@@ -71,19 +71,6 @@ Ext.define('RYIVS.lib.GridEditBase', {
 						}
 					}
 					
-//					//级联刷新资源列表
-//					if(temp.xtype == 'gridEditRfid') {
-//						ctlType = 'gridEditRfid';
-//					}
-//					switch(ctlType) {
-////						case 'gridEditLocator':
-//						case 'gridEditController'://控制器
-//						case 'gridEditEncoder'://视频编辑
-//						case 'gridEditRfid'://定位点
-//							var resGrid = Ext.ComponentQuery.query('resGrid')[0];
-//							resGrid.store.load();
-//							break;
-//					}
 				},
 				scope : this,
 				icon : Ext.window.MessageBox.QUESTION

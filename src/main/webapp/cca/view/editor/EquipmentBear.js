@@ -4,7 +4,7 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.equipmentBear',
 	title : '张牵设备承载力配置信息',
-	iconCls : 's_user',
+	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.EquipmentBear',
 	// 定义 autoload
