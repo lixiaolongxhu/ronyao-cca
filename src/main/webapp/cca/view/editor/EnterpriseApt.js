@@ -16,7 +16,9 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
 	
-	// 工具条
+	autoScroll : true, //'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	
+	
 	// 工具条
 	tbar : [ {
 		text : '添加',
@@ -148,7 +150,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 		}
 	},{
 		text : '资质要求',
-		width : 40,
+		width : 60,
 		dataIndex : 'qualifications',
 		editor : {
 			xtype : 'textfield',
@@ -164,7 +166,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 				width : 200,
 				dataIndex : 'practicing',
 				editor : {
-					xtype : 'textfield',
+					xtype : 'textarea',
 					allowBlank : true
 				},
 				flex : 1
@@ -173,7 +175,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 				width : 200,
 				dataIndex : 'charge',
 				editor : {
-					xtype : 'textfield',
+					xtype : 'textarea',
 					allowBlank : false
 				},
 				flex : 1
@@ -183,7 +185,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 				width : 200,
 				dataIndex : 'technical',
 				editor : {
-					xtype : 'textfield',
+					xtype : 'textarea',
 					allowBlank : false
 				},
 				flex : 1
@@ -193,7 +195,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 				width : 200,
 				dataIndex : 'skills',
 				editor : {
-					xtype : 'textfield',
+					xtype : 'textarea',
 					allowBlank : false
 				},
 				flex : 1
@@ -207,7 +209,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 		width : 300,
 		dataIndex : 'jobrange',
 		editor : {
-			xtype : 'textfield',
+			xtype : 'textarea',
 			allowBlank : false
 		},
 		flex : 1

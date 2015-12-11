@@ -30,7 +30,7 @@ public class ActionEnterpriseApt {
 	public ExtDirectStoreReadResult<EnterpriseAptitude> read(
 			ExtDirectStoreReadRequest request) {
 		EnterpriseAptitudeExample eExample = new EnterpriseAptitudeExample();
-		eExample.setOrderByClause(" createTime desc ");
+//		eExample.setOrderByClause(" createTime desc ");
 		return new ExtDirectStoreReadResult<EnterpriseAptitude>(enterprisAptitudeMaper.selectByExample(eExample));
 	}
 

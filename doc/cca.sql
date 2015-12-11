@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-10 14:58:08
+Date: 2015-12-10 17:28:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -128,13 +128,14 @@ CREATE TABLE `enterprise_aptitude` (
   KEY `enter_aptiudeRank_id_fk` (`aptitudeRank`),
   CONSTRAINT `enter_aptiudeRank_id_fk` FOREIGN KEY (`aptitudeRank`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enter_aptiude_id_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_aptitude
 -- ----------------------------
 INSERT INTO `enterprise_aptitude` VALUES ('2', '2', '2', '佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:34:01', '2015-12-10 10:40:14');
 INSERT INTO `enterprise_aptitude` VALUES ('3', '2', '2', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:39:22', '');
+INSERT INTO `enterprise_aptitude` VALUES ('4', '1', '1', '士大夫撒旦发送到法撒旦发松岛枫', '发撒旦法撒旦法阿什顿飞s', '发的发士大夫撒地方阿什顿飞', '的说法阿什顿飞sa', '发松岛枫第三方的asdf', '发松岛枫是的撒地方师德师风', '2015-12-10 15:31:30', '');
 
 -- ----------------------------
 -- Table structure for enterprise_file
@@ -212,7 +213,7 @@ CREATE TABLE `enterprise_per_standard` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `per_standard_postClassifyId_fk` (`postClassifyId`) USING BTREE,
   CONSTRAINT `per_standard_postClassifyId_fk` FOREIGN KEY (`postClassifyId`) REFERENCES `post_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_per_standard
@@ -221,6 +222,8 @@ INSERT INTO `enterprise_per_standard` VALUES ('1', '1', 'fdsfdsf法国法士大�
 INSERT INTO `enterprise_per_standard` VALUES ('3', '2', 'fsafsadf fdsfsadfds是短发是飞洒地方 士大夫撒旦', '1', '1', '1', '1', '发的发撒旦发送到法撒旦', '2015-12-10 13:40:01', '');
 INSERT INTO `enterprise_per_standard` VALUES ('4', '6', '发发士大夫发的发阿三发送到方法撒旦法阿什顿飞', '2', '2', '2', '2', '发生法撒旦法是飞洒第三方师德师风a', '2015-12-10 13:40:26', '2015-12-10 13:41:12');
 INSERT INTO `enterprise_per_standard` VALUES ('7', '3', '在想方设法所发生的的发松岛枫搜索岛发松岛枫士大夫撒地方', '1', '1', '1', '1', '分身乏术法撒旦法师法鼎飞丹砂发圣诞送士大夫撒地方十大啥的发送到撒旦法速度多少发送到发', '2015-12-10 13:43:54', '');
+INSERT INTO `enterprise_per_standard` VALUES ('8', '8', 'sdgdgadsasff送到公司发高烧的股份发送到f', '12', '12', '12', '2', '发士大夫士大夫', '2015-12-10 15:08:20', '');
+INSERT INTO `enterprise_per_standard` VALUES ('9', '7', '发撒旦法撒旦法第三方士大夫', '6', '8', '10', '2', '', '2015-12-10 15:16:50', '');
 
 -- ----------------------------
 -- Table structure for equipment_bear
@@ -457,7 +460,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -753,6 +756,12 @@ INSERT INTO `user_log` VALUES ('288', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('289', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:51:05', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('290', '1', '操作模块:会话管理,用户注销.', '2015-12-10 14:57:02', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('291', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 14:57:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('292', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 15:07:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('293', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 15:43:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('294', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 15:58:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('295', '1', '会话超时，用户退出.', '2015-12-10 16:12:54', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('296', '1', '会话超时，用户退出.', '2015-12-10 16:27:55', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('297', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 17:13:45', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

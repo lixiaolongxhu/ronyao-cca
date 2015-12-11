@@ -3,7 +3,7 @@
  */
 Ext.define('RYIVS.controller.frame.LeftMenu', {
 	extend : 'Ext.app.Controller',
-	views : [ 'frame.LeftMenu' ,'frame.Center'],
+	views : [ 'frame.LeftMenu' ],
 	
 	init : function() {
 	 	this.control({

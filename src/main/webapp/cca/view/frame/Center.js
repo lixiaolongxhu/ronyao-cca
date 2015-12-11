@@ -14,6 +14,7 @@ Ext.define('RYIVS.view.frame.Center', {
  	    minTabWidth : 115,  
  	    tabWidth : 135,  
         enableTabScroll : true ,
-        id :'centerPanel'  //id 属性配置,用于Ext.getCmp('centerPanel') 获得该dom对象
+        //Ext.getCmp 根据id 获取对象是,要求对象必须实例后或者已被调用实例,只被声明,是无法获取到对象的
+        id :'centerPanel'  //id 属性配置,用于Ext.getCmp('centerPanel') 获得该dom对象 
 	}
 );
