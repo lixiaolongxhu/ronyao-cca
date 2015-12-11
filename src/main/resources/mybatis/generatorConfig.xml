@@ -131,7 +131,13 @@
 		<table schema="" tableName="equipment_bear" domainObjectName="EquipmentBear">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
+		<table schema="" tableName="annual_output" domainObjectName="AnnualOutput">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
 		
+		<table schema="" tableName="behavior_standard" domainObjectName="BehaviorStandard">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
 		<!-- 业务先关的表    end      -->
 		
 	</context>

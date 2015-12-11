@@ -10,10 +10,37 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-10 17:28:49
+Date: 2015-12-11 14:48:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for annual_output
+-- ----------------------------
+DROP TABLE IF EXISTS `annual_output`;
+CREATE TABLE `annual_output` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT '施工姓名部年产值配置表',
+  `voltageRankId` tinyint(4) DEFAULT NULL COMMENT '电压等级外键关联  kv',
+  `projectType` tinyint(4) DEFAULT '1' COMMENT ' 1 线路工程项目 2 变电工程项目',
+  `timLlimit` tinyint(4) DEFAULT '1' COMMENT '合理工期  单位月',
+  `projectNum` decimal(10,2) DEFAULT '0.00' COMMENT '单个项目部完成项目个数(个/年)',
+  `annualOutPut` int(11) DEFAULT '0' COMMENT '年产值',
+  `remark` varchar(255) DEFAULT '' COMMENT '备注',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `annual_voltageRankId_fk` (`voltageRankId`,`projectType`) USING BTREE,
+  CONSTRAINT `annual_voltageRankId_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of annual_output
+-- ----------------------------
+INSERT INTO `annual_output` VALUES ('1', '1', '1', '18', '0.67', '17000', '备注', '2015-12-11 13:52:48', '2015-12-11 13:56:43');
+INSERT INTO `annual_output` VALUES ('2', '1', '2', '18', '0.67', '17000', '备注', '2015-12-11 13:53:46', '2015-12-11 13:56:53');
+INSERT INTO `annual_output` VALUES ('5', '2', '1', '16', '0.75', '6400', '', '2015-12-11 13:56:00', '');
+INSERT INTO `annual_output` VALUES ('6', '2', '2', '16', '0.75', '6400', '', '2015-12-11 13:56:27', '');
 
 -- ----------------------------
 -- Table structure for aptituderank_classify
@@ -71,6 +98,30 @@ CREATE TABLE `behavior` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for behavior_standard
+-- ----------------------------
+DROP TABLE IF EXISTS `behavior_standard`;
+CREATE TABLE `behavior_standard` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '不良行为分类标准配置',
+  `rankType` tinyint(4) DEFAULT NULL COMMENT '不良行为等级分类 1 严重不良行为  2 一般不良行为',
+  `sincerity` text COMMENT '诚信 ',
+  `save` text COMMENT '安全质量',
+  `progress` text COMMENT '履约进度',
+  `service` text COMMENT '服务',
+  `other` text COMMENT '其他',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of behavior_standard
+-- ----------------------------
+INSERT INTO `behavior_standard` VALUES ('1', '1', 'fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法', 'fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法fsdfsdf啥的发送到法撒旦法师法', 'fsdfsadf fsdfds', 'fdsfasdfsda', 'fdsafasdf', null, '2015-12-11 14:31:33');
+INSERT INTO `behavior_standard` VALUES ('3', '2', '士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发', '士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发', '士大夫撒旦范德萨发范德萨发打发士大夫撒旦范德萨范德萨发打发士大夫撒旦范德萨范德萨发打发士大夫撒旦范德萨打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发', '士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发', '士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发士大夫撒旦范德萨发打发', '2015-12-11 14:27:13', '2015-12-11 14:43:36');
+INSERT INTO `behavior_standard` VALUES ('4', '2', 'fsdfsadfdsf', 'dsfsadfdsf', 'dsfdsfdsa', 'fdsf', 'sdafsdfdsafdsf', '2015-12-11 14:43:23', '');
+
+-- ----------------------------
 -- Table structure for enterprise
 -- ----------------------------
 DROP TABLE IF EXISTS `enterprise`;
@@ -92,8 +143,8 @@ CREATE TABLE `enterprise` (
   PRIMARY KEY (`id`),
   KEY `enter_overallRank_id_fk` (`overallRank`),
   KEY `enter_professionRank_id_fk` (`professionRank`),
-  CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`),
-  CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`)
+  CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`),
+  CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -128,7 +179,7 @@ CREATE TABLE `enterprise_aptitude` (
   KEY `enter_aptiudeRank_id_fk` (`aptitudeRank`),
   CONSTRAINT `enter_aptiudeRank_id_fk` FOREIGN KEY (`aptitudeRank`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enter_aptiude_id_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_aptitude
@@ -136,6 +187,7 @@ CREATE TABLE `enterprise_aptitude` (
 INSERT INTO `enterprise_aptitude` VALUES ('2', '2', '2', '佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的', '佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:34:01', '2015-12-10 10:40:14');
 INSERT INTO `enterprise_aptitude` VALUES ('3', '2', '2', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:39:22', '');
 INSERT INTO `enterprise_aptitude` VALUES ('4', '1', '1', '士大夫撒旦发送到法撒旦发松岛枫', '发撒旦法撒旦法阿什顿飞s', '发的发士大夫撒地方阿什顿飞', '的说法阿什顿飞sa', '发松岛枫第三方的asdf', '发松岛枫是的撒地方师德师风', '2015-12-10 15:31:30', '');
+INSERT INTO `enterprise_aptitude` VALUES ('5', '1', '2', '资质要求  发生法撒旦法士大夫的范德萨范德萨范德萨范德萨发的发f', '执业资格 撒旦法范德萨发松岛枫撒旦法', '技术负责人 士大夫撒地方的大发发大水', '技术人员  送法撒旦法师法但是发生大幅度', '技能人员  的沙发上发大幅度发松岛枫大发阿凡达', '承包范围    发送到电风扇范德萨发大幅度发第三方法撒旦法师法撒旦法说打第三方士大夫', '2015-12-11 11:12:02', '2015-12-11 11:31:43');
 
 -- ----------------------------
 -- Table structure for enterprise_file
@@ -242,7 +294,7 @@ CREATE TABLE `equipment_bear` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `voltagerankid_fk` (`voltageRankId`,`lineType`) USING BTREE,
   CONSTRAINT `voltagerankid_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of equipment_bear
@@ -284,8 +336,8 @@ INSERT INTO `permission` VALUES ('6', '5', '评估标准', '', '2', '2级菜单'
 INSERT INTO `permission` VALUES ('7', '6', '企业资质对施工承载能力评估', 'enterpriseApt', '2', '3级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('8', '6', '企业自身主要人员评估标准', 'enterprisePerSta', '2', '企业自身主要人员评估(施工项目部人员构成)', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('9', '6', '机具设备对工程承载力的评估', 'equipmentBear', '2', '张牵设备承载力配置信息', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('10', '6', '施工项目团队工程施工产值', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('11', '6', '施工企业不良行文分类标准', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('10', '6', '施工项目团队工程施工产值', 'annualOutput', '2', '施工项目年产值评估标准表配置', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('11', '6', '施工企业不良行文分类标准', 'behaviorSta', '2', '施工企业不良行为分类标准', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('12', '5', '现场管理人员', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('13', '12', '线路专业人员', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('14', '12', '变电专业人员', '', '2', '', '0', '1', null, null);
@@ -460,7 +512,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -762,6 +814,23 @@ INSERT INTO `user_log` VALUES ('294', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('295', '1', '会话超时，用户退出.', '2015-12-10 16:12:54', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('296', '1', '会话超时，用户退出.', '2015-12-10 16:27:55', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('297', '1', '操作模块:会话管理,用户登陆.', '2015-12-10 17:13:45', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('298', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 09:10:56', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('299', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 09:17:51', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('300', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 09:43:12', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('301', '1', '会话超时，用户退出.', '2015-12-11 09:47:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('302', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 09:48:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('303', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 09:55:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('304', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 10:01:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('305', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 10:13:09', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('306', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 10:27:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('307', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 10:28:15', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('308', '1', '会话超时，用户退出.', '2015-12-11 10:58:03', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('309', '1', '会话超时，用户退出.', '2015-12-11 12:02:04', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('310', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 13:41:31', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('311', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:13:16', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('312', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:26:15', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('313', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:31:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('314', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:34:53', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

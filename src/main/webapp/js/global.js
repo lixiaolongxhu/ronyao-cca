@@ -71,6 +71,12 @@ ry.constant.post_classify_job =[[1,"不允许"],[2,'允许']];
 ry.constant.equipment_lineType =[[1,'单回'],[2,'双回']]
 
 
+// 施工项目类型
+ry.constant.project_type =[[1,'线路工程项目'],[2,'变电工程项目']]
+
+// 不良行为等级分类
+ry.constant.behavior_standard_rankType =[[1,'严重不良行为'],[2,'一般不良行为']]
+
 ////联动-空调控制
 //ry.constant.link_air = [
 //    {parm1:"0", parm1Name:"关闭"},

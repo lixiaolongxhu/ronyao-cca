@@ -112,7 +112,20 @@ Ext.define('RYIVS.view.display.EnterpriseAptLookover', {
 		labelSeparator :'：' //,//分隔符
 		//labelWidth : 60,  //标签宽度
 		//width:200
-	}
+	}, {
+        fieldLabel: '记录创建时间',
+        name: 'createtime',
+        allowBlank: false,
+        disabled :true //控件不用
+		
+    }
+    , {
+        fieldLabel: '记录修改时间',
+        name: 'updatetime',
+        allowBlank: false,
+        disabled :true //控件不用
+		
+    }
     
     ]
   
