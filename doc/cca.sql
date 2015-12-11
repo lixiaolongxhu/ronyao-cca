@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-11 14:48:33
+Date: 2015-12-11 16:53:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -512,7 +512,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -831,6 +831,13 @@ INSERT INTO `user_log` VALUES ('311', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('312', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:26:15', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('313', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:31:14', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('314', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 14:34:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('315', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 15:05:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('316', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 15:27:44', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('317', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:21:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('318', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:25:31', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('319', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:35:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('320', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:39:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('321', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:44:27', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

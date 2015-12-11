@@ -11,6 +11,9 @@
 		
 		<!--全局静态变量，这里配置基本的常量和工具函数-->
 		<script type="text/javascript" src="js/global.js"></script>
+		
+		
+		
 		<!-- 自定义验证vtype -->
 		<script type="text/javascript" src="js/CusFieldVtypes.js"></script>
 		

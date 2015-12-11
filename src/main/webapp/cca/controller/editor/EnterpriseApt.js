@@ -9,6 +9,9 @@ Ext.define('RYIVS.controller.editor.EnterpriseApt', {
 		this.control({
       		'enterpriseApt button[itemId=buttonLookOver]':{
         		click : this.lookOver
+     		 },
+     		 'enterpriseApt button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
      		 }
    		 });
 	},
@@ -42,6 +45,14 @@ Ext.define('RYIVS.controller.editor.EnterpriseApt', {
         	form.loadRecord(record);
  			
         }
-	}
+	},
 	
+	/**gird 导出为excel.
+	 * 
+	 */
+	exporterExcel : function(obj){
+
+		window.location.href='../../ui/excel';
+ 
+	}
 });

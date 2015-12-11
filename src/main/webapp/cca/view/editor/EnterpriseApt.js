@@ -81,7 +81,13 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 		icon : 'res/icon/history.png',
 		disabled : true
 		
-    } ],
+    }, {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    } 
+    
+    ],
     
     //事件监听 ,判断按钮是否可用
     listeners : {
