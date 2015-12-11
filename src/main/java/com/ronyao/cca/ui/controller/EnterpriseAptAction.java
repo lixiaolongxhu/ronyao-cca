@@ -1,33 +1,24 @@
 package com.ronyao.cca.ui.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
+
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFHeader;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.ronyao.cca.service.PermissionService;
-import com.ronyao.cca.test.CreateSimpleExcelToDisk;
 import com.ronyao.cca.test.Student;
-import com.ronyao.cca.ui.vo.TreeVo;
 
 
 
-/**权限资源(菜单)基本信息管理.
+
+/**企业资质标准分类表信息.
  * 
  * @author user
  *
@@ -35,8 +26,6 @@ import com.ronyao.cca.ui.vo.TreeVo;
 @Controller
 public class EnterpriseAptAction {
 
-	@Resource
-	private PermissionService permissionService;
 	
 	
 	 /** 
