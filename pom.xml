@@ -105,12 +105,25 @@
 			<version>1.2.1</version>
 		</dependency>
 
-		<!-- 其他依赖包 -->
+		<!-- java servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- jsp jstl  tag 标准标签库 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- jsp standard  tag 标准标签库 -->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 
 		<!-- Mina socket 通信 -->
@@ -174,12 +187,14 @@
 
 
 
-
-		<dependency>
+		<!-- sms 短信服务
+		  <dependency>
 			<groupId>org.smslib</groupId>
 			<artifactId>smslib</artifactId>
 			<version>3.5.2</version>
-		</dependency>
+		  </dependency>
+		 -->
+		
 
 		<dependency>
 			<groupId>org.mybatis.caches</groupId>
@@ -243,7 +258,8 @@
 		</dependency>
 		-->
 	</dependencies>
-
+	
+	<!-- 从 nexus 公共服务其中下载maven  
 	<repositories>
 		<repository>
 			<id>sonatype</id>
@@ -257,7 +273,8 @@
 			</releases>
 		</repository>
 	</repositories>
-
+	-->
+	
 	<build>
 		<plugins>
 		    <!-- jetty测试插件 -->
@@ -274,6 +291,18 @@
 					</webAppConfig>
 				</configuration>
 			</plugin>
+			
+			<!-- 指定maven 编译jdk 版本为1.7 -->
+			<plugin>  
+            	<groupId>org.apache.maven.plugins</groupId>  
+            	<artifactId>maven-compiler-plugin</artifactId>  
+            	<version>2.5.1</version>  
+           		 <configuration>  
+               		 <source>1.7</source>  
+               		 <target>1.7</target>  
+               		 <encoding>UTF8</encoding> 
+           		 </configuration>  
+       	   </plugin> 
 
 			<!-- Jianglan 的cca文件 START -->
 			<plugin>
