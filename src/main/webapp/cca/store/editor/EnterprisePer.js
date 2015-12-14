@@ -14,10 +14,10 @@ Ext.define('RYIVS.store.editor.EnterprisePer', {
 	proxy : {
 		type : 'direct',
 		api : {
-			read : 	  actionEnterprisePer.read,
-			create :  actionEnterprisePer.create,
-			update :  actionEnterprisePer.update,
-			destroy : actionEnterprisePer.destroy
+			read : 	  actionEnterpPer.read,
+			create :  actionEnterpPer.create,
+			update :  actionEnterpPer.update,
+			destroy : actionEnterpPer.destroy
 		},
 
 		reader : {

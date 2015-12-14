@@ -12,10 +12,10 @@ Ext.define('RYIVS.store.editor.EnterpriseApt', {
 	proxy : {
 		type : 'direct',
 		api : {
-			read : 	  actionEnterpriseApt.read,
-			create :  actionEnterpriseApt.create,
-			update :  actionEnterpriseApt.update,
-			destroy : actionEnterpriseApt.destroy
+			read : 	  actionEnterpApt.read,
+			create :  actionEnterpApt.create,
+			update :  actionEnterpApt.update,
+			destroy : actionEnterpApt.destroy
 		},
 
 		reader : {

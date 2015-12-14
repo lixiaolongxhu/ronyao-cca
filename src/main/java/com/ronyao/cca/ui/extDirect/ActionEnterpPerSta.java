@@ -22,10 +22,10 @@ import com.ronyao.cca.tool.DateUtil;
  *
  */
 @Service
-public class ActionEnterprisePerSta {
+public class ActionEnterpPerSta {
 	
 	
-	private static final  Logger  LOG=LoggerFactory.getLogger(ActionEnterprisePerSta.class);
+	private static final  Logger  LOG=LoggerFactory.getLogger(ActionEnterpPerSta.class);
 	
 	@Autowired
 	private EnterprisePerStandardMapper enterprisePerStandardMapper;

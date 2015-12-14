@@ -9,7 +9,6 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadResult;
 import com.ronyao.cca.db.dao.BehaviorStandardMapper;
-import com.ronyao.cca.db.model.BehaviorStandard;
 import com.ronyao.cca.db.model.BehaviorStandardExample;
 import com.ronyao.cca.db.model.BehaviorStandardWithBLOBs;
 import com.ronyao.cca.tool.DateUtil;

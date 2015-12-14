@@ -78,3 +78,16 @@ ry.constant.voltageRankClassify_name = [
 </c:forEach>
 ];
 
+// //获取当前时间到前10年的列
+ry.constant.year = [
+<c:forEach items = "${year}" var = "res" varStatus = "status">
+	<c:choose>
+		<c:when test="${status.last}">
+			[${res.id},'${res.name}']
+		</c:when>
+		<c:otherwise>
+			[${res.id},'${res.name}'],
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+];

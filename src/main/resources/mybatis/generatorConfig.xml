@@ -138,6 +138,15 @@
 		<table schema="" tableName="behavior_standard" domainObjectName="BehaviorStandard">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
+		<table schema="" tableName="enterprise_per_manage" domainObjectName="EnterprisePerManage">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="enterprise_equipment" domainObjectName="EnterpriseEquipment">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
+		<table schema="" tableName="behavior" domainObjectName="Behavior">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
 		<!-- 业务先关的表    end      -->
 		
 	</context>

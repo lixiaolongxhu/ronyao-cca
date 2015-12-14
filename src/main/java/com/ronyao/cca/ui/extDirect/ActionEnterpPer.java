@@ -19,7 +19,7 @@ import com.ronyao.cca.tool.DateUtil;
  *
  */
 @Service
-public class ActionEnterprisePer {
+public class ActionEnterpPer {
 	@Autowired
 	EnterprisePersonMapper enterprisePersonMapper;
 	

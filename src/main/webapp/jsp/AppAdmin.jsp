@@ -23,8 +23,10 @@ Ext.application({
 
 	controllers : ['frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
 					
-					'editor.Enterprise','editor.EnterprisePer','editor.EnterpriseApt','editor.User','editor.EnterprisePerSta','editor.EquipmentBear',
-					'editor.AnnualOutput','editor.BehaviorSta',
+					'editor.Enterprise','editor.EnterprisePer','editor.EnterpriseApt','editor.User','editor.EnterprisePerSta',
+					'editor.EquipmentBear','editor.AnnualOutput','editor.BehaviorSta','editor.EnterprisePerMan','editor.EnterpriseEquip',
+					'editor.Behavior',
+					
 				 	
 				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover'
 				  ],

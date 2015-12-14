@@ -1,6 +1,8 @@
 package com.ronyao.cca.ui;
 
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +38,8 @@ import com.ronyao.cca.db.model.User;
 import com.ronyao.cca.db.model.UserExample;
 import com.ronyao.cca.db.model.VoltageRankClassify;
 import com.ronyao.cca.db.model.VoltageRankClassifyExample;
+import com.ronyao.cca.tool.DateUtil;
+import com.ronyao.cca.ui.vo.YearVo;
 
 /**登陆的用户管理.
  * 
@@ -176,6 +180,20 @@ public class SessionManager {
 		VoltageRankClassifyExample    voltageExample=new VoltageRankClassifyExample();
 		List<VoltageRankClassify>  voltageList=voltageRankClassifyMapper.selectByExample(voltageExample);
 		model.addAttribute("voltageRankClassify",voltageList);
+		
+		//获取当前时间到前10年的列表
+		String yearStr=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);
+		Integer yearInt=Integer.valueOf(yearStr);
+		List<YearVo> yearList=new ArrayList<YearVo>();
+		for(int i=0;i<10;i++){
+			YearVo   year=new YearVo();
+			year.setId(yearInt-i);
+			year.setName(yearInt-i);
+			yearList.add(year);
+		}
+		model.addAttribute("year",yearList);
+	
+		
 		return "DBConst";
 	};
 	

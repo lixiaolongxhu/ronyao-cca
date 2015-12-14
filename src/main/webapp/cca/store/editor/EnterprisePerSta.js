@@ -12,10 +12,10 @@ Ext.define('RYIVS.store.editor.EnterprisePerSta', {
 	proxy : {
 		type : 'direct',
 		api : {
-			read : 	  actionEnterprisePerSta.read,
-			create :  actionEnterprisePerSta.create,
-			update :  actionEnterprisePerSta.update,
-			destroy : actionEnterprisePerSta.destroy
+			read : 	  actionEnterpPerSta.read,
+			create :  actionEnterpPerSta.create,
+			update :  actionEnterpPerSta.update,
+			destroy : actionEnterpPerSta.destroy
 		},
 
 		reader : {

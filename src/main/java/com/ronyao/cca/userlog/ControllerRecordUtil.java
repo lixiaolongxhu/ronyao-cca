@@ -67,18 +67,18 @@ public class ControllerRecordUtil {
 		String userAction = "尝试";
 		// 控制命令ID
 
-		int cmd = actionBean.get("cmd").asInt();
-
-		// 节点ID，对应为实际资源的ID
-		int resId = actionBean.get("parm").get("node").asInt();
-		// 命令类型
-
-		int type = actionBean.get("parm").get("type").asInt();
-		//前端模式
-		int mod = actionBean.get("parm").get("parm").get("mod").asInt();
-
-		// 扩展数据
-		int ext = actionBean.get("parm").get("parm").get("ext").asInt();
+//		int cmd = actionBean.get("cmd").asInt();
+//
+//		// 节点ID，对应为实际资源的ID
+//		int resId = actionBean.get("parm").get("node").asInt();
+//		// 命令类型
+//
+//		int type = actionBean.get("parm").get("type").asInt();
+//		//前端模式
+//		int mod = actionBean.get("parm").get("parm").get("mod").asInt();
+//
+//		// 扩展数据
+//		int ext = actionBean.get("parm").get("parm").get("ext").asInt();
 		// 是一条控制命令
 //		if (cmd == 1) {
 //			String eqpChaName = this.getEqpChaNameByResId(resId);
@@ -167,16 +167,16 @@ public class ControllerRecordUtil {
 	private String getUserActionByPtzControl(JsonNode jsonNode,
 			JsonNode resultNode) {
 		String userAction = "尝试";
-		// 获得命令标识字段
-		int cmd = jsonNode.get("cmd").asInt();
-		// 获得实际资源的ID
-		int resid = jsonNode.get("parm").get("resid").asInt();
-		// 获得行为的ID
-		int action = jsonNode.get("parm").get("action").asInt();
-		// 获得其中的value字段
-		int value = jsonNode.get("parm").get("value").asInt();
-
-		int rst = resultNode.get("rst").asInt();
+//		// 获得命令标识字段
+//		int cmd = jsonNode.get("cmd").asInt();
+//		// 获得实际资源的ID
+//		int resid = jsonNode.get("parm").get("resid").asInt();
+//		// 获得行为的ID
+//		int action = jsonNode.get("parm").get("action").asInt();
+//		// 获得其中的value字段
+//		int value = jsonNode.get("parm").get("value").asInt();
+//
+//		int rst = resultNode.get("rst").asInt();
 
 		// 判断这是一条合法的云台控制命令
 //		if (cmd == 103) {

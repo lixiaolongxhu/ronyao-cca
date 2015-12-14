@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-11 16:53:06
+Date: 2015-12-14 13:56:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -86,16 +86,21 @@ CREATE TABLE `behavior` (
   `year` int(10) DEFAULT '0' COMMENT '不良行为发生年月',
   `generalbadNum` tinyint(4) DEFAULT '0' COMMENT '一般不良行为次数',
   `seriousBadNum` tinyint(4) DEFAULT '0' COMMENT '严重不良行为次数',
-  `createTime` tinyint(4) DEFAULT NULL,
-  `updateTime` tinyint(4) DEFAULT NULL,
+  `correction` decimal(10,2) DEFAULT NULL COMMENT '修正系数',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `behavior_enterpriseId_fk` (`enterpriseId`),
+  UNIQUE KEY `behavior_enterpriseId_fk` (`enterpriseId`,`year`) USING BTREE,
   CONSTRAINT `behavior_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
 -- ----------------------------
+INSERT INTO `behavior` VALUES ('1', '9', '2015', '4', '1', '0.60', '2015-12-14 13:40:40', '2015-12-14 13:49:43');
+INSERT INTO `behavior` VALUES ('3', '1', '2015', '3', '0', '0.80', '2015-12-14 13:53:47', '');
+INSERT INTO `behavior` VALUES ('4', '69', '2015', '0', '1', '0.80', '2015-12-14 13:54:17', '');
+INSERT INTO `behavior` VALUES ('6', '1', '2014', '0', '0', '1.00', '2015-12-14 13:54:45', '');
 
 -- ----------------------------
 -- Table structure for behavior_standard
@@ -190,6 +195,29 @@ INSERT INTO `enterprise_aptitude` VALUES ('4', '1', '1', '士大夫撒旦发送�
 INSERT INTO `enterprise_aptitude` VALUES ('5', '1', '2', '资质要求  发生法撒旦法士大夫的范德萨范德萨范德萨范德萨发的发f', '执业资格 撒旦法范德萨发松岛枫撒旦法', '技术负责人 士大夫撒地方的大发发大水', '技术人员  送法撒旦法师法但是发生大幅度', '技能人员  的沙发上发大幅度发松岛枫大发阿凡达', '承包范围    发送到电风扇范德萨发大幅度发第三方法撒旦法师法撒旦法说打第三方士大夫', '2015-12-11 11:12:02', '2015-12-11 11:31:43');
 
 -- ----------------------------
+-- Table structure for enterprise_equipment
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_equipment`;
+CREATE TABLE `enterprise_equipment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业施工装备信息',
+  `enterpriseId` int(11) NOT NULL COMMENT '施工企业名称信息外键',
+  `bigEquipment` int(4) DEFAULT '0' COMMENT '大张牵设备(套)',
+  `smallEquipment` int(4) DEFAULT '0' COMMENT '小张牵设备(套)',
+  `sum` int(4) DEFAULT '0' COMMENT '合计',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `enter_equipement_id_fk` (`enterpriseId`) USING BTREE,
+  CONSTRAINT `enter_equipement_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_equipment
+-- ----------------------------
+INSERT INTO `enterprise_equipment` VALUES ('1', '1', '200', '200', '400', '2015-12-14 12:57:45', '2015-12-14 13:02:30');
+INSERT INTO `enterprise_equipment` VALUES ('3', '69', '21', '2', '23', '2015-12-14 13:03:33', '');
+
+-- ----------------------------
 -- Table structure for enterprise_file
 -- ----------------------------
 DROP TABLE IF EXISTS `enterprise_file`;
@@ -246,6 +274,43 @@ INSERT INTO `enterprise_person` VALUES ('38', '4', '0', '0', '0', '0', '0', '0',
 INSERT INTO `enterprise_person` VALUES ('49', '17', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-09 16:46:17', '');
 INSERT INTO `enterprise_person` VALUES ('50', '69', '1', '2', '3', '2', '2', '4', '1', '2', '3', '4', '10', '2015-12-09 16:49:48', '2015-12-09 17:02:03');
 INSERT INTO `enterprise_person` VALUES ('51', '9', '1', '2', '3', '3', '4', '7', '5', '6', '7', '7', '25', '2015-12-09 17:02:49', '');
+
+-- ----------------------------
+-- Table structure for enterprise_per_manage
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_per_manage`;
+CREATE TABLE `enterprise_per_manage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业 (现场管理人员)     线路专业,与变电专业的人员配备表',
+  `enterpriseId` int(11) NOT NULL COMMENT '施工企业表外键',
+  `professionType` tinyint(4) DEFAULT '1' COMMENT '施工企业人员专业类型 1 线路专业 2 变电专业',
+  `oneManager` tinyint(4) DEFAULT '0' COMMENT '330kv级以上项目一级建造师项目经理',
+  `twoManager` tinyint(4) DEFAULT '0' COMMENT '220kv 及一下二级建造师项目经理',
+  `oneChief` tinyint(4) DEFAULT '0' COMMENT '220kv 及以上的上级项目总工',
+  `twoChief` tinyint(4) DEFAULT '0' COMMENT '110kv 级以下的下级项目总工',
+  `safetyOfficer` tinyint(4) DEFAULT '0' COMMENT '安全员',
+  `inspector` tinyint(4) DEFAULT '0' COMMENT '质检员',
+  `technician` tinyint(4) DEFAULT '0' COMMENT '技术员',
+  `costMember` tinyint(4) DEFAULT '0' COMMENT '造价员',
+  `documenter` tinyint(4) DEFAULT '0' COMMENT '资料员',
+  `integrator` tinyint(4) DEFAULT '0' COMMENT '综合管理员',
+  `material` tinyint(4) DEFAULT '0' COMMENT '材料员',
+  `expeditor` tinyint(4) DEFAULT '0' COMMENT '协调员',
+  `constructionTeam` tinyint(4) DEFAULT '0' COMMENT '施工队长',
+  `plurality` tinyint(4) DEFAULT '0' COMMENT ' 施工队,技术员,质检员,兼职安全员等',
+  `sum` tinyint(4) DEFAULT '0' COMMENT '人员合计',
+  `createTime` varchar(20) DEFAULT '',
+  `updateTime` varchar(20) DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `person_enter_fk` (`enterpriseId`,`professionType`) USING BTREE,
+  CONSTRAINT `person_enter_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_per_manage
+-- ----------------------------
+INSERT INTO `enterprise_per_manage` VALUES ('3', '1', '1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '105', '2015-12-14 11:11:50', '2015-12-14 11:22:17');
+INSERT INTO `enterprise_per_manage` VALUES ('5', '1', '2', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '14', '2015-12-14 11:24:28', '');
+INSERT INTO `enterprise_per_manage` VALUES ('7', '70', '2', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '105', '2015-12-14 11:25:04', '');
 
 -- ----------------------------
 -- Table structure for enterprise_per_standard
@@ -339,12 +404,12 @@ INSERT INTO `permission` VALUES ('9', '6', '机具设备对工程承载力的评
 INSERT INTO `permission` VALUES ('10', '6', '施工项目团队工程施工产值', 'annualOutput', '2', '施工项目年产值评估标准表配置', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('11', '6', '施工企业不良行文分类标准', 'behaviorSta', '2', '施工企业不良行为分类标准', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('12', '5', '现场管理人员', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('13', '12', '线路专业人员', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('14', '12', '变电专业人员', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('15', '5', '施工装备信息', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('13', '12', '线路专业人员', 'enterprisePerManLine', '2', '施工企业现场管理人员(线路专业)', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('14', '12', '变电专业人员', 'enterprisePerManPower', '2', '施工企业现场管理人员(变电专业)', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('15', '5', '施工装备信息', 'enterpriseEquip', '2', '施工企业装备', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('16', '5', '承载能力计算结果', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('17', '5', '不良行为影响', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', 'behavior', '2', '不良行为修正系数', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('20', '5', '施工企业评估分类', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('21', '5', '评估情况与近三年承揽情况的比较', '', '2', '', '0', '1', null, null);
@@ -356,39 +421,6 @@ INSERT INTO `permission` VALUES ('26', '24', '各施工单位已承揽工程情�
 INSERT INTO `permission` VALUES ('27', '26', '在建工程情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('28', '26', '中标未开工情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('29', '24', '施工单位剩余承载能力', '', '2', '', '0', '1', null, null);
-
--- ----------------------------
--- Table structure for person
--- ----------------------------
-DROP TABLE IF EXISTS `person`;
-CREATE TABLE `person` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业线路专业,与变电专业的人员配备表',
-  `enterpriseId` int(11) NOT NULL COMMENT '施工企业表外键',
-  `professionType` tinyint(4) DEFAULT '1' COMMENT '施工企业人员专业类型 1 线路专业 2 变电专业',
-  `oneManager` tinyint(4) DEFAULT '0' COMMENT '330kv级以上项目一级建造师项目经理',
-  `twoManager` tinyint(4) DEFAULT '0' COMMENT '220kv 及一下二级建造师项目经理',
-  `oneChief` tinyint(4) DEFAULT '0' COMMENT '220kv 及以上的上级项目总工',
-  `twoChief` tinyint(4) DEFAULT '0' COMMENT '110kv 级以下的下级项目总工',
-  `safetyOfficer` tinyint(4) DEFAULT '0' COMMENT '安全员',
-  `inspector` tinyint(4) DEFAULT '0' COMMENT '质检员',
-  `technician` tinyint(4) DEFAULT '0' COMMENT '技术员',
-  `costMember` tinyint(4) DEFAULT '0' COMMENT '造价员',
-  `documenter` tinyint(4) DEFAULT '0' COMMENT '资料员',
-  `integrator` tinyint(4) DEFAULT '0' COMMENT '综合管理员',
-  `material` tinyint(4) DEFAULT '0' COMMENT '材料员',
-  `expeditor` tinyint(4) DEFAULT '0' COMMENT '协调员',
-  `constructionTeam` tinyint(4) DEFAULT '0' COMMENT '施工队长',
-  `plurality` tinyint(4) DEFAULT '0' COMMENT ' 施工队,技术员,质检员,兼职安全员等',
-  `createTime` varchar(20) DEFAULT '',
-  `updateTime` varchar(20) DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `person_enter_fk` (`enterpriseId`),
-  CONSTRAINT `person_enter_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of person
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for post_classify
@@ -512,7 +544,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=334 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -838,6 +870,18 @@ INSERT INTO `user_log` VALUES ('318', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('319', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:35:33', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('320', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:39:22', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('321', '1', '操作模块:会话管理,用户登陆.', '2015-12-11 16:44:27', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('322', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 09:16:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('323', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 09:58:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('324', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 10:56:45', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('325', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 11:00:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('326', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 11:08:21', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('327', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 11:10:39', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('328', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 11:21:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('329', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 12:50:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('330', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 13:02:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('331', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 13:05:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('332', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 13:38:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('333', '1', '操作模块:会话管理,用户登陆.', '2015-12-14 13:46:48', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
