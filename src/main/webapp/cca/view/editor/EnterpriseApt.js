@@ -108,7 +108,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 		
 	}, {
 		text : '企业资质',
-		width : 100,
+		width : 200,
 		sortable : true,
 		dataIndex : 'aptitudeid',
 		flex : 1,
@@ -133,7 +133,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	
 	 {
 		text : '等级',
-		width : 100,
+		width : 150,
 		sortable : true,
 		dataIndex : 'aptituderank',
 		flex : 1,
@@ -156,7 +156,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 		}
 	},{
 		text : '资质要求',
-		width : 100,
+		width : 300,
 		dataIndex : 'qualifications',
 		editor : {
 			xtype : 'textfield',

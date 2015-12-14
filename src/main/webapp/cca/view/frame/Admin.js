@@ -9,7 +9,8 @@ Ext.define('RYIVS.view.frame.Admin', {
 	items : [ {
 		xtype : 'leftMenu',
 		region : 'west',
-		width : 300
+		width : 300,
+//		collapsible :true,
 		
 	}, {
 		region : 'center',
