@@ -16,12 +16,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
 	// 定义 colums
-	columns : [ {
-		text : 'ID',
-		width : 30,
-		dataIndex : 'id'
-		
-	}, {
+	columns : [ 
+	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	, {
 		text : '施工企业名称',
 		width : 200,
 		sortable : true,

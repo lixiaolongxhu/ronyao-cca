@@ -62,7 +62,7 @@ ry.constant.trans = function(index, type) {
 
 
 // 企业性质
-ry.constant.enterprise_property = [[ 1, '全名' ], [ 2, '集体' ] ];
+ry.constant.enterprise_property = [[ 1, '全民' ], [ 2, '集体' ] ];
 
 // 企业岗位: 是否允许其他岗位进行兼职
 ry.constant.post_classify_job =[[1,"不允许"],[2,'允许']];

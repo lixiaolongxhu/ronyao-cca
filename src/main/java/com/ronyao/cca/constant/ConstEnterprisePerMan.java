@@ -12,12 +12,12 @@ public class ConstEnterprisePerMan {
 	/**线路专业人员
 	 * 
 	 */
-	public static final  Byte 	LINE_PROFESSION=1;
+	public static final  Integer 	LINE_PROFESSION=1;
 	
 	/**变电专业人员
 	 * 
 	 */
-	public static final  Byte    POWER_PROFESSION=2;
+	public static final  Integer    POWER_PROFESSION=2;
 	
 	
 	
@@ -35,6 +35,6 @@ public class ConstEnterprisePerMan {
 				ep.getMaterial()+ep.getExpeditor()+
 				ep.getConstructionteam()+ep.getPlurality();
 		
-		ep.setSum(sum.byteValue());
+		ep.setSum(sum);
 	}
 }

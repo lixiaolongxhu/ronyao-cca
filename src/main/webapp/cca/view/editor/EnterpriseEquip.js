@@ -17,12 +17,9 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 	
 	
 	// 定义 colums
-	columns : [ {
-		text : 'ID',
-		width : 50,
-		dataIndex : 'id'
-		
-	}, {
+	columns : [
+{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	, {
 		text : '施工企业名称',
 		width : 200,
 		sortable : true,

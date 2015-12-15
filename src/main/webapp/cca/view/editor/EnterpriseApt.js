@@ -101,12 +101,9 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	
 	
 	// 定义 colums
-	columns : [ {
-		text : 'ID',
-		width : 30,
-		dataIndex : 'id'
-		
-	}, {
+	columns : [
+	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号	
+	, {
 		text : '企业资质',
 		width : 200,
 		sortable : true,

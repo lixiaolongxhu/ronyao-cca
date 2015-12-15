@@ -93,12 +93,9 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 	
 	
 	// 定义 colums
-	columns : [ {
-		text : 'ID',
-		width : 30,
-		dataIndex : 'id'
-		
-	}, {
+	columns : [ 
+	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	, {
 		text : '不良行为等级',
 		width : 100,
 		sortable : true,

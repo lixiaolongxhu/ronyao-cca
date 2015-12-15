@@ -17,13 +17,13 @@ Ext.define('RYIVS.view.display.BehaviorStaLookover', {
     defaultType: 'textfield',
     items: [
     	
-    {
-        fieldLabel: 'ID',
-        name: 'id',
-        allowBlank: false,
-        disabled :true //控件不用
-		
-    },
+//    {
+//        fieldLabel: 'ID',
+//        name: 'id',
+//        allowBlank: false,
+//        disabled :true //控件不用
+//		
+//    },
     {
     	xtype : 'combo',
 		listConfig : {

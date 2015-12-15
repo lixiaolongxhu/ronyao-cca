@@ -12,13 +12,16 @@ Ext.define('RYIVS.view.editor.User', {
 	// 定义 autoload
 	autoload : false,
 	// 定义 colums
-	columns : [ {
-		text : 'ID',
-		width : 40,
-		sortable : true,
-		dataIndex : 'id',
-		flex : 1
-	}, {
+	columns : [
+//	{
+//		text : 'ID',
+//		width : 40,
+//		sortable : true,
+//		dataIndex : 'id',
+//		flex : 1
+//	}
+{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	, {
 		text : '用户名',
 		width : 40,
 		sortable : true,

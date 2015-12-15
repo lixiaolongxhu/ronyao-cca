@@ -21,12 +21,15 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	forceFit :true, 
 	
 	// 定义 colums
-	columns : [ {
-		text : 'ID',
-		width : 30,
-		dataIndex : 'id'
-		
-	}, {
+	columns : [ 
+//		{
+//		text : 'ID',
+//		width : 30,
+//		dataIndex : 'id'
+//		
+//	},
+{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	, {
 		text : '主管单位',
 		width : 40,
 		dataIndex : 'supervisorunit',
@@ -35,19 +38,20 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			allowBlank : false
 		},
 		flex : 1
-	}, {
-		text : '企业简称',
+	}, 
+	{
+		text : '企业全称',
 		width : 40,
-		dataIndex : 'name',
+		dataIndex : 'fullname',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : false
 		},
 		flex : 1
-	}, {
-		text : '企业全称',
+	},{
+		text : '企业简称',
 		width : 40,
-		dataIndex : 'fullname',
+		dataIndex : 'name',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : false
@@ -161,6 +165,20 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	  }]	
 	},
 	
+	{
+		text : '近三年工程数量',
+		width : 40,
+		dataIndex : 'project',
+		flex : 1,
+		editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				maxValue : 100000,
+				autoStripChars : true,
+				allowDecimals : false
+		}
+	},
 		
 	 {
 		text : '近三年的产值(万元)',
@@ -172,19 +190,6 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				autoStripChars : true,
-				allowDecimals : false
-		}
-	}, {
-		text : '近三年工程数量',
-		width : 40,
-		dataIndex : 'project',
-		flex : 1,
-		editor : {
-				allowBlank : false,
-				xtype : 'numberfield',
-				minValue : 0,
-				maxValue : 100000,
 				autoStripChars : true,
 				allowDecimals : false
 		}
