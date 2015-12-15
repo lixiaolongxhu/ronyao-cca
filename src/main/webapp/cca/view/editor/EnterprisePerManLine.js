@@ -57,7 +57,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false		
  				}
@@ -70,7 +70,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -84,7 +84,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -98,7 +98,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -112,7 +112,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -126,7 +126,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -140,7 +140,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -154,7 +154,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -168,7 +168,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -182,7 +182,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -196,7 +196,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -210,7 +210,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -224,7 +224,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue :0,
 					autoStripChars : true,
 					allowDecimals : false
 					
@@ -238,7 +238,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
-					minValue : 1,
+					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false
 					

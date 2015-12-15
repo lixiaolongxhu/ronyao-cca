@@ -122,7 +122,7 @@ public class BearImp implements Bear {
 		}
 		outputmap=new HashMap<String, Integer>();
 		for (AnnualOutput annualOutput : outputList) {
-					outputmap.put(annualOutput.getVoltagerankid()+""+annualOutput.getProjecttype(), annualOutput.getAnnualoutput());
+				outputmap.put(annualOutput.getVoltagerankid()+""+annualOutput.getProjecttype(), annualOutput.getAnnualoutput());
 		}
 	
 		

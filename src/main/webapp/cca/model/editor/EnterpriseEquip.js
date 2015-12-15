@@ -4,7 +4,7 @@ Ext.define('RYIVS.model.editor.EnterpriseEquip', {
 	fields : [ 
 		{name: 'id', type: 'int',	sortable : true},
 		{name: 'enterpriseid', type: 'int',	sortable : true},
-		{name: 'bigequipment', type: 'strint',	sortable : true},
+		{name: 'bigequipment', type: 'int',	sortable : true},
 		{name: 'smallequipment', type: 'int',	sortable : true},
 		{name: 'sum', type: 'int',	sortable : true},
 	
