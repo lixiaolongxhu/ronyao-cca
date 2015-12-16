@@ -29,8 +29,9 @@ public class BearResultDto {
 	
 	
 
-	public BearResultDto() {
+	public BearResultDto(Integer enterpriseId) {
 		super();
+		this.enterpriseid=enterpriseId;
 	}
 
 

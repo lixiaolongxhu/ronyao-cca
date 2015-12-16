@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-16 13:38:49
+Date: 2015-12-16 14:48:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,11 +96,18 @@ CREATE TABLE `behavior` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `behavior_enterpriseId_fk` (`enterpriseId`,`year`) USING BTREE,
   CONSTRAINT `behavior_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
 -- ----------------------------
+INSERT INTO `behavior` VALUES ('1', '75', '2014', '1', '0', '1.00', '2015-12-16 13:48:47', '');
+INSERT INTO `behavior` VALUES ('2', '74', '2014', '1', '0', '1.00', '2015-12-16 13:49:10', '');
+INSERT INTO `behavior` VALUES ('3', '73', '2014', '1', '0', '1.00', '2015-12-16 13:49:18', '');
+INSERT INTO `behavior` VALUES ('4', '72', '2014', '1', '0', '1.00', '2015-12-16 13:49:30', '');
+INSERT INTO `behavior` VALUES ('5', '71', '2014', '1', '0', '1.00', '2015-12-16 13:49:41', '');
+INSERT INTO `behavior` VALUES ('6', '77', '2014', '4', '1', '0.60', '2015-12-16 14:45:46', '');
+INSERT INTO `behavior` VALUES ('7', '76', '2014', '3', '0', '0.80', '2015-12-16 14:46:01', '');
 
 -- ----------------------------
 -- Table structure for behavior_standard
@@ -151,7 +158,7 @@ CREATE TABLE `enterprise` (
   KEY `enter_professionRank_id_fk` (`professionRank`),
   CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise
@@ -161,6 +168,8 @@ INSERT INTO `enterprise` VALUES ('72', '科锐得', '四川蜀能', '四川蜀�
 INSERT INTO `enterprise` VALUES ('73', '成都', '成都电建', '四川电力建设公司', '2', '10000', '20768', '32', '1', '2', '125716', '54', '2015-12-15 15:25:29', '2015-12-15 15:25:58');
 INSERT INTO `enterprise` VALUES ('74', '乐山', '乐山佳能佳', '四川嘉能佳电力集团有限责任公司', '2', '11396', '14470', '131', '2', '-1', '43500', '25', '2015-12-15 15:28:29', '');
 INSERT INTO `enterprise` VALUES ('75', '雅安', '雅安科元', '雅安科元电力建设有限公司', '2', '1200', '25152', '653', '-1', '3', '10055', '14', '2015-12-15 15:30:10', '');
+INSERT INTO `enterprise` VALUES ('76', '内江', '内江星原', '内江星原电力集团有限责任公司', '2', '5000', '37360', '764', '2', '2', '191491', '22', '2015-12-16 14:15:43', '');
+INSERT INTO `enterprise` VALUES ('77', '甘孜', '甘孜电建', '甘孜电力建设有限公司', '2', '1200', '3246', '12', '-1', '3', '0', '0', '2015-12-16 14:17:25', '');
 
 -- ----------------------------
 -- Table structure for enterprise_aptitude
@@ -208,7 +217,7 @@ CREATE TABLE `enterprise_equipment` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_equipement_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enter_equipement_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_equipment
@@ -218,6 +227,8 @@ INSERT INTO `enterprise_equipment` VALUES ('5', '74', '0', '2', '2', '2015-12-15
 INSERT INTO `enterprise_equipment` VALUES ('6', '73', '4', '13', '17', '2015-12-15 16:23:20', '');
 INSERT INTO `enterprise_equipment` VALUES ('7', '72', '2', '3', '5', '2015-12-15 16:23:32', '');
 INSERT INTO `enterprise_equipment` VALUES ('8', '71', '17', '30', '47', '2015-12-15 16:23:53', '');
+INSERT INTO `enterprise_equipment` VALUES ('9', '77', '0', '2', '2', '2015-12-16 14:19:02', '');
+INSERT INTO `enterprise_equipment` VALUES ('10', '76', '4', '3', '7', '2015-12-16 14:19:13', '');
 
 -- ----------------------------
 -- Table structure for enterprise_file
@@ -297,7 +308,7 @@ CREATE TABLE `enterprise_per_manage` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_enter_fk` (`enterpriseId`,`professionType`) USING BTREE,
   CONSTRAINT `person_enter_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_per_manage
@@ -312,6 +323,10 @@ INSERT INTO `enterprise_per_manage` VALUES ('16', '74', '2', '0', '5', '3', '5',
 INSERT INTO `enterprise_per_manage` VALUES ('17', '73', '2', '4', '21', '9', '3', '8', '25', '31', '8', '12', '12', '11', '12', '0', '12', '168', '2015-12-15 16:16:15', '');
 INSERT INTO `enterprise_per_manage` VALUES ('18', '72', '2', '5', '6', '5', '3', '13', '7', '10', '14', '5', '5', '5', '5', '30', '7', '120', '2015-12-15 16:17:09', '');
 INSERT INTO `enterprise_per_manage` VALUES ('19', '71', '2', '10', '15', '41', '66', '36', '32', '45', '13', '10', '15', '6', '6', '24', '50', '369', '2015-12-15 16:18:47', '');
+INSERT INTO `enterprise_per_manage` VALUES ('20', '77', '1', '0', '3', '0', '2', '2', '2', '2', '2', '2', '2', '2', '2', '12', '23', '56', '2015-12-16 14:20:16', '');
+INSERT INTO `enterprise_per_manage` VALUES ('21', '76', '1', '0', '6', '6', '10', '7', '8', '8', '6', '12', '8', '6', '8', '36', '12', '133', '2015-12-16 14:21:22', '');
+INSERT INTO `enterprise_per_manage` VALUES ('22', '77', '2', '0', '3', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '10', '20', '42', '2015-12-16 14:23:21', '');
+INSERT INTO `enterprise_per_manage` VALUES ('23', '76', '2', '1', '6', '6', '9', '12', '6', '7', '6', '8', '8', '10', '6', '65', '13', '163', '2015-12-16 14:24:07', '2015-12-16 14:35:29');
 
 -- ----------------------------
 -- Table structure for enterprise_per_standard
@@ -341,7 +356,7 @@ INSERT INTO `enterprise_per_standard` VALUES ('2', '2', '220kv 以及以上中�
 INSERT INTO `enterprise_per_standard` VALUES ('3', '3', '安全合格证', '1', '1', '1', '1', '安全员', '2015-12-10 13:43:54', '2015-12-14 15:23:52');
 INSERT INTO `enterprise_per_standard` VALUES ('4', '4', '质量合格培训证', '1', '1', '1', '1', '质检员', '2015-12-14 15:21:12', '2015-12-14 15:24:20');
 INSERT INTO `enterprise_per_standard` VALUES ('5', '5', '', '1', '1', '1', '2', '技术员', '2015-12-14 15:27:07', '');
-INSERT INTO `enterprise_per_standard` VALUES ('6', '6', '', '2', '2', '3', '2', '造价员,资料员,综合员,管理员,材料员,协调员', '2015-12-10 13:40:26', '2015-12-16 13:27:09');
+INSERT INTO `enterprise_per_standard` VALUES ('6', '6', '', '2', '2', '2', '2', '造价员,资料员,综合员,管理员,材料员,协调员', '2015-12-10 13:40:26', '2015-12-16 14:01:33');
 INSERT INTO `enterprise_per_standard` VALUES ('7', '7', '', '6', '8', '10', '2', '施工队长(班组长)(线路长度按40km双回计算)', '2015-12-10 15:16:50', '2015-12-14 15:24:25');
 INSERT INTO `enterprise_per_standard` VALUES ('8', '8', '', '12', '16', '16', '2', '施工队技术员,质检员,兼职安全员', '2015-12-10 15:08:20', '2015-12-14 15:30:30');
 
@@ -415,7 +430,7 @@ INSERT INTO `permission` VALUES ('15', '5', '施工装备信息', 'enterpriseEqu
 INSERT INTO `permission` VALUES ('16', '5', '承载能力计算结果', 'bear', '2', '施工企业承载能力技术结果', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('17', '5', '不良行为影响', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', 'behavior', '2', '不良行为修正系数', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', 'bearRevised', '2', '施工企业承载能力修正后结果', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('20', '5', '施工企业评估分类', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('21', '5', '评估情况与近三年承揽情况的比较', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('22', '21', '工程数量对比情况', '', '2', '', '0', '1', null, null);
@@ -549,7 +564,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=353 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=356 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -906,6 +921,9 @@ INSERT INTO `user_log` VALUES ('349', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('350', '1', '会话超时，用户退出.', '2015-12-16 12:00:22', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('351', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 12:57:43', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('352', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 13:23:22', '127.0.0.1', '');
+INSERT INTO `user_log` VALUES ('353', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 14:12:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('354', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 14:28:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('355', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 14:44:50', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

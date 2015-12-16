@@ -92,6 +92,8 @@ public class BearImp implements Bear {
 	private static  Map<String, AnnualOutput> outputmap;
 			
 	
+	
+	
 
 	public void loadInitConfig() {
 		// TODO Auto-generated method stub
@@ -147,15 +149,22 @@ public class BearImp implements Bear {
 		if(perManMap==null){
 			LOG.warn("查询获取施工企业现场管理人员数失败: 用户未配置,用户必须配置该项");
 			//return 0;	
-			return new BearResultDto();
+			return new BearResultDto(enterpriseId);
 		}
 
 			
 		//设置项目配置信息(线路工程)
 		ProjectConfigDto  lineProjectDto=setProjectConfig(ConstEnterprisePerMan.LINE_PROFESSION,perManMap);
+		if(lineProjectDto==null){
+			LOG.warn("未配置该企业的线路专业的线程管理人员 ;  企业名称:"+enterprise.getCreatetime());
+			return new BearResultDto(enterpriseId);
+		}
 		//设置项目配置信息(变电工程)
 		ProjectConfigDto  powerProjectDto=setProjectConfig(ConstEnterprisePerMan.POWER_PROFESSION,perManMap);
-		
+		if(powerProjectDto==null){
+			LOG.warn("未配置该企业的变电专业的线程管理人员 ;  企业名称:"+enterprise.getCreatetime());
+			return new BearResultDto(enterpriseId);
+		}
 		Integer  linePersonProjectNum500kv=0;
 		Integer  lineEquipmentProjectNum500kv=0;
 		Integer  lineProjectNum500kv=0;
@@ -312,7 +321,7 @@ public class BearImp implements Bear {
 		  
 		
 		  
-		BearResultDto result=new BearResultDto();
+		BearResultDto result=new BearResultDto(enterpriseId);;
 		result.setEnterpriseid(enterpriseId);
 		//四舍五入  企业每年可以组建项目数=施工项目数*每年对应项目的完成量
 		result.setLine110kv(Math.round(lineProjectNum110kv*outputmap.get(110+""+ConstAnnualOutput.LINE_PROJECT).getProjectnum().floatValue()));
@@ -632,6 +641,15 @@ public class BearImp implements Bear {
 		dto.setPowerPerStaSum(powerPerStaSum);
 		dto.setPerStaMap(perStaMap);
 		return dto;
+	}
+
+
+
+	public Map<String, AnnualOutput> getAnnualOutPutConfig() {
+		if(outputmap.isEmpty()){
+			loadInitConfig();
+		}
+		return outputmap;
 	}
 
 
