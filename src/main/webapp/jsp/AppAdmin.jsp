@@ -28,7 +28,7 @@ Ext.application({
 					'editor.Behavior',
 					
 				 	
-				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover'
+				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover','display.Bear'
 				  ],
 
 

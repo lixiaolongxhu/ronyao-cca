@@ -7,7 +7,7 @@ package com.ronyao.cca.service.dto;
  */
 public class BearResultDto {
 
-	private Integer  enterpriseId; //企业id
+	private Integer  enterpriseid; //企业id
 	
 	//线路工程
 	private Integer  line500kv=0;  //500kv项目个数
@@ -35,15 +35,27 @@ public class BearResultDto {
 
 
 
-	public Integer getEnterpriseId() {
-		return enterpriseId;
+
+
+
+
+	public Integer getEnterpriseid() {
+		return enterpriseid;
 	}
 
 
 
-	public void setEnterpriseId(Integer enterpriseId) {
-		this.enterpriseId = enterpriseId;
+
+
+
+
+	public void setEnterpriseid(Integer enterpriseid) {
+		this.enterpriseid = enterpriseid;
 	}
+
+
+
+
 
 
 

@@ -35,14 +35,14 @@ public class ActionBehavior {
 	
 	
 	
-	/**计算不良行为修正系统,公式: 不良行为修正系数=(不良行为公式常数5-(严重不良行为数+超过3一般不良行为数视为1个严重不良行为))/不良行为公式常数5
+	/**计算不良行为修正系统,公式: 不良行为修正系数=(不良行为公式常数5-(严重不良行为数+一般不良行为/3))/不良行为公式常数5
 	 * 
 	 * @param behavior
 	 */
 	private  void  correction(Behavior  behavior){
 		Byte seriousbadnum=behavior.getSeriousbadnum();
 		if(behavior.getGeneralbadnum()>=ConstBehavior.GENERAL_TO_BAD){
-			seriousbadnum= (byte) (seriousbadnum+ConstBehavior.GENERAL_TO_BAD_CONST);
+			seriousbadnum= (byte) (seriousbadnum+behavior.getGeneralbadnum()/ConstBehavior.GENERAL_TO_BAD);
 		}
 		float coefficient=(ConstBehavior.CONST-seriousbadnum)/ConstBehavior.CONST;
 		behavior.setCorrection(new BigDecimal(coefficient) );

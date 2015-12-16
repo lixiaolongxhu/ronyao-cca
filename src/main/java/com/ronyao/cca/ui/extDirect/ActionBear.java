@@ -53,7 +53,10 @@ public class ActionBear {
 			bear.loadInitConfig();
 			for (Enterprise enterprise : enterList) {
 				BearResultDto result=bear.getEnterpriseBearResult(enterprise);
-				resultList.add(result);
+				if(result!=null){
+					resultList.add(result);
+				}
+				
 			}
 		}
 		return new ExtDirectStoreReadResult<BearResultDto>(resultList);

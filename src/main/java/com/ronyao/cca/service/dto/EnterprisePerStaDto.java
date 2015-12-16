@@ -14,7 +14,7 @@ public class EnterprisePerStaDto {
 	private	Integer  linePerStaSum=0; //线路工程要求(平地丘陵)配置总人数
 	private Integer  powerPerStaSum=0; //变电工程要求配置总人数
 	
-	private Map<Byte, EnterprisePerStandard>  perStaMap; //人员配备  key  岗位id
+	private Map<Integer, EnterprisePerStandard>  perStaMap; //人员配备  key  岗位id
 
 	public Integer getLinePerStaSum() {
 		return linePerStaSum;
@@ -32,13 +32,15 @@ public class EnterprisePerStaDto {
 		this.powerPerStaSum = powerPerStaSum;
 	}
 
-	public Map<Byte, EnterprisePerStandard> getPerStaMap() {
+	public Map<Integer, EnterprisePerStandard> getPerStaMap() {
 		return perStaMap;
 	}
 
-	public void setPerStaMap(Map<Byte, EnterprisePerStandard> perStaMap) {
+	public void setPerStaMap(Map<Integer, EnterprisePerStandard> perStaMap) {
 		this.perStaMap = perStaMap;
 	}
+
+	
 	
 	
 	

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-15 16:36:48
+Date: 2015-12-16 13:38:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `annual_output`;
 CREATE TABLE `annual_output` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT '施工姓名部年产值配置表',
-  `voltageRankId` tinyint(4) DEFAULT NULL COMMENT '电压等级外键关联  kv',
+  `voltageRankId` int(4) DEFAULT NULL COMMENT '电压等级外键关联  kv',
   `projectType` tinyint(4) DEFAULT '1' COMMENT ' 1 线路工程项目 2 变电工程项目',
   `timLlimit` tinyint(4) DEFAULT '1' COMMENT '合理工期  单位月',
   `projectNum` decimal(10,2) DEFAULT '0.00' COMMENT '单个项目部完成项目个数(个/年)',
@@ -31,8 +31,8 @@ CREATE TABLE `annual_output` (
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `annual_voltageRankId_fk` (`voltageRankId`,`projectType`) USING BTREE,
-  CONSTRAINT `annual_voltageRankId_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  CONSTRAINT `output_voltaget_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of annual_output
@@ -96,7 +96,7 @@ CREATE TABLE `behavior` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `behavior_enterpriseId_fk` (`enterpriseId`,`year`) USING BTREE,
   CONSTRAINT `behavior_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
@@ -208,7 +208,7 @@ CREATE TABLE `enterprise_equipment` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_equipement_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enter_equipement_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_equipment
@@ -263,7 +263,7 @@ CREATE TABLE `enterprise_person` (
   PRIMARY KEY (`id`),
   KEY `enterprise_per_id_fk` (`enterpriseId`),
   CONSTRAINT `enterprise_per_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_person
@@ -319,7 +319,7 @@ INSERT INTO `enterprise_per_manage` VALUES ('19', '71', '2', '10', '15', '41', '
 DROP TABLE IF EXISTS `enterprise_per_standard`;
 CREATE TABLE `enterprise_per_standard` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业自身主要人员评估(施工项目部人员构成)',
-  `postClassifyId` tinyint(4) DEFAULT NULL COMMENT '岗位名称外键关联',
+  `postClassifyId` int(4) DEFAULT NULL COMMENT '岗位名称外键关联',
   `holderRequire` varchar(255) DEFAULT '' COMMENT '持证要求',
   `lineFlatNum` tinyint(4) DEFAULT '1' COMMENT '线路工程,平地需要人员个数',
   `lineMountainNum` tinyint(4) DEFAULT '1' COMMENT '线路工程,山区需要人员个数',
@@ -330,7 +330,7 @@ CREATE TABLE `enterprise_per_standard` (
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `per_standard_postClassifyId_fk` (`postClassifyId`) USING BTREE,
-  CONSTRAINT `per_standard_postClassifyId_fk` FOREIGN KEY (`postClassifyId`) REFERENCES `post_classify` (`id`)
+  CONSTRAINT `enterpirse_per_sta_postClas_fk` FOREIGN KEY (`postClassifyId`) REFERENCES `post_classify` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -341,7 +341,7 @@ INSERT INTO `enterprise_per_standard` VALUES ('2', '2', '220kv 以及以上中�
 INSERT INTO `enterprise_per_standard` VALUES ('3', '3', '安全合格证', '1', '1', '1', '1', '安全员', '2015-12-10 13:43:54', '2015-12-14 15:23:52');
 INSERT INTO `enterprise_per_standard` VALUES ('4', '4', '质量合格培训证', '1', '1', '1', '1', '质检员', '2015-12-14 15:21:12', '2015-12-14 15:24:20');
 INSERT INTO `enterprise_per_standard` VALUES ('5', '5', '', '1', '1', '1', '2', '技术员', '2015-12-14 15:27:07', '');
-INSERT INTO `enterprise_per_standard` VALUES ('6', '6', '', '2', '2', '2', '2', '造价员,资料员,综合员,管理员,材料员,协调员', '2015-12-10 13:40:26', '2015-12-14 15:23:40');
+INSERT INTO `enterprise_per_standard` VALUES ('6', '6', '', '2', '2', '3', '2', '造价员,资料员,综合员,管理员,材料员,协调员', '2015-12-10 13:40:26', '2015-12-16 13:27:09');
 INSERT INTO `enterprise_per_standard` VALUES ('7', '7', '', '6', '8', '10', '2', '施工队长(班组长)(线路长度按40km双回计算)', '2015-12-10 15:16:50', '2015-12-14 15:24:25');
 INSERT INTO `enterprise_per_standard` VALUES ('8', '8', '', '12', '16', '16', '2', '施工队技术员,质检员,兼职安全员', '2015-12-10 15:08:20', '2015-12-14 15:30:30');
 
@@ -352,7 +352,7 @@ DROP TABLE IF EXISTS `equipment_bear`;
 CREATE TABLE `equipment_bear` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '线路专业 张牵设备承载力 配置信息表',
   `name` varchar(40) DEFAULT '' COMMENT '设备名称说明',
-  `voltageRankId` tinyint(4) DEFAULT NULL COMMENT '电压等级 kv',
+  `voltageRankId` int(4) DEFAULT NULL COMMENT '电压等级 kv',
   `lineType` tinyint(4) DEFAULT '2' COMMENT '线路类型 1 单回  2 双回',
   `linePlain` tinyint(4) DEFAULT '0' COMMENT '平原,丘陵导线展放率(km/月.套)',
   `lineBrae` tinyint(4) DEFAULT '0' COMMENT '山区 导线展放率(km/月.套)',
@@ -361,8 +361,8 @@ CREATE TABLE `equipment_bear` (
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `voltagerankid_fk` (`voltageRankId`,`lineType`) USING BTREE,
-  CONSTRAINT `voltagerankid_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  CONSTRAINT `equipement_bear_volta_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of equipment_bear
@@ -412,7 +412,7 @@ INSERT INTO `permission` VALUES ('12', '5', '现场管理人员', '', '2', '', '
 INSERT INTO `permission` VALUES ('13', '12', '线路专业人员', 'enterprisePerManLine', '2', '施工企业现场管理人员(线路专业)', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('14', '12', '变电专业人员', 'enterprisePerManPower', '2', '施工企业现场管理人员(变电专业)', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('15', '5', '施工装备信息', 'enterpriseEquip', '2', '施工企业装备', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('16', '5', '承载能力计算结果', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('16', '5', '承载能力计算结果', 'bear', '2', '施工企业承载能力技术结果', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('17', '5', '不良行为影响', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', 'behavior', '2', '不良行为修正系数', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', '', '2', '', '0', '1', null, null);
@@ -432,7 +432,7 @@ INSERT INTO `permission` VALUES ('29', '24', '施工单位剩余承载能力', '
 -- ----------------------------
 DROP TABLE IF EXISTS `post_classify`;
 CREATE TABLE `post_classify` (
-  `id` tinyint(4) NOT NULL COMMENT '施工企业基本岗位表',
+  `id` int(4) NOT NULL COMMENT '施工企业基本岗位表',
   `name` varchar(100) DEFAULT '' COMMENT '岗位名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -549,7 +549,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=342 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=353 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -895,6 +895,17 @@ INSERT INTO `user_log` VALUES ('338', '1', '会话超时，用户退出.', '2015
 INSERT INTO `user_log` VALUES ('339', '1', '会话超时，用户退出.', '2015-12-15 11:12:11', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('340', '1', '操作模块:会话管理,用户登陆.', '2015-12-15 15:17:05', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('341', '1', '操作模块:会话管理,用户登陆.', '2015-12-15 15:58:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('342', '1', '会话超时，用户退出.', '2015-12-15 17:06:47', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('343', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 09:44:16', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('344', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 10:03:47', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('345', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 10:11:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('346', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 10:38:39', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('347', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 10:42:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('348', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 10:49:15', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('349', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 11:23:49', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('350', '1', '会话超时，用户退出.', '2015-12-16 12:00:22', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('351', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 12:57:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('352', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 13:23:22', '127.0.0.1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
@@ -922,7 +933,7 @@ CREATE TABLE `user_role_link` (
 -- ----------------------------
 DROP TABLE IF EXISTS `voltage_rank_classify`;
 CREATE TABLE `voltage_rank_classify` (
-  `id` tinyint(4) NOT NULL COMMENT '电压等级分类表',
+  `id` int(4) NOT NULL COMMENT '电压等级分类表',
   `name` varchar(20) DEFAULT '' COMMENT '电压等级名称',
   `value` int(8) DEFAULT '0' COMMENT '对应的电压  对应单位 kv',
   `bigEquipment` int(4) DEFAULT '1' COMMENT '施工是否必须具备大张牵设备 1 需要 , 2  不需要',
