@@ -8,8 +8,23 @@ Ext.define('RYIVS.controller.editor.EnterprisePer', {
 	stores : ['editor.EnterprisePer'],
 
 	init : function() {
-		
-	}
+		this.control({
+      		
+     		
+     		  'enterprisePer button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 }
+   		 });
+	},
+	
+	/**excel 导出
+	 * 
+	 */
+   exporterExcel :function(){
+   	
+   			alert("excel导出测试");
+//   		window.location.href='../../ui/excel';
+   }
 
 	
 });

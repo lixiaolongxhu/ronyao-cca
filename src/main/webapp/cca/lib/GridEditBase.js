@@ -85,7 +85,12 @@ Ext.define('RYIVS.lib.GridEditBase', {
 		handler : function() {
 			this.ownerCt.ownerCt.store.load();
 		}
-	} ],
+	} 
+	, {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    }],
 
 	listeners : {
 		'selectionchange' : function(view, records) {

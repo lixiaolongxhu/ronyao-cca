@@ -20,6 +20,74 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
 	
+	// 工具条
+	tbar : [ {
+		text : '添加',
+		icon : 'res/icon/add.png',
+		itemId : 'buttonAdd',
+		handler : function() {
+			// this.ownerCt.ownerCt.rowEditing.cancelEdit();
+			var editGrid = this.ownerCt.ownerCt;
+
+			// 如果是子表需要按需把外键进行添加
+
+			var insertRecord = {};
+
+			if (editGrid.newRecord != undefined) {
+				insertRecord = editGrid.newRecord;
+			}
+
+			editGrid.store.insert(0, insertRecord);
+			this.ownerCt.ownerCt.rowEditing.startEdit(0, 0);
+		}
+	}, {
+		itemId : 'buttonDelete',
+		text : '删除',
+		icon : 'res/icon/delete.png',
+		handler : function() {
+			Ext.Msg.show({
+				title : '删除警告',
+				msg : '请再次确认删除，删除该数据将删除与之相关联的数据',
+				buttons : Ext.Msg.YESNO,
+				fn : function(rst) {
+					
+					var ctlType = this.ownerCt.ownerCt.ownerCt.xtype;
+					var temp = this.ownerCt.ownerCt;
+					if (rst != 'no') {
+						var sm = this.ownerCt.ownerCt.getSelectionModel();
+						this.ownerCt.ownerCt.rowEditing.cancelEdit();
+						this.ownerCt.ownerCt.store.remove(sm.getSelection());
+						if (this.ownerCt.ownerCt.store.getCount() > 0) {
+							sm.select(0);
+						}
+					}
+					
+				},
+				scope : this,
+				icon : Ext.window.MessageBox.QUESTION
+			});
+
+		},
+		disabled : true
+	}, {
+		itemId : 'buttonRefresh',
+		text : '刷新',
+		icon : 'res/icon/sync.png',
+		handler : function() {
+			this.ownerCt.ownerCt.store.load();
+		}
+	}, {
+		itemId : 'buttonAptFileManager',
+		text : '文件管理(企业资质附件)',
+		icon : 'res/icon/control.png'	
+    }, {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    } 
+    
+    ],
+	
 	// 定义 colums
 	columns : [ 
 //		{
@@ -28,7 +96,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 //		dataIndex : 'id'
 //		
 //	},
-{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	, {
 		text : '主管单位',
 		width : 40,

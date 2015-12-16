@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -24,7 +26,7 @@ import com.ronyao.cca.test.Student;
  *
  */
 @Controller
-public class EnterpriseAptAction {
+public class EnterpAptAction {
 
 	
 	
@@ -48,7 +50,15 @@ public class EnterpriseAptAction {
 	
 	
 	@RequestMapping(value="/excel")
-	public void exportExcel(HttpServletResponse response) throws Exception{
+	public void exportExcel(HttpServletRequest request , HttpServletResponse response) throws Exception{
+//		 request.getSession().getServletContext()
+//			.getRealPath("/")
+			
+			//输出当前项目的路径  : D:\workspaces\ronyao-cca\src\main\webapp
+			System.out.println("输出当前项目的路径  : "  + request.getSession().getServletContext()
+					.getRealPath("/"));
+			
+		
 		  // 第一步，创建一个webbook，对应一个Excel文件  
         HSSFWorkbook wb = new HSSFWorkbook();  
         // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet  
