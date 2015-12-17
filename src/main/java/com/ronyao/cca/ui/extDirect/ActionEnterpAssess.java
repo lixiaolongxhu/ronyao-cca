@@ -1,6 +1,7 @@
 package com.ronyao.cca.ui.extDirect;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -48,10 +49,19 @@ public class ActionEnterpAssess {
 		if(!enerpAssessList.isEmpty()  &&  !bearResultDtoList.isEmpty()  ){
 			for (EnterpriseAssess ea : enerpAssessList) {
 				//将亿元单位的产值转化为万元
-				Float  outputStartMillion=10000*ea.getOutputstart().floatValue();
-				Float  outputEndMillion=10000*ea.getOutputend().floatValue();
-				if(ea.getProjectnumend()==null){
-					ea.setProjectnumend(0);
+				Float  outputstart=0f;
+				if(ea.getOutputstart()!= null){
+					outputstart=ea.getOutputstart().floatValue();
+				}
+				Float  outputStartMillion=10000*outputstart.floatValue();
+				Float  outputend=0f;
+				if(ea.getOutputend()!=null){
+					outputend=ea.getOutputend().floatValue();
+				}
+				Float  outputEndMillion=10000*outputend;
+				Integer  projectnumend=0;
+				if(ea.getProjectnumend()!=null){
+					projectnumend=ea.getProjectnumend();
 				}
 				StringBuilder  enterprise=new StringBuilder("");
 				for (BearResultDto bearResultDto : bearResultDtoList) {
@@ -59,7 +69,7 @@ public class ActionEnterpAssess {
 					if(bearResultDto.getProjectSum() <ea.getProjectnumstart()){
 						continue;
 					}
-					if(  ea.getProjectnumend()!=0  &&  bearResultDto.getProjectSum()>ea.getProjectnumend()){
+					if(  projectnumend!=0  &&  bearResultDto.getProjectSum()>ea.getProjectnumend()){
 						continue;
 					}
 					if(bearResultDto.getOutputSum() < outputStartMillion){

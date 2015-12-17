@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-17 10:13:58
+Date: 2015-12-17 12:37:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -211,19 +211,25 @@ CREATE TABLE `enterprise_assess` (
   `category` varchar(10) DEFAULT '' COMMENT '类别',
   `standard` varchar(255) DEFAULT '' COMMENT '标准',
   `projectNumStart` int(4) DEFAULT '0' COMMENT '可承载工程数量  大于该数',
-  `projectNumEnd` int(4) DEFAULT '0' COMMENT '可承载工程数量  小于该数',
-  `outputStart` decimal(10,2) DEFAULT '0.00' COMMENT '可承载工程产值 (单位 亿元) 大于该值',
-  `outputEnd` decimal(10,2) DEFAULT '0.00' COMMENT '可承载工程产值 (单位 亿元) 小于该值',
+  `projectNumEnd` int(4) DEFAULT NULL COMMENT '可承载工程数量  小于该数',
+  `outputStart` decimal(10,2) DEFAULT NULL COMMENT '可承载工程产值 (单位 亿元) 大于该值',
+  `outputEnd` decimal(10,2) DEFAULT NULL COMMENT '可承载工程产值 (单位 亿元) 小于该值',
   `enterprise` text COMMENT '对应分类标准满足条件的企业信息, 该信息由程序动态生成',
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_assess_category_uniquie` (`category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_assess
 -- ----------------------------
+INSERT INTO `enterprise_assess` VALUES ('1', 'A类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '15', null, '10.00', null, null, '2015-12-17 11:26:36', '2015-12-17 11:34:04');
+INSERT INTO `enterprise_assess` VALUES ('3', 'B类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '7', '12', '4.00', '6.00', '', '2015-12-17 11:37:00', '');
+INSERT INTO `enterprise_assess` VALUES ('4', 'C类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '6', '12', '2.00', '3.00', '', '2015-12-17 11:38:36', '2015-12-17 12:37:16');
+INSERT INTO `enterprise_assess` VALUES ('5', 'D类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '4', '8', '1.00', '2.00', '', '2015-12-17 12:22:51', '2015-12-17 12:36:24');
+INSERT INTO `enterprise_assess` VALUES ('6', 'E类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '3', '6', '0.50', '1.50', '', '2015-12-17 12:23:11', '');
+INSERT INTO `enterprise_assess` VALUES ('7', 'F类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '1', '3', null, '0.50', '', '2015-12-17 12:25:51', '');
 
 -- ----------------------------
 -- Table structure for enterprise_equipment
@@ -454,7 +460,7 @@ INSERT INTO `permission` VALUES ('16', '5', '承载能力计算结果', 'bear', 
 INSERT INTO `permission` VALUES ('17', '5', '不良行为影响', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', 'behavior', '2', '不良行为修正系数', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', 'bearRevised', '2', '施工企业承载能力修正后结果', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('20', '5', '施工企业评估分类', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('20', '5', '施工企业评估分类', 'enterpriseAssess', '2', '施工企业评估分类', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('21', '5', '评估情况与近三年承揽情况的比较', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('22', '21', '工程数量对比情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('23', '21', '产值对比情况', '', '2', '', '0', '1', null, null);
@@ -587,7 +593,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=359 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=371 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -950,6 +956,18 @@ INSERT INTO `user_log` VALUES ('355', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('356', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 15:27:49', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('357', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 16:12:46', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('358', '1', '操作模块:会话管理,用户登陆.', '2015-12-16 17:14:36', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('359', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 10:22:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('360', '1', '操作模块:会话管理,用户注销.', '2015-12-17 10:22:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('361', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 10:23:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('362', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 10:24:03', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('363', '1', '操作模块:会话管理,用户注销.', '2015-12-17 10:27:26', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('364', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 10:27:36', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('365', '1', '会话超时，用户退出.', '2015-12-17 10:53:32', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('366', '1', '会话超时，用户退出.', '2015-12-17 11:00:32', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('367', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 11:23:39', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('368', '1', '会话超时，用户退出.', '2015-12-17 12:09:03', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('369', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 12:22:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('370', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 12:34:25', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
