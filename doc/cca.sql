@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-16 17:25:40
+Date: 2015-12-17 10:13:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -201,6 +201,29 @@ INSERT INTO `enterprise_aptitude` VALUES ('2', '2', '2', '佛挡杀佛的佛挡�
 INSERT INTO `enterprise_aptitude` VALUES ('3', '2', '2', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的杀佛的佛挡杀佛的佛挡杀佛的', '2015-12-10 10:39:22', '');
 INSERT INTO `enterprise_aptitude` VALUES ('4', '1', '1', '士大夫撒旦发送到法撒旦发松岛枫', '发撒旦法撒旦法阿什顿飞s', '发的发士大夫撒地方阿什顿飞', '的说法阿什顿飞sa', '发松岛枫第三方的asdf', '发松岛枫是的撒地方师德师风', '2015-12-10 15:31:30', '');
 INSERT INTO `enterprise_aptitude` VALUES ('5', '1', '2', '资质要求  发生法撒旦法士大夫的范德萨范德萨范德萨范德萨发的发f', '执业资格 撒旦法范德萨发松岛枫撒旦法', '技术负责人 士大夫撒地方的大发发大水', '技术人员  送法撒旦法师法但是发生大幅度', '技能人员  的沙发上发大幅度发松岛枫大发阿凡达', '承包范围    发送到电风扇范德萨发大幅度发第三方法撒旦法师法撒旦法说打第三方士大夫', '2015-12-11 11:12:02', '2015-12-11 11:31:43');
+
+-- ----------------------------
+-- Table structure for enterprise_assess
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_assess`;
+CREATE TABLE `enterprise_assess` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业批过分类(与修正后的承载能力对比)',
+  `category` varchar(10) DEFAULT '' COMMENT '类别',
+  `standard` varchar(255) DEFAULT '' COMMENT '标准',
+  `projectNumStart` int(4) DEFAULT '0' COMMENT '可承载工程数量  大于该数',
+  `projectNumEnd` int(4) DEFAULT '0' COMMENT '可承载工程数量  小于该数',
+  `outputStart` decimal(10,2) DEFAULT '0.00' COMMENT '可承载工程产值 (单位 亿元) 大于该值',
+  `outputEnd` decimal(10,2) DEFAULT '0.00' COMMENT '可承载工程产值 (单位 亿元) 小于该值',
+  `enterprise` text COMMENT '对应分类标准满足条件的企业信息, 该信息由程序动态生成',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `enter_assess_category_uniquie` (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_assess
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for enterprise_equipment

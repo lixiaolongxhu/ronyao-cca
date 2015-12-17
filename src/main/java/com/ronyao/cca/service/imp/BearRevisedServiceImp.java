@@ -98,7 +98,7 @@ public class BearRevisedServiceImp implements BearRevisedService {
 								+outputmap.get(220+""+ConstAnnualOutput.LINE_PROJECT).getAnnualoutput()*result.getLine220kv()
 								+outputmap.get(110+""+ConstAnnualOutput.LINE_PROJECT).getAnnualoutput()*result.getLine110kv();	
 				result.setLineOutput(lineProjectOutput);
-				
+				result.setLineProjectSum(result.getLine110kv()+result.getLine220kv()+result.getLine500kv());
 				
 				result.setPower110kv(Math.round(result.getPower110kv()*bCorrect));
 				result.setPower220kv(Math.round(result.getPower220kv()*bCorrect));
@@ -108,7 +108,13 @@ public class BearRevisedServiceImp implements BearRevisedService {
 										outputmap.get(500+""+ConstAnnualOutput.POWER_PROJECT).getAnnualoutput()*result.getPower500kv()
 										+outputmap.get(220+""+ConstAnnualOutput.POWER_PROJECT).getAnnualoutput()*result.getPower220kv()
 										+outputmap.get(110+""+ConstAnnualOutput.POWER_PROJECT).getAnnualoutput()*result.getPower110kv();
+				result.setPowerProjectSum(result.getPower110kv()+result.getPower220kv()+result.getPower500kv());
+			
 				result.setPowerOutput(powerProjectOutput);
+				
+				result.setOutputSum(result.getLineOutput()+result.getPowerOutput());
+				
+				result.setProjectSum(result.getLineProjectSum()+result.getPowerProjectSum());
 			}
 		}
 		

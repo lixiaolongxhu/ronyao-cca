@@ -8,26 +8,110 @@ package com.ronyao.cca.service.dto;
 public class BearResultDto {
 
 	private Integer  enterpriseid; //企业id
+	private String   enterpriseName;
 	
 	//线路工程
 	private Integer  line500kv=0;  //500kv项目个数
 	private Integer  line220kv=0;  //220kv项目个数
 	private Integer  line110kv=0;  //110kv项目个数
 	private Integer  lineOutput=0; //线路工程产值
+	private Integer  lineProjectSum=0;  //线路工程总数
 	
 	//变电工程
 	private Integer  power500kv=0;  //500kv项目个数
 	private Integer  power220kv=0;  //220kv项目个数
 	private Integer  power110kv=0;  //110kv项目个数
 	private Integer  powerOutput=0; //变电工程产值
-	
+	private Integer  powerProjectSum=0;//变电工程总数
 	
 	
 	private Integer outputSum=0;// 线路工程+变电工程
-
+	private Integer projectSum=0; //工程总数
 
 	
 	
+	
+	
+
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+
+
+
+
+
+
+
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
+	}
+
+
+
+
+
+
+
+	public Integer getLineProjectSum() {
+		return lineProjectSum;
+	}
+
+
+
+
+
+
+
+	public void setLineProjectSum(Integer lineProjectSum) {
+		this.lineProjectSum = lineProjectSum;
+	}
+
+
+
+
+
+
+
+	public Integer getPowerProjectSum() {
+		return powerProjectSum;
+	}
+
+
+
+
+
+
+
+	public void setPowerProjectSum(Integer powerProjectSum) {
+		this.powerProjectSum = powerProjectSum;
+	}
+
+
+
+
+
+
+
+	public Integer getProjectSum() {
+		return projectSum;
+	}
+
+
+
+
+
+
+
+	public void setProjectSum(Integer projectSum) {
+		this.projectSum = projectSum;
+	}
+
+
+
+
+
+
 
 	public BearResultDto(Integer enterpriseId) {
 		super();

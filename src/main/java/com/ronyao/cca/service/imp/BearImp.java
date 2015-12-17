@@ -323,6 +323,7 @@ public class BearImp implements Bear {
 		  
 		BearResultDto result=new BearResultDto(enterpriseId);;
 		result.setEnterpriseid(enterpriseId);
+		result.setEnterpriseName(enterprise.getName());
 		//四舍五入  企业每年可以组建项目数=施工项目数*每年对应项目的完成量
 		result.setLine110kv(Math.round(lineProjectNum110kv*outputmap.get(110+""+ConstAnnualOutput.LINE_PROJECT).getProjectnum().floatValue()));
 		result.setLine220kv(Math.round(lineProjectNum220kv*outputmap.get(220+""+ConstAnnualOutput.LINE_PROJECT).getProjectnum().floatValue()));

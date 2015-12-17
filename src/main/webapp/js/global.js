@@ -77,6 +77,11 @@ ry.constant.project_type =[[1,'线路工程项目'],[2,'变电工程项目']]
 // 不良行为等级分类
 ry.constant.behavior_standard_rankType =[[1,'严重不良行为'],[2,'一般不良行为']]
 
+// 施工企业评估分类: 类别
+ry.constant.enterprise_assess_category =[['A类','A类'],['B类','B类'],['C类','C类'],['D类','D类'],['E类','E类'],['F类','F类']
+										//,['G类','G类'],['H类','H类'],['I类','I类'],['J类','J类'],['K类','K类']
+										]
+
 ////联动-空调控制
 //ry.constant.link_air = [
 //    {parm1:"0", parm1Name:"关闭"},
