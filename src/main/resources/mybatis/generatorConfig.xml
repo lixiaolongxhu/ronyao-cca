@@ -150,6 +150,9 @@
 		<table schema="" tableName="enterprise_assess" domainObjectName="EnterpriseAssess">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
+		<table schema="" tableName="project_plain" domainObjectName="ProjectPlain">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
 		<!-- 业务先关的表    end      -->
 		
 	</context>

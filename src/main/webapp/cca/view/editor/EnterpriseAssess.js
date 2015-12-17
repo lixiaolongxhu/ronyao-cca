@@ -4,7 +4,7 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.enterpriseAssess',
 	title : '施工企业评估分类',
-	iconCls : 's_user',
+	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.EnterpriseAssess',
 	// 定义 autoload
