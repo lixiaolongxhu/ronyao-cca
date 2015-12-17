@@ -28,7 +28,8 @@ Ext.application({
 					'editor.Behavior','editor.EnterpriseAssess',
 					
 				 	
-				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover','display.Bear','display.BearRevised'
+				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover','display.Bear','display.BearRevised','display.BearContrastProNum',
+				 	'display.BearContrastProOutput'
 				  ],
 
 

@@ -9,6 +9,9 @@ public class BearResultDto {
 
 	private Integer  enterpriseid; //企业id
 	private String   enterpriseName;
+	private String   supervisorunit;// 企业主管单位
+	private Integer  treeYearOutput;//近三年产值
+	private Integer  treeYearProject ;//近三年项目数
 	
 	//线路工程
 	private Integer  line500kv=0;  //500kv项目个数
@@ -35,6 +38,66 @@ public class BearResultDto {
 
 	public String getEnterpriseName() {
 		return enterpriseName;
+	}
+
+
+
+
+
+
+
+	public String getSupervisorunit() {
+		return supervisorunit;
+	}
+
+
+
+
+
+
+
+	public void setSupervisorunit(String supervisorunit) {
+		this.supervisorunit = supervisorunit;
+	}
+
+
+
+
+
+
+
+	public Integer getTreeYearOutput() {
+		return treeYearOutput;
+	}
+
+
+
+
+
+
+
+	public void setTreeYearOutput(Integer treeYearOutput) {
+		this.treeYearOutput = treeYearOutput;
+	}
+
+
+
+
+
+
+
+	public Integer getTreeYearProject() {
+		return treeYearProject;
+	}
+
+
+
+
+
+
+
+	public void setTreeYearProject(Integer treeYearProject) {
+		this.treeYearProject = treeYearProject;
 	}
 
 

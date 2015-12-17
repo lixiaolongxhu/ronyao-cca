@@ -1,4 +1,4 @@
-package com.ronyao.cca.test;
+package test;
 public class Book
 {
 	private int bookId;

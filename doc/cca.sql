@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-17 12:37:46
+Date: 2015-12-17 14:35:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -149,7 +149,7 @@ CREATE TABLE `enterprise` (
   `overallRank` tinyint(4) DEFAULT '0' COMMENT '资质 总承包 等级',
   `professionRank` tinyint(4) DEFAULT '0' COMMENT '资质 专业承包  等级',
   `output` int(11) DEFAULT '0' COMMENT '近三年的产值(万元)',
-  `project` tinyint(4) DEFAULT '0' COMMENT '近三年工程数量',
+  `project` int(4) DEFAULT '0' COMMENT '近三年工程数量',
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -462,8 +462,8 @@ INSERT INTO `permission` VALUES ('18', '17', '不良行为影响修正系数', '
 INSERT INTO `permission` VALUES ('19', '17', '不良行为影响修正结果', 'bearRevised', '2', '施工企业承载能力修正后结果', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('20', '5', '施工企业评估分类', 'enterpriseAssess', '2', '施工企业评估分类', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('21', '5', '评估情况与近三年承揽情况的比较', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('22', '21', '工程数量对比情况', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('23', '21', '产值对比情况', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('22', '21', '工程数量对比情况', 'bearContrastProNum', '2', '工程数量对比情况', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('23', '21', '产值对比情况', 'bearContrastProOutput', '2', '产值对比情况', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('24', '0', '评估结果应用', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('25', '24', '下一年度公司新开发工项目情况', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('26', '24', '各施工单位已承揽工程情况', '', '2', '', '0', '1', null, null);
@@ -593,7 +593,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=371 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -968,6 +968,8 @@ INSERT INTO `user_log` VALUES ('367', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('368', '1', '会话超时，用户退出.', '2015-12-17 12:09:03', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('369', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 12:22:07', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('370', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 12:34:25', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('371', '1', '会话超时，用户退出.', '2015-12-17 13:07:35', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('372', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 14:20:16', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

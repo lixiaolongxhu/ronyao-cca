@@ -1,4 +1,4 @@
-package com.ronyao.cca.test;
+package test;
 
 import java.util.Date;
 
