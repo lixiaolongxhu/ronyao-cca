@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-18 14:28:12
+Date: 2015-12-18 14:36:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,8 +27,8 @@ CREATE TABLE `annual_output` (
   `projectNum` decimal(10,2) DEFAULT '0.00' COMMENT '单个项目部完成项目个数(个/年)',
   `annualOutPut` int(11) DEFAULT '0' COMMENT '年产值',
   `remark` varchar(255) DEFAULT '' COMMENT '备注',
-  `createTime` varchar(20) DEFAULT NULL,
-  `updateTime` varchar(20) DEFAULT NULL,
+  `createTime` varchar(20) DEFAULT '',
+  `updateTime` varchar(20) DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `annual_voltageRankId_fk` (`voltageRankId`,`projectType`) USING BTREE,
   CONSTRAINT `output_voltaget_fk` FOREIGN KEY (`voltageRankId`) REFERENCES `voltage_rank_classify` (`id`)
@@ -520,26 +520,6 @@ CREATE TABLE `project_build` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for project_config
--- ----------------------------
-DROP TABLE IF EXISTS `project_config`;
-CREATE TABLE `project_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工项目完成量配置表',
-  `voltageLlevel` int(11) DEFAULT '0' COMMENT '电压等级',
-  `type` tinyint(4) DEFAULT '1' COMMENT '施工项目类型 1线程工程 2 变电项目',
-  `number` decimal(10,2) DEFAULT '0.00' COMMENT ' 单个项目对应合理工期内完成数量(个/年)',
-  `outputValue` decimal(10,2) DEFAULT '0.00' COMMENT '施工项目年产值 (万元/年)',
-  `timeLimit` tinyint(4) DEFAULT '12' COMMENT '计算的合理工期 (个月)',
-  `createTime` varchar(20) DEFAULT '',
-  `updateTime` varchar(20) DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of project_config
--- ----------------------------
-
--- ----------------------------
 -- Table structure for project_plain
 -- ----------------------------
 DROP TABLE IF EXISTS `project_plain`;
@@ -652,7 +632,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=386 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1040,6 +1020,8 @@ INSERT INTO `user_log` VALUES ('380', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('381', '1', '会话超时，用户退出.', '2015-12-18 09:57:33', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('382', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 10:16:53', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('383', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 10:23:02', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('384', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 14:31:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('385', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 14:34:58', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
