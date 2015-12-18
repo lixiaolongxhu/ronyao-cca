@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-18 14:36:46
+Date: 2015-12-18 17:14:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -467,9 +467,9 @@ INSERT INTO `permission` VALUES ('23', '21', '产值对比情况', 'bearContrast
 INSERT INTO `permission` VALUES ('24', '0', '评估结果应用', '', '2', '', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('25', '24', '下一年度公司新开发工项目情况', 'projectPlain', '2', '下一年度公司新开发工项目情况', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('26', '24', '各施工单位已承揽工程情况', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('27', '26', '在建工程情况', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('28', '26', '中标未开工情况', '', '2', '', '0', '1', null, null);
-INSERT INTO `permission` VALUES ('29', '24', '施工单位剩余承载能力', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('27', '26', '在建工程情况', 'projectBuilding', '2', '在建工程情况', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('28', '26', '中标未开工情况', 'projectNoBuild', '2', '中标未开工情况', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('29', '24', '施工单位剩余承载能力', 'projectBuildBear', '2', '施工单位剩余承载能力', '0', '1', null, null);
 
 -- ----------------------------
 -- Table structure for post_classify
@@ -499,6 +499,7 @@ INSERT INTO `post_classify` VALUES ('8', '施工队技术员,质检员,兼职安
 DROP TABLE IF EXISTS `project_build`;
 CREATE TABLE `project_build` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业中标项目建设情况',
+  `supervisorUnit` varchar(100) DEFAULT '' COMMENT '主管单位',
   `enterpriseId` int(11) DEFAULT NULL COMMENT '外键,所属施工企业',
   `year` int(11) DEFAULT '0' COMMENT '施工企业建设项目的年份',
   `classify` int(4) DEFAULT '1' COMMENT '施工企业中标项目的建设状态  1 中标未开工项目 2 中标已开工项目',
@@ -513,11 +514,35 @@ CREATE TABLE `project_build` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `proejct_build_enterpriseId_fk` (`enterpriseId`,`year`,`classify`) USING BTREE,
   CONSTRAINT `proejct_build_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project_build
 -- ----------------------------
+INSERT INTO `project_build` VALUES ('1', '四川公司', '71', '2015', '2', '0', '2', '9', '1', '3', '2', '2015-12-18 15:14:47', '2015-12-18 15:36:36');
+INSERT INTO `project_build` VALUES ('2', '科锐得', '72', '2015', '2', '0', '3', '3', '1', '5', '2', '2015-12-18 15:15:21', '2015-12-18 15:36:58');
+INSERT INTO `project_build` VALUES ('3', '成都', '73', '2015', '2', '6', '8', '0', '6', '2', '0', '2015-12-18 15:15:40', '2015-12-18 15:37:06');
+INSERT INTO `project_build` VALUES ('4', '乐山', '74', '2015', '2', '3', '2', '0', '4', '2', '0', '2015-12-18 15:15:59', '2015-12-18 15:37:13');
+INSERT INTO `project_build` VALUES ('5', '雅安', '75', '2015', '2', '2', '0', '0', '8', '0', '0', '2015-12-18 15:16:13', '2015-12-18 15:37:19');
+INSERT INTO `project_build` VALUES ('6', '内江', '76', '2015', '2', '4', '3', '0', '2', '3', '0', '2015-12-18 15:16:33', '2015-12-18 15:37:25');
+INSERT INTO `project_build` VALUES ('7', '甘孜', '77', '2015', '2', '0', '0', '0', '0', '0', '0', '2015-12-18 15:16:47', '2015-12-18 15:37:35');
+INSERT INTO `project_build` VALUES ('10', '内江', '76', '2014', '2', '1', '0', '0', '0', '0', '0', '2015-12-18 15:17:30', '2015-12-18 15:37:55');
+INSERT INTO `project_build` VALUES ('13', '雅安', '75', '2014', '2', '1', '0', '0', '0', '0', '0', '2015-12-18 15:18:01', '2015-12-18 15:37:57');
+INSERT INTO `project_build` VALUES ('16', '四川公司', '71', '2015', '1', '0', '0', '0', '0', '0', '0', '2015-12-18 15:24:19', '2015-12-18 15:45:18');
+INSERT INTO `project_build` VALUES ('17', '科锐得', '72', '2015', '1', '0', '2', '0', '0', '1', '0', '2015-12-18 15:24:32', '2015-12-18 15:45:25');
+INSERT INTO `project_build` VALUES ('18', '成都', '73', '2015', '1', '7', '8', '0', '0', '0', '0', '2015-12-18 15:24:45', '2015-12-18 15:45:32');
+INSERT INTO `project_build` VALUES ('19', '乐山', '74', '2015', '1', '1', '0', '0', '1', '0', '0', '2015-12-18 15:25:01', '2015-12-18 15:45:38');
+INSERT INTO `project_build` VALUES ('21', '雅安', '75', '2015', '1', '1', '0', '0', '1', '0', '0', '2015-12-18 15:25:31', '2015-12-18 15:45:41');
+INSERT INTO `project_build` VALUES ('22', '内江', '76', '2015', '1', '0', '0', '0', '0', '0', '0', '2015-12-18 15:25:41', '2015-12-18 15:45:59');
+INSERT INTO `project_build` VALUES ('23', '甘孜', '77', '2015', '1', '0', '0', '0', '0', '0', '0', '2015-12-18 15:25:51', '2015-12-18 15:45:50');
+INSERT INTO `project_build` VALUES ('24', '0', '76', '2013', '1', '0', '0', '0', '0', '0', '0', '2015-12-18 15:26:01', '');
+INSERT INTO `project_build` VALUES ('25', '内江', '76', '2014', '1', '1', '0', '0', '0', '0', '0', '2015-12-18 15:26:09', '2015-12-18 15:46:10');
+INSERT INTO `project_build` VALUES ('26', '成都', '73', '2014', '1', '1', '0', '0', '0', '0', '0', '2015-12-18 15:26:14', '2015-12-18 15:46:12');
+INSERT INTO `project_build` VALUES ('27', '科锐得', '72', '2014', '1', '1', '0', '0', '0', '0', '0', '2015-12-18 15:26:19', '2015-12-18 15:46:14');
+INSERT INTO `project_build` VALUES ('31', '乐山', '74', '2014', '1', '1', '0', '0', '0', '0', '0', '2015-12-18 15:38:14', '2015-12-18 15:46:16');
+INSERT INTO `project_build` VALUES ('36', '科锐得', '72', '2014', '2', '0', '0', '0', '0', '0', '0', '2015-12-18 15:44:53', '');
+INSERT INTO `project_build` VALUES ('37', '乐山', '74', '2014', '2', '0', '0', '0', '0', '0', '0', '2015-12-18 15:45:03', '');
+INSERT INTO `project_build` VALUES ('38', '四川公司', '71', '2014', '1', '0', '0', '0', '0', '0', '0', '2015-12-18 15:46:33', '');
 
 -- ----------------------------
 -- Table structure for project_plain
@@ -632,7 +657,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=386 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=392 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1022,6 +1047,12 @@ INSERT INTO `user_log` VALUES ('382', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('383', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 10:23:02', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('384', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 14:31:37', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('385', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 14:34:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('386', '1', '会话超时，用户退出.', '2015-12-18 15:05:44', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('387', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 15:07:32', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('388', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 15:34:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('389', '1', '会话超时，用户退出.', '2015-12-18 16:18:44', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('390', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 16:52:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('391', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 16:56:47', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

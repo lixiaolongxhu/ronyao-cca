@@ -15,20 +15,15 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadResult;
-
 import com.ronyao.cca.constant.ConstProjectBuild;
-import com.ronyao.cca.db.dao.EnterpriseMapper;
 import com.ronyao.cca.db.dao.ProjectBuildMapper;
-import com.ronyao.cca.db.model.Enterprise;
-import com.ronyao.cca.db.model.EnterpriseExample;
 import com.ronyao.cca.db.model.ProjectBuild;
 import com.ronyao.cca.db.model.ProjectBuildExample;
-import com.ronyao.cca.service.Bear;
 import com.ronyao.cca.service.BearRevisedService;
 import com.ronyao.cca.service.dto.BearResultDto;
 import com.ronyao.cca.tool.DateUtil;
 import com.ronyao.cca.ui.vo.BearProjectBuildVo;
-import com.ronyao.cca.ui.vo.ProjectConstrastVo;
+
 
 
 
@@ -38,7 +33,7 @@ import com.ronyao.cca.ui.vo.ProjectConstrastVo;
  *
  */
 @Service
-public class ActionProjectBuidBear {
+public class ActionProjectBuildBear {
 	
 	
 //	private static final  Logger  LOG=LoggerFactory.getLogger(ActionBear.class);
@@ -57,14 +52,14 @@ public class ActionProjectBuidBear {
 	 * @return
 	 */
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
-	public ExtDirectStoreReadResult<BearProjectBuildVo> readProjectNumConstrast(
+	public ExtDirectStoreReadResult<BearProjectBuildVo> read(
 			ExtDirectStoreReadRequest request) {
 		List<BearProjectBuildVo>  pcList=new ArrayList<BearProjectBuildVo>();
 		
 		//获取施工企业当年已中标项目
 		ProjectBuildExample  bpExample=new ProjectBuildExample();
 		String  yearStr=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);
-		bpExample.createCriteria().andEnterpriseidEqualTo(Integer.parseInt(yearStr));
+		bpExample.createCriteria().andYearEqualTo(Integer.parseInt(yearStr));
 		List<ProjectBuild>  pbList=projectBuildMapper.selectByExample(bpExample);
 		Map<String, ProjectBuild>  pbMap=new HashMap<String, ProjectBuild>();
 	

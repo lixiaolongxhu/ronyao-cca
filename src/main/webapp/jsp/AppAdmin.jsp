@@ -25,11 +25,11 @@ Ext.application({
 					
 					'editor.Enterprise','editor.EnterprisePer','editor.EnterpriseApt','editor.User','editor.EnterprisePerSta',
 					'editor.EquipmentBear','editor.AnnualOutput','editor.BehaviorSta','editor.EnterprisePerMan','editor.EnterpriseEquip',
-					'editor.Behavior','editor.EnterpriseAssess','editor.ProjectPlain',
+					'editor.Behavior','editor.EnterpriseAssess','editor.ProjectPlain','editor.ProjectNoBuild','editor.ProjectBuilding',
 					
 				 	
 				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover','display.Bear','display.BearRevised','display.BearContrastProNum',
-				 	'display.BearContrastProOutput'
+				 	'display.BearContrastProOutput','display.ProjectBuildBear'
 				  ],
 
 

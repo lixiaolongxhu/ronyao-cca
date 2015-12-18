@@ -3,6 +3,9 @@ package com.ronyao.cca.ui.extDirect;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +14,10 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadResult;
-
 import com.ronyao.cca.constant.ConstProjectBuild;
+import com.ronyao.cca.db.dao.EnterpriseMapper;
 import com.ronyao.cca.db.dao.ProjectBuildMapper;
+import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.ProjectBuild;
 import com.ronyao.cca.db.model.ProjectBuildExample;
 import com.ronyao.cca.tool.DateUtil;
@@ -33,6 +37,9 @@ public class ActionProejctBuild {
 	@Autowired
 	private ProjectBuildMapper projectBuildMapper;
 	
+	@Resource
+	private EnterpriseMapper enterpriseMapper;
+	
 	//-------------------------------------未开工项目情况-----------------------
 	
 	// 列表
@@ -50,7 +57,10 @@ public class ActionProejctBuild {
 			}
 			
 			ProjectBuildExample eExample = new ProjectBuildExample();
-			eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()));
+			eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()))
+			.andClassifyEqualTo(ConstProjectBuild.CLASSIFY_NO_BUILD);
+			
+			
 			return new ExtDirectStoreReadResult<ProjectBuild>(projectBuildMapper.selectByExample(eExample));
 		}
 
@@ -60,9 +70,13 @@ public class ActionProejctBuild {
 			ProjectBuild  ep = enterprisePerStaList.get(0);
 			ep.setCreatetime(DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT0));
 			ep.setClassify(ConstProjectBuild.CLASSIFY_NO_BUILD);
+		
+			Enterprise enterprise=enterpriseMapper.selectByPrimaryKey(ep.getEnterpriseid());
+			ep.setSupervisorunit(enterprise.getSupervisorunit());
 			try{
 				projectBuildMapper.insert(ep);	
 			}catch (Exception e){
+				e.printStackTrace();
 				LOG.warn("施工企业中标开工项目情况添加: 不允许添加重复的(企业,年份),添加失败!");
 			}
 			
@@ -76,9 +90,13 @@ public class ActionProejctBuild {
 			
 			ProjectBuild  ep = enterprisePerStaList.get(0);
 			ep.setUpdatetime(DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT0));
+			ep.setClassify(ConstProjectBuild.CLASSIFY_NO_BUILD);
+			Enterprise enterprise=enterpriseMapper.selectByPrimaryKey(ep.getEnterpriseid());
+			ep.setSupervisorunit(enterprise.getSupervisorunit());
 			try{
 				return projectBuildMapper.updateByPrimaryKey(ep);
 			}catch (Exception e){
+				e.printStackTrace();
 				LOG.warn("施工企业中标开工项目情况情况修改: 不允许修改为已有的(企业,年份),修改失败!");
 				return 0;
 			}
@@ -108,7 +126,8 @@ public class ActionProejctBuild {
 		}
 		
 		ProjectBuildExample eExample = new ProjectBuildExample();
-		eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()));
+		eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()))
+		.andClassifyEqualTo(ConstProjectBuild.CLASSIFY_BUILDING);;
 		return new ExtDirectStoreReadResult<ProjectBuild>(projectBuildMapper.selectByExample(eExample));
 	}
 
@@ -117,10 +136,13 @@ public class ActionProejctBuild {
 	public ExtDirectStoreReadResult<ProjectBuild> createBuilding(List<ProjectBuild> enterprisePerStaList) {
 		ProjectBuild  ep = enterprisePerStaList.get(0);
 		ep.setCreatetime(DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT0));
-		ep.setClassify(ConstProjectBuild.CLASSIFY_NO_BUILD);
+		ep.setClassify(ConstProjectBuild.CLASSIFY_BUILDING);
+		Enterprise enterprise=enterpriseMapper.selectByPrimaryKey(ep.getEnterpriseid());
+		ep.setSupervisorunit(enterprise.getSupervisorunit());
 		try{
 			projectBuildMapper.insert(ep);	
 		}catch (Exception e){
+			e.printStackTrace();
 			LOG.warn("施工企业中标开工项目情况添加: 不允许添加重复的(企业,年份),添加失败!");
 		}
 		
@@ -134,9 +156,13 @@ public class ActionProejctBuild {
 		
 		ProjectBuild  ep = enterprisePerStaList.get(0);
 		ep.setUpdatetime(DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT0));
+		ep.setClassify(ConstProjectBuild.CLASSIFY_BUILDING);
+		Enterprise enterprise=enterpriseMapper.selectByPrimaryKey(ep.getEnterpriseid());
+		ep.setSupervisorunit(enterprise.getSupervisorunit());
 		try{
 			return projectBuildMapper.updateByPrimaryKey(ep);
 		}catch (Exception e){
+			e.printStackTrace();
 			LOG.warn("施工企业中标开工项目情况情况修改: 不允许修改为已有的(企业,年份),修改失败!");
 			return 0;
 		}
