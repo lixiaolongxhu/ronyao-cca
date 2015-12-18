@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-18 10:32:25
+Date: 2015-12-18 13:15:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -492,6 +492,32 @@ INSERT INTO `post_classify` VALUES ('5', '技术员');
 INSERT INTO `post_classify` VALUES ('6', '造价员,资料员,综合员,管理员,材料员,协调员');
 INSERT INTO `post_classify` VALUES ('7', '施工队长(班组长)');
 INSERT INTO `post_classify` VALUES ('8', '施工队技术员,质检员,兼职安全员');
+
+-- ----------------------------
+-- Table structure for project_build
+-- ----------------------------
+DROP TABLE IF EXISTS `project_build`;
+CREATE TABLE `project_build` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业中标项目建设情况',
+  `enterpriseId` int(11) DEFAULT NULL COMMENT '外键,所属施工企业',
+  `year` int(11) DEFAULT '0' COMMENT '施工企业建设项目的年份',
+  `classify` int(4) DEFAULT '1' COMMENT '施工企业中标项目的建设状态  1 中标未开工项目 2 中标已开工项目',
+  `line110kv` int(4) DEFAULT '0' COMMENT '线路工程    110kv 项目数(个)',
+  `line220kv` int(4) DEFAULT '0' COMMENT '线路工程    220kv 项目数(个)',
+  `line500kv` int(4) DEFAULT '0' COMMENT '线路工程   500kv 项目数(个)',
+  `power110kv` int(4) DEFAULT '0' COMMENT '变电工程    110kv 项目数(个)',
+  `power220kv` int(4) DEFAULT '0' COMMENT '变电工程    220kv 项目数(个)',
+  `power500kv` int(4) DEFAULT '0' COMMENT '变电工程    500kv 项目数(个)',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `proejct_build_enterpriseId_fk` (`enterpriseId`,`year`,`classify`) USING BTREE,
+  CONSTRAINT `proejct_build_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of project_build
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for project_config
