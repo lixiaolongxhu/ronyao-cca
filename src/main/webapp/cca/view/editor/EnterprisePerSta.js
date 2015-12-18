@@ -71,7 +71,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 					xtype : 'numberfield',
 					minValue : 1,
 					autoStripChars : true,
-					allowDecimals : false,
+					allowDecimals : false
 				
  				},
  			

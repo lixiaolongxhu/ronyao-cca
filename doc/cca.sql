@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-17 17:17:24
+Date: 2015-12-18 10:32:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -219,7 +219,7 @@ CREATE TABLE `enterprise_assess` (
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_assess_category_uniquie` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_assess
@@ -526,7 +526,7 @@ CREATE TABLE `project_plain` (
   `powerProject` int(11) DEFAULT '0' COMMENT '新开工的变电工程数',
   `assessLineProject` int(11) DEFAULT '0' COMMENT '评估对应年份可承揽线路工程数',
   `assessPowerProject` int(11) DEFAULT '0' COMMENT '评估可以承载变成工程数',
-  `length` int(11) DEFAULT '0' COMMENT '线路长度(公里)',
+  `lineLength` int(11) DEFAULT '0' COMMENT '线路长度(公里)',
   `volume` int(11) DEFAULT '0' COMMENT '变电容量(万千伏特)',
   `investment` decimal(10,2) DEFAULT '0.00' COMMENT '总投资  (亿元)',
   `createTime` varchar(20) DEFAULT NULL,
@@ -534,15 +534,17 @@ CREATE TABLE `project_plain` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `project_new_voltageRankClassifyId_fk` (`voltageRankClassifyId`,`year`) USING BTREE,
   CONSTRAINT `project_new_voltageRankClassifyId_fk` FOREIGN KEY (`voltageRankClassifyId`) REFERENCES `voltage_rank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project_plain
 -- ----------------------------
-INSERT INTO `project_plain` VALUES ('1', '2', '2015', '2', '2', '3', '2', '2', '2', '3', '22.00', '2015-12-17 16:25:38', '');
-INSERT INTO `project_plain` VALUES ('4', '3', '2015', '0', '3', '3', '4', '3', '3', '3', '2322.00', '2015-12-17 16:29:50', '');
-INSERT INTO `project_plain` VALUES ('5', '2', '2012', '2', '2', '2', '2', '2', '2', '2', '11.00', '2015-12-17 16:32:37', '');
+INSERT INTO `project_plain` VALUES ('1', '2', '2015', '47', '6', '3', '14', '11', '822', '325', '40.90', '2015-12-17 16:25:38', '2015-12-18 10:30:44');
+INSERT INTO `project_plain` VALUES ('4', '3', '2015', '18', '12', '12', '33', '37', '1237', '450', '36.90', '2015-12-17 16:29:50', '2015-12-18 10:31:11');
 INSERT INTO `project_plain` VALUES ('6', '4', '2014', '2', '2', '2', '2', '2', '2', '2', '22.00', '2015-12-17 16:57:57', '');
+INSERT INTO `project_plain` VALUES ('8', '4', '2015', '38', '30', '22', '35', '7', '1187', '270', '24.80', '2015-12-18 10:26:52', '');
+INSERT INTO `project_plain` VALUES ('10', '3', '2014', '0', '0', '0', '0', '0', '0', '0', '0.00', '2015-12-18 10:31:38', '');
+INSERT INTO `project_plain` VALUES ('11', '2', '2014', '0', '0', '0', '0', '0', '0', '0', '0.00', '2015-12-18 10:31:48', '');
 
 -- ----------------------------
 -- Table structure for role
@@ -624,7 +626,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=379 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1007,6 +1009,11 @@ INSERT INTO `user_log` VALUES ('375', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('376', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 16:25:14', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('377', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 16:32:08', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('378', '1', '操作模块:会话管理,用户登陆.', '2015-12-17 17:05:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('379', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 09:17:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('380', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 09:28:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('381', '1', '会话超时，用户退出.', '2015-12-18 09:57:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('382', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 10:16:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('383', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 10:23:02', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

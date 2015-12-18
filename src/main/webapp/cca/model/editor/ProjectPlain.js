@@ -4,13 +4,14 @@ Ext.define('RYIVS.model.editor.ProjectPlain', {
 	fields : [ 
 		{name: 'id', type: 'int',	sortable : true},
 		{name: 'voltagerankclassifyid', type: 'int',	sortable : true},
-		{name: 'projectnum', type: 'int',	sortable : true},
 		{name: 'year', type: 'int',	sortable : true},
+		{name: 'projectnum', type: 'int',	sortable : true},
+	
 		{name: 'lineproject', type: 'int',	sortable : true},
 		{name: 'powerproject', type: 'int',	sortable : true },
 		{name: 'assesslineproject', type: 'int',	sortable : true},
 		{name: 'assesspowerproject', type: 'int',	sortable : true},
-		{name: 'length', type: 'int',	sortable : true},
+		{name: 'linelength', type: 'int',	sortable : true},
 		{name: 'volume', type: 'int',	sortable : true},
 		{name: 'investment', type: 'float',	sortable : true},
 		

@@ -2,11 +2,19 @@
 
 Ext.define('RYIVS.view.editor.ProjectPlain', {
 	extend : 'Ext.grid.Panel',
+//		requires : [ 'RYIVS.lib.GridEditBase' ],
+//	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.projectPlain',
 	title : '下一年公司新开工项目情况',
 	iconCls : 's_equipment',
 	store:'editor.ProjectPlain',
-	collapsible:false,
+	// 定义 autoload
+	autoload : false,
+	//True 为 Panel 填充画面,默认为false.
+	frame : true, 
+	//设 置为true，则强制列自适应成可用宽度
+	forceFit :true,
+	
 	
 	viewConfig: {
 		emptyText:'<div style="text-align:center; padding:50px; color:gray">没有数据可显示</div>',
@@ -17,6 +25,57 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	features: [{
         ftype: 'summary'
     }],
+    
+    dockedItems: [{
+   	 	xtype: 'toolbar',
+   	 	items: [{
+	        itemId: 'addButton',
+	        width:50,
+	        icon : 'res/icon/add.png',
+	        text:'添加',
+	        iconCls:'add',
+	        disabled: false
+	    },{
+	        itemId: 'removeButton',
+	        width:50,
+	        icon : 'res/icon/delete.png',
+	        text:'删除',
+	        tooltip:'删除所有选中的记录',
+	        iconCls:'remove',
+	        disabled: true
+	    },'-',{
+	        itemId: 'refreshButton',
+	        width:50,
+	        icon : 'res/icon/sync.png',
+	        text:'刷新',
+	        tooltip:'刷新'
+	    },'-',{disabled:true},'项目年份:',{
+
+         	xtype : 'combo',
+			minValue : 1,
+			value:  Ext.Date.format(new Date(),"Y"),
+			editable : false,
+			displayField : 'display',
+			valueField : 'value',
+			store : ry.constant.year, //调用外部js常量
+			queryMode : 'local',
+			emptyText : '请选择',	
+			id :'searchYear'
+	    },'-',{
+	    	itemId: 'searchButton',
+	    	icon : 'res/icon/query.png',
+	        text:'查询',
+	        tooltip:'search some rows',
+	        iconCls:'add'
+	    }]
+    }],
+    
+    listeners : {
+		'selectionchange' : function(view, records) {
+			this.down('#removeButton').setDisabled(!records.length);
+		}
+	},
+    
 	// 定义 colums
 	columns : [
 //		{
@@ -31,7 +90,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 		width : 200,
 		sortable : true,
 		dataIndex : 'voltagerankclassifyid',
-		//flex : 1,
+		flex : 1,
 		
 		editor : {
 				allowBlank : false,
@@ -53,15 +112,15 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	
 	 {
 		text : '项目年份',
-		width : 100,
+		width : 200,
 		sortable : true,
 		dataIndex : 'year',
-		//flex : 1,
+		flex : 1,
 		
 		editor : {
 				allowBlank : false,
 				xtype : 'combo',
-				value: 1,  //Ext.getCmp('#searchYear').getValue()+'',
+				value:  1, //Ext.getCmp('searchYear').value,
 				minValue : 1,
 				editable : false,
 				displayField : 'display',
@@ -69,6 +128,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 				store : ry.constant.year, //调用外部js常量
 				queryMode : 'local',
 				emptyText : '请选择',	
+				id:'addYear',
 				forceSelection : true //必须选择一项
 		},
 		renderer : function(val) {
@@ -77,7 +137,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	},
 	 {
 			text : '项目个数(个)',
-			width : 60,
+			width : 200,
 			dataIndex : 'projectnum',
 			flex : 1,
 			editor : {
@@ -101,7 +161,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	 columns: [
 		 	{
 			text : '线路工程数(个)',
-			width : 60,
+			width : 100,
 			dataIndex : 'lineproject',
 			flex : 1,
 			editor : {
@@ -119,7 +179,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 		  }, {
 			text : '变电工程数(个)',
-			width : 60,
+			width : 100,
 			dataIndex : 'powerproject',
 			flex : 1,
 			editor : {
@@ -147,7 +207,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	 columns: [
 		 	{
 			text : '线路工程数(个)',
-			width : 60,
+			width : 100,
 			dataIndex : 'assesslineproject',
 			flex : 1,
 			editor : {
@@ -165,7 +225,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 		  }, {
 			text : '变电工程数(个)',
-			width : 60,
+			width : 100,
 			dataIndex : 'assesspowerproject',
 			flex : 1,
 			editor : {
@@ -188,8 +248,8 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	}
 	, {
 			text : '线路长度(公里)',
-			width : 60,
-			dataIndex : 'length',
+			width : 100,
+			dataIndex : 'linelength',
 			flex : 1,
 			editor : {
 				allowBlank : false,
@@ -206,7 +266,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 	}, {
 			text : '变电容量(万千伏安)',
-			width : 60,
+			width : 100,
 			dataIndex : 'volume',
 			flex : 1,
 			editor : {
@@ -224,7 +284,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 	}, {
 			text : '总投资(亿元)',
-			width : 60,
+			width : 100,
 			dataIndex : 'investment',
 			flex : 1,
 			editor : {
@@ -261,67 +321,12 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 //		store : 'editor.UserLog',
 //		displayerInfo : true
 //	},
-	
-	frame:true,
-	columnLines: true,
+//	
+//	frame:true,
+//	columnLines: true,
 //	selModel: selModel,
 	
-	dockedItems: [{
-   	 	xtype: 'toolbar',
-   	 	items: [{
-	        itemId: 'addButton',
-	        width:50,
-	        icon : 'res/icon/add.png',
-	        text:'添加',
-	        iconCls:'add',
-	        disabled: false
-	    },{
-	        itemId: 'removeButton',
-	        width:50,
-	        icon : 'res/icon/delete.png',
-	        text:'删除',
-	        tooltip:'删除所有选中的日志记录',
-	        iconCls:'remove',
-	        disabled: true
-	    },'-',{
-	        itemId: 'refreshButton',
-	        width:50,
-	        icon : 'res/icon/sync.png',
-	        text:'刷新',
-	        tooltip:'刷新日志记录'
-	    },'-',{disabled:true},'项目年份:',{
-//	        xtype: 'datefield',
-//			editable:false,
-//			format:'Y',
-//			id: 'searchYear',
-//			itemId: 'searchYear',
-//			defaultValue : new Date(),
-//			searchYearField: 'searchYear'
-          //vtype: 'daterange'
-         	xtype : 'combo',
-			minValue : 1,
-			value:  Ext.Date.format(new Date(),"Y"),
-			editable : false,
-			displayField : 'display',
-			valueField : 'value',
-			store : ry.constant.year, //调用外部js常量
-			queryMode : 'local',
-			emptyText : '请选择',	
-			id :'searchYear'
-	    },'-',{
-	    	itemId: 'searchButton',
-	    	icon : 'res/icon/query.png',
-	        text:'查询',
-	        tooltip:'search some rows',
-	        iconCls:'add'
-	    }]
-    }],
-    
-    listeners : {
-		'selectionchange' : function(view, records) {
-			this.down('#removeButton').setDisabled(!records.length);
-		}
-	},
+	
 	
 	initComponent:function(){
 		// 1 编辑器插件
@@ -370,6 +375,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 
 		// 3 添加插件
 		this.plugins = [ this.rowEditing ];
+
+	
 		this.callParent(arguments);
+		
 	}
 });
