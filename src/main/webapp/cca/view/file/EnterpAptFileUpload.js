@@ -34,7 +34,7 @@ Ext.define('RYIVS.view.file.EnterpAptFileUpload', {
 		},{
 			fieldLabel : '资质等级',
 //			width : 300,
-			name : 'overallrank',
+			name : 'aptituderankid',
 			allowBlank : false,
 			xtype : 'combo',
 			editable : false,

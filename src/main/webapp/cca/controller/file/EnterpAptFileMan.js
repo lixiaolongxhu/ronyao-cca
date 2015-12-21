@@ -7,7 +7,7 @@ Ext.define('RYIVS.controller.file.EnterpAptFileMan', {
 			selector : 'enterpAptFileUpload textfield[name=aptitudeid]',
 			ref : 'aptitudeid'
 		},{
-			selector : 'enterpAptFileUpload textfield[name=overallrank]',
+			selector : 'enterpAptFileUpload textfield[name=aptituderankid]',
 			ref : 'rank'
 		},{
 			selector : 'enterpAptFileUpload textfield[name=files]',
@@ -15,13 +15,17 @@ Ext.define('RYIVS.controller.file.EnterpAptFileMan', {
 		},{
 			selector : 'enterprise',
 			ref : 'enterprise'
+		},{
+			selector : 'enterpAptFileEdit',
+			ref : 'enterpAptFileEdit'
 		}
 	],
 	init : function(){
 		this.control({
-//			'gisLayerList':{
+			'enterpAptFileMan':{
 //				selectionchange:this.onSelectionChange
-//			},
+				afterrender:this.onAfterrender
+			},
 			'enterpAptFileUpload button[itemId=enterpAptFileUploadSubmit]':{
 				click:this.onDetailSubmit
 			},
@@ -32,18 +36,37 @@ Ext.define('RYIVS.controller.file.EnterpAptFileMan', {
 				click:this.onWindowClose
 			}
 		});
-		controller.EnterpAptFileMan = this;
+		controller.enterpAptFileMan = this;
 	},
 	
-	onSelectionChange:function(model,record,opt){
-		if(record.length==0){
-			return;
-		}
-		var selectedData = record[0].data;
-		Ext.ComponentQuery.query("#detailLayerId")[0].setValue(selectedData.id);
-		Ext.ComponentQuery.query("#detailLayerName")[0].setValue(selectedData.name);
-		Ext.ComponentQuery.query("#detailLayerFilePath")[0].setValue(selectedData.fname);
+	
+	//界面建立时只调用一次
+	onAfterrender : function(pa, options) {
+		//获取企业enterprise选中的grid的值
+		var enterpgrid = this.getEnterprise();
+        var  enterpModel = enterpgrid.getSelectionModel().getSelection();  
+        var  enterpriseid=enterpModel[0].data.id;
+		
+//		var searchYear = this.getProjectBuildGrid().query('#projectBuildingSearchYear')[0].getValue()+'';	
+//		var store = this.getProjectBuildGrid().items.items[0].store;
+        
+        var  store=this.getEnterpAptFileEdit().getStore();
+		store.proxy.setExtraParam("enterpriseid", enterpriseid);
+		store.load();
+//		store.load({params:{page:1,start:0,limit:36}});
+
+				
 	},
+	
+//	onSelectionChange:function(model,record,opt){
+//		if(record.length==0){
+//			return;
+//		}
+//		var selectedData = record[0].data;
+//		Ext.ComponentQuery.query("#detailLayerId")[0].setValue(selectedData.id);
+//		Ext.ComponentQuery.query("#detailLayerName")[0].setValue(selectedData.name);
+//		Ext.ComponentQuery.query("#detailLayerFilePath")[0].setValue(selectedData.fname);
+//	},
 	
 	/**文件上传(表单提交)
 	 * 
@@ -71,7 +94,7 @@ Ext.define('RYIVS.controller.file.EnterpAptFileMan', {
      			var msg;
 				switch(options.result.reason){
 					case 1:
-					msg = "修改图层名字成功!";
+					msg = "上传文件成功!";
 					break;
 					case 2:
 					msg = '上传文件成功!';
@@ -89,33 +112,34 @@ Ext.define('RYIVS.controller.file.EnterpAptFileMan', {
 						}
 					}
 				});
-				controller.gisLayerManager.getEnterpAptFileEditStore().load();
-//				controller.gisLayerEditor.reDrawGisLayers();
-//				controller.gisLayerEditor.initGisLayers();
+				//刷新图片显示grid
+		
+				controller.enterpAptFileMan.getFileEnterpAptFileEditStore().load();
+
 			},
 			failure : function(response, options){
-				alert("出错失败");
-//				var msg;
-//				switch(options.result.reason){
-//					case 1:
-//					msg = "上传失败！";
-//					break;
-//					case 2:
-//					msg = "请上传jpg格式的文件！";
-//					break;
-//				}
-//				Ext.Msg.show({
-//					title : '失败',
-//					msg : msg,
-//					buttons : Ext.Msg.OK,
-//					icon : Ext.Msg.ERROR,
-//					scope : this,
-//					fn : function(btn) {
-//						if (btn == 'ok') {
-//							return false;
-//						}
-//					}
-//				});
+//				alert("出错失败");
+				var msg;
+				switch(options.result.reason){
+					case 1:
+					msg = "上传失败！";
+					break;
+					case 2:
+					msg = "请上传jpg格式的文件！";
+					break;
+				}
+				Ext.Msg.show({
+					title : '失败',
+					msg : msg,
+					buttons : Ext.Msg.OK,
+					icon : Ext.Msg.ERROR,
+					scope : this,
+					fn : function(btn) {
+						if (btn == 'ok') {
+							return false;
+						}
+					}
+				});
 			}
 		};
 			
@@ -159,7 +183,7 @@ Ext.define('RYIVS.controller.file.EnterpAptFileMan', {
 			
 		
 		if(form.isValid()){
-			alert("执行表单提交  ");
+			//alert("执行表单提交  ");
 			form.submit(options);
 		}
 

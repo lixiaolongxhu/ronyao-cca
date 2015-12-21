@@ -10,7 +10,7 @@ public interface ConstFileType {
 	/**文件类型为图片
 	 * 
 	 */
-	public static final   Integer  IMAGE=1;
+	public static final   Byte  IMAGE=1;
 	
       
 

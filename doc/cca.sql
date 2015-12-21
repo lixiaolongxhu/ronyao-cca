@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-21 11:37:47
+Date: 2015-12-21 14:08:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -279,7 +279,7 @@ CREATE TABLE `enterprise_file` (
   CONSTRAINT `enterprise_fileaptitudeRankId_fk` FOREIGN KEY (`aptitudeRankId`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enterprise_file_aptitudeId_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`),
   CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_file
@@ -662,7 +662,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=406 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=410 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1072,6 +1072,10 @@ INSERT INTO `user_log` VALUES ('402', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('403', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:19:07', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('404', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:23:48', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('405', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:27:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('406', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 13:08:57', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('407', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 13:35:57', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('408', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 13:42:49', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('409', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 14:04:15', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

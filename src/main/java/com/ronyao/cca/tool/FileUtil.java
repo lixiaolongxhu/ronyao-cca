@@ -4,19 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler;
 
 
 
@@ -29,6 +21,22 @@ import com.sun.org.apache.xml.internal.serializer.ToHTMLSAXHandler;
 public class FileUtil {
 	private static final Logger  LOG=LoggerFactory.getLogger(FileUtil.class);
 	
+	
+	/** 
+	 * 删除单个文件 
+	 * @param   sPath    被删除文件的文件名 
+	 * @return 单个文件删除成功返回true，否则返回false 
+	 */  
+	public static boolean deleteFile(String sPath) {  
+		Boolean flag = false;  
+	   File  file = new File(sPath);  
+	    // 路径为文件且不为空则进行删除  
+	    if (file.isFile() && file.exists()) {  
+	        file.delete();  
+	        flag = true;  
+	    }  
+	    return flag;  
+	}
 	/**
 	 * 获取文件保存路径
 	 * @return
@@ -69,29 +77,29 @@ public class FileUtil {
         return filename;   
     }  
 	
-	/**
-	 * 文件删除接口
-	 * @param fileName
-	 * @return
-	 */
-	public static boolean deleteFile(String fileName){
-		boolean deleted = false;
-		
-		String filePath = null;
-		
-		filePath=getFilePath();
-		
-		filePath += fileName;
-		File file = new File(filePath);
-		if(file.exists()){
-			deleted = file.delete();
-			if(!deleted){
-				LOG.warn("文件删除失败");
-			}
-		}
-		
-		return deleted;
-	}
+//	/**
+//	 * 文件删除接口
+//	 * @param fileName
+//	 * @return
+//	 */
+//	public static boolean deleteFile(String fileName){
+//		boolean deleted = false;
+//		
+//		String filePath = null;
+//		
+//		filePath=getFilePath();
+//		
+//		filePath += fileName;
+//		File file = new File(filePath);
+//		if(file.exists()){
+//			deleted = file.delete();
+//			if(!deleted){
+//				LOG.warn("文件删除失败");
+//			}
+//		}
+//		
+//		return deleted;
+//	}
 	
 	
 
@@ -107,9 +115,12 @@ public class FileUtil {
 	/**
 	 * 多文件上传接口
 	 * @param files
+	 * @param saveFilePath 
 	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
 	 */
-	public static List<String> uploadFiles(MultipartFile[] files) {
+	public static List<String> uploadFiles(MultipartFile[] files, String saveFilePath) throws IllegalStateException, IOException {
 		
 		List<String>  fileNameList = new ArrayList<String>();
 		String filePath=getFilePath();
@@ -142,20 +153,20 @@ public class FileUtil {
 				    }
 					
 					//设置文件名
-					String fileName = "文件名"+ "." + ext;
+					String fileName = DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT5)+ "." + ext;
 					fileNameList.add(fileName);
-					String path = filePath + fileName;
-
+					String path = saveFilePath + fileName;
 					File localFile=new File(path);	
-					try {
-						file.transferTo(localFile);
-					} catch (IllegalStateException e) {
-						e.printStackTrace();
-						LOG.error("文件上传失败", e.getMessage());
-					} catch (IOException e) {
-						e.printStackTrace();
-						LOG.error("文件上传失败", e.getMessage());
-					}
+					file.transferTo(localFile);
+//					try {
+//						
+//					} catch (IllegalStateException e) {
+//						e.printStackTrace();
+//						LOG.error("文件上传失败", e.getMessage());
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//						LOG.error("文件上传失败", e.getMessage());
+//					}
 				} 
             }  
         } 
