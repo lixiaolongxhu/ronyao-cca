@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-18 17:14:14
+Date: 2015-12-21 11:37:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -267,12 +267,17 @@ CREATE TABLE `enterprise_file` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业资质信息上传的附件表',
   `enterpriseId` int(11) DEFAULT NULL,
   `fileType` tinyint(4) DEFAULT '1' COMMENT '上传的文件类型 1 图片',
-  `aptitudeType` tinyint(4) DEFAULT '1' COMMENT ' 企业资质类型1  总承包 ,2 专业承包 ',
+  `aptitudeRankId` tinyint(4) DEFAULT '1' COMMENT '资质分类等级',
+  `aptitudeId` tinyint(4) DEFAULT '1' COMMENT ' 企业资质类型1  总承包 ,2 专业承包 ',
   `path` varchar(50) DEFAULT '' COMMENT '文件存储的路径',
   `createTime` varchar(20) DEFAULT NULL,
-  `updatTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `enterprise_file_id_fk` (`enterpriseId`),
+  KEY `enterprise_file_aptitudeId_fk` (`aptitudeId`),
+  KEY `enterprise_fileaptitudeRankId_fk` (`aptitudeRankId`),
+  CONSTRAINT `enterprise_fileaptitudeRankId_fk` FOREIGN KEY (`aptitudeRankId`) REFERENCES `aptituderank_classify` (`id`),
+  CONSTRAINT `enterprise_file_aptitudeId_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`),
   CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -514,7 +519,7 @@ CREATE TABLE `project_build` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `proejct_build_enterpriseId_fk` (`enterpriseId`,`year`,`classify`) USING BTREE,
   CONSTRAINT `proejct_build_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project_build
@@ -657,7 +662,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=392 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=406 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1053,6 +1058,20 @@ INSERT INTO `user_log` VALUES ('388', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('389', '1', '会话超时，用户退出.', '2015-12-18 16:18:44', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('390', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 16:52:38', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('391', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 16:56:47', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('392', '1', '操作模块:会话管理,用户登陆.', '2015-12-18 17:19:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('393', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 09:01:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('394', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 09:50:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('395', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 10:06:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('396', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 10:11:44', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('397', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 10:26:41', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('398', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:04:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('399', '1', '操作模块:会话管理,用户注销.', '2015-12-21 11:04:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('400', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:04:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('401', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:05:12', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('402', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:16:01', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('403', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:19:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('404', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:23:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('405', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 11:27:37', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

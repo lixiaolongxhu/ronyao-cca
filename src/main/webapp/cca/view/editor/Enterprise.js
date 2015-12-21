@@ -79,7 +79,8 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	}, {
 		itemId : 'buttonAptFileManager',
 		text : '文件管理(企业资质附件)',
-		icon : 'res/icon/control.png'	
+		icon : 'res/icon/control.png',
+		disabled : true
     }, {
 		itemId : 'buttonExporterExcel',
 		text : '导出Excel',
@@ -87,6 +88,13 @@ Ext.define('RYIVS.view.editor.Enterprise', {
     } 
     
     ],
+    
+    listeners : {
+		'selectionchange' : function(view, records) {
+			this.down('#buttonDelete').setDisabled(!records.length);
+			this.down('#buttonAptFileManager').setDisabled(!records.length);
+		}
+	},
 	
 	// 定义 colums
 	columns : [ 

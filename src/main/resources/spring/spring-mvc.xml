@@ -60,6 +60,8 @@
 
 	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 配置该视图解析器优先级(“order”属性来声明优先级，order值越低，则优先级越高。) -->
+	  	<property name="order" value="2" />
 		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

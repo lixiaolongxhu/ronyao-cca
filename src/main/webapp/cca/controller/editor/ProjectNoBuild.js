@@ -5,8 +5,9 @@ Ext.define('RYIVS.controller.editor.ProjectNoBuild', {
 			views : ['editor.ProjectNoBuild'],
 			stores : ['editor.ProjectNoBuild'],
 			refs : [ {
-				ref : 'projectBuildGrid',
-				selector : 'projectNoBuild'
+				selector : 'projectNoBuild',
+				ref : 'projectBuildGrid'
+				
 			}
 //			,{
 //				ref : 'userLogPagingToolBar',

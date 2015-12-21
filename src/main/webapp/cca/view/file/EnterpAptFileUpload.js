@@ -19,27 +19,36 @@ Ext.define('RYIVS.view.file.EnterpAptFileUpload', {
 		},
 		defaultType:'textfield',
 		items:[{
-			fieldLabel : '图层ID',
-			allowBlank : true,
-			name:'detailLayerId',
-			readOnly:true,
-			id:'detailLayerId'
-		},{
-			fieldLabel : '图层名称',
-			name:'detailLayerName',
+			fieldLabel : '资质分类',
+			name:'aptitudeid',
+			id:'aptitudeid',
 			allowBlank : false,
-			id:'detailLayerName'
+			xtype : 'combo',
+			editable : false,
+			displayField : 'display',
+			valueField : 'value',
+			store : ry.constant.enterprise_aptitude_classify, //调用外部js常量
+			queryMode : 'local',
+			emptyText : '请选择',	
+			forceSelection : true //必须选择一项
 		},{
-			fieldLabel : '图层路径',
-			readOnly:true,
-			name:'detailLayerFilePath',
-			allowBlank : true,
-			id:'detailLayerFilePath'
+			fieldLabel : '资质等级',
+//			width : 300,
+			name : 'overallrank',
+			allowBlank : false,
+			xtype : 'combo',
+			editable : false,
+			displayField : 'display',
+			valueField : 'value',
+			store : ry.constant.enterprise_aptitude_rank, //调用外部js常量
+			queryMode : 'local',
+			emptyText : '请选择',	
+			forceSelection : true //必须选择一项
 		},{
-			fieldLabel : '上传路径',
-			allowBlank : true,
+			fieldLabel : '文件路径',
+			allowBlank : false,
 			id: 'form-file',
-			name:'detailLayerNewFilePath',
+			name:'files',
 			xtype:'fileuploadfield',
 			emptyText: '请您选择文件',
 			buttonText: '选择文件',
@@ -50,13 +59,13 @@ Ext.define('RYIVS.view.file.EnterpAptFileUpload', {
 	}],
 	buttons:[{
 		text:'清空表单',
-		itemId:'gisLayerDetailReset'
+		itemId:'enterpAptFileUploadReset'
 	},{
 		text:'提交',
-		itemId:'gisLayerDetailSubmit'
+		itemId:'enterpAptFileUploadSubmit'
 	},{
 		text:'关闭',
-		itemId:'gisLayerWindowClose'
+		itemId:'enterpAptFileUploadClose'
 	}]
 	
 });
