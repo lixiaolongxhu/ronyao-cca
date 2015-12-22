@@ -13,18 +13,17 @@ Ext.Ajax.on('requestcomplete', function(conn, response, options, e) {
 
 
 
-// 流媒体参数
+// 服务器返回参数配置--对应jsp/WebConfig.jsp
 
 var appCfg = {
-	ss_ip : '',
-	ss_port : 0,
+
 	uname : '',
 	uid : 0,
 	utype : 0,
 	debugLevel : 0
 };
 
-var timelineSelectIndex = null;
+//var timelineSelectIndex = null;
 
 // 通用日志函数
 /*
@@ -81,6 +80,13 @@ ry.constant.behavior_standard_rankType =[[1,'严重不良行为'],[2,'一般不�
 ry.constant.enterprise_assess_category =[['A类','A类'],['B类','B类'],['C类','C类'],['D类','D类'],['E类','E类'],['F类','F类']
 										//,['G类','G类'],['H类','H类'],['I类','I类'],['J类','J类'],['K类','K类']
 										]
+
+// 企业持证人员分类
+ry.constant.enterprise_per_file_classify =[['国家注册建造师','国家注册建造师'],['中级以上职称人员','中级工以上技术人员']]
+
+// 企业持证人员分类等级
+ry.constant.enterprise_per_file_rank =[['一级','一级'],['二级','二级'],['中级','中级'],['高级','高级'],['技师','技师'],['高级技师','高级技师']]
+
 
 ////联动-空调控制
 //ry.constant.link_air = [

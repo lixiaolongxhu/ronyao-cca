@@ -21,7 +21,10 @@ Ext.application({
 
 	appFolder : 'cca',
 
-	controllers : ['frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
+	controllers : [ 'frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
+					
+					'common.EditPassword',
+	
 					
 					'editor.Enterprise','editor.EnterprisePer','editor.EnterpriseApt','editor.User','editor.EnterprisePerSta',
 					'editor.EquipmentBear','editor.AnnualOutput','editor.BehaviorSta','editor.EnterprisePerMan','editor.EnterpriseEquip',
@@ -31,7 +34,7 @@ Ext.application({
 				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover','display.Bear','display.BearRevised','display.BearContrastProNum',
 				 	'display.BearContrastProOutput','display.ProjectBuildBear',
 				 	
-				 	'file.EnterpAptFileMan'
+				 	'file.EnterpAptFileMan','file.EnterpPerFileMan'
 				  ],
 
 

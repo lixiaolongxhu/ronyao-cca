@@ -10,12 +10,22 @@ Ext.define('RYIVS.controller.editor.EnterprisePer', {
 	init : function() {
 		this.control({
       		
-     		
+     		 'enterprisePer button[itemId=buttonPerFileManager]':{
+        		click : this.perFileManager
+     		 },
      		  'enterprisePer button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
    		 });
 	},
+	
+	/**企业持证人员文件管理
+	 * 
+	 */
+   perFileManager :function(){
+   	  // alert("测试");
+   	  Ext.create("RYIVS.view.file.EnterpPerFileMan").show();
+   },
 	
 	/**excel 导出
 	 * 

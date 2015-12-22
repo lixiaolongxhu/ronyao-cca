@@ -14,8 +14,10 @@
 		
 		
 		
-		<!-- 自定义验证vtype -->
+		<!-- 自定义验证vtype 
 		<script type="text/javascript" src="js/CusFieldVtypes.js"></script>
+		-->
+		
 		
 		<!--读取db中的常量-->
 		<script type="text/javascript" src="controllers/global"></script> 
@@ -27,9 +29,11 @@
 		<script type="text/javascript" src="lib/ext/locale/ext-lang-zh_CN.js"></script>
 		
 		
-		<!-- Timeline -->
-		<script type="text/javascript" src="js/timeline/timeline.js"></script>
-		<link rel="stylesheet" type="text/css" href="js/timeline/timeline.css">
+		<!-- Timeline
+			<script type="text/javascript" src="js/timeline/timeline.js"></script>
+			<link rel="stylesheet" type="text/css" href="js/timeline/timeline.css">
+		 -->
+		
 		
 		<!-- 动态生成配置信息 -->
 		<script type="text/javascript" src="controllers/config"></script>

@@ -36,7 +36,7 @@ Ext.define('RYIVS.view.common.EditPassword', {
 			val : 2,
 			anchor : "100%",
 			inputType : "password",
-			name : 'passwd',
+			name : 'password',
 			fieldLabel : "确认密码",
 			allowBlank : false,
 			blankText : '请再次输入密码',
@@ -49,7 +49,7 @@ Ext.define('RYIVS.view.common.EditPassword', {
 			submit : actionUser.updatePwd			
 		},
 		
-		paramOrder: ['id', 'passwd'],
+		paramOrder: ['id', 'password'],
 		
 		buttons : [ {
 			text : "确认",

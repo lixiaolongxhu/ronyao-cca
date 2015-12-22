@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-22 11:18:02
+Date: 2015-12-22 16:20:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -312,14 +312,38 @@ CREATE TABLE `enterprise_person` (
   `createTime` varchar(20) DEFAULT NULL,
   `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `enterprise_per_id_fk` (`enterpriseId`),
+  UNIQUE KEY `enterprise_per_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enterprise_per_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_person
 -- ----------------------------
 INSERT INTO `enterprise_person` VALUES ('1', '71', '36', '27', '63', '146', '54', '200', '47', '187', '293', '42', '569', '2015-12-22 10:48:25', '');
+INSERT INTO `enterprise_person` VALUES ('2', '72', '15', '44', '59', '23', '9', '32', '80', '14', '38', '0', '132', '2015-12-22 16:03:08', '2015-12-22 16:03:40');
+
+-- ----------------------------
+-- Table structure for enterprise_per_file
+-- ----------------------------
+DROP TABLE IF EXISTS `enterprise_per_file`;
+CREATE TABLE `enterprise_per_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '企业持证人员情况附件记录表',
+  `enterpriseId` int(11) DEFAULT '0' COMMENT '企业id 用于方便前端显示企业名称信息',
+  `enterprisePerId` int(11) DEFAULT '0' COMMENT '企业持证人员基本信息表外键',
+  `classify` varchar(30) DEFAULT '' COMMENT '持证人员分类',
+  `rank` varchar(10) DEFAULT '' COMMENT '持证人员等级',
+  `path` varchar(50) DEFAULT '' COMMENT '附件存放相对路径名称',
+  `fileType` tinyint(4) DEFAULT '1' COMMENT '文件类型 1 图片',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `enterprise_person_enterprisePerId_fk` (`enterprisePerId`),
+  CONSTRAINT `enterprise_person_enterprisePerId_fk` FOREIGN KEY (`enterprisePerId`) REFERENCES `enterprise_person` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of enterprise_per_file
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for enterprise_per_manage
@@ -669,7 +693,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=415 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=438 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1088,6 +1112,29 @@ INSERT INTO `user_log` VALUES ('411', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('412', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 10:41:28', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('413', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 10:46:50', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('414', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 11:08:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('415', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 13:28:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('416', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 13:39:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('417', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 13:59:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('418', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 13:59:35', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('419', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:00:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('420', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:25:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('421', '1', '操作模块:会话管理,用户注销.', '2015-12-22 14:31:09', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('422', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:31:17', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('423', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:31:20', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('424', '1', '操作模块:会话管理,用户注销.', '2015-12-22 14:33:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('425', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:33:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('426', '1', '操作模块:会话管理,用户注销.', '2015-12-22 14:33:27', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('427', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:33:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('428', '1', '操作模块:会话管理,用户注销.', '2015-12-22 14:34:00', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('429', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:34:06', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('430', '1', '操作模块:会话管理,用户注销.', '2015-12-22 14:34:12', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('431', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:34:20', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('432', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 14:43:45', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('433', '1', '会话超时，用户退出.', '2015-12-22 15:10:27', '192.168.1.230', '');
+INSERT INTO `user_log` VALUES ('434', '1', '会话超时，用户退出.', '2015-12-22 15:13:57', '192.168.1.230', '');
+INSERT INTO `user_log` VALUES ('435', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 15:18:10', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('436', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 15:22:47', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('437', '1', '会话超时，用户退出.', '2015-12-22 15:51:27', '192.168.1.240', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

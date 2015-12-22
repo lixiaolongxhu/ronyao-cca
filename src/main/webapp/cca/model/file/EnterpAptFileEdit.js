@@ -4,6 +4,7 @@ Ext.define('RYIVS.model.file.EnterpAptFileEdit', {
 	fields : [ 
 		{name: 'id', type: 'int',	sortable : true},
 		{name: 'enterpriseid', type: 'int',	sortable : true},
+
 		{name: 'filetype', type: 'int',	sortable : true},
 		{name: 'aptituderankid', type: 'int',	sortable : true},
 		{name: 'aptitudeid', type: 'int',	sortable : true},

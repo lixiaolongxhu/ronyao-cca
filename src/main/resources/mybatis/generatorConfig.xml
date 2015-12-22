@@ -156,6 +156,9 @@
 		<table schema="" tableName="project_build" domainObjectName="ProjectBuild">
 			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
+		<table schema="" tableName="enterprise_per_file" domainObjectName="EnterprisePerFile">
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		</table>
 		<!-- 业务先关的表    end      -->
 		
 	</context>
