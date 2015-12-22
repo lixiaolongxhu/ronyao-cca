@@ -30,13 +30,13 @@ public class ActionEnterpPer {
 	private void setPersonTotal(EnterprisePerson ep) {
 		
 			//国家注册师合计
-			Byte  constructortotal=(byte) (ep.getConstructorone()+ep.getConstructortwo());
+			Integer  constructortotal=(ep.getConstructorone()+ep.getConstructortwo());
 			ep.setConstructortotal(constructortotal);
 			//中级以上职称人员合计
-			Byte stafftotal=(byte) (ep.getStaffmiddle()+ep.getStaffhigh());
+			Integer stafftotal= (ep.getStaffmiddle()+ep.getStaffhigh());
 			ep.setStafftotal(stafftotal);
 			//中级工以上技术人员
-			Byte  skilltotal=(byte) (ep.getSkillhigh()+ep.getSkillmiddle()+ep.getSkilltech()+ep.getSkilltechhigh());
+			Integer  skilltotal= (ep.getSkillhigh()+ep.getSkillmiddle()+ep.getSkilltech()+ep.getSkilltechhigh());
 			ep.setSkilltotal(skilltotal);
 		
 	}

@@ -3,7 +3,7 @@ package com.ronyao.cca.ui.vo;
 public class YearVo {
 
 	private Integer id;
-	private Integer name;
+	private String name;
 	
 	public Integer getId() {
 		return id;
@@ -11,12 +11,14 @@ public class YearVo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(Integer name) {
+	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 	
 
 	

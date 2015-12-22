@@ -15,7 +15,13 @@ Ext.define('RYIVS.model.editor.Enterprise', {
 		{name: 'overallrank', type: 'int',	sortable : true},
 		{name: 'professionrank', type: 'int',	sortable : true},
 		{name: 'output', type: 'int',	sortable : true},
+		{name: 'outputlast', type: 'int',	sortable : true},
+		{name: 'outputbefore', type: 'int',	sortable : true},
+		{name: 'outputbeforelast', type: 'int',	sortable : true},
 		{name: 'project', type: 'int',	sortable : true},
+		{name: 'projectlast', type: 'int',	sortable : true},
+		{name: 'projectbefore', type: 'int',	sortable : true},
+		{name: 'projectbeforelast', type: 'int',	sortable : true},
 		{name: 'createtime', type: 'string',	sortable : true},
 		{name: 'updatetime', type: 'string',	sortable : true}
 	],

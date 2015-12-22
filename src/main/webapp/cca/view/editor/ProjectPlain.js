@@ -156,7 +156,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	},
 	
 	{
-	 text :"标保数(个) ",
+	 text :"标包数(个) ",
    
 	 columns: [
 		 	{

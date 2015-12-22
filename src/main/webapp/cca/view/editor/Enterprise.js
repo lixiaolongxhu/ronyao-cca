@@ -107,7 +107,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	, {
 		text : '主管单位',
-		width : 40,
+		width : 30,
 		dataIndex : 'supervisorunit',
 		editor : {
 			xtype : 'textfield',
@@ -117,16 +117,16 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	}, 
 	{
 		text : '企业全称',
-		width : 40,
+		width : 80,
 		dataIndex : 'fullname',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : false
 		},
-		flex : 1
+		flex : 2
 	},{
 		text : '企业简称',
-		width : 40,
+		width : 60,
 		dataIndex : 'name',
 		editor : {
 			xtype : 'textfield',
@@ -135,7 +135,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 		flex : 1
 	}, {
 		text : '企业性质',
-		width : 50,
+		width : 30,
 		dataIndex : 'property',
 		flex : 1,
 		editor : {
@@ -154,8 +154,8 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			return  ry.constant.trans(val,ry.constant.enterprise_property);
 		}
 	}, {
-		text : '注册资本金(万元)',
-		width : 40,
+		text : '注册资本金<br/>(万元)',
+		width : 30,
 		dataIndex : 'register',
 		flex : 1,
 		editor : {
@@ -167,8 +167,8 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 		}
 	}
 	, {
-		text : '企业净资产(万元)',
-		width : 40,
+		text : '企业净资产<br/>(万元)',
+		width : 30,
 		dataIndex : 'assets',
 		flex : 1,
 		editor : {
@@ -179,8 +179,8 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowDecimals : false
 		}
 	}, {
-		text : '在职职工数',
-		width : 40,
+		text : '在职<br/>职工数',
+		width : 30,
 		dataIndex : 'workers',
 		flex : 1,
 		editor : {
@@ -198,10 +198,10 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 
 	 columns: [
 		 {
-			text : '总承包(等级)',
+			text : '总承包<br/>(等级)',
 			width : 60,
 			dataIndex : 'overallrank',
-			flex : 1,
+			flex : 2,
 			editor : {
 				allowBlank : false,
 				xtype : 'combo',
@@ -218,10 +218,10 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				return  ry.constant.trans(val,ry.constant.enterprise_aptitude_rank);
 			}
 		}, {
-			text : '专业承包(等级)',
+			text : '专业承包<br/>(等级)',
 			width : 60,
 			dataIndex : 'professionrank',
-			flex : 1,
+			flex : 2,
 			editor : {
 				allowBlank : false,
 				xtype : 'combo',
@@ -242,40 +242,120 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	},
 	
 	{
-		text : '近三年工程数量',
-		width : 40,
-		dataIndex : 'project',
-		flex : 1,
-		editor : {
+	 text :"近三年工程数量 ",
+
+	 columns: [
+		 {
+			text : '去年<br/>工程<br/>数量',
+			width : 50,
+			dataIndex : 'projectlast',
+			flex : 2,
+			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
 				maxValue : 100000,
 				autoStripChars : true,
 				allowDecimals : false
-		}
-	},
-		
-	 {
-		text : '近三年的产值(万元)',
-		width : 40,
-		dataIndex : 'output',
-		
-		flex : 1,
-		editor : {
+			}
+		 },{
+			text : '前年<br/>工程<br/>数量',
+			width : 50,
+			dataIndex : 'projectbefore',
+			flex : 2,
+			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
+				maxValue : 100000,
 				autoStripChars : true,
 				allowDecimals : false
+			}
+		 },{
+			text : '上前年<br/>工程<br/>数量',
+			width : 50,
+			dataIndex : 'projectbeforelast',
+			flex : 2,
+			editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				maxValue : 100000,
+				autoStripChars : true,
+				allowDecimals : false
+			}
+		 },{
+			text : '合计',
+			width : 50,
+			dataIndex : 'project',
+			flex : 2
+		 }
+			
+	  ]	
+	},
+	
+		
+	{
+	 text :"近三年产值 ",
+
+	 columns: [
+		 {
+			text : '去年<br/>产值 ',
+			width : 80,
+			dataIndex : 'outputlast',
+			flex : 2,
+			editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				maxValue : 100000,
+				autoStripChars : true,
+				allowDecimals : false
+			}
+		 },{
+			text : '前年<br/>产值 ',
+			width : 80,
+			dataIndex : 'outputbefore',
+			flex : 2,
+			editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				maxValue : 100000,
+				autoStripChars : true,
+				allowDecimals : false
+			}
+		 },{
+			text : '上前年<br/>产值 ',
+			width : 80,
+			dataIndex : 'outputbeforelast',
+			flex : 2,
+			editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				maxValue : 100000,
+				autoStripChars : true,
+				allowDecimals : false
+			}
+			
 		}
+			,{
+			text : '合计 ',
+			width : 80,
+			dataIndex : 'output',
+			flex : 2
+			
+		 }
+			
+	  ]	
 	}, {
-		text : '记录创建时间',
-		width : 50,
+		text : '记录创建<br/>时间',
+		width : 10,
 		dataIndex : 'createtime'
 	}, {
 		text : '修改时间',
-		width : 50,
+		width : 10,
 		dataIndex : 'updatetime'
 	}
  

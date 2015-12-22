@@ -188,7 +188,7 @@ public class SessionManager {
 		for(int i=0;i<10;i++){
 			YearVo   year=new YearVo();
 			year.setId(yearInt-i);
-			year.setName(yearInt-i);
+			year.setName(year.getId()+"年");
 			yearList.add(year);
 		}
 		model.addAttribute("year",yearList);
