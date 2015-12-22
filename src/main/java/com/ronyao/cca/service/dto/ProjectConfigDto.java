@@ -7,7 +7,8 @@ package com.ronyao.cca.service.dto;
  */
 public class ProjectConfigDto {
 	
-	private Integer  projectNum;  //前电压可以承接的项目数
+	
+//	private Integer  projectNum;  //前电压可以承接的项目数
 	private Integer  surplusPersonTotal; //剩余企业可用的总人数
 	private Integer  surplusOneManager ;// 
 	private Integer  surplusTwoManager ;//剩余项目经理数
@@ -19,12 +20,12 @@ public class ProjectConfigDto {
 	private Integer  surplusSafetyOfficer ;//剩余安全员数
 	private Integer  surplusInspector;// 剩余质检员数
 	
-	public Integer getProjectNum() {
-		return projectNum;
-	}
-	public void setProjectNum(Integer projectNum) {
-		this.projectNum = projectNum;
-	}
+//	public Integer getProjectNum() {
+//		return projectNum;
+//	}
+//	public void setProjectNum(Integer projectNum) {
+//		this.projectNum = projectNum;
+//	}
 	public Integer getSurplusPersonTotal() {
 		return surplusPersonTotal;
 	}

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-21 14:08:09
+Date: 2015-12-22 10:35:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -279,7 +279,7 @@ CREATE TABLE `enterprise_file` (
   CONSTRAINT `enterprise_fileaptitudeRankId_fk` FOREIGN KEY (`aptitudeRankId`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enterprise_file_aptitudeId_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`),
   CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_file
@@ -390,7 +390,7 @@ INSERT INTO `enterprise_per_standard` VALUES ('2', '2', '220kv 以及以上中�
 INSERT INTO `enterprise_per_standard` VALUES ('3', '3', '安全合格证', '1', '1', '1', '1', '安全员', '2015-12-10 13:43:54', '2015-12-14 15:23:52');
 INSERT INTO `enterprise_per_standard` VALUES ('4', '4', '质量合格培训证', '1', '1', '1', '1', '质检员', '2015-12-14 15:21:12', '2015-12-14 15:24:20');
 INSERT INTO `enterprise_per_standard` VALUES ('5', '5', '', '1', '1', '1', '2', '技术员', '2015-12-14 15:27:07', '');
-INSERT INTO `enterprise_per_standard` VALUES ('6', '6', '', '2', '2', '2', '2', '造价员,资料员,综合员,管理员,材料员,协调员', '2015-12-10 13:40:26', '2015-12-16 14:01:33');
+INSERT INTO `enterprise_per_standard` VALUES ('6', '6', '', '2', '2', '3', '2', '造价员,资料员,综合员,管理员,材料员,协调员', '2015-12-10 13:40:26', '2015-12-22 10:22:46');
 INSERT INTO `enterprise_per_standard` VALUES ('7', '7', '', '6', '8', '10', '2', '施工队长(班组长)(线路长度按40km双回计算)', '2015-12-10 15:16:50', '2015-12-14 15:24:25');
 INSERT INTO `enterprise_per_standard` VALUES ('8', '8', '', '12', '16', '16', '2', '施工队技术员,质检员,兼职安全员', '2015-12-10 15:08:20', '2015-12-14 15:30:30');
 
@@ -662,7 +662,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=410 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=412 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1076,6 +1076,8 @@ INSERT INTO `user_log` VALUES ('406', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('407', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 13:35:57', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('408', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 13:42:49', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('409', '1', '操作模块:会话管理,用户登陆.', '2015-12-21 14:04:15', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('410', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 09:17:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('411', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 10:12:54', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

@@ -151,29 +151,30 @@ public class BearImp implements Bear {
 			//return 0;	
 			return new BearResultDto(enterpriseId);
 		}
-
-			
+	
 		//设置项目配置信息(线路工程)
 		ProjectConfigDto  lineProjectDto=setProjectConfig(ConstEnterprisePerMan.LINE_PROFESSION,perManMap);
 		if(lineProjectDto==null){
-			LOG.warn("未配置该企业的线路专业的线程管理人员 ;  企业名称:"+enterprise.getCreatetime());
+			LOG.warn("未配置该企业的线路专业的线程管理人员 ;  企业名称:"+enterprise.getFullname());
 			return new BearResultDto(enterpriseId);
 		}
 		//设置项目配置信息(变电工程)
 		ProjectConfigDto  powerProjectDto=setProjectConfig(ConstEnterprisePerMan.POWER_PROFESSION,perManMap);
 		if(powerProjectDto==null){
-			LOG.warn("未配置该企业的变电专业的线程管理人员 ;  企业名称:"+enterprise.getCreatetime());
+			LOG.warn("未配置该企业的变电专业的线程管理人员 ;  企业名称:"+enterprise.getFullname());
 			return new BearResultDto(enterpriseId);
 		}
+		
+		
 		Integer  linePersonProjectNum500kv=0;
 		Integer  lineEquipmentProjectNum500kv=0;
 		Integer  lineProjectNum500kv=0;
-		ProjectConfigDto  lineProjectDto500kv;
+		ProjectConfigDto  lineProjectDto500kv=null;
 		
 		Integer  linePersonProjectNum220kv=0;
 		Integer  lineEquipmentProjectNum220kv=0;
 		Integer  lineProjectNum220kv=0;
-		ProjectConfigDto  lineProjectDto220kv;
+		ProjectConfigDto  lineProjectDto220kv=null;
 		
 		Integer  linePersonProjectNum110kv=0;
 		Integer  lineProjectNum110kv=0;
@@ -181,22 +182,32 @@ public class BearImp implements Bear {
 		
 		Integer  powerPersonProjectNum500kv=0;
 		Integer powerProjectNum500kv=0;
-		ProjectConfigDto  powerProjectDto500kv;
+		ProjectConfigDto  powerProjectDto500kv=null;
 		
 		Integer  powerPersonProjectNum220kv=0;
 		Integer  powerProjectNum220kv=0;
-		ProjectConfigDto powerProjectDto220kv;
-		
-		
-		
+		ProjectConfigDto powerProjectDto220kv=null;
+				
 		Integer  powerPersonProjectNum110kv=0;
 		Integer  powerProjectNum110kv=0;
 		Integer  powerProjectOutput=0;
 		
-		
+		//获取当前企业的资质等级   
+		Integer rank=-1;
 		if(enterprise.getOverallrank()==1 ||  enterprise.getProfessionrank()==1){
-			
-			//----------------------------------线路工程------------------------
+			rank=1;
+		} else if( enterprise.getOverallrank()==2 ||  enterprise.getProfessionrank()==2){
+			rank=2;
+		}else if( enterprise.getOverallrank()==3 ||  enterprise.getProfessionrank()==3){
+			rank=3;
+		}else{
+			rank=3;
+		}
+		
+		//计算不同电压等级可以组建项目情况
+		switch (rank) {
+		case 1:
+			//----------------------------------线路工程----------------------------------
 			
 			//500kv计算时对应施工企业人员可以组建的项目个数
 			  linePersonProjectNum500kv=getProject500kv(lineProjectDto,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
@@ -205,13 +216,28 @@ public class BearImp implements Bear {
 			  lineEquipmentProjectNum500kv=getEquipmentBearProjectNum(enterpriseId,voltagetMapValue,500);
 			
 			//500kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
+			  
 			  lineProjectNum500kv=Math.min(lineEquipmentProjectNum500kv, linePersonProjectNum500kv);
 			
+			//500kv 设置组件项目后的人员信息配置(220kv可组建项目部人员=公司总人数 -500kv人员可组建项目部总人数)
+			  lineProjectDto500kv=resetProjectConfig500kv(lineProjectDto,linePersonProjectNum500kv,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
+			//----------------------------变电工程-----------------------------------------
+				
+				
+			//500kv计算时对应施工企业人员可以组建的项目个数
+			 powerPersonProjectNum500kv=getProject500kv(powerProjectDto,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
+						
+			//500kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
+			 powerProjectNum500kv=powerPersonProjectNum500kv;
+						
 			//500kv 设置组件项目后的人员信息配置
-			  lineProjectDto500kv=resetProjectConfig500kv(lineProjectDto,lineProjectNum500kv,enterPerStaDto);
-			
-			
-			
+			 powerProjectDto500kv=resetProjectConfig500kv(powerProjectDto,powerProjectNum500kv,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);  
+			  
+		case 2:
+			//----------------------------------线路工程----------------------------------
+			 if(lineProjectDto500kv==null){
+				lineProjectDto500kv=lineProjectDto;
+			 }
 			//220kv计算时对应施工企业人员可以组建的项目个数
 			  linePersonProjectNum220kv=getProject220kv(lineProjectDto500kv,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
 			
@@ -222,30 +248,11 @@ public class BearImp implements Bear {
 			  lineProjectNum220kv=Math.min(linePersonProjectNum220kv, lineEquipmentProjectNum220kv);
 			
 			//220kv 重新设置组件项目后的人员信息配置
-			  lineProjectDto220kv=resetProjectConfig220kv(lineProjectDto500kv,lineProjectNum220kv,enterPerStaDto);
-			
-			
-			//110kv计算时对应施工企业人员可以组建的项目个数
-			  linePersonProjectNum110kv=getProject110kv(lineProjectDto220kv,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
-			  lineProjectNum110kv=linePersonProjectNum110kv;
-			
-			
-			
-			
+			  lineProjectDto220kv=resetProjectConfig220kv(lineProjectDto500kv,linePersonProjectNum220kv,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
 			//----------------------------变电工程-----------------------------------------
-			
-					
-			//500kv计算时对应施工企业人员可以组建的项目个数
-			  powerPersonProjectNum500kv=getProject500kv(powerProjectDto,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
-					
-				
-			//500kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
-			 powerProjectNum500kv=powerPersonProjectNum500kv;
-					
-			//500kv 设置组件项目后的人员信息配置
-			 powerProjectDto500kv=resetProjectConfig500kv(powerProjectDto,powerProjectNum500kv,enterPerStaDto);
-							
-					
+			 if(powerProjectDto500kv==null){
+				  powerProjectDto500kv=powerProjectDto;
+			 }
 			//220kv计算时对应施工企业人员可以组建的项目个数
 			  powerPersonProjectNum220kv=getProject220kv(powerProjectDto500kv,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
 		
@@ -253,74 +260,32 @@ public class BearImp implements Bear {
 			  powerProjectNum220kv=powerPersonProjectNum220kv;
 					
 			//220kv 重新设置组件项目后的人员信息配置
-			 powerProjectDto220kv=resetProjectConfig220kv(powerProjectDto500kv,powerProjectNum220kv,enterPerStaDto);
+			  powerProjectDto220kv=resetProjectConfig220kv(powerProjectDto500kv,powerProjectNum220kv,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
 					
-					
-			//110kv计算时对应施工企业人员可以组建的项目个数
-			  powerPersonProjectNum110kv=getProject110kv(powerProjectDto220kv,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
-			  powerProjectNum110kv=powerPersonProjectNum110kv;
-					
-	
-			
-		}else if( enterprise.getOverallrank()==2 ||  enterprise.getProfessionrank()==2){
-			//----------------------------------线路工程------------------------
-			//220kv计算时对应施工企业人员可以组建的项目个数
-			  linePersonProjectNum220kv=getProject220kv(lineProjectDto,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
-			
-			//220kv查询企业的设备信息(获取企业大张牵设备数)已经设备可承载的项目数
-			  lineEquipmentProjectNum220kv=getEquipmentBearProjectNum(enterpriseId,voltagetMapValue,220);
-				
-			//220kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
-			  lineProjectNum220kv=Math.min(linePersonProjectNum220kv, lineEquipmentProjectNum220kv);
-			
-			//220kv 重新设置组件项目后的人员信息配置
-			  lineProjectDto220kv=resetProjectConfig220kv(lineProjectDto,lineProjectNum220kv,enterPerStaDto);
-			
-			
+		case 3:
+			//----------------------------------线路工程----------------------------------
+			 if(lineProjectDto220kv==null){
+				 lineProjectDto220kv=lineProjectDto;
+			 }
 			//110kv计算时对应施工企业人员可以组建的项目个数
 			  linePersonProjectNum110kv=getProject110kv(lineProjectDto220kv,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
 			  lineProjectNum110kv=linePersonProjectNum110kv;
-			
-			
+
 			//----------------------------变电工程-----------------------------------------
-			
-					
-			//220kv计算时对应施工企业人员可以组建的项目个数
-			 powerPersonProjectNum220kv=getProject220kv(powerProjectDto,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
-		
-			//220kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
-			 powerProjectNum220kv=powerPersonProjectNum220kv;
-					
-			//220kv 重新设置组件项目后的人员信息配置
-			 powerProjectDto220kv=resetProjectConfig220kv(powerProjectDto,powerProjectNum220kv,enterPerStaDto);
-					
-					
+			  if(powerProjectDto220kv==null){
+				  powerProjectDto220kv=powerProjectDto;
+				 }
 			//110kv计算时对应施工企业人员可以组建的项目个数
-			 powerPersonProjectNum110kv=getProject110kv(powerProjectDto220kv,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
-			 powerProjectNum110kv=powerPersonProjectNum110kv;
-					
-					
-		}else if( enterprise.getOverallrank()==3 ||  enterprise.getProfessionrank()==3){
-			//----------------------------------线路工程------------------------
-			
-			//110kv计算时对应施工企业人员可以组建的项目个数
-			  linePersonProjectNum110kv=getProject110kv(lineProjectDto,enterPerStaDto,ConstEnterprisePerMan.LINE_PROFESSION);
-			  lineProjectNum110kv=linePersonProjectNum110kv;
-			
-			
-			//----------------------------变电工程-----------------------------------------
-					
-			//110kv计算时对应施工企业人员可以组建的项目个数
-			  powerPersonProjectNum110kv=getProject110kv(powerProjectDto,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
+			  powerPersonProjectNum110kv=getProject110kv(powerProjectDto220kv,enterPerStaDto,ConstEnterprisePerMan.POWER_PROFESSION);
 			  powerProjectNum110kv=powerPersonProjectNum110kv;
-					
+			  break;
+		default:
+			break;
 		}
-		
 	
 		
-		  
 		
-		  
+		//设置实际一年中施工企业可以承载完成的项目数(非经过不良行为修正)  
 		BearResultDto result=new BearResultDto(enterpriseId);;
 		result.setEnterpriseid(enterpriseId);
 		result.setEnterpriseName(enterprise.getName());
@@ -369,7 +334,6 @@ public class BearImp implements Bear {
 	private ProjectConfigDto setProjectConfig(Integer profession, Map<Integer, EnterprisePerManage> perManMap) {
 		EnterprisePerManage   enterprisePerManage =perManMap.get(profession);
 		ProjectConfigDto lineProjectDto=new ProjectConfigDto();
-		lineProjectDto.setProjectNum(0);
 		lineProjectDto.setSurplusInspector(enterprisePerManage.getInspector());
 		lineProjectDto.setSurplusOneChief(enterprisePerManage.getOnechief());
 		lineProjectDto.setSurplusOneManager(enterprisePerManage.getOnemanager());
@@ -383,58 +347,119 @@ public class BearImp implements Bear {
 
 	/**重新设置500kv组件项目后的人员信息配置.
 	 * 
-	 * @param lineProjectDto500kv
-	 * @param perManMap
-	 * @param lineProfession
+	 * @param projectDto
+	 * @param projectNum  人员可以组建项目部数
+	 * @param enterPerStaDto
+	 * @param profession  专业类型
+	 * @return
 	 */
-	private ProjectConfigDto resetProjectConfig500kv(ProjectConfigDto lineProjectDto,Integer lineProjectNum,
-			EnterprisePerStaDto  enterPerStaDto) {
+	private ProjectConfigDto resetProjectConfig500kv(ProjectConfigDto projectDto,Integer personProjectNum,
+			EnterprisePerStaDto  enterPerStaDto,Integer profession) {
 		
 		Map<Integer, EnterprisePerStandard> perStaMap=enterPerStaDto.getPerStaMap();
+		ProjectConfigDto projectDto500kv=new ProjectConfigDto();
+		switch (profession) {
+			case ConstEnterprisePerMan.LINE_PROFESSION:
+				
+				projectDto500kv.setSurplusOneManager(projectDto.getSurplusOneManager()-personProjectNum*perStaMap.get(1).getLineflatnum());
+				projectDto500kv.setSurplusTwoManager(projectDto.getSurplusTwoManager());
+			
+				projectDto500kv.setSurplusOneChief(projectDto.getSurplusOneChief()-personProjectNum*perStaMap.get(2).getLineflatnum());
+				projectDto500kv.setSurplusTwoChief(projectDto.getSurplusTwoChief());
+			
+				projectDto500kv.setSurplusSafetyOfficer(projectDto.getSurplusSafetyOfficer()-personProjectNum*perStaMap.get(3).getLineflatnum());
+				projectDto500kv.setSurplusInspector(projectDto.getSurplusInspector()-personProjectNum*perStaMap.get(4).getLineflatnum());
+			
+			
+			
+				projectDto500kv.setSurplusPersonTotal(projectDto.getSurplusPersonTotal()-personProjectNum*enterPerStaDto.getLinePerStaSum());
+			
+				
+				break;
+			
+			case ConstEnterprisePerMan.POWER_PROFESSION:
+				projectDto500kv.setSurplusOneManager(projectDto.getSurplusOneManager()-personProjectNum*perStaMap.get(1).getPowernum());
+				projectDto500kv.setSurplusTwoManager(projectDto.getSurplusTwoManager());
+			
+				projectDto500kv.setSurplusOneChief(projectDto.getSurplusOneChief()-personProjectNum*perStaMap.get(2).getPowernum());
+				projectDto500kv.setSurplusTwoChief(projectDto.getSurplusTwoChief());
+			
+				projectDto500kv.setSurplusSafetyOfficer(projectDto.getSurplusSafetyOfficer()-personProjectNum*perStaMap.get(3).getPowernum());
+				projectDto500kv.setSurplusInspector(projectDto.getSurplusInspector()-personProjectNum*perStaMap.get(4).getPowernum());
+			
+				projectDto500kv.setSurplusPersonTotal(projectDto.getSurplusPersonTotal()-personProjectNum*enterPerStaDto.getPowerPerStaSum());
+			
+				
+				break;
+
+			default:
+				break;
 		
-		ProjectConfigDto lineProjectDto500kv=new ProjectConfigDto();
-		lineProjectDto500kv.setSurplusOneManager(lineProjectDto.getSurplusOneManager()-lineProjectNum*perStaMap.get(1).getLineflatnum());
-		lineProjectDto500kv.setSurplusTwoManager(lineProjectDto.getSurplusTwoManager());
-		lineProjectDto500kv.setSurplusOneChief(lineProjectDto.getSurplusOneChief()-lineProjectNum*perStaMap.get(2).getLineflatnum());
-		lineProjectDto500kv.setSurplusTwoChief(lineProjectDto.getSurplusTwoChief());
-		lineProjectDto500kv.setSurplusSafetyOfficer(lineProjectDto.getSurplusSafetyOfficer()-lineProjectNum*perStaMap.get(3).getLineflatnum());
-		lineProjectDto500kv.setSurplusInspector(lineProjectDto.getSurplusInspector()-lineProjectNum*perStaMap.get(4).getLineflatnum());
-		lineProjectDto500kv.setSurplusPersonTotal(lineProjectDto.getSurplusPersonTotal()-lineProjectNum*enterPerStaDto.getLinePerStaSum());
+		}
 		
-		return  lineProjectDto500kv;
+		return  projectDto500kv;
+		
 	}
 
 	
 	
-	/**220kv 重新设置组件项目后的人员信息配置
+	/**220kv 重新设置组件项目后的人员信息配置.
 	 * 
-	 * @param lineProjectDto500kv
-	 * @param lineProjectNum220kv
+	 * @param projectDto500kv
+	 * @param personProjectNum220kv
 	 * @param enterPerStaDto
+	 * @param profession
 	 * @return
 	 */
 	private ProjectConfigDto resetProjectConfig220kv(
-			ProjectConfigDto lineProjectDto500kv, Integer lineProjectNum220kv,
-			EnterprisePerStaDto enterPerStaDto) {
+			ProjectConfigDto projectDto500kv, Integer personProjectNum220kv,
+			EnterprisePerStaDto enterPerStaDto,Integer profession) {
 		Map<Integer, EnterprisePerStandard> perStaMap=enterPerStaDto.getPerStaMap();
 		
-		ProjectConfigDto lineProjectDto220kv=new ProjectConfigDto();
-		Integer  oneManager=lineProjectDto500kv.getSurplusOneManager()-lineProjectNum220kv*perStaMap.get(1).getLineflatnum();
-		if(oneManager<=0){
-			lineProjectDto220kv.setSurplusOneManager(0);
-			lineProjectDto220kv.setSurplusTwoManager(lineProjectDto500kv.getSurplusTwoManager()+oneManager);
-		}else{
-			lineProjectDto220kv.setSurplusOneManager(oneManager);
-			lineProjectDto220kv.setSurplusTwoManager(lineProjectDto500kv.getSurplusTwoManager());
+		ProjectConfigDto projectDto220kv=new ProjectConfigDto();
+		switch (profession) {
+		case ConstEnterprisePerMan.LINE_PROFESSION:
+			Integer  lineOneManager=projectDto500kv.getSurplusOneManager()-personProjectNum220kv*perStaMap.get(1).getLineflatnum();
+			if(lineOneManager<=0){
+				projectDto220kv.setSurplusOneManager(0);
+				projectDto220kv.setSurplusTwoManager(projectDto500kv.getSurplusTwoManager()+lineOneManager);
+			}else{
+				projectDto220kv.setSurplusOneManager(lineOneManager);
+				projectDto220kv.setSurplusTwoManager(projectDto500kv.getSurplusTwoManager());
+			}
+			
+			projectDto220kv.setSurplusOneChief(projectDto500kv.getSurplusOneChief()-personProjectNum220kv*perStaMap.get(2).getLineflatnum());
+			projectDto220kv.setSurplusTwoChief(projectDto500kv.getSurplusTwoChief());
+			projectDto220kv.setSurplusSafetyOfficer(projectDto500kv.getSurplusSafetyOfficer()-personProjectNum220kv*perStaMap.get(3).getLineflatnum());
+			projectDto220kv.setSurplusInspector(projectDto500kv.getSurplusInspector()-personProjectNum220kv*perStaMap.get(4).getLineflatnum());
+			projectDto220kv.setSurplusPersonTotal(projectDto500kv.getSurplusPersonTotal()-personProjectNum220kv*enterPerStaDto.getLinePerStaSum());
+			
+			break;
+		case  ConstEnterprisePerMan.POWER_PROFESSION:
+			
+			Integer  powerOneManager=projectDto500kv.getSurplusOneManager()-personProjectNum220kv*perStaMap.get(1).getPowernum();
+			if(powerOneManager<=0){
+				projectDto220kv.setSurplusOneManager(0);
+				projectDto220kv.setSurplusTwoManager(projectDto500kv.getSurplusTwoManager()+powerOneManager);
+			}else{
+				projectDto220kv.setSurplusOneManager(powerOneManager);
+				projectDto220kv.setSurplusTwoManager(projectDto500kv.getSurplusTwoManager());
+			}
+			
+			projectDto220kv.setSurplusOneChief(projectDto500kv.getSurplusOneChief()-personProjectNum220kv*perStaMap.get(2).getPowernum());
+			projectDto220kv.setSurplusTwoChief(projectDto500kv.getSurplusTwoChief());
+			projectDto220kv.setSurplusSafetyOfficer(projectDto500kv.getSurplusSafetyOfficer()-personProjectNum220kv*perStaMap.get(3).getPowernum());
+			projectDto220kv.setSurplusInspector(projectDto500kv.getSurplusInspector()-personProjectNum220kv*perStaMap.get(4).getPowernum());
+			projectDto220kv.setSurplusPersonTotal(projectDto500kv.getSurplusPersonTotal()-personProjectNum220kv*enterPerStaDto.getPowerPerStaSum());
+		
+			break;
+
+		default:
+			break;
 		}
 		
-		lineProjectDto220kv.setSurplusOneChief(lineProjectDto500kv.getSurplusOneChief()-lineProjectNum220kv*perStaMap.get(2).getLineflatnum());
-		lineProjectDto220kv.setSurplusTwoChief(lineProjectDto500kv.getSurplusTwoChief());
-		lineProjectDto220kv.setSurplusSafetyOfficer(lineProjectDto500kv.getSurplusSafetyOfficer()-lineProjectNum220kv*perStaMap.get(3).getLineflatnum());
-		lineProjectDto220kv.setSurplusInspector(lineProjectDto500kv.getSurplusInspector()-lineProjectNum220kv*perStaMap.get(4).getLineflatnum());
-		lineProjectDto220kv.setSurplusPersonTotal(lineProjectDto500kv.getSurplusPersonTotal()-lineProjectNum220kv*enterPerStaDto.getLinePerStaSum());
 		
-		return  lineProjectDto220kv;
+		return  projectDto220kv;
 	}
 	
 	
@@ -487,24 +512,11 @@ public class BearImp implements Bear {
 		Byte   inspector=perStaMap.get(4).getLineflatnum();
 		Integer  minOne=Math.min(lineProjectDto.getSurplusOneManager()/manager,lineProjectDto.getSurplusOneChief()/chief);
 		//取安全员, 质检员最小值
-		Integer  minTwo=Math.min(lineProjectDto.getSurplusSafetyOfficer()/safeOfficer,lineProjectDto.getSurplusInspector()/inspector);
+		Integer minTwo=Math.min(lineProjectDto.getSurplusSafetyOfficer()/safeOfficer,lineProjectDto.getSurplusInspector()/inspector);
 					
 		//项目必备人员可以主键的项目数
 		Integer minPersonProjectN=Math.min(minOne, minTwo);
 				
-//		//线路专业计算
-//		while(true){
-//				//大于当前线路专业总人数T
-//				if(minPersonProjectN*enterPerStaDto.getLinePerStaSum() > lineProjectDto.getSurplusPersonTotal()){
-//					minPersonProjectN--;
-//				}else{
-//					break;
-//				}
-//		}
-//		//返回可以人员可以组建的项目数
-//	
-//		return minPersonProjectN;
-		
 		//返回可以人员可以组建的项目数
 		return getPersonProjectNum(minPersonProjectN,lineProjectDto.getSurplusPersonTotal(),profession);
 		
@@ -527,17 +539,6 @@ public class BearImp implements Bear {
 		//项目必备人员可以主键的项目数
 		Integer minPersonProjectN=Math.min(minOne, minTwo);
 				
-//		//线路专业计算
-//		while(true){
-//				//大于当前线路专业总人数T
-//				if(minPersonProjectN*enterPerStaDto.getLinePerStaSum() > lineProjectDto.getSurplusPersonTotal()){
-//					minPersonProjectN--;
-//				}else{
-//					break;
-//				}
-//		}
-//		//返回可以人员可以组建的项目数
-//		return minPersonProjectN;
 		
 		//返回可以人员可以组建的项目数
 		return getPersonProjectNum(minPersonProjectN,lineProjectDto.getSurplusPersonTotal(),profession);

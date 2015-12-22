@@ -17,14 +17,14 @@ Ext.define('RYIVS.view.common.StateBar', {
 		}
 	}, {
 		xtype : 'tbseparator'
-	}, {
+	}/*, {
 		xtype : 'button',
 		icon : 'res/icon/control.png',
 		text : '本地参数设置',
 		handler : function(b, e) {
 			Ext.create('RYIVS.view.common.UserFolder').show();
 		}
-	}/*, {
+	}, {
 		xtype:'button',
 		text:'在线帮助',
 		handler:function(b,e){

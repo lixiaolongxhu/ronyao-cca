@@ -12,12 +12,12 @@ public class ConstEnterprisePerMan {
 	/**线路专业人员
 	 * 
 	 */
-	public static final  Integer 	LINE_PROFESSION=1;
+	public static final  int 	LINE_PROFESSION=1;
 	
 	/**变电专业人员
 	 * 
 	 */
-	public static final  Integer    POWER_PROFESSION=2;
+	public static final  int    POWER_PROFESSION=2;
 	
 	
 	
