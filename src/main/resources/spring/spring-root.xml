@@ -59,9 +59,10 @@
 	
 	<context:component-scan base-package="com.ronyao.cca.action" />
 	<context:component-scan base-package="com.ronyao.cca.controller" />
+	<context:component-scan base-package="com.ronyao.cca.constant" />
 	<context:component-scan base-package="com.ronyao.cca.service" />
 	<context:component-scan base-package="com.ronyao.cca.locator" />
 	<context:component-scan base-package="com.ronyao.cca.userlog" />
 	<context:component-scan base-package="com.ronyao.cca.ss.httpclient.service" />
-
+	
 </beans>

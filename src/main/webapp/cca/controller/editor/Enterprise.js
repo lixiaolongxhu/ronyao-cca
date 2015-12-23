@@ -6,18 +6,10 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
 	models : ['editor.Enterprise'],
 	views :  ['editor.Enterprise','file.EnterpAptFileMan','file.EnterpAptFileEdit','file.EnterpAptFileUpload'],
 	stores : ['editor.Enterprise'],
-//	refs : [{
-//			selector : 'enterpAptFileEdit',
-//			ref : 'enterpAptFileEdit'
-//		}
-//	],
+
 	init : function() {
 		this.control({
 			
-//			'enterpAptFileEdit':{
-////				selectionchange:this.onSelectionChange
-//				afterrender:this.onAfterrender
-//			},
       		
      		 'enterprise button[itemId=buttonAptFileManager]':{
         		click : this.aptFileManager
@@ -39,9 +31,9 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
 	 * 
 	 */
    exporterExcel :function(){
-   	
-   			alert("excel导出测试");
-//   		window.location.href='../../ui/excel';
+   
+//   	alert("excel导出测试");
+   		window.location.href='../../ui/enterprise/excel';
    }
    
 });

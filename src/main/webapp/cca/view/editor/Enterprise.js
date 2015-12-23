@@ -354,7 +354,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 		width : 10,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 10,
 		dataIndex : 'updatetime'
 	}

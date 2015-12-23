@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-22 16:20:01
+Date: 2015-12-23 12:26:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -164,7 +164,7 @@ CREATE TABLE `enterprise` (
   KEY `enter_professionRank_id_fk` (`professionRank`),
   CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise
@@ -339,7 +339,7 @@ CREATE TABLE `enterprise_per_file` (
   PRIMARY KEY (`id`),
   KEY `enterprise_person_enterprisePerId_fk` (`enterprisePerId`),
   CONSTRAINT `enterprise_person_enterprisePerId_fk` FOREIGN KEY (`enterprisePerId`) REFERENCES `enterprise_person` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_per_file
@@ -693,7 +693,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=438 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=444 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1135,6 +1135,12 @@ INSERT INTO `user_log` VALUES ('434', '1', '会话超时，用户退出.', '2015
 INSERT INTO `user_log` VALUES ('435', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 15:18:10', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('436', '1', '操作模块:会话管理,用户登陆.', '2015-12-22 15:22:47', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('437', '1', '会话超时，用户退出.', '2015-12-22 15:51:27', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('438', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 10:12:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('439', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 10:27:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('440', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:15:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('441', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:17:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('442', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:19:55', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('443', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:22:14', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

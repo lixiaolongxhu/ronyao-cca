@@ -39,12 +39,13 @@
 	<!-- 如果有多个 DispatcherServlet 请把关于数据库和server部分的bean在web.xml中使用spring 的 listener加载 -->
 
 	<!-- 自动扫描controller bean，把作了注解的类转换为bean -->
-	<context:component-scan base-package="com.ronyao.cca.controller.v2" />
+	<context:component-scan base-package="com.ronyao.cca.ui" />
+	<context:component-scan base-package="com.ronyao.cca.ui.controller" />	
+	
+
 	<context:component-scan base-package="com.ronyao.cca.ctl.manager" />
 	<context:component-scan base-package="com.ronyao.cca.ss.controller" />
 	<context:component-scan base-package="com.ronyao.cca.ss.httpclient" />
-	<context:component-scan base-package="com.ronyao.cca.ui" />
-	<context:component-scan base-package="com.ronyao.cca.ui.controller" />
 	<context:component-scan base-package="com.ronyao.http.push.controller" />
 	<context:component-scan base-package="com.ronyao.cca.platform.controller" />
 	
