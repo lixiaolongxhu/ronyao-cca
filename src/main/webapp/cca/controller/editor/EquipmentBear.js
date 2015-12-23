@@ -6,8 +6,22 @@ Ext.define('RYIVS.controller.editor.EquipmentBear', {
 	stores : ['editor.EquipmentBear'],
 
 	init : function() {
-		
-	}
+		this.control({
+      		
+     	
+     		  'equipmentBear button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 }
+   		 });
+	},
+		/**excel 导出
+	 * 
+	 */
+   exporterExcel :function(){
+   	
+ 
+   		window.location.href='../../ui/equipmentBear/excel';
+   }
 
 	
 });

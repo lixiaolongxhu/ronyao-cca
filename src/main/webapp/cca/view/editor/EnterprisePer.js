@@ -15,7 +15,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
-	
+//    width: 800, //Ext.get("content").getWidth(),
 		// 工具条
 	tbar : [ {
 		text : '添加',

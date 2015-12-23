@@ -1,5 +1,6 @@
 package com.ronyao.cca.tool;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -19,6 +22,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  *
  */
 public class ExcelUtil {
+	
+	private  static final Logger  LOG=LoggerFactory.getLogger(ExcelUtil.class);
 	
 	/**poi 导出excel
 	 * 
@@ -74,7 +79,7 @@ public class ExcelUtil {
             Map<Integer, String> enter = columnValue.get(i);  
             // 第四步，创建单元格，并设置值  
             for(int j=0;j<headerName.size();j++){
-            	 row.createCell(j).setCellValue(enter.get(j).toString());  
+            	 row.createCell(j).setCellValue(enter.get(j));  
             }
 //          row.createCell(0).setCellValue(enter.getSupervisorunit());  
 //          row.createCell(1).setCellValue(enter.getFullname());  
@@ -85,18 +90,21 @@ public class ExcelUtil {
 //                    .getBirth()));  
         }  
         
+        
         // 第六步，将文件存到指定位置  
         String filename=fileName ;
         //设置 contentType
         response.setContentType("application/vnd.ms-excel;charset=utf-8"); 
         // 设置response的Header ,文件下载的名称
         response.setHeader("Content-Disposition", "attachment;filename="+new String(filename.getBytes("GBK"), "ISO-8859-1")+".xls");
-        OutputStream ouputStream = response.getOutputStream();    
-        wb.write(ouputStream);   
-        ouputStream.flush();    
-        ouputStream.close();
+//      OutputStream ouputStream = response.getOutputStream();  
+        OutputStream toClient = new BufferedOutputStream(  
+                response.getOutputStream()); 
+        wb.write(toClient); 
+        toClient.flush();    
+        toClient.close();
         wb.close();
-       
+        LOG.debug("执行文件:" +fileName+"  excel下载导出完成");
 	}
 
 }

@@ -32,8 +32,8 @@ Ext.define('RYIVS.controller.editor.EnterprisePer', {
 	 */
    exporterExcel :function(){
    	
-   			alert("excel导出测试");
-//   		window.location.href='../../ui/excel';
+ 
+   		window.location.href='../../ui/enterprisePer/excel';
    }
 
 	

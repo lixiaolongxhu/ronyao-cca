@@ -5,7 +5,7 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.enterpriseApt',
-	title : '企资质标准分类',
+	title : '企业资质对施工承载能力评估',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.EnterpriseApt',

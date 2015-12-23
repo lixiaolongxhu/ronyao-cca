@@ -3,7 +3,7 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.equipmentBear',
-	title : '张牵设备承载力配置信息',
+	title : '机具设备对工程承载力的评估',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.EquipmentBear',

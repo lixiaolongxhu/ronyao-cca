@@ -51,8 +51,8 @@ Ext.define('RYIVS.controller.editor.EnterpriseApt', {
 	 * 
 	 */
 	exporterExcel : function(obj){
-
-		window.location.href='../../ui/excel';
+	
+		window.location.href='../../ui/enterpriseApt/excel';
  
 	}
 });

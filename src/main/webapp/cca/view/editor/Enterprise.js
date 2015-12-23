@@ -20,6 +20,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
 	
+
 	// 工具条
 	tbar : [ {
 		text : '添加',
@@ -117,13 +118,13 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	}, 
 	{
 		text : '企业全称',
-		width : 80,
+		width : 200,
 		dataIndex : 'fullname',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : false
 		},
-		flex : 2
+		flex : 3
 	},{
 		text : '企业简称',
 		width : 60,
@@ -351,12 +352,15 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	  ]	
 	}, {
 		text : '记录创建<br/>时间',
-		width : 10,
+		width : 50,
+		flex : 1,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 10,
+		width : 50,
+		flex : 1,
 		dataIndex : 'updatetime'
+		
 	}
  
 	],

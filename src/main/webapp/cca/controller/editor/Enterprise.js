@@ -32,7 +32,6 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
 	 */
    exporterExcel :function(){
    
-//   	alert("excel导出测试");
    		window.location.href='../../ui/enterprise/excel';
    }
    

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-23 12:26:35
+Date: 2015-12-23 15:36:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -693,7 +693,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=444 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=454 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1141,6 +1141,16 @@ INSERT INTO `user_log` VALUES ('440', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('441', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:17:29', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('442', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:19:55', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('443', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:22:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('444', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:26:57', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('445', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 12:46:26', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('446', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 13:21:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('447', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 13:23:35', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('448', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 13:37:25', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('449', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 14:11:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('450', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 14:19:54', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('451', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 14:36:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('452', '1', '操作模块:会话管理,用户登陆.', '2015-12-23 14:54:17', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('453', '1', '会话超时，用户退出.', '2015-12-23 15:30:44', '192.168.1.240', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
