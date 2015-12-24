@@ -2,7 +2,7 @@
 Ext.define('RYIVS.view.display.Bear', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.bear',
-	title : '施工企业承载能力技术结果',
+	title : '承载能力计算结果',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'display.Bear',
@@ -21,6 +21,11 @@ Ext.define('RYIVS.view.display.Bear', {
 		handler : function() {
 			this.ownerCt.ownerCt.store.load();
 		}
+	}, {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+   
 	} ],
 	
 	// 定义 colums

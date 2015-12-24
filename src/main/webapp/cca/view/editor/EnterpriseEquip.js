@@ -3,7 +3,7 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.enterpriseEquip',
-	title : '施工企业装备',
+	title : '施工装备信息',
 	iconCls : 's_user',
 	// 定义 store
 	store : 'editor.EnterpriseEquip',
@@ -94,7 +94,7 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 		width : 100,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 100,
 		dataIndex : 'updatetime'
 	}

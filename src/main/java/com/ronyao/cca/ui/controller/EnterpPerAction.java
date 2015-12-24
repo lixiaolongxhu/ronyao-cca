@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.dao.EnterprisePersonMapper;
+import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterprisePerson;
 import com.ronyao.cca.db.model.EnterprisePersonExample;
 import com.ronyao.cca.tool.ExcelUtil;
@@ -69,13 +70,14 @@ public class EnterpPerAction {
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
+        Map<Integer, Enterprise> enterpriseMap=constDictionary.enterpriseMap;
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterprisePerson enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
         	 
         	 map.put(0, String.valueOf(i+1));
         	 
-        	 map.put(1, constDictionary.getEnterpriseMap().get(enter.getEnterpriseid()).getName()+"");
+        	 map.put(1, enterpriseMap.get(enter.getEnterpriseid()).getName()+"");
         	 map.put(2,enter.getConstructorone() +"");
         	 map.put(3,enter.getConstructortwo() +"");
         	

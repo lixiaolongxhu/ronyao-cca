@@ -20,24 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.ronyao.cca.db.dao.AptitudeClassifyMapper;
-import com.ronyao.cca.db.dao.AptitudeRankClassifyMapper;
-import com.ronyao.cca.db.dao.EnterpriseMapper;
-import com.ronyao.cca.db.dao.PostClassifyMapper;
+import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.dao.UserMapper;
-import com.ronyao.cca.db.dao.VoltageRankClassifyMapper;
-import com.ronyao.cca.db.model.AptitudeClassify;
-import com.ronyao.cca.db.model.AptitudeClassifyExample;
-import com.ronyao.cca.db.model.AptitudeRankClassify;
-import com.ronyao.cca.db.model.AptitudeRankClassifyExample;
-import com.ronyao.cca.db.model.Enterprise;
-import com.ronyao.cca.db.model.EnterpriseExample;
-import com.ronyao.cca.db.model.PostClassify;
-import com.ronyao.cca.db.model.PostClassifyExample;
+
 import com.ronyao.cca.db.model.User;
 import com.ronyao.cca.db.model.UserExample;
-import com.ronyao.cca.db.model.VoltageRankClassify;
-import com.ronyao.cca.db.model.VoltageRankClassifyExample;
+
 import com.ronyao.cca.tool.DateUtil;
 import com.ronyao.cca.ui.vo.YearVo;
 
@@ -56,24 +44,14 @@ public class SessionManager {
 	@Autowired
 	private UserMapper userMapper;
 	
-	@Resource
-	private  EnterpriseMapper enterpriseMapper;
 
-	@Resource
-	private AptitudeClassifyMapper  aptitudeClassfiyMapper;
 	
 	@Resource
-	private PostClassifyMapper  postClassifyMapper;
-
-	@Resource
-	private AptitudeRankClassifyMapper  aptitudeRankClassifyMapper;
-	
-	@Resource
-	private VoltageRankClassifyMapper   voltageRankClassifyMapper;
-	
+	private ConstDictionary constDictionary;
 	
 	@Value("#{systemProperties.getProperty('config.debug.level')}")
 	private int debugLevel;
+	
 	
 	
 
@@ -118,12 +96,16 @@ public class SessionManager {
 		return this.user;
 	}
 
-	/*
-	 * 界面配置所需要的 App 文件
-	 */
+	
 
+	/**界面跳转:界面配置所需要的 App 文件(字符串自动转换为对应的名称jsp文件).
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/app")
 	public String genApp(Model model) {
+		LOG.info("判断是否已登记,未登录就跳转到登录界面");
 		if (this.user == null) {
 			// 未登陆
 			return "AppLogin";
@@ -150,36 +132,31 @@ public class SessionManager {
 	};
 	
 	
-	//获取DB const 变量
+	//获取DB const 字典常量或者变量
+
 	@RequestMapping(value = "/global")
 	public String getGlobalConfig(Model model) {
 		
+		//读取数据库初始配置
+		constDictionary.initLoadDictionay();
+		
 		//enterprise 查询企业名称列表
-		EnterpriseExample enterExample = new EnterpriseExample();
-		enterExample.setDistinct(true);
-		enterExample.setOrderByClause(" createTime desc  ");
-		List<Enterprise> enterList = enterpriseMapper.selectByExample(enterExample);
-		model.addAttribute("enterprise", enterList);
+		model.addAttribute("enterprise", constDictionary.enterpriseList);
 		
 		//查询企业资质分类
-		AptitudeClassifyExample  aptitudeExample=new AptitudeClassifyExample();
-		List<AptitudeClassify>  aptitudeClassifyList=aptitudeClassfiyMapper.selectByExample(aptitudeExample);
-		model.addAttribute("aptitudeClassify",aptitudeClassifyList);
+		model.addAttribute("aptitudeClassify",constDictionary.aptitudeClassifyList);
 		
 		//查询企业资质等级
-		AptitudeRankClassifyExample  aptitudeRankExample=new AptitudeRankClassifyExample();
-		List<AptitudeRankClassify>  aptitudeRankClassifyList=aptitudeRankClassifyMapper.selectByExample(aptitudeRankExample);
-		model.addAttribute("aptitudeRankClassify",aptitudeRankClassifyList);
+		
+		model.addAttribute("aptitudeRankClassify",constDictionary.aptitudeRankClassifyList);
 		
 		//施工企业岗位名称分类列表
-		PostClassifyExample  postExample=new PostClassifyExample();
-		List<PostClassify> postList=postClassifyMapper.selectByExample(postExample);
-		model.addAttribute("postClassify",postList);
+		
+		model.addAttribute("postClassify",constDictionary.postClassifyList);
 		
 		//电压等级分类
-		VoltageRankClassifyExample    voltageExample=new VoltageRankClassifyExample();
-		List<VoltageRankClassify>  voltageList=voltageRankClassifyMapper.selectByExample(voltageExample);
-		model.addAttribute("voltageRankClassify",voltageList);
+	
+		model.addAttribute("voltageRankClassify",constDictionary.voltageRankClassifyList);
 		
 		//获取当前时间到前10年的列表
 		String yearStr=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);

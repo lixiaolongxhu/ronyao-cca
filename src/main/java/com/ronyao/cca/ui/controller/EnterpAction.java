@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.dao.EnterpriseMapper;
+
+import com.ronyao.cca.db.model.AptitudeRankClassify;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterpriseExample;
 import com.ronyao.cca.tool.ExcelUtil;
@@ -76,6 +78,7 @@ public class EnterpAction {
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
+        Map<Byte, AptitudeRankClassify> aptitudeRankClassifyMap=constDictionary.aptitudeRankClassifyMap;
         for (int i=0;i<enterpList.size() ;i++) {
         	 Enterprise enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
@@ -94,8 +97,8 @@ public class EnterpAction {
         	 map.put(6, enter.getAssets()+"");
         	 map.put(7, enter.getWorkers()+"");
         	 
-        	 map.put(8, constDictionary.getAptitudeRankClassifyMap().get(enter.getOverallrank()).getName()+"");
-        	 map.put(9, constDictionary.getAptitudeRankClassifyMap().get(enter.getOverallrank()).getName()+"");
+        	 map.put(8, aptitudeRankClassifyMap.get(enter.getOverallrank()).getName()+"");
+        	 map.put(9, aptitudeRankClassifyMap.get(enter.getProfessionrank()).getName()+"");
         	 map.put(10, enter.getProjectlast()+"");
         	 map.put(11, enter.getProjectbefore()+"");
         	 map.put(12, enter.getProjectbeforelast()+"");

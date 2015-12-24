@@ -12,16 +12,6 @@
 		<!--全局静态变量，这里配置基本的常量和工具函数-->
 		<script type="text/javascript" src="js/global.js"></script>
 		
-		
-		
-		<!-- 自定义验证vtype 
-		<script type="text/javascript" src="js/CusFieldVtypes.js"></script>
-		-->
-		
-		
-		<!--读取db中的常量-->
-		<script type="text/javascript" src="controllers/global"></script> 
-		
 		<!--extjs-direct-spring 配制文件-->
 		<script src="controllers/api-debug.js?group=store,form"></script>
 		
@@ -29,19 +19,17 @@
 		<script type="text/javascript" src="lib/ext/locale/ext-lang-zh_CN.js"></script>
 		
 		
-		<!-- Timeline
-			<script type="text/javascript" src="js/timeline/timeline.js"></script>
-			<link rel="stylesheet" type="text/css" href="js/timeline/timeline.css">
-		 -->
-		
-		
-		<!-- 动态生成配置信息 -->
-		<script type="text/javascript" src="controllers/config"></script>
-	
-		<!--运行ExtJs程序，动态生成-->
+
+		<!--读取db中动态生成(同时检查是否用户已登录)-->
 		<script type="text/javascript" src="controllers/app"></script>
-	
-	
+		
+		
+		<!--读取db中的常量-->
+		<script type="text/javascript" src="controllers/global"></script> 
+		
+		<!--读取db中动态生成配置信息 -->
+		<script type="text/javascript" src="controllers/config"></script>
+		
 		
 		<script type="text/javascript">
 			var config = {

@@ -3,7 +3,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.enterprisePerManLine',
-	title : '施工企业现场管理人员(线路专业)',
+	title : '施工企业现场管理人员(线路专业人员)',
 	iconCls : 's_user',
 	// 定义 store
 	store : 'editor.EnterprisePerManLine',
@@ -262,7 +262,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 		width : 100,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 100,
 		dataIndex : 'updatetime'
 	}

@@ -7,13 +7,18 @@ Ext.define('RYIVS.controller.editor.BehaviorSta', {
 
 	init : function() {
 		this.control({
-      		'behaviorSta button[itemId=buttonLookOver]':{
+      		 'behaviorSta button[itemId=buttonLookOver]':{
         		click : this.lookOver
+     		 },
+     		 'behaviorSta button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
      		 }
    		 });
 	},
 	
-	//查看grid选中行详细详细
+	/**查看grid选中行详细详细
+	 * 
+	 */
 	lookOver:function(obj){
 		//使用grid的选择模式,获取选择的记录store 与model
 		var grid = obj.ownerCt.ownerCt;
@@ -42,6 +47,14 @@ Ext.define('RYIVS.controller.editor.BehaviorSta', {
         	form.loadRecord(record);
  			
         }
-	}
+	},
+	
+	/**excel 导出
+	 * 
+	 * 
+	 */
+   exporterExcel :function(){
+   		window.location.href='../../ui/behaviorSta/excel';
+   }
 	
 });

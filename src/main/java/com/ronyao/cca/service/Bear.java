@@ -1,5 +1,6 @@
 package com.ronyao.cca.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ronyao.cca.db.model.AnnualOutput;
@@ -26,6 +27,13 @@ public interface Bear {
 	 * @return
 	 */
 	public  BearResultDto getEnterpriseBearResult(Enterprise  enterprise);
+	
+	/**获取施工企业人员承载最大项目数(查询所有企业).
+	 * 
+	 * @param 
+	 * @return
+	 */
+	public  List<BearResultDto> getEnterpriseBearResult();
 	
 	/**项目对应电压等级的产值配置.
 	 * 

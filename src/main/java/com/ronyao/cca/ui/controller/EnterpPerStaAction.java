@@ -16,6 +16,7 @@ import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.dao.EnterprisePerStandardMapper;
 import com.ronyao.cca.db.model.EnterprisePerStandard;
 import com.ronyao.cca.db.model.EnterprisePerStandardExample;
+import com.ronyao.cca.db.model.PostClassify;
 import com.ronyao.cca.tool.ExcelUtil;
 
 
@@ -67,12 +68,13 @@ public class EnterpPerStaAction {
         Integer lineflatnumSum=0;
         Integer linemountainnumSum=0;
         Integer powernumSum=0;
+        Map<Integer, PostClassify> postClassiyMap=constDictionary.postClassifyMap;
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterprisePerStandard enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
         	 
         	 map.put(0, String.valueOf(i+1));
-        	 map.put(1, constDictionary.getPostClassifyMap().get(enter.getPostclassifyid()).getName());
+        	 map.put(1, postClassiyMap.get(enter.getPostclassifyid()).getName());
         	 map.put(2,enter.getHolderrequire() );
         	
         	 map.put(3,enter.getLineflatnum() +"");

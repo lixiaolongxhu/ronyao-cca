@@ -14,7 +14,7 @@ Ext.define('RYIVS.model.editor.AnnualOutput', {
 		{name: 'id', type: 'int',	sortable : true},
 		{name: 'voltagerankid', type: 'int',	sortable : true},
 		{name: 'projecttype', type: 'int',	sortable : true},
-		{name: 'timllimit', type: 'int',	sortable : true},
+		{name: 'timelimit', type: 'int',	sortable : true},
 		{name: 'projectnum', type: 'float',	sortable : true},
 		{name: 'annualoutput', type: 'int',	sortable : true},
 		{name: 'remark', type: 'String',	sortable : true},

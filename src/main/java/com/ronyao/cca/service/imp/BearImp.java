@@ -1,5 +1,6 @@
 package com.ronyao.cca.service.imp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import com.ronyao.cca.constant.ConstEnterprisePerMan;
 import com.ronyao.cca.constant.ConstEquipmentBear;
 import com.ronyao.cca.db.dao.AnnualOutputMapper;
 import com.ronyao.cca.db.dao.EnterpriseEquipmentMapper;
+import com.ronyao.cca.db.dao.EnterpriseMapper;
 import com.ronyao.cca.db.dao.EnterprisePerManageMapper;
 import com.ronyao.cca.db.dao.EnterprisePerStandardMapper;
 import com.ronyao.cca.db.dao.EquipmentBearMapper;
@@ -23,6 +25,7 @@ import com.ronyao.cca.db.model.AnnualOutputExample;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterpriseEquipment;
 import com.ronyao.cca.db.model.EnterpriseEquipmentExample;
+import com.ronyao.cca.db.model.EnterpriseExample;
 import com.ronyao.cca.db.model.EnterprisePerManage;
 import com.ronyao.cca.db.model.EnterprisePerManageExample;
 import com.ronyao.cca.db.model.EnterprisePerStandard;
@@ -69,6 +72,9 @@ public class BearImp implements Bear {
 	
 	@Resource
 	private AnnualOutputMapper annualOutputMapper;
+	
+	@Resource
+	private EnterpriseMapper enterpriseMapper;
 	
 
 	/**电压等级分类key :value   value : voltageRankClassify
@@ -655,6 +661,26 @@ public class BearImp implements Bear {
 			loadInitConfig();
 		}
 		return outputmap;
+	}
+
+
+
+	public List<BearResultDto> getEnterpriseBearResult() {
+		List<BearResultDto> resultList=new ArrayList<BearResultDto>();
+		EnterpriseExample  enterExample=new EnterpriseExample();
+		List<Enterprise>  enterList=enterpriseMapper.selectByExample(enterExample);
+		
+		if(!enterList.isEmpty()){
+			loadInitConfig();
+			for (Enterprise enterprise : enterList) {
+				BearResultDto result=getEnterpriseBearResult(enterprise);
+				if(result!=null){
+					resultList.add(result);
+				}
+				
+			}
+		}
+		return  resultList;
 	}
 
 

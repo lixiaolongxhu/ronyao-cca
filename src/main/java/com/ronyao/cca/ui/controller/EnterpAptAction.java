@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.dao.EnterpriseAptitudeMapper;
+import com.ronyao.cca.db.model.AptitudeClassify;
+import com.ronyao.cca.db.model.AptitudeRankClassify;
 import com.ronyao.cca.db.model.EnterpriseAptitude;
 import com.ronyao.cca.db.model.EnterpriseAptitudeExample;
 import com.ronyao.cca.tool.ExcelUtil;
@@ -64,13 +66,15 @@ public class EnterpAptAction {
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
+        Map<Byte, AptitudeRankClassify> aptitudeRankClassifyMap=constDictionary.aptitudeRankClassifyMap;
+        Map<Byte, AptitudeClassify> aptitudeClassifyMap=constDictionary.aptitudeClassifyMap;
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterpriseAptitude enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
         	 
         	 map.put(0, String.valueOf(i+1));
-        	 map.put(1, constDictionary.getAptitudeClassifyMap().get(enter.getAptitudeid()).getName()+"");
-        	 map.put(2,constDictionary.getAptitudeRankClassifyMap().get(enter.getAptituderank()).getName()+"" );
+        	 map.put(1, aptitudeClassifyMap.get(enter.getAptitudeid()).getName()+"");
+        	 map.put(2,aptitudeRankClassifyMap.get(enter.getAptituderank()).getName()+"" );
         	 map.put(3,enter.getQualifications() );
         	 map.put(4, enter.getPracticing());
         	

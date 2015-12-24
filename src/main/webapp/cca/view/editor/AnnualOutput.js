@@ -3,7 +3,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.annualOutput',
-	title : '施工项目年产值评估标准表配置',
+	title : '施工项目团队工程施工产值',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.AnnualOutput',
@@ -15,7 +15,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 	forceFit :true, 
 	// 定义 colums
 	columns : [ 
-{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	,{
 		text : '电压等级',
 		width : 200,
@@ -69,7 +69,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 	{
 			text : '合理工期(月)',
 			width : 100,
-			dataIndex : 'timllimit',
+			dataIndex : 'timelimit',
 				
 			flex : 1,
 			editor : {

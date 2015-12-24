@@ -1,7 +1,7 @@
 package com.ronyao.cca.ui.extDirect;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 import javax.annotation.Resource;
 //import org.slf4j.Logger;
@@ -12,8 +12,6 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadResult;
 import com.ronyao.cca.db.dao.EnterpriseMapper;
-import com.ronyao.cca.db.model.Enterprise;
-import com.ronyao.cca.db.model.EnterpriseExample;
 import com.ronyao.cca.service.Bear;
 import com.ronyao.cca.service.dto.BearResultDto;
 
@@ -34,9 +32,12 @@ public class ActionBear {
 	private Bear bear;
 	
 	@Resource
-	
 	private EnterpriseMapper  enterpriseMapper;
 	
+	/**施工企业承载结果
+	 * 
+	 */
+	private static  List<BearResultDto>  resultList=null;
 	
 	
 	// 列表
@@ -44,25 +45,22 @@ public class ActionBear {
 	public ExtDirectStoreReadResult<BearResultDto> read(
 			ExtDirectStoreReadRequest request) {
 		
-		List<BearResultDto>  resultList=new ArrayList<BearResultDto>();
-		
-		EnterpriseExample  enterExample=new EnterpriseExample();
-		List<Enterprise>  enterList=enterpriseMapper.selectByExample(enterExample);
-		
-		if(!enterList.isEmpty()){
-			bear.loadInitConfig();
-			for (Enterprise enterprise : enterList) {
-				BearResultDto result=bear.getEnterpriseBearResult(enterprise);
-				if(result!=null){
-					resultList.add(result);
-				}
-				
-			}
-		}
+		resultList=bear.getEnterpriseBearResult();
 		return new ExtDirectStoreReadResult<BearResultDto>(resultList);
 		
 	}
 
+	/**获取承载结果集
+	 * 
+	 * @return
+	 */
+	public    List<BearResultDto>  getBearList(){
+		if(resultList==null){
+			resultList=bear.getEnterpriseBearResult();
+		}
+		return  resultList;
+	}
+	
 	
 	
 

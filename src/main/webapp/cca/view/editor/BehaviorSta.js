@@ -3,7 +3,7 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.behaviorSta',
-	title : '施工企业不良行为分类标准',
+	title : '施工企业不良行文分类标准',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.BehaviorSta',
@@ -79,7 +79,11 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 		icon : 'res/icon/history.png',
 		disabled : true
 		
-    } ],
+    }, {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    }],
     
     //事件监听 ,判断按钮是否可用
     listeners : {
@@ -176,7 +180,7 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 		width : 100,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 100,
 		dataIndex : 'updatetime'
 	}
