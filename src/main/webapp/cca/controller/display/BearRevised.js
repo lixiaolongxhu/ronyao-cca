@@ -8,7 +8,10 @@ Ext.define('RYIVS.controller.display.BearRevised', {
 
 	init : function() {
 		this.control({
-			
+			'bearRevised ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
      		  'bearRevised button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
@@ -16,6 +19,14 @@ Ext.define('RYIVS.controller.display.BearRevised', {
    		 });
 	},
 	
+	/**界面建立时只调用一次
+	 * 
+	 * @param {} pa
+	 * @param {} options
+	 */
+	onAfterrender : function(pa, options) {
+		pa.getStore().load();			
+	},
 	/**excel 导出
 	 * 
 	 */

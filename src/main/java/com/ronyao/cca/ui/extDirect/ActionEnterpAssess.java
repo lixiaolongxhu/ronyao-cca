@@ -38,16 +38,21 @@ public class ActionEnterpAssess {
 	@Resource
 	private BearRevisedService  bearRevisedService;
 	
+	private List<EnterpriseAssess>  enerpriseAssessList=null;
 	
-	// 列表
-	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
-	public ExtDirectStoreReadResult<EnterpriseAssess> read(
-			ExtDirectStoreReadRequest request) {
+	public List<EnterpriseAssess> getEnterpriseAssessList(){
+		if(enerpriseAssessList==null){
+			setEntepriseAssessList();
+		}
+		return enerpriseAssessList;
+	}
+	
+	public void setEntepriseAssessList(){
 		EnterpriseAssessExample eExample = new EnterpriseAssessExample();
-		List<EnterpriseAssess>  enerpAssessList=enterpriseAssessMapper.selectByExample(eExample);
+		enerpriseAssessList=enterpriseAssessMapper.selectByExample(eExample);
 		List<BearResultDto>    bearResultDtoList=bearRevisedService.getBearBadBehaviorRevised();
-		if(!enerpAssessList.isEmpty()  &&  !bearResultDtoList.isEmpty()  ){
-			for (EnterpriseAssess ea : enerpAssessList) {
+		if(!enerpriseAssessList.isEmpty()  &&  !bearResultDtoList.isEmpty()  ){
+			for (EnterpriseAssess ea : enerpriseAssessList) {
 				//将亿元单位的产值转化为万元
 				Float  outputstart=0f;
 				if(ea.getOutputstart()!= null){
@@ -83,7 +88,14 @@ public class ActionEnterpAssess {
 				ea.setEnterprise(enterprise.toString());
 			}
 		}
-		return new ExtDirectStoreReadResult<EnterpriseAssess>(enerpAssessList);
+	}
+	
+	// 列表
+	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
+	public ExtDirectStoreReadResult<EnterpriseAssess> read(
+			ExtDirectStoreReadRequest request) {
+		setEntepriseAssessList();
+		return new ExtDirectStoreReadResult<EnterpriseAssess>(enerpriseAssessList);
 	}
 
 	// 插入

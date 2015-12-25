@@ -34,6 +34,12 @@ public class ActionBearRevised {
 	
 	private  List<BearResultDto>  bearRevisedList=null;
 	
+	public List<BearResultDto> getBearRevisedList() {
+		if(bearRevisedList==null){
+			bearRevisedList=bearRevisedService.getBearBadBehaviorRevised();
+		}
+		return bearRevisedList;
+	}
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<BearResultDto> read(
@@ -45,12 +51,7 @@ public class ActionBearRevised {
 
 
 
-	public List<BearResultDto> getBearRevisedList() {
-		if(bearRevisedList==null){
-			bearRevisedList=bearRevisedService.getBearBadBehaviorRevised();
-		}
-		return bearRevisedList;
-	}
+	
 
 	
 	

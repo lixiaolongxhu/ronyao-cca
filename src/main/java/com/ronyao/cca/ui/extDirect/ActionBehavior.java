@@ -34,6 +34,7 @@ public class ActionBehavior {
 	private BehaviorMapper behaviorMapper;
 	
 	
+	private List<Behavior>  behaviorList;
 	
 	/**计算不良行为修正系统,公式: 不良行为修正系数=(不良行为公式常数5-(严重不良行为数+一般不良行为/3))/不良行为公式常数5
 	 * 
@@ -48,12 +49,22 @@ public class ActionBehavior {
 		behavior.setCorrection(new BigDecimal(coefficient) );
 	}
 	
+	public List<Behavior>  getBehaviorList(){
+		if(behaviorList==null){
+			BehaviorExample eExample = new BehaviorExample();
+			behaviorList=behaviorMapper.selectByExample(eExample);
+		}
+		return behaviorList;
+	}
+	
+	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<Behavior> read(
 			ExtDirectStoreReadRequest request) {
 		BehaviorExample eExample = new BehaviorExample();
-		return new ExtDirectStoreReadResult<Behavior>(behaviorMapper.selectByExample(eExample));
+		behaviorList=behaviorMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<Behavior>(behaviorList);
 	}
 
 	// 插入

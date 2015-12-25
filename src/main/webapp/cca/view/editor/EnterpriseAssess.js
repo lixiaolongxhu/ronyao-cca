@@ -118,7 +118,7 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 		width : 100,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 100,
 		dataIndex : 'updatetime'
 	}
