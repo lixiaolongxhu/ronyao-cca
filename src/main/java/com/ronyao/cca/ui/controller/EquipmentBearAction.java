@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.EquipmentBearMapper;
+
 import com.ronyao.cca.db.model.EquipmentBear;
-import com.ronyao.cca.db.model.EquipmentBearExample;
+
 import com.ronyao.cca.db.model.VoltageRankClassify;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionEquipmentBear;
 
 
 
@@ -34,7 +35,7 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class EquipmentBearAction {
 
 	@Resource
-	private EquipmentBearMapper  equipmentBearMapper;
+	private ActionEquipmentBear  actionEquipmentBear;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
@@ -57,14 +58,14 @@ public class EquipmentBearAction {
 		excelHeaderList.add("记录修改时间");
 				
 	
-		EquipmentBearExample example=new EquipmentBearExample();
-        List<EquipmentBear> enterpList = equipmentBearMapper.selectByExample(example);
+		
+        List<EquipmentBear> enterpList = actionEquipmentBear.getEquipmentBearList();
         if(enterpList.isEmpty()){
         	return;
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-        Map<Integer, VoltageRankClassify> voltageRankClassifyMap=constDictionary.voltageRankClassifyMap;
+        Map<Integer, VoltageRankClassify> voltageRankClassifyMap=constDictionary.getVoltageRankClassifyMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	EquipmentBear enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();

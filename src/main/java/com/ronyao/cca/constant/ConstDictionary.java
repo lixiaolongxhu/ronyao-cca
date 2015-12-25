@@ -55,39 +55,39 @@ public  class ConstDictionary {
 	/**获取企业资质等级信息列表
 	 * 
 	 */
-	public  Map<Byte, AptitudeRankClassify>  aptitudeRankClassifyMap=null;
-	public  List<AptitudeRankClassify>  aptitudeRankClassifyList=null;
+	private  Map<Byte, AptitudeRankClassify>  aptitudeRankClassifyMap=null;
+	private  List<AptitudeRankClassify>  aptitudeRankClassifyList=null;
 	/**企业基本信息
 	 * 
 	 */
-	public  Map<Integer, Enterprise>  enterpriseMap=null;
-	public  List<Enterprise>  enterpriseList=null;
+	private  Map<Integer, Enterprise>  enterpriseMap=null;
+	private  List<Enterprise>  enterpriseList=null;
 	
 	/**企业资质分类.
 	 * 
 	 */
-	public  Map<Byte, AptitudeClassify>  aptitudeClassifyMap=null;
-	public  List<AptitudeClassify>  aptitudeClassifyList=null;	
+	private  Map<Byte, AptitudeClassify>  aptitudeClassifyMap=null;
+	private  List<AptitudeClassify>  aptitudeClassifyList=null;	
 	
 	/**岗位分类
 	 * 
 	 */
-	public   Map<Integer, PostClassify>  postClassifyMap=null;
-	public   List<PostClassify>  postClassifyList=null;
+	private   Map<Integer, PostClassify>  postClassifyMap=null;
+	private   List<PostClassify>  postClassifyList=null;
 
 	
 	/**电压等级分类
 	 * 
 	 */	
-	public   Map<Integer, VoltageRankClassify>  voltageRankClassifyMap=null;
-	public  List<VoltageRankClassify>  voltageRankClassifyList=null;
+	private   Map<Integer, VoltageRankClassify>  voltageRankClassifyMap=null;
+	private  List<VoltageRankClassify>  voltageRankClassifyList=null;
 	
 	
 	/**初始载入基础数据配置.
 	 * 
 	 */
 	public void  initLoadDictionay(){
-		LOG.info("数据库基本字典数据初始载入...");
+		LOG.info("数据库基本字典数据重新载入...");
 		
 		//获取企业资质等级信息列表
 		AptitudeRankClassifyExample example=new AptitudeRankClassifyExample();
@@ -138,9 +138,99 @@ public  class ConstDictionary {
 			}
 		}
 	}
+
+
 	
 	
 
+
+	
+
+
+	
+
+
+	public Map<Byte, AptitudeRankClassify> getAptitudeRankClassifyMap() {
+		return aptitudeRankClassifyMap;
+	}
+
+
+	
+
+
+	public List<AptitudeRankClassify> getAptitudeRankClassifyList() {
+		return aptitudeRankClassifyList;
+	}
+
+
+	
+
+
+	public Map<Integer, Enterprise> getEnterpriseMap() {
+		return enterpriseMap;
+	}
+
+
+	
+
+
+	public List<Enterprise> getEnterpriseList() {
+		return enterpriseList;
+	}
+
+
+	
+
+
+	public Map<Byte, AptitudeClassify> getAptitudeClassifyMap() {
+		return aptitudeClassifyMap;
+	}
+
+
+	
+
+
+	public List<AptitudeClassify> getAptitudeClassifyList() {
+		return aptitudeClassifyList;
+	}
+
+
+	
+
+
+	public Map<Integer, PostClassify> getPostClassifyMap() {
+		return postClassifyMap;
+	}
+
+
+	
+
+
+	public List<PostClassify> getPostClassifyList() {
+		return postClassifyList;
+	}
+
+
+	
+
+
+	public Map<Integer, VoltageRankClassify> getVoltageRankClassifyMap() {
+		return voltageRankClassifyMap;
+	}
+
+
+	
+
+
+	public List<VoltageRankClassify> getVoltageRankClassifyList() {
+		return voltageRankClassifyList;
+	}
+
+
+	
+	
+	
+	
 	
 	
 	

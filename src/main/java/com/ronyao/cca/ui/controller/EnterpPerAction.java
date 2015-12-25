@@ -12,11 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.EnterprisePersonMapper;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterprisePerson;
-import com.ronyao.cca.db.model.EnterprisePersonExample;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionEnterpPer;
 
 
 
@@ -34,7 +33,7 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class EnterpPerAction {
 
 	@Resource
-	private EnterprisePersonMapper enterprisePersonMapper;
+	private ActionEnterpPer actionEnterpPer;
 	
 	
 	@Resource
@@ -62,15 +61,13 @@ public class EnterpPerAction {
 		excelHeaderList.add("记录创建时间");
 		excelHeaderList.add("记录修改时间");
 				
-	
-        EnterprisePersonExample example=new EnterprisePersonExample();
-        List<EnterprisePerson> enterpList = enterprisePersonMapper.selectByExample(example);
+        List<EnterprisePerson> enterpList = actionEnterpPer.getEnterprisePersonList();
         if(enterpList.isEmpty()){
         	return;
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-        Map<Integer, Enterprise> enterpriseMap=constDictionary.enterpriseMap;
+        Map<Integer, Enterprise> enterpriseMap=constDictionary.getEnterpriseMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterprisePerson enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();

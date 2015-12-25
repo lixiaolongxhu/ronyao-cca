@@ -25,13 +25,23 @@ public class ActionBehaviorSta {
 	private BehaviorStandardMapper behaviorStandardMapper;
 	
 	
+	private List<BehaviorStandardWithBLOBs>  behaviorStandardsList;
+	
+	public List<BehaviorStandardWithBLOBs>  getBehaviorStandardsList(){
+		if(behaviorStandardsList==null){
+			BehaviorStandardExample eExample = new BehaviorStandardExample();
+			behaviorStandardsList=behaviorStandardMapper.selectByExampleWithBLOBs(eExample);
+		}
+		return behaviorStandardsList;
+	}
+	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<BehaviorStandardWithBLOBs> read(
 			ExtDirectStoreReadRequest request) {
 		BehaviorStandardExample eExample = new BehaviorStandardExample();
-//		eExample.setOrderByClause(" createTime desc ");
-		return new ExtDirectStoreReadResult<BehaviorStandardWithBLOBs>(behaviorStandardMapper.selectByExampleWithBLOBs(eExample));
+		behaviorStandardsList=behaviorStandardMapper.selectByExampleWithBLOBs(eExample);
+		return new ExtDirectStoreReadResult<BehaviorStandardWithBLOBs>(behaviorStandardsList);
 	}
 
 	// 插入

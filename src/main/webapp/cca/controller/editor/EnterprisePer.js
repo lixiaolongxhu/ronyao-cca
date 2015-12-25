@@ -9,6 +9,10 @@ Ext.define('RYIVS.controller.editor.EnterprisePer', {
 
 	init : function() {
 		this.control({
+      		'enterprisePer ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
       		
      		 'enterprisePer button[itemId=buttonPerFileManager]':{
         		click : this.perFileManager
@@ -17,6 +21,11 @@ Ext.define('RYIVS.controller.editor.EnterprisePer', {
         		click : this.exporterExcel
      		 }
    		 });
+	},
+	
+	//界面建立时只调用一次
+	onAfterrender : function(pa, options) {
+		pa.getStore().load();			
 	},
 	
 	/**企业持证人员文件管理

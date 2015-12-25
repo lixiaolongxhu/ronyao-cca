@@ -2,6 +2,8 @@ package com.ronyao.cca.ui.extDirect;
 
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -30,14 +32,24 @@ public class ActionBearRevised {
 	private BearRevisedService bearRevisedService;
 	
 	
+	private  List<BearResultDto>  bearRevisedList=null;
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<BearResultDto> read(
 			ExtDirectStoreReadRequest request) {
-	
-		return new ExtDirectStoreReadResult<BearResultDto>(bearRevisedService.getBearBadBehaviorRevised());
+		bearRevisedList=bearRevisedService.getBearBadBehaviorRevised();
+		return new ExtDirectStoreReadResult<BearResultDto>(bearRevisedList);
 		
+	}
+
+
+
+	public List<BearResultDto> getBearRevisedList() {
+		if(bearRevisedList==null){
+			bearRevisedList=bearRevisedService.getBearBadBehaviorRevised();
+		}
+		return bearRevisedList;
 	}
 
 	

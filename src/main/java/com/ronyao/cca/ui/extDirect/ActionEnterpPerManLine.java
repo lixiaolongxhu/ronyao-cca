@@ -32,7 +32,16 @@ public class ActionEnterpPerManLine {
 	@Autowired
 	private EnterprisePerManageMapper enterprisePerManageMapper;
 	
+	private List<EnterprisePerManage>  enterprisePerManageList;
 	
+	public List<EnterprisePerManage>  getEnterprisePerManage(){
+		if(enterprisePerManageList==null){
+			EnterprisePerManageExample eExample = new EnterprisePerManageExample();
+			eExample.createCriteria().andProfessiontypeEqualTo(ConstEnterprisePerMan.LINE_PROFESSION);
+			enterprisePerManageList=enterprisePerManageMapper.selectByExample(eExample);
+		}
+		return enterprisePerManageList;
+	}
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
@@ -40,7 +49,8 @@ public class ActionEnterpPerManLine {
 			ExtDirectStoreReadRequest request) {
 		EnterprisePerManageExample eExample = new EnterprisePerManageExample();
 		eExample.createCriteria().andProfessiontypeEqualTo(ConstEnterprisePerMan.LINE_PROFESSION);
-		return new ExtDirectStoreReadResult<EnterprisePerManage>(enterprisePerManageMapper.selectByExample(eExample));
+		enterprisePerManageList=enterprisePerManageMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<EnterprisePerManage>(enterprisePerManageList);
 	}
 
 	// 插入

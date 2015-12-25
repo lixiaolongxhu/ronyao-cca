@@ -7,6 +7,10 @@ Ext.define('RYIVS.controller.editor.EnterpriseApt', {
 
 	init : function() {
 		this.control({
+			'enterpriseApt ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
       		'enterpriseApt button[itemId=buttonLookOver]':{
         		click : this.lookOver
      		 },
@@ -14,6 +18,11 @@ Ext.define('RYIVS.controller.editor.EnterpriseApt', {
         		click : this.exporterExcel
      		 }
    		 });
+	},
+	
+	//界面建立时只调用一次
+	onAfterrender : function(pa, options) {
+		pa.getStore().load();			
 	},
 	
 	//查看grid选中行详细详细

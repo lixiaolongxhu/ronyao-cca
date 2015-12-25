@@ -12,7 +12,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	store : 'editor.Enterprise',
 	
 	// 定义 autoload
-	autoload : false,
+	autoload : true,
 	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
 	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.

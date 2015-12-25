@@ -105,9 +105,10 @@ public class SessionManager {
 	 */
 	@RequestMapping(value = "/app")
 	public String genApp(Model model) {
-		LOG.info("判断是否已登记,未登录就跳转到登录界面");
+		
 		if (this.user == null) {
 			// 未登陆
+			LOG.info("用户未登录,跳转到登录界面");
 			return "AppLogin";
 		} else {
 //			// 已经登陆，判断用户类型
@@ -118,6 +119,7 @@ public class SessionManager {
 //				// 监控人员登陆
 //				return "AppUser";
 //			}	
+			LOG.info("用户已登录,跳转到主界面");
 			// 管理员登陆
 			return "AppAdmin";
 
@@ -136,41 +138,44 @@ public class SessionManager {
 
 	@RequestMapping(value = "/global")
 	public String getGlobalConfig(Model model) {
+		//用户登录后才返回常量
+		if(this.user!=null){
+			//读取数据库初始配置
+			constDictionary.initLoadDictionay();
+			
+			//enterprise 查询企业名称列表
+			model.addAttribute("enterprise", constDictionary.getEnterpriseList());
+			
+			//查询企业资质分类
+			model.addAttribute("aptitudeClassify",constDictionary.getAptitudeClassifyList());
+			
+			//查询企业资质等级
+			
+			model.addAttribute("aptitudeRankClassify",constDictionary.getAptitudeRankClassifyList());
+			
+			//施工企业岗位名称分类列表
+			
+			model.addAttribute("postClassify",constDictionary.getPostClassifyList());
+			
+			//电压等级分类
 		
-		//读取数据库初始配置
-		constDictionary.initLoadDictionay();
+			model.addAttribute("voltageRankClassify",constDictionary.getVoltageRankClassifyList());
+			
+			//获取当前时间到前10年的列表
+			String yearStr=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);
+			Integer yearInt=Integer.valueOf(yearStr);
+			List<YearVo> yearList=new ArrayList<YearVo>();
+			for(int i=0;i<10;i++){
+				YearVo   year=new YearVo();
+				year.setId(yearInt-i);
+				year.setName(year.getId()+"年");
+				yearList.add(year);
+			}
+			model.addAttribute("year",yearList);
 		
-		//enterprise 查询企业名称列表
-		model.addAttribute("enterprise", constDictionary.enterpriseList);
-		
-		//查询企业资质分类
-		model.addAttribute("aptitudeClassify",constDictionary.aptitudeClassifyList);
-		
-		//查询企业资质等级
-		
-		model.addAttribute("aptitudeRankClassify",constDictionary.aptitudeRankClassifyList);
-		
-		//施工企业岗位名称分类列表
-		
-		model.addAttribute("postClassify",constDictionary.postClassifyList);
-		
-		//电压等级分类
-	
-		model.addAttribute("voltageRankClassify",constDictionary.voltageRankClassifyList);
-		
-		//获取当前时间到前10年的列表
-		String yearStr=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);
-		Integer yearInt=Integer.valueOf(yearStr);
-		List<YearVo> yearList=new ArrayList<YearVo>();
-		for(int i=0;i<10;i++){
-			YearVo   year=new YearVo();
-			year.setId(yearInt-i);
-			year.setName(year.getId()+"年");
-			yearList.add(year);
+			
+			
 		}
-		model.addAttribute("year",yearList);
-	
-		
 		return "DBConst";
 	};
 	

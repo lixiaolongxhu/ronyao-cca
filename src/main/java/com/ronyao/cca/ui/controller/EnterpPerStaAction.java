@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.EnterprisePerStandardMapper;
 import com.ronyao.cca.db.model.EnterprisePerStandard;
-import com.ronyao.cca.db.model.EnterprisePerStandardExample;
 import com.ronyao.cca.db.model.PostClassify;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionEnterpPerSta;
 
 
 
@@ -34,7 +33,7 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class EnterpPerStaAction {
 
 	@Resource
-	private EnterprisePerStandardMapper  enterprisePerStandardMapper;
+	private ActionEnterpPerSta  actionEnterpPerSta;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
@@ -58,8 +57,7 @@ public class EnterpPerStaAction {
 		excelHeaderList.add("记录修改时间");
 				
 	
-		EnterprisePerStandardExample example=new EnterprisePerStandardExample();
-        List<EnterprisePerStandard> enterpList = enterprisePerStandardMapper.selectByExample(example);
+        List<EnterprisePerStandard> enterpList = actionEnterpPerSta.getEnterprisePerStandardsList();
         if(enterpList.isEmpty()){
         	return;
         }
@@ -68,7 +66,7 @@ public class EnterpPerStaAction {
         Integer lineflatnumSum=0;
         Integer linemountainnumSum=0;
         Integer powernumSum=0;
-        Map<Integer, PostClassify> postClassiyMap=constDictionary.postClassifyMap;
+        Map<Integer, PostClassify> postClassiyMap=constDictionary.getPostClassifyMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterprisePerStandard enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();

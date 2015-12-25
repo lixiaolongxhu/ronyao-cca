@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.EnterpriseAptitudeMapper;
 import com.ronyao.cca.db.model.AptitudeClassify;
 import com.ronyao.cca.db.model.AptitudeRankClassify;
 import com.ronyao.cca.db.model.EnterpriseAptitude;
-import com.ronyao.cca.db.model.EnterpriseAptitudeExample;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionEnterpApt;
 
 
 
@@ -39,7 +38,7 @@ public class EnterpAptAction {
 	private ConstDictionary  constDictionary;
 	
 	@Resource
-	private EnterpriseAptitudeMapper  enterpriseAptitudeMapper;
+	private ActionEnterpApt  actionEnterpApt;
 
 	
 	@RequestMapping(value="/excel")
@@ -59,15 +58,15 @@ public class EnterpAptAction {
 		excelHeaderList.add("记录修改时间");
 				
 	
-		EnterpriseAptitudeExample example=new EnterpriseAptitudeExample();
-        List<EnterpriseAptitude> enterpList = enterpriseAptitudeMapper.selectByExample(example);
+
+        List<EnterpriseAptitude> enterpList = actionEnterpApt.getEnterpriseAptitudeList();
         if(enterpList.isEmpty()){
         	return;
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-        Map<Byte, AptitudeRankClassify> aptitudeRankClassifyMap=constDictionary.aptitudeRankClassifyMap;
-        Map<Byte, AptitudeClassify> aptitudeClassifyMap=constDictionary.aptitudeClassifyMap;
+        Map<Byte, AptitudeRankClassify> aptitudeRankClassifyMap=constDictionary.getAptitudeRankClassifyMap();
+        Map<Byte, AptitudeClassify> aptitudeClassifyMap=constDictionary.getAptitudeClassifyMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterpriseAptitude enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();

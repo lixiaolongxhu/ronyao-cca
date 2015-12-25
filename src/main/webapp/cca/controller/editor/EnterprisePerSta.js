@@ -7,7 +7,10 @@ Ext.define('RYIVS.controller.editor.EnterprisePerSta', {
 
 	init : function() {
 		this.control({
-      		
+      		 'enterprisePerSta ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
      		
      		  'enterprisePerSta button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
@@ -15,6 +18,14 @@ Ext.define('RYIVS.controller.editor.EnterprisePerSta', {
    		 });
 	},
 
+	
+	
+	//界面建立时只调用一次
+	onAfterrender : function(pa, options) {
+		pa.getStore().load();			
+	},
+	
+	
 		/**excel 导出
 	 * 
 	 */

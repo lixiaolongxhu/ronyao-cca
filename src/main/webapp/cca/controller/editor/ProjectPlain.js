@@ -16,7 +16,7 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
 			init : function() {	
 				this.control({
 							'projectPlain' : {
-								activate : this.onActivate,
+								
 								afterrender:this.onAfterrender
 							},
 							'projectPlain button[itemId=addButton]' : {
@@ -36,11 +36,7 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
 				controller.UserLogGrid = this;
 			},
 
-			// 当标签激活时
-			onActivate : function(pa, options) {
 			
-
-			},
 			//界面建立时只调用一次
 			onAfterrender : function(pa, options) {
 		

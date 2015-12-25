@@ -5,7 +5,7 @@ Ext.define('RYIVS.store.editor.EnterpriseAssess', {
 	// Store所对应的模型
 	model : 'RYIVS.model.editor.EnterpriseAssess',
 	// 是否自动加载
-	autoLoad : true,
+	autoLoad : false,
 	//store 与后台数据自动同步
     autoSync : true,
 

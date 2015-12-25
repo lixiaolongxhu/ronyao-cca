@@ -3,7 +3,7 @@ Ext.define('RYIVS.view.editor.Behavior', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.behavior',
-	title : '不良行为修正系数',
+	title : '不良行为影响修正系数',
 	iconCls : 's_user',
 	// 定义 store
 	store : 'editor.Behavior',
@@ -112,7 +112,7 @@ Ext.define('RYIVS.view.editor.Behavior', {
 		width : 100,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 100,
 		dataIndex : 'updatetime'
 	}

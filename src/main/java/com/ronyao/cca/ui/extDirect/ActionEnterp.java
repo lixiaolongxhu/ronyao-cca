@@ -2,6 +2,9 @@ package com.ronyao.cca.ui.extDirect;
 
 import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
@@ -20,9 +23,17 @@ import com.ronyao.cca.tool.DateUtil;
  */
 @Service
 public class ActionEnterp {
+	
+	private static final  Logger  LOG=LoggerFactory.getLogger(ActionEnterp.class);
+	
 	@Autowired
 	EnterpriseMapper enterpriseMapper;
 	
+	/**查询信息列表
+	 * 
+	 */
+	private  List<Enterprise> enterpriseList=null;
+	 
 	/**近三年项目数与产值求和
 	 * 
 	 * @param enterpirse
@@ -37,13 +48,22 @@ public class ActionEnterp {
 		enterprise.setOutput(sumOutput);
 	}
 	
-
+	public List<Enterprise>  getEnterpriseList(){
+		if(enterpriseList==null){
+			EnterpriseExample eExample = new EnterpriseExample();
+			enterpriseList=enterpriseMapper.selectByExample(eExample);
+		}
+		return enterpriseList;
+	}
+	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<Enterprise> read(
 			ExtDirectStoreReadRequest request) {
+		LOG.debug("查询企业基本信息调用");
 		EnterpriseExample eExample = new EnterpriseExample();
-		return new ExtDirectStoreReadResult<Enterprise>(enterpriseMapper.selectByExample(eExample));
+		enterpriseList=enterpriseMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<Enterprise>(enterpriseList);
 	}
 
 	// 插入

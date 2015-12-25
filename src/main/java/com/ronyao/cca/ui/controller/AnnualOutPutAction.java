@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.AnnualOutputMapper;
 import com.ronyao.cca.db.model.AnnualOutput;
-import com.ronyao.cca.db.model.AnnualOutputExample;
 import com.ronyao.cca.db.model.VoltageRankClassify;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionAnnualOutput;
 
 
 
@@ -34,7 +33,7 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class AnnualOutPutAction {
 
 	@Resource
-	private AnnualOutputMapper  annualOutPutMapper;
+	private ActionAnnualOutput  actionAnnualOutput;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
@@ -56,15 +55,14 @@ public class AnnualOutPutAction {
 		excelHeaderList.add("记录创建时间");
 		excelHeaderList.add("记录修改时间");
 				
-	
-		AnnualOutputExample example=new AnnualOutputExample();
-        List<AnnualOutput> enterpList = annualOutPutMapper.selectByExample(example);
+
+        List<AnnualOutput> enterpList = actionAnnualOutput.getAnnualOutputList();
         if(enterpList.isEmpty()){
         	return;
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-        Map<Integer, VoltageRankClassify>  voltageRankClassifyMap=constDictionary.voltageRankClassifyMap;
+        Map<Integer, VoltageRankClassify>  voltageRankClassifyMap=constDictionary.getVoltageRankClassifyMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	AnnualOutput enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();

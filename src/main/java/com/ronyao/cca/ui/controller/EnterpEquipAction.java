@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.EnterpriseEquipmentMapper;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterpriseEquipment;
-import com.ronyao.cca.db.model.EnterpriseEquipmentExample;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionEnterpEquip;
 
 
 
@@ -34,7 +33,7 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class EnterpEquipAction {
 
 	@Resource
-	private EnterpriseEquipmentMapper  enterpriseEquipmentMapper;
+	private ActionEnterpEquip  actionEnterpEquip;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
@@ -55,14 +54,14 @@ public class EnterpEquipAction {
 		excelHeaderList.add("记录修改时间");
 				
 	
-		EnterpriseEquipmentExample example=new EnterpriseEquipmentExample();
-        List<EnterpriseEquipment> enterpList = enterpriseEquipmentMapper.selectByExample(example);
+
+        List<EnterpriseEquipment> enterpList = actionEnterpEquip.getEnterpriseEquipmentList();
         if(enterpList.isEmpty()){
         	return;
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-        Map<Integer, Enterprise> enterpriseMap=constDictionary.enterpriseMap;
+        Map<Integer, Enterprise> enterpriseMap=constDictionary.getEnterpriseMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	 EnterpriseEquipment enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();

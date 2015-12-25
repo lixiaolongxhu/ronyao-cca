@@ -23,6 +23,8 @@ public class ActionEnterpPer {
 	@Autowired
 	EnterprisePersonMapper enterprisePersonMapper;
 	
+	private List<EnterprisePerson> enterprisePersonList=null;
+	
 	/**统计人员合计信息.
 	 * 
 	 * @param ep
@@ -40,13 +42,22 @@ public class ActionEnterpPer {
 			ep.setSkilltotal(skilltotal);
 		
 	}
+	
+	public List<EnterprisePerson> getEnterprisePersonList(){
+		if(enterprisePersonList==null){
+			EnterprisePersonExample eExample = new EnterprisePersonExample();
+			enterprisePersonList=enterprisePersonMapper.selectByExample(eExample);
+		}
+		return enterprisePersonList;
+	}
 
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<EnterprisePerson> read(
 			ExtDirectStoreReadRequest request) {
 		EnterprisePersonExample eExample = new EnterprisePersonExample();
-		return new ExtDirectStoreReadResult<EnterprisePerson>(enterprisePersonMapper.selectByExample(eExample));
+		enterprisePersonList=enterprisePersonMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<EnterprisePerson>(enterprisePersonList);
 	}
 
 	// 插入

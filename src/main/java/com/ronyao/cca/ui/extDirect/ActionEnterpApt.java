@@ -24,14 +24,23 @@ public class ActionEnterpApt {
 	@Autowired
 	private EnterpriseAptitudeMapper enterprisAptitudeMaper;
 	
+	private List<EnterpriseAptitude> enterpriseAptitudeList=null;
+	
+	public List<EnterpriseAptitude> getEnterpriseAptitudeList(){
+		if(enterpriseAptitudeList==null){
+			EnterpriseAptitudeExample eExample = new EnterpriseAptitudeExample();
+			enterpriseAptitudeList=enterprisAptitudeMaper.selectByExample(eExample);
+		}
+		return enterpriseAptitudeList;
+	}
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<EnterpriseAptitude> read(
 			ExtDirectStoreReadRequest request) {
 		EnterpriseAptitudeExample eExample = new EnterpriseAptitudeExample();
-//		eExample.setOrderByClause(" createTime desc ");
-		return new ExtDirectStoreReadResult<EnterpriseAptitude>(enterprisAptitudeMaper.selectByExample(eExample));
+		enterpriseAptitudeList=enterprisAptitudeMaper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<EnterpriseAptitude>(enterpriseAptitudeList);
 	}
 
 	// 插入

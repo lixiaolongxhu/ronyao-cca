@@ -16,25 +16,25 @@ import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.service.dto.BearResultDto;
 import com.ronyao.cca.tool.ExcelUtil;
-import com.ronyao.cca.ui.extDirect.ActionBear;
+import com.ronyao.cca.ui.extDirect.ActionBearRevised;
 
 
 
 
 
 
-/**承载能力计算结果.
+/**不良行为影响修正结果.
  * 
  * @author user
  *
  */
 
 @Controller
-@RequestMapping(value="/bear")
-public class BearAction {
+@RequestMapping(value="/bearRevised")
+public class BearRevisedAction {
 
 	@Resource
-	private ActionBear  actionBear;
+	private ActionBearRevised  actionBearRevised;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
@@ -61,7 +61,7 @@ public class BearAction {
 				
 	
 		
-		List<BearResultDto> enterpList = actionBear.getBearList();
+		List<BearResultDto> enterpList = actionBearRevised.getBearRevisedList();
         if(enterpList.isEmpty()){
         	return;
         }

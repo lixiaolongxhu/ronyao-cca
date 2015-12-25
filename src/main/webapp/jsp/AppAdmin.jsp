@@ -55,6 +55,8 @@ Ext.application({
 		// 建立主界面
 		Ext.create('Ext.container.Viewport', {
 			layout : 'border',
+			minWidth : 800,
+			
 			items : [{
 				xtype : 'layerAdmin'
 			}]

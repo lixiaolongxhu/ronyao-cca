@@ -30,13 +30,24 @@ public class ActionEnterpPerSta {
 	@Autowired
 	private EnterprisePerStandardMapper enterprisePerStandardMapper;
 	
+	private List<EnterprisePerStandard>    enterprisePerStandardsList;
+	
+	public List<EnterprisePerStandard>  getEnterprisePerStandardsList(){
+		if(enterprisePerStandardsList==null){
+			EnterprisePerStandardExample eExample = new EnterprisePerStandardExample();
+			enterprisePerStandardsList=enterprisePerStandardMapper.selectByExample(eExample);
+		}
+		return  enterprisePerStandardsList;
+	}
+	
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<EnterprisePerStandard> read(
 			ExtDirectStoreReadRequest request) {
 		EnterprisePerStandardExample eExample = new EnterprisePerStandardExample();
-		return new ExtDirectStoreReadResult<EnterprisePerStandard>(enterprisePerStandardMapper.selectByExample(eExample));
+		enterprisePerStandardsList=enterprisePerStandardMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<EnterprisePerStandard>(enterprisePerStandardsList);
 	}
 
 	// 插入

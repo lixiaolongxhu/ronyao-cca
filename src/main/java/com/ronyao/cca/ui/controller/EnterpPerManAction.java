@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.constant.ConstEnterprisePerMan;
-import com.ronyao.cca.db.dao.EnterprisePerManageMapper;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterprisePerManage;
-import com.ronyao.cca.db.model.EnterprisePerManageExample;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionEnterpPerManLine;
+import com.ronyao.cca.ui.extDirect.ActionEnterpPerManPower;
 
 
 
@@ -33,22 +32,17 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class EnterpPerManAction {
 
 	@Resource
-	private EnterprisePerManageMapper  enterprisePerManageMapper;
+	private ActionEnterpPerManLine  actionEnterpPerManLine;
+	
+	@Resource
+	private ActionEnterpPerManPower actionEnterpPerManPower;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
 
 	
-	
-	@RequestMapping(value="/enterprisePerManLine/excel")
-	public void exportExcelLine(HttpServletRequest request , HttpServletResponse response) throws Exception{
 
-		String fileName="施工企业现场管理人员(线路专业人员)";
-		exportExcel(fileName,ConstEnterprisePerMan.LINE_PROFESSION,response);
-	
-    }
-	
-	private void exportExcel(String fileName, int profession,HttpServletResponse response) throws IOException {
+	private void exportExcel(String fileName, List<EnterprisePerManage> perManageList,HttpServletResponse response) throws IOException {
 		
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
@@ -73,15 +67,14 @@ public class EnterpPerManAction {
 		excelHeaderList.add("记录修改时间");
 				
 	
-		EnterprisePerManageExample example=new EnterprisePerManageExample();
-		example.createCriteria().andProfessiontypeEqualTo(profession);
-        List<EnterprisePerManage> enterpList = enterprisePerManageMapper.selectByExample(example);
+		
+        List<EnterprisePerManage> enterpList = perManageList;
         if(enterpList.isEmpty()){
         	return;
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-        Map<Integer, Enterprise> enterpriseMap=constDictionary.enterpriseMap;
+        Map<Integer, Enterprise> enterpriseMap=constDictionary.getEnterpriseMap();
         for (int i=0;i<enterpList.size() ;i++) {
         	EnterprisePerManage enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
@@ -114,12 +107,24 @@ public class EnterpPerManAction {
         ExcelUtil.excelExport(fileName, excelHeaderList, valueMap, response);
 		
 	}
+	
+	
+	@RequestMapping(value="/enterprisePerManLine/excel")
+	public void exportExcelLine(HttpServletRequest request , HttpServletResponse response) throws Exception{
+
+		String fileName="施工企业现场管理人员(线路专业人员)";
+		List<EnterprisePerManage>  perManageList=actionEnterpPerManLine.getEnterprisePerManage();
+		exportExcel(fileName,perManageList,response);
+	
+    }
+	
 
 	@RequestMapping(value="/enterprisePerManPower/excel")
 	public void exportExcelPower(HttpServletRequest request , HttpServletResponse response) throws Exception{
 
 		String fileName="施工企业现场管理人员(变电专业人员)";
-		exportExcel(fileName,ConstEnterprisePerMan.POWER_PROFESSION,response);
+		List<EnterprisePerManage>  perManageList=actionEnterpPerManPower.getEnterprisePerManageList();
+		exportExcel(fileName,perManageList,response);
 	
    }
 }

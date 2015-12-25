@@ -30,13 +30,24 @@ public class ActionEquipmentBear {
 	@Autowired
 	private EquipmentBearMapper equipmentBearMapper;
 	
+	private List<EquipmentBear>  equipmentBearList;
+	
+	public List<EquipmentBear> getEquipmentBearList(){
+		if(equipmentBearList==null){
+			EquipmentBearExample eExample = new EquipmentBearExample();
+			equipmentBearList=equipmentBearMapper.selectByExample(eExample);
+		}
+		return equipmentBearList;
+	}
+	
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<EquipmentBear> read(
 			ExtDirectStoreReadRequest request) {
 		EquipmentBearExample eExample = new EquipmentBearExample();
-		return new ExtDirectStoreReadResult<EquipmentBear>(equipmentBearMapper.selectByExample(eExample));
+		equipmentBearList=equipmentBearMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<EquipmentBear>(equipmentBearList);
 	}
 
 	// 插入

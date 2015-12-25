@@ -31,12 +31,24 @@ public class ActionAnnualOutput {
 	private AnnualOutputMapper annulaOutputMapper;
 	
 	
+	public List<AnnualOutput>  annualOutputList;
+	
+	public List<AnnualOutput>  getAnnualOutputList(){
+		if(annualOutputList==null){
+			AnnualOutputExample eExample = new AnnualOutputExample();
+			annualOutputList=annulaOutputMapper.selectByExample(eExample);
+		}
+		return annualOutputList;
+	}
+	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<AnnualOutput> read(
 			ExtDirectStoreReadRequest request) {
+		
 		AnnualOutputExample eExample = new AnnualOutputExample();
-		return new ExtDirectStoreReadResult<AnnualOutput>(annulaOutputMapper.selectByExample(eExample));
+		annualOutputList=annulaOutputMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<AnnualOutput>(annualOutputList);
 	}
 
 	// 插入

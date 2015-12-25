@@ -30,6 +30,9 @@ public class ActionEnterpEquip {
 	@Autowired
 	private EnterpriseEquipmentMapper enterpriseEquipmentMapper;
 	
+	private List<EnterpriseEquipment>  enterpriseEquipmentList=null;
+
+	
 	/**现场施工人员合计
 	 * 
 	 * @param ep
@@ -40,12 +43,22 @@ public class ActionEnterpEquip {
 		ep.setSum(sum);
 	}
 	
+	
+	public List<EnterpriseEquipment>  getEnterpriseEquipmentList(){
+		if(enterpriseEquipmentList==null){
+			EnterpriseEquipmentExample eExample = new EnterpriseEquipmentExample();
+			enterpriseEquipmentList=enterpriseEquipmentMapper.selectByExample(eExample);
+		}
+		return enterpriseEquipmentList;
+	}
+	 
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<EnterpriseEquipment> read(
 			ExtDirectStoreReadRequest request) {
 		EnterpriseEquipmentExample eExample = new EnterpriseEquipmentExample();
-		return new ExtDirectStoreReadResult<EnterpriseEquipment>(enterpriseEquipmentMapper.selectByExample(eExample));
+		enterpriseEquipmentList=enterpriseEquipmentMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<EnterpriseEquipment>(enterpriseEquipmentList);
 	}
 
 	// 插入

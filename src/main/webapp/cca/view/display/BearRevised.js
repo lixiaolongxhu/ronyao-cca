@@ -2,7 +2,7 @@
 Ext.define('RYIVS.view.display.BearRevised', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.bearRevised',
-	title : '施工企业承载能力修正后结果',
+	title : '不良行为影响修正结果',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'display.BearRevised',
@@ -21,7 +21,11 @@ Ext.define('RYIVS.view.display.BearRevised', {
 		handler : function() {
 			this.ownerCt.ownerCt.store.load();
 		}
-	} ],
+	} , {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    }],
 	
 	// 定义 colums
 	columns : [

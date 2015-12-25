@@ -9,7 +9,10 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
 
 	init : function() {
 		this.control({
-			
+			'enterprise ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
       		
      		 'enterprise button[itemId=buttonAptFileManager]':{
         		click : this.aptFileManager
@@ -20,6 +23,16 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
    		 });
 	},
 	
+	
+	
+	/**界面建立时只调用一次
+	 * 
+	 * @param {} pa
+	 * @param {} options
+	 */
+	onAfterrender : function(pa, options) {
+		pa.getStore().load();			
+	},
 	
 	/**企业资质文件管理
 	 * 

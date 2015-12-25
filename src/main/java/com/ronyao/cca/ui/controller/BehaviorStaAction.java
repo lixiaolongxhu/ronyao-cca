@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
-import com.ronyao.cca.db.dao.BehaviorStandardMapper;
-import com.ronyao.cca.db.model.BehaviorStandardExample;
 import com.ronyao.cca.db.model.BehaviorStandardWithBLOBs;
 import com.ronyao.cca.tool.ExcelUtil;
+import com.ronyao.cca.ui.extDirect.ActionBehaviorSta;
 
 
 
@@ -32,7 +31,7 @@ import com.ronyao.cca.tool.ExcelUtil;
 public class BehaviorStaAction {
 
 	@Resource
-	private BehaviorStandardMapper  behaviorStandardMapper  ;
+	private ActionBehaviorSta  actionBehaviorSta  ;
 	
 	@Resource
 	private ConstDictionary  constDictionary;
@@ -54,9 +53,8 @@ public class BehaviorStaAction {
 		excelHeaderList.add("记录创建时间");
 		excelHeaderList.add("记录修改时间");
 				
-	
-		BehaviorStandardExample example=new BehaviorStandardExample();
-        List<BehaviorStandardWithBLOBs> enterpList = behaviorStandardMapper.selectByExampleWithBLOBs(example);
+
+        List<BehaviorStandardWithBLOBs> enterpList = actionBehaviorSta.getBehaviorStandardsList();
         if(enterpList.isEmpty()){
         	return;
         }
