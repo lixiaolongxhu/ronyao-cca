@@ -61,7 +61,7 @@ public class BearAction {
 				
 	
 		
-		List<BearResultDto> enterpList = actionBear.getBearList();
+		List<BearResultDto> enterpList = actionBear.getBearResultList();
         if(enterpList.isEmpty()){
         	return;
         }

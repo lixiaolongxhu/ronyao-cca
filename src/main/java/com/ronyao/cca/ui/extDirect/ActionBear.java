@@ -37,29 +37,30 @@ public class ActionBear {
 	/**施工企业承载结果
 	 * 
 	 */
-	private static  List<BearResultDto>  resultList=null;
+	private static  List<BearResultDto>  bearResultList=null;
 	
+	/**获取承载结果集
+	 * 
+	 * @return
+	 */
+	public    List<BearResultDto>  getBearResultList(){
+		if(bearResultList==null){
+			bearResultList=bear.getEnterpriseBearResult();
+		}
+		return  bearResultList;
+	}
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<BearResultDto> read(
 			ExtDirectStoreReadRequest request) {
 		
-		resultList=bear.getEnterpriseBearResult();
-		return new ExtDirectStoreReadResult<BearResultDto>(resultList);
+		bearResultList=bear.getEnterpriseBearResult();
+		return new ExtDirectStoreReadResult<BearResultDto>(bearResultList);
 		
 	}
 
-	/**获取承载结果集
-	 * 
-	 * @return
-	 */
-	public    List<BearResultDto>  getBearList(){
-		if(resultList==null){
-			resultList=bear.getEnterpriseBearResult();
-		}
-		return  resultList;
-	}
+	
 	
 	
 	

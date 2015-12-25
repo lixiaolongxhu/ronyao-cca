@@ -65,7 +65,7 @@ public class BearImp implements Bear {
 	
 	
 	@Resource
-	private EnterpriseEquipmentMapper  enterpriseEnterpriseEquipmentMapper;
+	private EnterpriseEquipmentMapper  enterpriseEquipmentMapper;
 	
 	@Resource
 	private EquipmentBearMapper  equipementBearMapper;
@@ -131,8 +131,8 @@ public class BearImp implements Bear {
 		AnnualOutputExample   outputExample=new AnnualOutputExample();
 		List<AnnualOutput>  outputList=annualOutputMapper.selectByExample(outputExample);
 		if(outputList.isEmpty()){
-				LOG.warn("施工项目团队年产值信息未配置  :: 用户未配置,用户必须配置该项.");
-				//return 0;
+			LOG.warn("施工项目团队年产值信息未配置  :: 用户未配置,用户必须配置该项.");
+			//return 0;
 				
 		}
 		outputmap=new HashMap<String, AnnualOutput>();
@@ -478,7 +478,7 @@ public class BearImp implements Bear {
 		//获取企业的大张牵设备数
 		EnterpriseEquipmentExample  enterEquipmentExample=new EnterpriseEquipmentExample();
 		enterEquipmentExample.createCriteria().andEnterpriseidEqualTo(enterpriseId);
-		List<EnterpriseEquipment>  enterEquipment=enterpriseEnterpriseEquipmentMapper.selectByExample(enterEquipmentExample);
+		List<EnterpriseEquipment>  enterEquipment=enterpriseEquipmentMapper.selectByExample(enterEquipmentExample);
 		Integer bigEnterpriseEquip=0;
 		if(!enterEquipment.isEmpty()){
 			bigEnterpriseEquip= enterEquipment.get(0).getBigequipment();
