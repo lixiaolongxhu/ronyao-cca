@@ -2,7 +2,7 @@
 Ext.define('RYIVS.view.display.BearContrastProOutput', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.bearContrastProOutput',
-	title : '工程数量对比情况',
+	title : '产值对比情况',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'display.BearContrastProOutput',
@@ -21,7 +21,11 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 		handler : function() {
 			this.ownerCt.ownerCt.store.load();
 		}
-	} ],
+	}, {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    }],
 	
 	// 定义 colums
 	columns : [

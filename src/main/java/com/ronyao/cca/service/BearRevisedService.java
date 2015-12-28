@@ -3,6 +3,8 @@ package com.ronyao.cca.service;
 import java.util.List;
 
 import com.ronyao.cca.service.dto.BearResultDto;
+import com.ronyao.cca.ui.vo.OutputConstrastVo;
+import com.ronyao.cca.ui.vo.ProjectConstrastVo;
 
 /**不良行为修正
  * 
@@ -18,5 +20,17 @@ public interface BearRevisedService {
 	 * @return
 	 */
 	public List<BearResultDto>  getBearBadBehaviorRevised();
+	
+	/**施工企业承载能力评估(修改后结果),与近三年的项目平均数对比
+	 * 
+	 * @return
+	 */
+	public  List<ProjectConstrastVo>  getBearConstrastProjectNum();
+	
+	/**施工企业承载能力评估(修改后结果),与近三年的产值平均数对比
+	 * 
+	 * @return
+	 */
+	public List<OutputConstrastVo>  getBearConstrastOutput();
 	
 }

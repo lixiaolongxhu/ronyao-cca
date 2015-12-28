@@ -22,6 +22,8 @@ import com.ronyao.cca.service.Bear;
 import com.ronyao.cca.service.BearRevisedService;
 import com.ronyao.cca.service.dto.BearResultDto;
 import com.ronyao.cca.tool.DateUtil;
+import com.ronyao.cca.ui.vo.OutputConstrastVo;
+import com.ronyao.cca.ui.vo.ProjectConstrastVo;
 
 /**不良行为修正
  * 
@@ -120,6 +122,54 @@ public class BearRevisedServiceImp implements BearRevisedService {
 		
 		
 		return resultList;
+	}
+
+	public List<ProjectConstrastVo> getBearConstrastProjectNum() {
+		List<ProjectConstrastVo>  projectConstratVoList=new ArrayList<ProjectConstrastVo>();
+		List<BearResultDto>  brList=getBearBadBehaviorRevised() ;
+		if(!brList.isEmpty()){
+			for (BearResultDto bearResultDto : brList) {
+				ProjectConstrastVo vo=new ProjectConstrastVo();
+				
+				vo.setEnterpriseName(bearResultDto.getEnterpriseName());
+				vo.setSupervisorunit(bearResultDto.getSupervisorunit());
+				
+				vo.setProjectNumSum110kv(bearResultDto.getLine110kv()+bearResultDto.getPower110kv());
+				vo.setProejctNumSum220kv(bearResultDto.getLine220kv()+bearResultDto.getPower220kv());
+				vo.setProjectNumSum500kv(bearResultDto.getLine500kv()+bearResultDto.getPower500kv());
+				vo.setProjectNumSum(vo.getProjectNumSum110kv()+vo.getProejctNumSum220kv()+vo.getProjectNumSum500kv());
+				
+				vo.setTreeYearProjectAverage(Math.round(bearResultDto.getTreeYearProject()/3));
+				
+				vo.setConstrast(vo.getProjectNumSum()-vo.getTreeYearProjectAverage());
+				
+				projectConstratVoList.add(vo);
+			}
+		}
+		return projectConstratVoList;
+	}
+
+	public List<OutputConstrastVo> getBearConstrastOutput() {
+		List<OutputConstrastVo>  ocList=new ArrayList<OutputConstrastVo>();
+		List<BearResultDto>  brList=getBearBadBehaviorRevised() ;
+		if(!brList.isEmpty()){
+			for (BearResultDto bearResultDto : brList) {
+				OutputConstrastVo vo=new OutputConstrastVo();
+				
+				vo.setEnterpriseName(bearResultDto.getEnterpriseName());
+				vo.setSupervisorunit(bearResultDto.getSupervisorunit());
+				
+				vo.setOutputSum(bearResultDto.getOutputSum());
+				vo.setTreeYearOutputAverage(Math.round(bearResultDto.getTreeYearOutput()/3));
+				
+				vo.setConstrast(vo.getOutputSum()-vo.getTreeYearOutputAverage());
+				
+				ocList.add(vo);
+			}
+		}
+		return ocList;
+				
+		
 	}
 
 }
