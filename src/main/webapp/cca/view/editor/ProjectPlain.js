@@ -49,7 +49,11 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	        icon : 'res/icon/sync.png',
 	        text:'刷新',
 	        tooltip:'刷新'
-	    },'-',{disabled:true},'项目年份:',{
+	    },'-',{
+			itemId : 'buttonExporterExcel',
+			text : '导出Excel',
+			icon : 'res/icon/export.gif'	
+    	},'-',{disabled:true},'项目年份:',{
 
          	xtype : 'combo',
 			minValue : 1,
@@ -306,7 +310,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 		width : 100,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
 		width : 100,
 		dataIndex : 'updatetime'
 	}

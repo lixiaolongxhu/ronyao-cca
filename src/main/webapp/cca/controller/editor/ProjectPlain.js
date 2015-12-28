@@ -30,7 +30,10 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
 							},
 							'projectPlain button[itemId=searchButton]' : {
 								click:this.onSearch
-							}
+							},
+     		 				'projectPlain button[itemId=buttonExporterExcel]':{
+        						click : this.exporterExcel
+     		 				}
 
 						});
 				controller.UserLogGrid = this;
@@ -124,7 +127,15 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
             	var grid = obj.ownerCt.ownerCt;
             	var store =grid.getStore();
             	store.load();
-            }
+            },
+          /**excel 导出
+	 * 
+	 */
+	   exporterExcel :function(){
+	   
+   		window.location.href='../../ui/projectPlain/excel';
+   		}
+   
             
 
 

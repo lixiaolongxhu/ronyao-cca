@@ -27,7 +27,11 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 		handler : function() {
 			this.ownerCt.ownerCt.store.load();
 		}
-	} ],
+	} , {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    }],
 	
 	// 定义 colums
 	columns : [

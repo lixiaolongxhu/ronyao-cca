@@ -57,7 +57,7 @@ public class AnnualOutPutAction {
 				
 
         List<AnnualOutput> enterpList = actionAnnualOutput.getAnnualOutputList();
-        if(enterpList.isEmpty()){
+        if(enterpList==null  || enterpList.isEmpty()){
         	return;
         }
         

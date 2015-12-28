@@ -31,7 +31,10 @@ Ext.define('RYIVS.controller.editor.ProjectNoBuild', {
 							},
 							'projectNoBuild button[itemId=searchButton]' : {
 								click:this.onSearch
-							}
+							},
+     		 				 'projectNoBuild button[itemId=buttonExporterExcel]':{
+        						click : this.exporterExcel
+     						 }
 
 						});
 				controller.UserLogGrid = this;
@@ -129,7 +132,14 @@ Ext.define('RYIVS.controller.editor.ProjectNoBuild', {
             	var grid = obj.ownerCt.ownerCt;
             	var store =grid.getStore();
             	store.load();
-            }
+            },
+            /**excel 导出
+			 * 
+			 */
+		   exporterExcel :function(){
+		   
+		   		window.location.href='../../ui/projectNoBuild/excel';
+		   }
             
 
 

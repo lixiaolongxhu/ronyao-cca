@@ -111,16 +111,8 @@ public class SessionManager {
 			LOG.info("用户未登录,跳转到登录界面");
 			return "AppLogin";
 		} else {
-//			// 已经登陆，判断用户类型
-//			if (this.user.getType() == 1) {
-//				// 管理员登陆
-//				return "AppAdmin";
-//			} else {
-//				// 监控人员登陆
-//				return "AppUser";
-//			}	
-			LOG.info("用户已登录,跳转到主界面");
-			// 管理员登陆
+//			// 已经登陆
+			LOG.info("用户已登录,跳转到主界面");	
 			return "AppAdmin";
 
 		}
@@ -128,7 +120,16 @@ public class SessionManager {
 
 	@RequestMapping(value = "/config")
 	public String getInfo(Model model) {
-		model.addAttribute("user", user);
+		if(user!=null){
+			model.addAttribute("user", user);
+			
+		}else{
+			User emptyUser=new User();
+			emptyUser.setId(0);
+			emptyUser.setLoginname("未登陆用户");
+			model.addAttribute("user", emptyUser);
+		}
+			
 		model.addAttribute("debugLevel", debugLevel);
 		return "WebConfig";
 	};

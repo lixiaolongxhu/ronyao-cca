@@ -12,10 +12,10 @@ Ext.define('RYIVS.store.editor.ProjectBuilding', {
 	proxy : {
 		type : 'direct',
 		api : {
-			read : 	  actionProejctBuild.readBuilding,
-			create :  actionProejctBuild.createBuilding,
-			update :  actionProejctBuild.updateBuilding,
-			destroy : actionProejctBuild.destroyBuilding
+			read : 	  actionProjectBuild.readBuilding,
+			create :  actionProjectBuild.createBuilding,
+			update :  actionProjectBuild.updateBuilding,
+			destroy : actionProjectBuild.destroyBuilding
 		},
 
 		reader : {

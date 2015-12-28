@@ -31,6 +31,12 @@ public class ActionProjectPlain {
 	@Autowired
 	private ProjectPlainMapper projectPlainMapper;
 	
+	private List<ProjectPlain> projectPlainList=null;
+	
+	public List<ProjectPlain>  getProjectPlainList(){
+		return projectPlainList;
+	}
+	
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
@@ -48,7 +54,8 @@ public class ActionProjectPlain {
 		
 		ProjectPlainExample eExample = new ProjectPlainExample();
 		eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()));
-		return new ExtDirectStoreReadResult<ProjectPlain>(projectPlainMapper.selectByExample(eExample));
+		projectPlainList=projectPlainMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<ProjectPlain>(projectPlainList);
 	}
 
 	// 插入

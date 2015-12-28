@@ -3,6 +3,7 @@ package com.ronyao.cca.service;
 import java.util.List;
 
 import com.ronyao.cca.service.dto.BearResultDto;
+import com.ronyao.cca.ui.vo.BearProjectBuildVo;
 import com.ronyao.cca.ui.vo.OutputConstrastVo;
 import com.ronyao.cca.ui.vo.ProjectConstrastVo;
 
@@ -33,4 +34,10 @@ public interface BearRevisedService {
 	 */
 	public List<OutputConstrastVo>  getBearConstrastOutput();
 	
+	
+	/**获取施工企业还可以承载项目情况
+	 * 
+	 * @return
+	 */
+	public List<BearProjectBuildVo>  getBearProjectBuild();
 }

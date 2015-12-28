@@ -29,10 +29,10 @@ import com.ronyao.cca.tool.DateUtil;
  *
  */
 @Service
-public class ActionProejctBuild {
+public class ActionProjectBuild {
 	
 	
-	private static final  Logger  LOG=LoggerFactory.getLogger(ActionProejctBuild.class);
+	private static final  Logger  LOG=LoggerFactory.getLogger(ActionProjectBuild.class);
 	
 	@Autowired
 	private ProjectBuildMapper projectBuildMapper;
@@ -40,7 +40,15 @@ public class ActionProejctBuild {
 	@Resource
 	private EnterpriseMapper enterpriseMapper;
 	
+	private List<ProjectBuild>  projectNoBuildList=null;
+	
+	private List<ProjectBuild>  projectBuildingList=null;
+	
 	//-------------------------------------未开工项目情况-----------------------
+	public List<ProjectBuild> getProjectNoBuildList(){
+		return projectNoBuildList;
+	}
+	
 	
 	// 列表
 		@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
@@ -60,8 +68,8 @@ public class ActionProejctBuild {
 			eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()))
 			.andClassifyEqualTo(ConstProjectBuild.CLASSIFY_NO_BUILD);
 			
-			
-			return new ExtDirectStoreReadResult<ProjectBuild>(projectBuildMapper.selectByExample(eExample));
+			projectNoBuildList=projectBuildMapper.selectByExample(eExample);
+			return new ExtDirectStoreReadResult<ProjectBuild>(projectNoBuildList);
 		}
 
 		// 插入
@@ -110,6 +118,10 @@ public class ActionProejctBuild {
 		}
 	
 	//--------------------------------------已开工项目情况------------------------
+		
+	public List<ProjectBuild> getProjectBuildingList(){
+		return projectBuildingList;
+	}
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
@@ -127,8 +139,9 @@ public class ActionProejctBuild {
 		
 		ProjectBuildExample eExample = new ProjectBuildExample();
 		eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()))
-		.andClassifyEqualTo(ConstProjectBuild.CLASSIFY_BUILDING);;
-		return new ExtDirectStoreReadResult<ProjectBuild>(projectBuildMapper.selectByExample(eExample));
+		.andClassifyEqualTo(ConstProjectBuild.CLASSIFY_BUILDING);
+		projectBuildingList=projectBuildMapper.selectByExample(eExample);
+		return new ExtDirectStoreReadResult<ProjectBuild>(projectBuildingList);
 	}
 
 	// 插入
