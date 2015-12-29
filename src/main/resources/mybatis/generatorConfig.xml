@@ -80,7 +80,7 @@
 		<table schema="" tableName="user_role_link" domainObjectName="UserRoleLink">
 		
 		</table>
-		<table schema="" tableName="role_permission_link" domainObjectName="rolePermissionLink">
+		<table schema="" tableName="role_permission_link" domainObjectName="RolePermissionLink">
 		
 		</table>
 		<table schema="" tableName="role" domainObjectName="Role">

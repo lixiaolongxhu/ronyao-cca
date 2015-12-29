@@ -1,6 +1,6 @@
 package com.ronyao.cca.constant;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,13 +9,9 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-
-
 import com.ronyao.cca.db.dao.AptitudeClassifyMapper;
 import com.ronyao.cca.db.dao.AptitudeRankClassifyMapper;
 import com.ronyao.cca.db.dao.EnterpriseMapper;
-import com.ronyao.cca.db.dao.PermissionMapper;
 import com.ronyao.cca.db.dao.PostClassifyMapper;
 import com.ronyao.cca.db.dao.VoltageRankClassifyMapper;
 import com.ronyao.cca.db.model.AptitudeClassify;
@@ -24,8 +20,6 @@ import com.ronyao.cca.db.model.AptitudeRankClassify;
 import com.ronyao.cca.db.model.AptitudeRankClassifyExample;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterpriseExample;
-import com.ronyao.cca.db.model.Permission;
-import com.ronyao.cca.db.model.PermissionExample;
 import com.ronyao.cca.db.model.PostClassify;
 import com.ronyao.cca.db.model.PostClassifyExample;
 import com.ronyao.cca.db.model.VoltageRankClassify;
@@ -56,8 +50,7 @@ public  class ConstDictionary {
 	@Resource
 	private VoltageRankClassifyMapper voltageRankClassifyMapper;
 	
-	@Resource
-	private PermissionMapper  permissionMapper;
+
 	
 	/**获取企业资质等级信息列表
 	 * 
@@ -89,11 +82,7 @@ public  class ConstDictionary {
 	private   Map<Integer, VoltageRankClassify>  voltageRankClassifyMap=null;
 	private   List<VoltageRankClassify>  voltageRankClassifyList=null;
 	
-	/**权限资源
-	 * 
-	 */
-	private  Map<Integer, List<Permission>>  permissionMenuParentIdMap=null;
-	private  List<Permission>   permissionMenuList=null;
+	
 	
 	/**初始载入基础数据配置.
 	 * 
@@ -150,39 +139,15 @@ public  class ConstDictionary {
 			}
 		}
 		
-		//权限菜单资源
-		PermissionExample  permissionExample=new PermissionExample();
-		permissionExample.createCriteria().andTypeEqualTo(ConstPermission.MENU);
-		permissionMenuList=permissionMapper.selectByExample(permissionExample);
 		
-		if(!permissionMenuList.isEmpty()){
-			permissionMenuParentIdMap=new HashMap<Integer, List<Permission>>();
-			for (Permission permission : permissionMenuList) {
-				List<Permission>  perMapList=permissionMenuParentIdMap.get(permission.getParentid());
-				if(perMapList==null){
-					perMapList=new ArrayList<Permission>();
-				}else{
-					perMapList=permissionMenuParentIdMap.get(permission.getParentid());
-				}
-				perMapList.add(permission);
-				permissionMenuParentIdMap.put(permission.getParentid(), perMapList);
-			}
-			
-		}
 	}
 
 
 		
 //-------------------------------------get method-----------------------------------
 
-	public Map<Integer, List<Permission>> getPermissionMenuParentIdMap() {
-		return permissionMenuParentIdMap;
-	}
+	
 
-
-	public List<Permission> getPermissionMenuList() {
-		return permissionMenuList;
-	}
 
 
 	public Map<Byte, AptitudeRankClassify> getAptitudeRankClassifyMap() {

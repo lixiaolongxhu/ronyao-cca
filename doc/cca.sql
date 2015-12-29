@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-29 12:13:03
+Date: 2015-12-29 15:26:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -157,7 +157,7 @@ CREATE TABLE `enterprise` (
   KEY `enter_professionRank_id_fk` (`professionRank`),
   CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise
@@ -168,6 +168,26 @@ INSERT INTO `enterprise` VALUES ('80', '成都', '成都电建', '四川电力�
 INSERT INTO `enterprise` VALUES ('81', '成都', '成都供用电', '成都供用电工程公司', '2', '2100', '10400', '384', '-1', '2', '43233', '43233', '0', '0', '50', '2015-12-29 11:27:28', '', '10', '15', '25');
 INSERT INTO `enterprise` VALUES ('82', '成都', '成都宏业', '四川宏业电力集团有限公司', '2', '10000', '26143', '1087', '2', '2', '14168', '14168', '0', '0', '12', '2015-12-29 11:29:07', '', '12', '0', '0');
 INSERT INTO `enterprise` VALUES ('83', '乐山', '乐山嘉能佳', '四川嘉能佳电力集团有限责任公司', '2', '11396', '14470', '131', '2', '-1', '43500', '43400', '40', '60', '25', '2015-12-29 12:12:37', '', '10', '2', '13');
+INSERT INTO `enterprise` VALUES ('84', '攀枝花', '攀枝花网源', '攀枝花网源电力建设工程公司', '2', '4500', '11940', '1254', '2', '2', '17217', '17217', '0', '0', '10', '2015-12-29 13:20:44', '', '10', '0', '0');
+INSERT INTO `enterprise` VALUES ('85', '德阳', '德阳明源', '德阳明源电力（集团）有限公司', '2', '7000', '23018', '215', '1', '-1', '46514', '46514', '0', '0', '22', '2015-12-29 13:22:13', '', '22', '0', '0');
+INSERT INTO `enterprise` VALUES ('86', '眉山', '眉山多能', '眉山多能电力建设有限责任公司', '2', '2400', '4336', '173', '-1', '2', '6160', '6160', '0', '0', '8', '2015-12-29 13:23:41', '', '8', '0', '0');
+INSERT INTO `enterprise` VALUES ('87', '雅安', '雅安科元', '雅安科元电力建设有限公司', '2', '1200', '25152', '653', '-1', '3', '10055', '10055', '0', '0', '14', '2015-12-29 13:26:14', '', '14', '0', '0');
+INSERT INTO `enterprise` VALUES ('88', '达州', '达州惠特', '四川惠特电力投资建设有限公司', '2', '4800', '13100', '465', '2', '-1', '26884', '26884', '0', '0', '19', '2015-12-29 13:29:04', '', '19', '0', '0');
+INSERT INTO `enterprise` VALUES ('89', '绵阳', '绵阳启明星', '绵阳启明星集团有限公司', '2', '6000', '28000', '544', '2', '-1', '65900', '65900', '0', '0', '51', '2015-12-29 13:30:37', '', '51', '0', '0');
+INSERT INTO `enterprise` VALUES ('90', '宜宾', '宜宾远能', '宜宾远能电业集团有限责任公司', '2', '6202', '5500', '471', '2', '-1', '12106', '12106', '0', '0', '10', '2015-12-29 13:32:24', '', '10', '0', '0');
+INSERT INTO `enterprise` VALUES ('91', '凉山', '西昌电力', '西昌电力工程公司', '2', '2400', '807', '402', '2', '2', '9473', '9473', '0', '0', '15', '2015-12-29 13:33:35', '', '15', '0', '0');
+INSERT INTO `enterprise` VALUES ('92', '内江', '内江星原', '内江星原电力集团有限责任公司', '2', '5000', '37360', '764', '2', '2', '19491', '19491', '0', '0', '22', '2015-12-29 13:34:59', '', '22', '0', '0');
+INSERT INTO `enterprise` VALUES ('93', '广元', '广元电力', '广元电力开发总公司', '2', '4000', '14022', '1452', '-1', '2', '6134', '6134', '0', '0', '5', '2015-12-29 13:36:33', '', '5', '0', '0');
+INSERT INTO `enterprise` VALUES ('94', '广元', '广元天源', '四川苍溪天源电力开发有限公司', '2', '1500', '2235', '203', '-1', '3', '1027', '1027', '0', '0', '2', '2015-12-29 13:37:36', '', '2', '0', '0');
+INSERT INTO `enterprise` VALUES ('95', '泸州', '泸州合能', '泸州合能实业有限责任公司', '2', '4888', '8731', '80', '2', '2', '11634', '11634', '0', '0', '8', '2015-12-29 13:40:04', '', '8', '0', '0');
+INSERT INTO `enterprise` VALUES ('96', '南充', '南充恒通', '四川南充恒通电力有限公司', '2', '4100', '6529', '500', '2', '-1', '23193', '23193', '0', '0', '6', '2015-12-29 13:41:12', '', '6', '0', '0');
+INSERT INTO `enterprise` VALUES ('97', '自贡', '自贡电建', '自贡电力建设集团有限公司', '2', '2418', '2608', '417', '-1', '2', '16012', '16012', '0', '0', '7', '2015-12-29 13:42:13', '', '7', '0', '0');
+INSERT INTO `enterprise` VALUES ('98', '广安', '广安和源', '四川和源电力有限公司', '2', '2056', '3947', '299', '-1', '2', '25770', '25770', '0', '0', '10', '2015-12-29 13:43:25', '', '10', '0', '0');
+INSERT INTO `enterprise` VALUES ('99', '资阳', '资阳资源', '资阳资源电力集团有限公司', '2', '5125', '6301', '1359', '-1', '2', '13246', '13246', '0', '0', '8', '2015-12-29 13:44:32', '', '8', '0', '0');
+INSERT INTO `enterprise` VALUES ('100', '遂宁', '遂宁江源', '遂宁市江源实业有限公司', '2', '2400', '2387', '466', '-1', '2', '12947', '12947', '0', '0', '10', '2015-12-29 13:46:11', '', '10', '0', '0');
+INSERT INTO `enterprise` VALUES ('101', '巴中', '巴中和兴', '四川巴中和兴电力有限责任公司', '2', '2460', '2660', '519', '-1', '2', '12475', '12475', '0', '0', '6', '2015-12-29 13:50:01', '', '6', '0', '0');
+INSERT INTO `enterprise` VALUES ('102', '甘孜', '甘孜电建', '甘孜电力建设有限公司', '2', '1200', '3246', '12', '-1', '3', '0', '0', '0', '0', '0', '2015-12-29 13:51:30', '', '0', '0', '0');
+INSERT INTO `enterprise` VALUES ('103', '格瑞德', '电力实业', '四川电力实业总公司', '2', '2400', '0', '238', '2', '2', '10150', '10150', '0', '0', '6', '2015-12-29 13:52:43', '', '6', '0', '0');
 
 -- ----------------------------
 -- Table structure for enterprise_aptitude
@@ -299,11 +319,37 @@ CREATE TABLE `enterprise_person` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `enterprise_per_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enterprise_per_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_person
 -- ----------------------------
+INSERT INTO `enterprise_person` VALUES ('3', '78', '36', '27', '63', '146', '54', '200', '47', '187', '293', '42', '569', '2015-12-29 13:55:46', '');
+INSERT INTO `enterprise_person` VALUES ('4', '79', '15', '44', '59', '23', '9', '32', '80', '14', '38', '0', '132', '2015-12-29 13:56:19', '');
+INSERT INTO `enterprise_person` VALUES ('5', '80', '7', '63', '70', '33', '5', '38', '66', '53', '43', '0', '162', '2015-12-29 13:57:02', '');
+INSERT INTO `enterprise_person` VALUES ('6', '81', '6', '41', '47', '23', '3', '26', '26', '77', '24', '0', '127', '2015-12-29 13:57:53', '');
+INSERT INTO `enterprise_person` VALUES ('7', '82', '4', '77', '81', '49', '7', '56', '96', '50', '35', '0', '181', '2015-12-29 13:58:26', '');
+INSERT INTO `enterprise_person` VALUES ('8', '83', '0', '60', '60', '80', '30', '110', '293', '134', '80', '8', '515', '2015-12-29 14:06:58', '');
+INSERT INTO `enterprise_person` VALUES ('9', '84', '1', '25', '26', '33', '8', '41', '3', '93', '31', '0', '127', '2015-12-29 14:07:45', '');
+INSERT INTO `enterprise_person` VALUES ('10', '85', '17', '42', '59', '112', '24', '136', '383', '172', '153', '0', '708', '2015-12-29 14:08:10', '');
+INSERT INTO `enterprise_person` VALUES ('11', '86', '3', '26', '29', '30', '9', '39', '41', '12', '20', '0', '73', '2015-12-29 14:09:02', '2015-12-29 14:09:43');
+INSERT INTO `enterprise_person` VALUES ('12', '87', '5', '10', '15', '60', '4', '64', '0', '231', '132', '0', '363', '2015-12-29 14:10:22', '');
+INSERT INTO `enterprise_person` VALUES ('13', '88', '1', '19', '20', '78', '5', '83', '58', '26', '17', '0', '101', '2015-12-29 14:11:01', '');
+INSERT INTO `enterprise_person` VALUES ('14', '89', '9', '15', '24', '47', '14', '61', '172', '31', '23', '0', '226', '2015-12-29 14:11:27', '');
+INSERT INTO `enterprise_person` VALUES ('15', '90', '1', '22', '23', '38', '12', '50', '78', '85', '20', '0', '183', '2015-12-29 14:11:49', '');
+INSERT INTO `enterprise_person` VALUES ('16', '91', '0', '29', '29', '11', '4', '15', '40', '6', '0', '0', '46', '2015-12-29 14:12:43', '');
+INSERT INTO `enterprise_person` VALUES ('17', '92', '1', '12', '13', '42', '15', '57', '42', '15', '196', '0', '253', '2015-12-29 14:13:15', '');
+INSERT INTO `enterprise_person` VALUES ('18', '93', '1', '13', '14', '37', '9', '46', '134', '155', '57', '0', '346', '2015-12-29 14:14:03', '');
+INSERT INTO `enterprise_person` VALUES ('19', '94', '0', '7', '7', '48', '0', '48', '18', '90', '12', '0', '120', '2015-12-29 14:14:26', '');
+INSERT INTO `enterprise_person` VALUES ('20', '95', '1', '35', '36', '10', '5', '15', '2', '8', '11', '0', '21', '2015-12-29 14:15:01', '');
+INSERT INTO `enterprise_person` VALUES ('21', '96', '1', '21', '22', '54', '7', '61', '5', '1', '8', '0', '14', '2015-12-29 14:15:35', '');
+INSERT INTO `enterprise_person` VALUES ('22', '97', '2', '16', '18', '32', '19', '51', '36', '44', '37', '0', '117', '2015-12-29 14:16:20', '');
+INSERT INTO `enterprise_person` VALUES ('23', '98', '7', '10', '17', '7', '8', '15', '84', '49', '62', '0', '195', '2015-12-29 14:16:47', '');
+INSERT INTO `enterprise_person` VALUES ('24', '99', '0', '27', '27', '39', '4', '43', '213', '198', '101', '0', '512', '2015-12-29 14:17:17', '');
+INSERT INTO `enterprise_person` VALUES ('25', '100', '0', '18', '18', '43', '6', '49', '40', '45', '53', '0', '138', '2015-12-29 14:17:53', '');
+INSERT INTO `enterprise_person` VALUES ('26', '101', '0', '15', '15', '42', '2', '44', '4', '12', '5', '1', '22', '2015-12-29 14:18:13', '');
+INSERT INTO `enterprise_person` VALUES ('27', '102', '0', '9', '9', '13', '0', '13', '31', '1', '4', '0', '36', '2015-12-29 14:18:38', '');
+INSERT INTO `enterprise_person` VALUES ('28', '103', '4', '14', '18', '24', '1', '25', '29', '2', '3', '2', '36', '2015-12-29 14:19:07', '');
 
 -- ----------------------------
 -- Table structure for enterprise_per_file
@@ -571,11 +617,13 @@ CREATE TABLE `role` (
   `updateTime` varchar(20) DEFAULT '' COMMENT '记录修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `role_name_index` (`name`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
+INSERT INTO `role` VALUES ('1', '0', 'admin', '1', '', '');
+INSERT INTO `role` VALUES ('2', '0', 'user', '1', '', '');
 
 -- ----------------------------
 -- Table structure for role_permission_link
@@ -597,6 +645,34 @@ CREATE TABLE `role_permission_link` (
 -- ----------------------------
 -- Records of role_permission_link
 -- ----------------------------
+INSERT INTO `role_permission_link` VALUES ('1', '1', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '2', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '3', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '5', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '6', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '7', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '8', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '9', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '10', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '11', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '12', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '13', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '14', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '15', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '16', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '17', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '18', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '19', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '20', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '21', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '22', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '23', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '24', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '25', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '26', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '27', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '28', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('1', '29', '1', '', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -621,8 +697,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', 'admin', '', '', '', '', '1', '', '');
-INSERT INTO `user` VALUES ('2', '4213', '3241234', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('78', 'user', 'user', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('2', 'user', 'user', null, null, null, null, '1', null, null);
 
 -- ----------------------------
 -- Table structure for user_log
@@ -638,7 +713,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=540 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=551 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1182,6 +1257,17 @@ INSERT INTO `user_log` VALUES ('536', '1', '会话超时，用户退出.', '2015
 INSERT INTO `user_log` VALUES ('537', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 12:04:18', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('538', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 12:05:45', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('539', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 12:10:49', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('540', '1', '会话超时，用户退出.', '2015-12-29 12:42:50', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('541', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 13:19:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('542', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 15:05:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('543', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 15:10:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('544', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 15:15:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('545', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 15:21:36', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('546', '2', '操作模块:会话管理,用户登陆.', '2015-12-29 15:22:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('547', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 15:24:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('548', '2', '操作模块:会话管理,用户登陆.', '2015-12-29 15:24:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('549', '1', '操作模块:会话管理,用户登陆.', '2015-12-29 15:25:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('550', '2', '操作模块:会话管理,用户登陆.', '2015-12-29 15:25:34', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
@@ -1203,6 +1289,8 @@ CREATE TABLE `user_role_link` (
 -- ----------------------------
 -- Records of user_role_link
 -- ----------------------------
+INSERT INTO `user_role_link` VALUES ('1', '1', '1', '', '');
+INSERT INTO `user_role_link` VALUES ('2', '2', '1', '', '');
 
 -- ----------------------------
 -- Table structure for voltage_rank_classify

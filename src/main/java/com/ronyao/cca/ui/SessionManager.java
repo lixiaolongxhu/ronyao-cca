@@ -46,6 +46,7 @@ public class SessionManager {
 	
 
 	
+	
 	@Resource
 	private ConstDictionary constDictionary;
 	
@@ -71,6 +72,7 @@ public class SessionManager {
 			user = users.get(0);
 			LOG.info("用户：" + user.getLoginname() + " 登陆成功。");
 			session.setAttribute("loginUser", this.user);
+			
 			return "";
 		}
 
@@ -82,7 +84,10 @@ public class SessionManager {
 	 */
 	@RequestMapping(value = "/logout")
 	@ResponseBody
-	public String logout() {
+	public String logout(HttpSession session) {
+		LOG.debug("用户注销登录");
+		session.removeAttribute("loginUser");
+		session.removeAttribute("permissionMenuParentIdMap");
 		this.user = null;
 		return "";
 	}

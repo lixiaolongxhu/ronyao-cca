@@ -3,6 +3,7 @@ package com.ronyao.cca.ui.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,15 @@ import com.ronyao.cca.ui.vo.TreeVo;
 @Controller
 public class PermissionAction {
 
+	
 	@Resource
 	private PermissionService permissionService;
 	
 	@RequestMapping(value="/permissionMenuTree")
-	public @ResponseBody List<TreeVo> getPermissionMenuTree(TreeVo treeVo){
-
+	public @ResponseBody List<TreeVo> getPermissionMenuTree(TreeVo treeVo,HttpSession session){
+		
+		
+		
 
 		return permissionService.getPermissionMenuTree(treeVo);
 	}
