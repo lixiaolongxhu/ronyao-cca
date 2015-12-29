@@ -43,7 +43,7 @@ public class ProjectPlainAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("电压等级");	
 		excelHeaderList.add("项目年份");
 		excelHeaderList.add("项目个数(个)");

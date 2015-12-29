@@ -45,7 +45,7 @@ public class EnterpPerAction {
 	public void exportExcel(HttpServletRequest request , HttpServletResponse response) throws Exception{
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("施工企业名称");
 		excelHeaderList.add("一级(国家注册建造师)");
 		excelHeaderList.add("二级(国家注册建造师)");

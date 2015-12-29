@@ -220,6 +220,12 @@ public class BearImp implements Bear {
 			
 			//500kv查询企业的设备信息(获取企业大张牵设备数)已经设备可承载的项目数
 			  lineEquipmentProjectNum500kv=getEquipmentBearProjectNum(enterpriseId,voltagetMapValue,500);
+			  
+			  //500kv 如果当张牵设备可以组建的项目数少于人员可以组建的项目部数时,人员分配已张牵设备组建的项目部数为准
+			  if(lineEquipmentProjectNum500kv<linePersonProjectNum500kv){
+				  linePersonProjectNum500kv=lineEquipmentProjectNum500kv;
+			  }
+			  
 			
 			//500kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
 			  
@@ -250,6 +256,11 @@ public class BearImp implements Bear {
 			//220kv查询企业的设备信息(获取企业大张牵设备数)已经设备可承载的项目数
 			  lineEquipmentProjectNum220kv=getEquipmentBearProjectNum(enterpriseId,voltagetMapValue,220);
 				
+			 //220kv 如果当张牵设备可以组建的项目数少于人员可以组建的项目部数时,人员分配已张牵设备组建的项目部数为准
+			  if(lineEquipmentProjectNum220kv<linePersonProjectNum220kv){
+				  linePersonProjectNum220kv=lineEquipmentProjectNum220kv;
+			  }
+			  
 			//220kv获取人员可承载项目数与设备承载项目数的最小值,作为实际可以承载的项目数.
 			  lineProjectNum220kv=Math.min(linePersonProjectNum220kv, lineEquipmentProjectNum220kv);
 			

@@ -45,7 +45,7 @@ public class EnterpEquipAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("施工企业名称");	
 		excelHeaderList.add("大张牵设备(套)");
 		excelHeaderList.add("小张牵设备(套)");

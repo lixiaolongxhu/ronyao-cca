@@ -44,7 +44,7 @@ public class EnterpAssessAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("类别");	
 		excelHeaderList.add("标准");
 		excelHeaderList.add("可承载项目最少个数(个)");

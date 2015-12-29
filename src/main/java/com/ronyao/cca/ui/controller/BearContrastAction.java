@@ -51,12 +51,12 @@ public class BearContrastAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("主管单位");	
 		excelHeaderList.add("施工企业名称");
-		excelHeaderList.add("110kV(项目评估个数)");
-		excelHeaderList.add("220kv(项目评估个数)");
 		excelHeaderList.add("500kv(项目评估个数)");
+		excelHeaderList.add("220kv(项目评估个数)");
+		excelHeaderList.add("110kV(项目评估个数)");
 		excelHeaderList.add("合计(项目评估个数)");
 		excelHeaderList.add("近三年平均承载项目个数");
 		excelHeaderList.add("项目评估个数与近三年平均承载工程个数的差额");
@@ -77,16 +77,12 @@ public class BearContrastAction {
         	 map.put(0, String.valueOf(i+1));
         	 map.put(1, enter.getSupervisorunit());
         	 map.put(2, enter.getEnterpriseName());
+        	 
+        	 map.put(3, enter.getProjectNumSum500kv()+"");
+        	 map.put(4, enter.getProejctNumSum220kv()+"");
+        	 map.put(5, enter.getProjectNumSum110kv()+"");
         	
-        	 map.put(3, enter.getProjectNumSum110kv()+"");
-        	
-        	
-        	
-        	 map.put(4, enter.getProejctNumSum220kv()+"");  
-     
-        	 map.put(5, enter.getProjectNumSum500kv()+"");
-        	
-        
+    
         	 map.put(6, enter.getProjectNumSum()+"");
         	 
   
@@ -113,7 +109,7 @@ public class BearContrastAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("主管单位");	
 		excelHeaderList.add("施工企业名称");
 		excelHeaderList.add("评估值(万元");

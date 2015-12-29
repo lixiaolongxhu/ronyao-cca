@@ -46,7 +46,7 @@ public class EnterpAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("主管单位");
 		excelHeaderList.add("企业全称");
 		excelHeaderList.add("企业简称");

@@ -47,7 +47,7 @@ public class EquipmentBearAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("张牵设备");	
 		excelHeaderList.add("电压等级");
 		excelHeaderList.add("单回/双回");

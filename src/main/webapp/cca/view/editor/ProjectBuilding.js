@@ -152,17 +152,16 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 	{
 	 text :"在建线路工程(个) ",
    
-	 columns: [
-		 	{
-			text : '110kV(个)',
+	 columns: [{
+			text : '500kV(个)',
 			width : 100,
-			dataIndex : 'line110kv',
+			dataIndex : 'line500kv',
 			flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-			
+				
 				autoStripChars : true,
 				allowDecimals : false
 			},
@@ -189,16 +188,17 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
-		  }, {
-			text : '500kV(个)',
+		  },
+		 	{
+			text : '110kV(个)',
 			width : 100,
-			dataIndex : 'line500kv',
+			dataIndex : 'line110kv',
 			flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				
+			
 				autoStripChars : true,
 				allowDecimals : false
 			},
@@ -216,17 +216,16 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 	{
 	 text :"在建变电工程(个) ",
    
-	 columns: [
-		 	{
-			text : '110kV(个)',
+	 columns: [{
+			text : '500kV(个)',
 			width : 100,
-			dataIndex : 'power110kv',
+			dataIndex : 'power500kv',
 			flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-			
+				
 				autoStripChars : true,
 				allowDecimals : false
 			},
@@ -235,7 +234,8 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
-		  }, {
+		  }
+		 	, {
 			text : '220kV(个)',
 			width : 100,
 			dataIndex : 'power220kv',
@@ -254,15 +254,15 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
 		  }, {
-			text : '500kV(个)',
+			text : '110kV(个)',
 			width : 100,
-			dataIndex : 'power500kv',
+			dataIndex : 'power110kv',
 			flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				
+			
 				autoStripChars : true,
 				allowDecimals : false
 			},

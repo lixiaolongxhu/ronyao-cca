@@ -46,7 +46,7 @@ public class EnterpPerManAction {
 		
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("施工企业名称");	
 		excelHeaderList.add("500kv项目经理");
 		excelHeaderList.add("220kv及以下项目经理");

@@ -43,7 +43,7 @@ public class BehaviorStaAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("不良行为等级");	
 		excelHeaderList.add("诚信");
 		excelHeaderList.add("安全质量");

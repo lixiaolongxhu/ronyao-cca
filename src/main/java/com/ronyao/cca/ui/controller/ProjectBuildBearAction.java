@@ -45,15 +45,15 @@ public class ProjectBuildBearAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("主管单位");	
 		excelHeaderList.add("施工企业名称");
-		excelHeaderList.add("110kV(还可以承担线路工程)");
-		excelHeaderList.add("220kV(还可以承担线路工程)");
 		excelHeaderList.add("500kV(还可以承担线路工程)");
-		excelHeaderList.add("110kV(还可以承担变电工程)");
-		excelHeaderList.add("220kV(还可以承担变电工程)");
+		excelHeaderList.add("220kV(还可以承担线路工程)");
+		excelHeaderList.add("110kV(还可以承担线路工程)");
 		excelHeaderList.add("500kV(还可以承担变电工程)");
+		excelHeaderList.add("220kV(还可以承担变电工程)");
+		excelHeaderList.add("110kV(还可以承担变电工程)");
 				
 
         List<BearProjectBuildVo> enterpList = actionProjectBuildBear.getBearProjectBuildVoList();
@@ -77,23 +77,19 @@ public class ProjectBuildBearAction {
         	 map.put(1, enter.getSupervisorunit());
         	 map.put(2, enter.getEnterpriseName());
         	
-        	 map.put(3, enter.getLine110kv()+"");
-        	 line110kvSum=line110kvSum+enter.getLine110kv();
-        	
-        	
+        	 map.put(3, enter.getLine500kv()+"");
+        	 line500kvSum=line500kvSum+enter.getLine500kv();
         	 map.put(4, enter.getLine220kv()+""); 
         	 line220kvSum=line220kvSum+enter.getLine220kv();
-     
-        	 map.put(5, enter.getLine500kv()+"");
-        	 line500kvSum=line500kvSum+enter.getLine500kv();
-        
-        	 map.put(6, enter.getPower110kv()+"");
-        	 power110kvSum=power110kvSum+enter.getPower110kv();
-  
+        	 map.put(5, enter.getLine110kv()+"");
+        	 line110kvSum=line110kvSum+enter.getLine110kv();
+        	
+        	 map.put(6,enter.getPower500kv()+"");
+        	 power500kvSum=power500kvSum+enter.getPower500kv();
         	 map.put(7, enter.getPower220kv()+"");
         	 power220kvSum=power220kvSum+enter.getPower220kv();
-        	 map.put(8,enter.getPower500kv()+"");
-        	 power500kvSum=power500kvSum+enter.getPower500kv();
+        	 map.put(8, enter.getPower110kv()+"");
+        	 power110kvSum=power110kvSum+enter.getPower110kv();
         	 
         	 valueMap.add(map);
        
@@ -101,12 +97,12 @@ public class ProjectBuildBearAction {
       //指定列求和的值
         Map<Integer , String>  map=new HashMap<Integer, String>();
      
-        map.put(3, "合计 :  "+line110kvSum+"");
+        map.put(3, "合计 :  "+line500kvSum+"");
         map.put(4, "合计 :  "+line220kvSum+"");
-        map.put(5, "合计 :  "+line500kvSum+"");
-        map.put(6, "合计 :  "+power110kvSum);
+        map.put(5, "合计 :  "+line110kvSum+"");
+        map.put(6, "合计 :  "+power500kvSum);
         map.put(7, "合计 :  "+power220kvSum);
-        map.put(8, "合计 :  "+power500kvSum);
+        map.put(8, "合计 :  "+power110kvSum);
      
         valueMap.add(map);
        

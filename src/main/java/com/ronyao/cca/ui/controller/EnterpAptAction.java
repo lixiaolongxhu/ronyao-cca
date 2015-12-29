@@ -45,7 +45,7 @@ public class EnterpAptAction {
 	public void exportExcel(HttpServletRequest request , HttpServletResponse response) throws Exception{
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("企业资质");
 		excelHeaderList.add("等级");
 		excelHeaderList.add("资质要求");

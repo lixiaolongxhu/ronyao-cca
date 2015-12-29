@@ -45,7 +45,7 @@ public class EnterpPerStaAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("岗位");	
 		excelHeaderList.add("持证要求");
 		excelHeaderList.add("平地丘陵(线路工程(人数))");

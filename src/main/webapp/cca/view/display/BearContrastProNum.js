@@ -51,7 +51,21 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 	{
 	 text :"项目评估个数",
    
-	 columns: [
+	 columns: [{
+				text : '500kV(个)',
+				width : 100,
+				dataIndex : 'projectNumSum500kv',
+				
+				flex : 1
+				
+			 },{
+				text : '220kV(个)',
+				width : 100,
+				dataIndex : 'proejctNumSum220kv',
+				flex : 1
+			
+			
+		  	 },
 	 		{
 				text : '110kV(个)',
 				width : 100,
@@ -59,22 +73,8 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 				flex : 1
 				
 			
-		  	 },{
-				text : '220kV(个)',
-				width : 100,
-				dataIndex : 'proejctNumSum220kv',
-				flex : 1
-			
-			
-		  	 } ,{
-				text : '500kV(个)',
-				width : 100,
-				dataIndex : 'projectNumSum500kv',
-				
-				flex : 1
-				
-			 }
-		  	 ,{
+		  	 } ,
+		  	 {
 				text : '合计',
 				width : 100,
 				dataIndex : 'projectNumSum',

@@ -45,7 +45,7 @@ public class BehaviorAction {
 
 		List<String>   excelHeaderList=new ArrayList<String>();
 		
-		excelHeaderList.add("ID");
+		excelHeaderList.add("序号");
 		excelHeaderList.add("施工企业名称");	
 		excelHeaderList.add("不良行为发生年份");
 		excelHeaderList.add("严重不良行为次数");

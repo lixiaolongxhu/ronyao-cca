@@ -151,44 +151,7 @@ Ext.define('RYIVS.view.editor.ProjectNoBuild', {
 	{
 	 text :"中标未开工线程工程(个) ",
    
-	 columns: [
-		 	{
-			text : '110kV(个)',
-			width : 100,
-			dataIndex : 'line110kv',
-			flex : 1,
-			editor : {
-				allowBlank : false,
-				xtype : 'numberfield',
-				minValue : 0,
-			
-				autoStripChars : true,
-				allowDecimals : false
-			},
- 			
- 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
-				summaryRenderer: function(value, summaryData, dataIndex) {
-           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
-       		    }
-		  }, {
-			text : '220kV(个)',
-			width : 100,
-			dataIndex : 'line220kv',
-			flex : 1,
-			editor : {
-				allowBlank : false,
-				xtype : 'numberfield',
-				minValue : 0,
-				
-				autoStripChars : true,
-				allowDecimals : false
-			},
- 			
- 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
-				summaryRenderer: function(value, summaryData, dataIndex) {
-           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
-       		    }
-		  }, {
+	 columns: [ {
 			text : '500kV(个)',
 			width : 100,
 			dataIndex : 'line500kv',
@@ -207,19 +170,28 @@ Ext.define('RYIVS.view.editor.ProjectNoBuild', {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
 		  }
-	
-			
-	  ]	
-	},
-	
-	{
-	 text :"中标未开工变电工程(个) ",
-   
-	 columns: [
-		 	{
+		 	, {
+			text : '220kV(个)',
+			width : 100,
+			dataIndex : 'line220kv',
+			flex : 1,
+			editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				
+				autoStripChars : true,
+				allowDecimals : false
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
+		  },{
 			text : '110kV(个)',
 			width : 100,
-			dataIndex : 'power110kv',
+			dataIndex : 'line110kv',
 			flex : 1,
 			editor : {
 				allowBlank : false,
@@ -234,7 +206,35 @@ Ext.define('RYIVS.view.editor.ProjectNoBuild', {
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
-		  }, {
+		  }
+	
+			
+	  ]	
+	},
+	
+	{
+	 text :"中标未开工变电工程(个) ",
+   
+	 columns: [ {
+			text : '500kV(个)',
+			width : 100,
+			dataIndex : 'power500kv',
+			flex : 1,
+			editor : {
+				allowBlank : false,
+				xtype : 'numberfield',
+				minValue : 0,
+				
+				autoStripChars : true,
+				allowDecimals : false
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
+		  }
+		 	, {
 			text : '220kV(个)',
 			width : 100,
 			dataIndex : 'power220kv',
@@ -252,16 +252,16 @@ Ext.define('RYIVS.view.editor.ProjectNoBuild', {
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
-		  }, {
-			text : '500kV(个)',
+		  },{
+			text : '110kV(个)',
 			width : 100,
-			dataIndex : 'power500kv',
+			dataIndex : 'power110kv',
 			flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				
+			
 				autoStripChars : true,
 				allowDecimals : false
 			},
