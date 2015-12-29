@@ -10,17 +10,23 @@
     					http://www.springframework.org/schema/context/spring-context-3.1.xsd"
 	default-autowire="byType">
 
-	<!-- this is for LOCAL DATA -->
-	<!-- <bean id="randomdata" class="org.springframework.core.io.ClassPathResource">
-		<constructor-arg value="/randomdata.csv"/> </bean> <bean id="pivotdata" 
-		class="org.springframework.core.io.ClassPathResource">
-		<constructor-arg value="/pivodata.csv"/> </bean> <bean id="userdata" class="org.springframework.core.io.ClassPathResource">
-		<constructor-arg value="/users.csv"/> </bean> -->
+	
 	
 	<!--配置注解-->
 	<context:annotation-config />
-	<!-- transaction注解 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+    <!-- scan service -->
+   
+	<context:component-scan base-package="com.ronyao.cca.ui">	
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
+	</context:component-scan>
+	
+	<context:component-scan base-package="com.ronyao.cca.constant" />
+	<context:component-scan base-package="com.ronyao.cca.service" />
+	
+	<context:component-scan base-package="com.ronyao.cca.userlog" />
+	
+	
 	
 	<!-- 数据库配置信息，mina配置信息 -->
 	<bean id="systemProperties"
@@ -41,11 +47,15 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<!-- 事务 -->
+	<!-- 声明为注册事务注解处理器 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+	
+	 <!--给指定数据源添加事务  -->
 	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+    
+  
 	
 	<!-- scan for mappers and let them be autowired -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -55,14 +65,7 @@
 	
 
 	
-	<!-- scan service -->
+
 	
-	<context:component-scan base-package="com.ronyao.cca.action" />
-	<context:component-scan base-package="com.ronyao.cca.controller" />
-	<context:component-scan base-package="com.ronyao.cca.constant" />
-	<context:component-scan base-package="com.ronyao.cca.service" />
-	<context:component-scan base-package="com.ronyao.cca.locator" />
-	<context:component-scan base-package="com.ronyao.cca.userlog" />
-	<context:component-scan base-package="com.ronyao.cca.ss.httpclient.service" />
 	
 </beans>

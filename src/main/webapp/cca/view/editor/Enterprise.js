@@ -188,7 +188,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+			
 				autoStripChars : true,
 				allowDecimals : false
 		}
@@ -255,7 +255,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+			
 				autoStripChars : true,
 				allowDecimals : false
 			}
@@ -268,7 +268,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+			
 				autoStripChars : true,
 				allowDecimals : false
 			}
@@ -281,7 +281,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+				
 				autoStripChars : true,
 				allowDecimals : false
 			}
@@ -309,7 +309,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+			
 				autoStripChars : true,
 				allowDecimals : false
 			}
@@ -322,7 +322,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+			
 				autoStripChars : true,
 				allowDecimals : false
 			}
@@ -335,7 +335,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				allowBlank : false,
 				xtype : 'numberfield',
 				minValue : 0,
-				maxValue : 100000,
+			
 				autoStripChars : true,
 				allowDecimals : false
 			}

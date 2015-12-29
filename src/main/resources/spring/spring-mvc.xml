@@ -12,11 +12,20 @@
 							http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 	default-autowire="byType">
 	
-	<!-- 数据库配置信息，mina配置信息 
-	 <bean id="systemProperties" 
-         class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-          <property name="location" value="classpath:/config/config.ini"/>
-    </bean>-->
+	<!-- 扫描与注解对应package的bean -->				
+	<context:component-scan base-package="com.ronyao.cca.service" >
+		<!-- 如果带上事务，那么用annotation方式的事务注解和bean配置，事务会失效，要将service　bean配置到xml文件中才行 
+		              详见：http://icanfly.iteye.com/blog/778401
+		-->
+   		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />  
+  		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />  
+	</context:component-scan>
+	
+	<!-- 扫描与注解对应package的bean  mvc  ui -->				
+	<context:component-scan base-package="com.ronyao.cca.ui" ></context:component-scan>
+	
+	
+	
 
 	<!-- mvc注解 -->
 	<mvc:annotation-driven />
@@ -38,16 +47,7 @@
 
 	<!-- 如果有多个 DispatcherServlet 请把关于数据库和server部分的bean在web.xml中使用spring 的 listener加载 -->
 
-	<!-- 自动扫描controller bean，把作了注解的类转换为bean -->
-	<context:component-scan base-package="com.ronyao.cca.ui" />
-	<context:component-scan base-package="com.ronyao.cca.ui.controller" />	
 	
-
-	<context:component-scan base-package="com.ronyao.cca.ctl.manager" />
-	<context:component-scan base-package="com.ronyao.cca.ss.controller" />
-	<context:component-scan base-package="com.ronyao.cca.ss.httpclient" />
-	<context:component-scan base-package="com.ronyao.http.push.controller" />
-	<context:component-scan base-package="com.ronyao.cca.platform.controller" />
 	
 	<!-- 文件上传配置 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -67,5 +67,7 @@
 		<property name="suffix" value=".jsp" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
+	
+
 
 </beans>

@@ -3,9 +3,10 @@ package com.ronyao.cca.ui.extDirect;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
@@ -14,6 +15,7 @@ import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadResult;
 import com.ronyao.cca.db.dao.EnterpriseMapper;
 import com.ronyao.cca.db.model.Enterprise;
 import com.ronyao.cca.db.model.EnterpriseExample;
+import com.ronyao.cca.service.EnterpService;
 import com.ronyao.cca.tool.DateUtil;
 
 /**企业基本信息.
@@ -26,8 +28,10 @@ public class ActionEnterp {
 	
 	private static final  Logger  LOG=LoggerFactory.getLogger(ActionEnterp.class);
 	
-	@Autowired
-	EnterpriseMapper enterpriseMapper;
+	@Resource
+	private EnterpriseMapper enterpriseMapper;
+	@Resource
+	private  EnterpService  enterpService;
 	
 	/**查询信息列表
 	 * 
@@ -85,8 +89,12 @@ public class ActionEnterp {
 
 	// 删除
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_MODIFY, group = "store")
-	public int destroy(List<Enterprise> enterprises) {
-		return enterpriseMapper.deleteByPrimaryKey(enterprises.get(0).getId());
+	public int destroy(List<Enterprise> enterprises,HttpServletRequest request) throws Exception {
+		//enterpriseMapper.deleteByPrimaryKey(enterprises.get(0).getId());
+		String saveFilePath = request.getSession().getServletContext()
+				.getRealPath("/")
+				+ "/res/file/";
+		return  enterpService.deleteByPrimaryKey(enterprises.get(0).getId(),saveFilePath);
 	}
 	
 
