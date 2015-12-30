@@ -10,6 +10,9 @@ Ext.define('RYIVS.view.common.Login', {
 	defaults : {
 		border : false
 	},
+	//定义显示位置
+	x: document.documentElement.clientWidth-document.documentElement.clientWidth*0.4,  
+	//y: 50,
 
 	buttonAlign : 'center',
 
@@ -35,7 +38,7 @@ Ext.define('RYIVS.view.common.Login', {
 			name : 'username',
 			blankText : '用户名不能为空！',
 			// 键盘监听
-			enableKeyEvents : true,
+			enableKeyEvents : true
 			//value : 'admin'
 		}, {
 			xtype : 'textfield',

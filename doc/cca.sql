@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-30 12:16:51
+Date: 2015-12-30 14:48:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -164,7 +164,7 @@ CREATE TABLE `enterprise` (
 INSERT INTO `enterprise` VALUES ('78', '四川公司', '四川送变电', '四川电力送变电建设公司', '1', '8800', '40030', '1069', '1', '1', '249625', '249625', '0', '0', '30', '2015-12-29 11:22:29', '2015-12-29 11:23:06', '10', '10', '10');
 INSERT INTO `enterprise` VALUES ('79', '科锐得', '四川蜀能', '四川蜀能电力有限公司', '2', '7107', '0', '602', '-1', '1', '163338', '163338', '0', '0', '29', '2015-12-29 11:24:24', '', '10', '10', '9');
 INSERT INTO `enterprise` VALUES ('80', '成都', '成都电建', '四川电力建设公司', '2', '10000', '20768', '332', '1', '2', '125716', '125716', '0', '0', '54', '2015-12-29 11:25:53', '', '54', '0', '0');
-INSERT INTO `enterprise` VALUES ('81', '成都', '成都供用电', '成都供用电工程公司', '2', '2100', '10400', '384', '-1', '2', '43233', '43233', '0', '0', '50', '2015-12-29 11:27:28', '', '10', '15', '25');
+INSERT INTO `enterprise` VALUES ('81', '成都', '成都供用电', '成都供用电工程公司', '2', '2100', '10400', '384', '-1', '2', '43233', '43233', '0', '0', '40', '2015-12-29 11:27:28', '2015-12-30 14:31:58', '20', '15', '5');
 INSERT INTO `enterprise` VALUES ('82', '成都', '成都宏业', '四川宏业电力集团有限公司', '2', '10000', '26143', '1087', '2', '2', '14168', '14168', '0', '0', '12', '2015-12-29 11:29:07', '', '12', '0', '0');
 INSERT INTO `enterprise` VALUES ('83', '乐山', '乐山嘉能佳', '四川嘉能佳电力集团有限责任公司', '2', '11396', '14470', '131', '2', '-1', '43500', '43400', '40', '60', '25', '2015-12-29 12:12:37', '', '10', '2', '13');
 INSERT INTO `enterprise` VALUES ('84', '攀枝花', '攀枝花网源', '攀枝花网源电力建设工程公司', '2', '4500', '11940', '1254', '2', '2', '17217', '17217', '0', '0', '10', '2015-12-29 13:20:44', '', '10', '0', '0');
@@ -265,11 +265,37 @@ CREATE TABLE `enterprise_equipment` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_equipement_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enter_equipement_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_equipment
 -- ----------------------------
+INSERT INTO `enterprise_equipment` VALUES ('1', '78', '17', '30', '47', '2015-12-30 14:01:58', '');
+INSERT INTO `enterprise_equipment` VALUES ('2', '79', '2', '3', '5', '2015-12-30 14:02:07', '');
+INSERT INTO `enterprise_equipment` VALUES ('3', '80', '4', '13', '17', '2015-12-30 14:02:15', '');
+INSERT INTO `enterprise_equipment` VALUES ('4', '81', '1', '2', '3', '2015-12-30 14:02:30', '');
+INSERT INTO `enterprise_equipment` VALUES ('5', '82', '0', '0', '0', '2015-12-30 14:02:40', '');
+INSERT INTO `enterprise_equipment` VALUES ('6', '83', '0', '2', '2', '2015-12-30 14:02:46', '');
+INSERT INTO `enterprise_equipment` VALUES ('7', '84', '1', '0', '1', '2015-12-30 14:02:55', '');
+INSERT INTO `enterprise_equipment` VALUES ('8', '85', '2', '3', '5', '2015-12-30 14:03:02', '');
+INSERT INTO `enterprise_equipment` VALUES ('9', '86', '2', '1', '3', '2015-12-30 14:03:11', '');
+INSERT INTO `enterprise_equipment` VALUES ('10', '87', '0', '1', '1', '2015-12-30 14:03:19', '');
+INSERT INTO `enterprise_equipment` VALUES ('11', '88', '0', '1', '1', '2015-12-30 14:03:34', '');
+INSERT INTO `enterprise_equipment` VALUES ('12', '89', '1', '2', '3', '2015-12-30 14:03:44', '');
+INSERT INTO `enterprise_equipment` VALUES ('13', '90', '0', '0', '0', '2015-12-30 14:03:55', '');
+INSERT INTO `enterprise_equipment` VALUES ('14', '91', '0', '0', '0', '2015-12-30 14:04:04', '');
+INSERT INTO `enterprise_equipment` VALUES ('15', '92', '4', '3', '7', '2015-12-30 14:04:30', '');
+INSERT INTO `enterprise_equipment` VALUES ('16', '93', '3', '6', '9', '2015-12-30 14:04:43', '2015-12-30 14:05:01');
+INSERT INTO `enterprise_equipment` VALUES ('17', '94', '0', '1', '1', '2015-12-30 14:05:12', '');
+INSERT INTO `enterprise_equipment` VALUES ('18', '95', '1', '1', '2', '2015-12-30 14:05:22', '');
+INSERT INTO `enterprise_equipment` VALUES ('19', '96', '3', '8', '11', '2015-12-30 14:05:41', '');
+INSERT INTO `enterprise_equipment` VALUES ('20', '97', '0', '0', '0', '2015-12-30 14:05:53', '');
+INSERT INTO `enterprise_equipment` VALUES ('21', '98', '0', '0', '0', '2015-12-30 14:06:00', '');
+INSERT INTO `enterprise_equipment` VALUES ('22', '99', '1', '4', '5', '2015-12-30 14:06:15', '');
+INSERT INTO `enterprise_equipment` VALUES ('23', '100', '1', '2', '3', '2015-12-30 14:06:28', '');
+INSERT INTO `enterprise_equipment` VALUES ('24', '101', '1', '1', '2', '2015-12-30 14:06:40', '');
+INSERT INTO `enterprise_equipment` VALUES ('25', '102', '0', '2', '2', '2015-12-30 14:06:52', '');
+INSERT INTO `enterprise_equipment` VALUES ('26', '103', '0', '0', '0', '2015-12-30 14:07:09', '');
 
 -- ----------------------------
 -- Table structure for enterprise_file
@@ -766,7 +792,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=559 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=563 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1329,6 +1355,10 @@ INSERT INTO `user_log` VALUES ('555', '1', '会话超时，用户退出.', '2015
 INSERT INTO `user_log` VALUES ('556', '1', '会话超时，用户退出.', '2015-12-30 11:58:33', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('557', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 12:05:24', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('558', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 12:10:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('559', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 12:51:52', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('560', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 13:47:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('561', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 14:00:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('562', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 14:40:26', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

@@ -37,9 +37,29 @@ Ext.application({
 		Ext.getBody().on("contextmenu", Ext.emptyFn, null, {
 			preventDefault : true
 		});
+		
+		//document.documentElement.clientWidth：取得浏览器页面可视区域的宽度
+		//document.documentElement.clientHeight：取得浏览器页面可视区域的高度
+		//var clientHeight=document.documentElement.clientHeight;
+		//var clientWidth=document.documentElement.clientWidth;
+	    //alert("clientWidth:" +clientWidth+" clientHeight: "+clientHeight)
+	    
+ 		// 建立主界面
+		Ext.create('Ext.container.Viewport', {
+			layout : 'border',
+			minWidth : 800,
+	
+	    	//设置背景色或者图片( no -repeat 不重复平铺图片)
+			style  : "background-image:url(res/img/background.jpg);background-position: center;background-repeat: no-repeat;background-attachment: fixed; background-size:cover;} ",
+			
+			items : [{
+				//登录页面
+				xtype : Ext.create('RYIVS.view.common.Login').show(),
+				region:"west"
+			}]
+		});
  		
- 		//登录页面
- 		Ext.create('RYIVS.view.common.Login').show();
+ 		
 
 	}
 });

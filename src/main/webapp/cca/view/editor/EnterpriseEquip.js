@@ -14,7 +14,10 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true,
 	
-	
+	//引入grid 特征 - 列求和
+	features: [{
+        ftype: 'summary'
+    }],
 	
 	// 定义 colums
 	columns : [
@@ -60,7 +63,11 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 					minValue : 0,
 					autoStripChars : true,
 					allowDecimals : false		
- 				}
+ 				},
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 	
 			},{
 				text : '小张牵设备(套)',
@@ -74,14 +81,22 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 					autoStripChars : true,
 					allowDecimals : false
 					
-				}
+				},
+				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 }
 		  	 ,{
 				text : '合计',
 				width : 300,
 				dataIndex : 'sum',
-				flex : 1
+				flex : 1,
+				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('小计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		  	 }
 			
 	  ]	

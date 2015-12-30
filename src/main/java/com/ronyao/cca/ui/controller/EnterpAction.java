@@ -74,6 +74,15 @@ public class EnterpAction {
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
         Map<Byte, AptitudeRankClassify> aptitudeRankClassifyMap=constDictionary.getAptitudeRankClassifyMap();
+        Integer projectLastSum=0;
+        Integer projectbeforeSum=0;
+        Integer projectbeforelastSum=0;
+        Integer projectSum=0;
+        Integer outputlast=0;
+        Integer outputbefore=0;
+        Integer outputbeforelast=0;
+        Integer outputSum=0;
+        
         for (int i=0;i<enterpList.size() ;i++) {
         	 Enterprise enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
@@ -95,13 +104,21 @@ public class EnterpAction {
         	 map.put(8, aptitudeRankClassifyMap.get(enter.getOverallrank()).getName()+"");
         	 map.put(9, aptitudeRankClassifyMap.get(enter.getProfessionrank()).getName()+"");
         	 map.put(10, enter.getProjectlast()+"");
+        	 projectLastSum=projectLastSum+enter.getProjectlast();
         	 map.put(11, enter.getProjectbefore()+"");
+        	 projectbeforeSum=projectbeforeSum+enter.getProjectbefore();
         	 map.put(12, enter.getProjectbeforelast()+"");
+        	 projectbeforelastSum=projectbeforelastSum+enter.getProjectbeforelast();
         	 map.put(13, enter.getProject()+"");
+        	 projectSum=projectSum+enter.getProject();
         	 map.put(14, enter.getOutputlast()+"");
+        	 outputlast=outputlast+enter.getOutputlast();
         	 map.put(15, enter.getOutputbefore()+"");
+        	 outputbefore=outputbefore+enter.getOutputbefore();
         	 map.put(16, enter.getOutputbeforelast()+"");
+        	 outputbeforelast=outputbeforelast+enter.getOutputbeforelast();
         	 map.put(17, enter.getOutput()+"");
+        	 outputSum=outputSum+enter.getOutput();
         	 map.put(18, enter.getCreatetime());
         	 
         	 map.put(19,enter.getUpdatetime());
@@ -110,7 +127,19 @@ public class EnterpAction {
        
 		}
       
+        //指定列求和的值
+        Map<Integer , String>  map=new HashMap<Integer, String>();
+       
+        map.put(10, "合计 :  "+projectLastSum);
+        map.put(11, "合计 :  "+projectbeforeSum+"");
+        map.put(12, "合计 :  "+projectbeforelastSum);
+        map.put(13, "合计 :  "+projectSum);
+        map.put(14, "合计 :  "+outputlast);
+        map.put(15, "合计 :  "+outputbefore);
+        map.put(16, "合计 :  "+outputbeforelast);
+        map.put(17, "合计 :  "+outputSum);
         
+        valueMap.add(map);
        
      
         ExcelUtil.excelExport("施工企业基本信息", excelHeaderList, valueMap, response);

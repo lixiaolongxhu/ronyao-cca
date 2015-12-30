@@ -29,6 +29,10 @@ Ext.define('RYIVS.lib.GridEditBase', {
         deferEmptyText:false
     },
 
+    //引入grid 特征 - 列求和
+	features: [{
+        ftype: 'summary'
+    }],
 	// 工具条
 	tbar : [ {
 		text : '添加',

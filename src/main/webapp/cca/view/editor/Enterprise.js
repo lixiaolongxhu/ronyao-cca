@@ -258,7 +258,12 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		 },{
 			text : '前年<br/>工程<br/>数量',
 			width : 50,
@@ -271,7 +276,12 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		 },{
 			text : '上前年<br/>工程<br/>数量',
 			width : 50,
@@ -284,12 +294,22 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 				
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		 },{
 			text : '合计',
 			width : 50,
 			dataIndex : 'project',
-			flex : 2
+			flex : 2,
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		 }
 			
 	  ]	
@@ -312,7 +332,12 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		 },{
 			text : '前年<br/>产值 ',
 			width : 80,
@@ -325,7 +350,12 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 		 },{
 			text : '上前年<br/>产值 ',
 			width : 80,
@@ -338,14 +368,24 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		}
 			,{
 			text : '合计 ',
 			width : 80,
 			dataIndex : 'output',
-			flex : 2
+			flex : 2,
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		 }
 			
