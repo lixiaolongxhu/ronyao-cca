@@ -73,7 +73,7 @@ public class BearRevisedServiceImp implements BearRevisedService {
 			}
 		}
 		
-		//查询企业的修改系数
+		//查询企业的修改系数(无对应上年的修正系数,就已当年的承载结果计算)
 		BehaviorExample  bexample=new BehaviorExample();
 		String yearStr=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);
 		Integer year=Integer.parseInt(yearStr)-1;

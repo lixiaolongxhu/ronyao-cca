@@ -68,7 +68,7 @@ public class ActionEnterpAssess {
 				if(ea.getProjectnumend()!=null){
 					projectnumend=ea.getProjectnumend();
 				}
-				StringBuilder  enterprise=new StringBuilder("");
+				StringBuilder  enterpriseNameStr=new StringBuilder("");
 				for (BearResultDto bearResultDto : bearResultDtoList) {
 					
 					if(bearResultDto.getProjectSum() <ea.getProjectnumstart()){
@@ -83,9 +83,9 @@ public class ActionEnterpAssess {
 					if( outputEndMillion!=0 &&  bearResultDto.getOutputSum()  > outputEndMillion){
 						continue;
 					}
-					enterprise.append(bearResultDto.getEnterpriseName()+",");
+					enterpriseNameStr.append(bearResultDto.getEnterpriseName()+",");
 				}
-				ea.setEnterprise(enterprise.toString());
+				ea.setEnterprise(enterpriseNameStr.toString());
 			}
 		}
 	}

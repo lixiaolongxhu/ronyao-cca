@@ -7,6 +7,7 @@ Ext.define('RYIVS.view.common.Login', {
 	iconCls : 's_user',
 	closable : false,
 	resizable : false,
+	draggable :false ,//为真时，允许通过顶部栏拖动窗体，为假时不允许拖动
 	defaults : {
 		border : false
 	},
@@ -49,7 +50,7 @@ Ext.define('RYIVS.view.common.Login', {
 			inputType : 'password',
 			blankText : '密码不能为空！',
 			// 键盘监听
-			enableKeyEvents : true,
+			enableKeyEvents : true
 			//value : 'admin'
 		} ]
 	} ],

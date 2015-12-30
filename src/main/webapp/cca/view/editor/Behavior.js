@@ -1,7 +1,6 @@
 
 Ext.define('RYIVS.view.editor.Behavior', {
-	requires : [ 'RYIVS.lib.GridEditBase' ],
-	extend : 'RYIVS.lib.GridEditBase',
+	extend : 'Ext.grid.Panel',
 	alias : 'widget.behavior',
 	title : '不良行为影响修正系数',
 	iconCls : 's_user',
@@ -14,7 +13,53 @@ Ext.define('RYIVS.view.editor.Behavior', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true,
 	
-	
+	   dockedItems: [{
+   	 	xtype: 'toolbar',
+   	 	items: [{
+	        itemId: 'addButton',
+	        width:50,
+	        icon : 'res/icon/add.png',
+	        text:'添加',
+	        iconCls:'add',
+	        disabled: false
+	    },{
+	        itemId: 'removeButton',
+	        width:50,
+	        icon : 'res/icon/delete.png',
+	        text:'删除',
+	        tooltip:'删除所有选中的记录',
+	        iconCls:'remove',
+	        disabled: true
+	    },'-',{
+	        itemId: 'refreshButton',
+	        width:50,
+	        icon : 'res/icon/sync.png',
+	        text:'刷新',
+	        tooltip:'刷新'
+	    },'-', {
+		itemId : 'buttonExporterExcel',
+		text : '导出Excel',
+		icon : 'res/icon/export.gif'	
+    	},'-',{disabled:true},'项目年份:',{
+
+         	xtype : 'combo',
+			minValue : 1,
+			value:  Ext.Date.format(new Date(),"Y")-1,
+			editable : false,
+			displayField : 'display',
+			valueField : 'value',
+			store : ry.constant.year, //调用外部js常量
+			queryMode : 'local',
+			emptyText : '请选择',	
+			id :'behaviorSearchYear'
+	    },'-',{
+	    	itemId: 'searchButton',
+	    	icon : 'res/icon/query.png',
+	        text:'查询',
+	        tooltip:'search some rows',
+	        iconCls:'add'
+	    }]
+    }],
 	
 	// 定义 colums
 	columns : [ 
@@ -118,5 +163,58 @@ Ext.define('RYIVS.view.editor.Behavior', {
 	}
 	
 	
-	]
+	],
+	
+	initComponent:function(){
+		// 1 编辑器插件
+		this.rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+			// clicksToMoveEditor : 1, clicksToEdit : 2, autoCancel : true,
+			errorSummary : false,
+
+			/**
+			 * 是否在取消编辑的时候自动删除添加的记录 if true, auto remove phantom record on
+			 * cancel,default is true.
+			 * 
+			 * @cfg {Boolean}
+			 */
+			autoRecoverOnCancel : true,
+
+			/**
+			 * 取消编辑 1.fireEvent 'canceledit' 2.when autoRecoverOnCancel is true,
+			 * if record is phantom then remove it
+			 * 
+			 * @private
+			 * @override
+			 */
+			cancelEdit : function() {
+				var me = this;
+				if (me.editing) {
+					me.getEditor().cancelEdit();
+					me.editing = false;
+					me.fireEvent('canceledit', me.context);
+					//重新加载stores数据 刷新前端grid界面
+					if (me.autoRecoverOnCancel) {
+						me.grid.store.load();
+					}
+				}
+			}
+		});
+
+		// 2 语言翻译
+		if (Ext.grid.RowEditor) {
+			Ext.apply(Ext.grid.RowEditor.prototype, {
+				saveBtnText : '保存',
+				cancelBtnText : '取消',
+				errorsText : "<font color='red'>错误信息</font>",
+				dirtyText : "已修改,你需要提交或取消变更"
+			});
+		}
+
+		// 3 添加插件
+		this.plugins = [ this.rowEditing ];
+
+	
+		this.callParent(arguments);
+		
+	}
 });

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-12-30 14:48:11
+Date: 2015-12-30 16:50:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,11 +96,37 @@ CREATE TABLE `behavior` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `behavior_enterpriseId_fk` (`enterpriseId`,`year`) USING BTREE,
   CONSTRAINT `behavior_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
 -- ----------------------------
+INSERT INTO `behavior` VALUES ('1', '78', '2014', '1', '0', '1.00', '2015-12-30 15:25:12', '');
+INSERT INTO `behavior` VALUES ('2', '79', '2014', '1', '0', '1.00', '2015-12-30 15:25:21', '');
+INSERT INTO `behavior` VALUES ('3', '80', '2014', '1', '0', '1.00', '2015-12-30 15:25:41', '');
+INSERT INTO `behavior` VALUES ('4', '81', '2014', '0', '0', '1.00', '2015-12-30 15:25:49', '');
+INSERT INTO `behavior` VALUES ('5', '82', '2014', '0', '0', '1.00', '2015-12-30 15:26:09', '');
+INSERT INTO `behavior` VALUES ('6', '83', '2014', '1', '0', '1.00', '2015-12-30 15:26:23', '');
+INSERT INTO `behavior` VALUES ('7', '84', '2014', '0', '0', '1.00', '2015-12-30 15:26:56', '');
+INSERT INTO `behavior` VALUES ('8', '85', '2014', '3', '0', '0.80', '2015-12-30 15:27:11', '');
+INSERT INTO `behavior` VALUES ('9', '86', '2014', '0', '0', '1.00', '2015-12-30 15:27:47', '');
+INSERT INTO `behavior` VALUES ('10', '87', '2014', '1', '0', '1.00', '2015-12-30 15:27:57', '2015-12-30 15:45:57');
+INSERT INTO `behavior` VALUES ('11', '88', '2014', '0', '0', '1.00', '2015-12-30 15:46:41', '');
+INSERT INTO `behavior` VALUES ('12', '89', '2014', '0', '1', '0.80', '2015-12-30 15:46:51', '');
+INSERT INTO `behavior` VALUES ('13', '90', '2014', '0', '0', '1.00', '2015-12-30 15:47:00', '');
+INSERT INTO `behavior` VALUES ('14', '91', '2014', '0', '0', '1.00', '2015-12-30 15:47:10', '');
+INSERT INTO `behavior` VALUES ('15', '92', '2014', '3', '0', '0.80', '2015-12-30 15:47:24', '');
+INSERT INTO `behavior` VALUES ('16', '93', '2014', '0', '0', '1.00', '2015-12-30 15:47:39', '');
+INSERT INTO `behavior` VALUES ('17', '94', '2014', '0', '0', '1.00', '2015-12-30 16:08:28', '');
+INSERT INTO `behavior` VALUES ('18', '95', '2014', '1', '0', '1.00', '2015-12-30 16:08:42', '');
+INSERT INTO `behavior` VALUES ('19', '96', '2014', '1', '0', '1.00', '2015-12-30 16:09:00', '');
+INSERT INTO `behavior` VALUES ('20', '97', '2014', '0', '0', '1.00', '2015-12-30 16:09:12', '');
+INSERT INTO `behavior` VALUES ('21', '98', '2014', '1', '0', '1.00', '2015-12-30 16:09:28', '');
+INSERT INTO `behavior` VALUES ('22', '99', '2014', '0', '0', '1.00', '2015-12-30 16:09:45', '');
+INSERT INTO `behavior` VALUES ('23', '100', '2014', '0', '0', '1.00', '2015-12-30 16:10:04', '');
+INSERT INTO `behavior` VALUES ('24', '101', '2014', '0', '0', '1.00', '2015-12-30 16:10:24', '');
+INSERT INTO `behavior` VALUES ('25', '102', '2014', '4', '1', '0.60', '2015-12-30 16:11:12', '');
+INSERT INTO `behavior` VALUES ('26', '103', '2014', '1', '0', '1.00', '2015-12-30 16:11:23', '');
 
 -- ----------------------------
 -- Table structure for behavior_standard
@@ -243,12 +269,12 @@ CREATE TABLE `enterprise_assess` (
 -- ----------------------------
 -- Records of enterprise_assess
 -- ----------------------------
-INSERT INTO `enterprise_assess` VALUES ('1', 'A类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '15', null, '10.00', null, null, '2015-12-17 11:26:36', '2015-12-17 11:34:04');
-INSERT INTO `enterprise_assess` VALUES ('3', 'B类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '7', '12', '4.00', '6.00', '', '2015-12-17 11:37:00', '');
-INSERT INTO `enterprise_assess` VALUES ('4', 'C类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '6', '12', '2.00', '3.00', '', '2015-12-17 11:38:36', '2015-12-17 12:37:16');
-INSERT INTO `enterprise_assess` VALUES ('5', 'D类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '4', '8', '1.00', '2.00', '', '2015-12-17 12:22:51', '2015-12-17 12:36:24');
-INSERT INTO `enterprise_assess` VALUES ('6', 'E类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '3', '6', '0.50', '1.50', '', '2015-12-17 12:23:11', '');
-INSERT INTO `enterprise_assess` VALUES ('7', 'F类', '施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包施工管理,技术力量强,主要功效工作由自己人工承担,少量采用劳务分包', '1', '3', null, '0.50', '', '2015-12-17 12:25:51', '');
+INSERT INTO `enterprise_assess` VALUES ('1', 'A类', '施工管理、技术力量强，主要工序工作由自己员工承担，少量采用劳务分包', '15', null, '10.00', null, null, '2015-12-17 11:26:36', '2015-12-30 16:17:42');
+INSERT INTO `enterprise_assess` VALUES ('3', 'B类', '施工管理、技术力量较强，主要工序工作由自己员工承担，部分采用劳务分包', '7', '12', '4.00', '6.00', '', '2015-12-17 11:37:00', '2015-12-30 16:17:57');
+INSERT INTO `enterprise_assess` VALUES ('4', 'C类', '施工管理、技术力量较强，主要工序工作由自己员工承担或管控，部分采用劳务分包', '6', '12', '2.00', '3.00', '', '2015-12-17 11:38:36', '2015-12-30 16:18:08');
+INSERT INTO `enterprise_assess` VALUES ('5', 'D类', '施工管理、技术力量一般，主要工序工作由自己员工承担或管控，大部分采用劳务分包', '4', '8', '1.00', '2.00', '', '2015-12-17 12:22:51', '2015-12-30 16:18:20');
+INSERT INTO `enterprise_assess` VALUES ('6', 'E类', '有少量的施工管理、技术力量，主要工序工作由自己员工管控，主要采用劳务分包', '3', '6', '0.50', '1.50', '', '2015-12-17 12:23:11', '2015-12-30 16:18:30');
+INSERT INTO `enterprise_assess` VALUES ('7', 'F类', '有少量的施工管理、技术力量，主要工序工作由自己员工管控，主要采用劳务分包', '1', '3', null, '0.50', '', '2015-12-17 12:25:51', '2015-12-30 16:19:50');
 
 -- ----------------------------
 -- Table structure for enterprise_equipment
@@ -792,7 +818,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=563 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=569 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1359,6 +1385,12 @@ INSERT INTO `user_log` VALUES ('559', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('560', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 13:47:33', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('561', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 14:00:19', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('562', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 14:40:26', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('563', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 15:34:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('564', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 15:37:31', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('565', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 16:23:23', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('566', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 16:34:34', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('567', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 16:48:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('568', '1', '操作模块:会话管理,用户登陆.', '2015-12-30 16:48:44', '0:0:0:0:0:0:0:1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

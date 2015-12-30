@@ -3,6 +3,8 @@ package com.ronyao.cca.ui.extDirect;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +52,7 @@ public class ActionBehavior {
 	}
 	
 	public List<Behavior>  getBehaviorList(){
-		if(behaviorList==null){
-			BehaviorExample eExample = new BehaviorExample();
-			behaviorList=behaviorMapper.selectByExample(eExample);
-		}
+		
 		return behaviorList;
 	}
 	
@@ -62,7 +61,17 @@ public class ActionBehavior {
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
 	public ExtDirectStoreReadResult<Behavior> read(
 			ExtDirectStoreReadRequest request) {
+		//获得前段传回参数的容器
+		Map<String, Object> params = request.getParams();	
+		//获得该Map的key集合
+//		Set<String> keySet = params.keySet();
+		
+		Object  searchYearObj=params.get("searchYear");
+		if(searchYearObj==null){
+			searchYearObj=DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT4);
+		}
 		BehaviorExample eExample = new BehaviorExample();
+		eExample.createCriteria().andYearEqualTo(Integer.parseInt(searchYearObj.toString()));
 		behaviorList=behaviorMapper.selectByExample(eExample);
 		return new ExtDirectStoreReadResult<Behavior>(behaviorList);
 	}

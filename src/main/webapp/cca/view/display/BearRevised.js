@@ -12,7 +12,10 @@ Ext.define('RYIVS.view.display.BearRevised', {
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
-	
+		 //引入grid 特征 - 列求和
+	features: [{
+        ftype: 'summary'
+    }],
 	// 工具条
 	tbar : [{
 		itemId : 'buttonRefresh',
@@ -74,7 +77,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				minValue : 1,
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			},{
 				text : '220kV(个)',
 				width : 100,
@@ -86,7 +94,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 } ,{
 				text : '110kV(个)',
@@ -99,7 +112,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 }
 		  	 ,{
@@ -113,7 +131,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 }
 	
@@ -139,7 +162,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				minValue : 1,
 				autoStripChars : true,
 				allowDecimals : false
-			}
+			},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			},{
 				text : '220kV(个)',
 				width : 100,
@@ -151,7 +179,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 } ,{
 				text : '110kV(个)',
@@ -164,7 +197,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 }  ,{
 				text : '产值(万元)',
@@ -177,7 +215,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 		  	 }
 	
@@ -197,7 +240,12 @@ Ext.define('RYIVS.view.display.BearRevised', {
 					minValue : 1,
 					autoStripChars : true,
 					allowDecimals : false
-				}
+				},
+ 			
+ 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 	 }
 	

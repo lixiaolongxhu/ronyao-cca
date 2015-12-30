@@ -313,6 +313,8 @@ public class BearImp implements Bear {
 		result.setLine110kv(Math.round(lineProjectNum110kv*outputmap.get(110+""+ConstAnnualOutput.LINE_PROJECT).getProjectnum().floatValue()));
 		result.setLine220kv(Math.round(lineProjectNum220kv*outputmap.get(220+""+ConstAnnualOutput.LINE_PROJECT).getProjectnum().floatValue()));
 		result.setLine500kv(Math.round(lineProjectNum500kv*outputmap.get(500+""+ConstAnnualOutput.LINE_PROJECT).getProjectnum().floatValue()));
+		result.setLineProjectSum(result.getLine110kv()+result.getLine220kv()+result.getLine500kv());
+		
 		//线路工程年产值合计
 		lineProjectOutput=
 						outputmap.get(500+""+ConstAnnualOutput.LINE_PROJECT).getAnnualoutput()*result.getLine500kv()
@@ -324,6 +326,8 @@ public class BearImp implements Bear {
 		result.setPower110kv(Math.round(powerProjectNum110kv*outputmap.get(110+""+ConstAnnualOutput.POWER_PROJECT).getProjectnum().floatValue()));
 		result.setPower220kv(Math.round(powerProjectNum220kv*outputmap.get(220+""+ConstAnnualOutput.POWER_PROJECT).getProjectnum().floatValue()));
 		result.setPower500kv(Math.round(powerProjectNum500kv*outputmap.get(500+""+ConstAnnualOutput.POWER_PROJECT).getProjectnum().floatValue()));
+		result.setPowerProjectSum(result.getPower110kv()+result.getPower220kv()+result.getPower500kv());
+		
 		//变电工程年产值合计
 		powerProjectOutput=
 								outputmap.get(500+""+ConstAnnualOutput.POWER_PROJECT).getAnnualoutput()*result.getPower500kv()
@@ -333,6 +337,7 @@ public class BearImp implements Bear {
 		
 		
 		result.setOutputSum(lineProjectOutput+powerProjectOutput);
+		result.setProjectSum(result.getLineProjectSum()+result.getPowerProjectSum());
 		
 		return result;
 		

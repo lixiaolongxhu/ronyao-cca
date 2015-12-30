@@ -12,7 +12,9 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :true, 
-	
+	features: [{
+        ftype: 'summary'
+    }],
 	// 工具条
 	tbar : [{
 		itemId : 'buttonRefresh',
@@ -51,14 +53,22 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 				text : '评估值(万元)',
 				width : 100,
 				dataIndex : 'outputSum',
-				flex : 1
+				flex : 1,
+				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 				
 			
 	},{
 				text : '近三年产值平均值(万元)',
 				width : 100,
 				dataIndex : 'treeYearOutputAverage',
-				flex : 1
+				flex : 1,
+				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 			
 			
 	} ,{
@@ -66,7 +76,11 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 				width : 100,
 				dataIndex : 'constrast',
 				
-				flex : 1
+				flex : 1,
+				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
+				summaryRenderer: function(value, summaryData, dataIndex) {
+           			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
+       		    }
 				
 	 }
 	

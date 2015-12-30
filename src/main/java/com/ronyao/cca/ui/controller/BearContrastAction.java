@@ -69,7 +69,12 @@ public class BearContrastAction {
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-       
+       Integer projectNumSum500kv=0;
+       Integer projectNumSum220kv=0;
+       Integer projectNumSum110kv=0;
+       Integer projectNumSum=0;
+       Integer treeYearProjectAverageSum=0;
+       Integer constrastSum=0;
         for (int i=0;i<enterpList.size() ;i++) {
         	ProjectConstrastVo enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
@@ -79,20 +84,36 @@ public class BearContrastAction {
         	 map.put(2, enter.getEnterpriseName());
         	 
         	 map.put(3, enter.getProjectNumSum500kv()+"");
+        	 projectNumSum500kv=projectNumSum500kv+enter.getProjectNumSum500kv();
         	 map.put(4, enter.getProejctNumSum220kv()+"");
+        	 projectNumSum220kv=projectNumSum220kv+enter.getProejctNumSum220kv();
         	 map.put(5, enter.getProjectNumSum110kv()+"");
-        	
+        	 projectNumSum110kv=projectNumSum110kv+enter.getProjectNumSum110kv();
     
         	 map.put(6, enter.getProjectNumSum()+"");
-        	 
+        	 projectNumSum=projectNumSum+enter.getProjectNumSum();
   
         	 map.put(7, enter.getTreeYearProjectAverage()+"");
+        	 treeYearProjectAverageSum=treeYearProjectAverageSum+enter.getTreeYearProjectAverage();
         	 
         	 map.put(8,enter.getConstrast()+"");
-        	
+        	 constrastSum=constrastSum+enter.getConstrast();
         	 valueMap.add(map);
        
 		}
+        //指定列求和的值
+        Map<Integer , String>  map=new HashMap<Integer, String>();
+       
+       
+        map.put(3, "合计 :  "+projectNumSum500kv+"");
+        map.put(4, "合计 :  "+projectNumSum220kv);
+        map.put(5, "合计 :  "+projectNumSum110kv);
+        map.put(6, "合计 :  "+projectNumSum);
+        map.put(7, "合计 :  "+treeYearProjectAverageSum);
+        map.put(8, "合计 :  "+constrastSum);
+     
+        
+        valueMap.add(map);
        
         //导出
         ExcelUtil.excelExport("工程数量对比情况", excelHeaderList, valueMap, response);
@@ -125,7 +146,9 @@ public class BearContrastAction {
         }
         
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
-       
+       Integer outputSum=0;
+       Integer treeYearOutputAverage=0;
+       Integer constrastSum=0;
         for (int i=0;i<enterpList.size() ;i++) {
         	OutputConstrastVo enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
@@ -135,19 +158,29 @@ public class BearContrastAction {
         	 map.put(2, enter.getEnterpriseName());
         	
         	 map.put(3, enter.getOutputSum()+"");
-        	
+        	 outputSum=outputSum+enter.getOutputSum();
         	
         	
         	 map.put(4, enter.getTreeYearOutputAverage()+"");  
-     
+        	 treeYearOutputAverage=treeYearOutputAverage+enter.getTreeYearOutputAverage();
         	 map.put(5, enter.getConstrast()+"");
-        	
+        	 constrastSum=constrastSum+enter.getConstrast();
         
         	
         	 valueMap.add(map);
        
 		}
+        //指定列求和的值
+        Map<Integer , String>  map=new HashMap<Integer, String>();
        
+       
+        map.put(3, "合计 :  "+outputSum+"");
+        map.put(4, "合计 :  "+treeYearOutputAverage);
+        map.put(5, "合计 :  "+constrastSum);
+     
+     
+        
+        valueMap.add(map);
         //导出
         ExcelUtil.excelExport("产值对比情况", excelHeaderList, valueMap, response);
     }
