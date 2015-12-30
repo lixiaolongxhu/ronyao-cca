@@ -9,19 +9,17 @@ Ext.define('RYIVS.view.frame.Admin', {
 	items : [ {
 		xtype : 'leftMenu',
 		region : 'west',
-		width : 300,
+		width : 300//,
 //		collapsible :true,
 		
 	}, {
 		region : 'center',
-		xtype : 'tabpanel',
-		activeTab : 0,			
+		xtype : 'centerPanel',
+		activeTab : 0,
 		items : [ {
-			xtype : 'centerPanel',
-			html :'界面中部',
-			title : '主界面'
+			xtype : 'enterprise',  //管理员用户默认打开企业基本信息
+			 closable : true // 通过html载入目标页  ,显示关闭按钮	
 		}
-		
 		
 		]
 	} ],

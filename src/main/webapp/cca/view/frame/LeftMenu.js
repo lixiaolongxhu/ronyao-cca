@@ -16,7 +16,13 @@ Ext.define('RYIVS.view.frame.LeftMenu', {
 	useArrows:true, //树节点使用箭头
 	containerScroll: true,
 	collapsible: true, //panel 可以收方的动画效果
-	autoScroll: false, 
+	autoScroll: true, 
+//	bodyStyle: {  //设置背景设或背景图片
+//    	background: '#008b8a'
+//    	,
+//   	 	padding: '-100px'
+//	},
+	bodyStyle: 'background-color:#a3c6c7;',
 	store : Ext.create('Ext.data.TreeStore', {
 				// 数据代理
 			    nodeParam : 'parentId',  //这个属性是异步加载主要特征，通过该节点去请求子节点

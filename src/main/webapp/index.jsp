@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 	<head>
-		<title>施工承载能力评估系统----------成都荣耀科技有限公司</title>
+		<title>国网四川电力输变电施工企业承载能力评估系统</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="lib/ext/resources/css/ext-all.css">
+		<!-- 自定义图标样式  -->
 		<link rel="stylesheet" type="text/css" href="css/ryivs.css">
+	    <!-- 修正exjs 4  treepanel 背景设配置 -->
+		<style>.x-grid-row .x-grid-cell{background-color:transparent}</style>
 		
 		<!--extjs 启动器-->
 		<script type="text/javascript" src="lib/ext/bootstrap.js"></script>

@@ -46,7 +46,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManPower', {
 	
 	
 	{
-	 text :"线路专业",
+	 text :"变电专业",
    
 	 columns: [{
 				text : '500kv项目经理',
