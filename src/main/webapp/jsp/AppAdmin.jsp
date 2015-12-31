@@ -21,7 +21,7 @@ Ext.application({
 
 	appFolder : 'cca',
 
-	controllers : [ 'frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center',
+	controllers : [ 'frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center','frame.TopPanel',
 					
 					'common.EditPassword',
 	

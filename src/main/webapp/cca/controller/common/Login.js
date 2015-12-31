@@ -3,27 +3,27 @@ Ext.define('RYIVS.controller.common.Login', {
 	views : ['common.Login'],
 
 	refs : [{
-		selector : 'winlogin form',
+		selector : 'loginForm',
 		ref : 'form'
 	}, {
-		selector : 'winlogin textfield[name=username]',
+		selector : 'loginForm textfield[name=username]',
 		ref : 'username'
 	}, {
-		selector : 'winlogin textfield[name=password]',
+		selector : 'loginForm textfield[name=password]',
 		ref : 'password'
 	}],
 
 	init : function() {
 		var me = this;
 		this.control({
-			'winlogin textfield' : {
+			'loginForm textfield' : {
 				keydown : me.onKeydown
 			},
-			'winlogin button[type=sub]' : {
+			'loginForm button[type=sub]' : {
 				click : me.onSubmit,
 				dbclick : me.onSubmit
 			},
-			'winlogin button[type=reset]' : {
+			'loginForm button[type=reset]' : {
 				click : me.onReset,
 				dbclick : me.onReset
 			}
@@ -44,6 +44,7 @@ Ext.define('RYIVS.controller.common.Login', {
 	//提交表单
 	onSubmit : function() {
 		var me = this;
+	//	alert(this);
 		me.getForm().submit({
 			waitTitle : '登陆',
 			waitMsg : '正在登陆',

@@ -52,10 +52,13 @@ Ext.application({
 	    	//设置背景色或者图片( no -repeat 不重复平铺图片)
 			style  : "background-image:url(res/img/background.jpg);background-position: center;background-repeat: no-repeat;background-attachment: fixed; background-size:cover;} ",
 			
-			items : [{
-				//登录页面
-				xtype : Ext.create('RYIVS.view.common.Login').show(),
-				region:"west"
+			//items : [{
+			//	//登录页面
+			//	xtype : Ext.create('RYIVS.view.common.Login').show(),
+			//	region:"west"
+			//}]
+			items :[{
+				xtype :'loginForm'
 			}]
 		});
  		

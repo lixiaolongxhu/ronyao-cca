@@ -1,37 +1,47 @@
-//播放器的对象
+//登陆界面
 Ext.define('RYIVS.view.common.Login', {
-	extend : 'Ext.window.Window',
-	alias : 'widget.winlogin',
+	extend : 'Ext.form.FormPanel',
+	alias : 'widget.loginForm',
 	title : '用户登录',
-	width : 300,
 	iconCls : 's_user',
-	closable : false,
-	resizable : false,
-	draggable :false ,//为真时，允许通过顶部栏拖动窗体，为假时不允许拖动
-	defaults : {
-		border : false
+                                
+	id: 'loginForm',
+           
+    border: false,// 没有边框
+    frame: true,
+  
+    style: { //formpanel位置  
+          marginRight: document.documentElement.clientWidth-document.documentElement.clientWidth*0.81,
+          marginLeft: document.documentElement.clientWidth-document.documentElement.clientWidth*0.4,
+          marginTop: document.documentElement.clientHeight-document.documentElement.clientHeight*0.6,
+          marginBottom: document.documentElement.clientHeight-document.documentElement.clientHeight*0.7
+    },
+    //文本框的宽度配置
+    defaults: { 
+    	style : {
+    		marginTop  : '30px',
+    		marginLeft :'20px',
+    		marginRight :'20px',
+    		marginBottom  :'20px'
+    	},
+  	    xtype: 'textfield' ,
+   		labelSeparator :'：',//分隔符
+
+	    labelWidth : 50,//标签宽度
+
+
+		allowBlank : false,//是否允许为空
+		autowidth : true,
+		
+		width: 210,//字段宽度
+
+		blankText : '不允许为空',
+
+		labelAlign : 'right'//标签对齐方式
 	},
-	//定义显示位置
-	x: document.documentElement.clientWidth-document.documentElement.clientWidth*0.4,  
-	//y: 50,
-
-	buttonAlign : 'center',
-
+	
 	items : [ {
-		xtype : 'form',
-		id : 'loginForm',
-		bodyStyle : 'padding-top:20px',
-		defaultType : 'textfield',
-		labelAlign : 'right',
-		height : 100,
-		frame : true,
-		defaults : {
-			allowBlank : false,
-			autowidth : true,
-			width : 210
-		},
-
-		items : [ {
+		
 			xtype : 'textfield',
 			fieldLabel : '用户名',
 			labelAlign : 'right',
@@ -41,7 +51,7 @@ Ext.define('RYIVS.view.common.Login', {
 			// 键盘监听
 			enableKeyEvents : true
 			//value : 'admin'
-		}, {
+	}, {
 			xtype : 'textfield',
 			fieldLabel : '密　码',
 			labelAlign : 'right',
@@ -52,9 +62,9 @@ Ext.define('RYIVS.view.common.Login', {
 			// 键盘监听
 			enableKeyEvents : true
 			//value : 'admin'
-		} ]
-	} ],
-
+	}],
+	
+	buttonAlign : 'center',
 	buttons : [ {
 		text : "登录",
 		icon : 'res/icon/login.png',
@@ -65,7 +75,9 @@ Ext.define('RYIVS.view.common.Login', {
 		type : 'reset',
 		icon : 'res/icon/sync.png'
 	} ],
+	
 
+  	
 	initComponent : function() {
 		this.callParent(arguments);
 	}

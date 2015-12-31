@@ -3,7 +3,7 @@
 	<head>
 		<title>国网四川电力输变电施工企业承载能力评估系统</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="stylesheet" type="text/css" href="lib/ext/resources/css/ext-all.css">
+		<link rel="stylesheet" type="text/css" href="lib/ext/resources/css/ext-all-gray.css">
 		<!-- 自定义图标样式  -->
 		<link rel="stylesheet" type="text/css" href="css/ryivs.css">
 	    <!-- 修正exjs 4  treepanel 背景设配置 -->

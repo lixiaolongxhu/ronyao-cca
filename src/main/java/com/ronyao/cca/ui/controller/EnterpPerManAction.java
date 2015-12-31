@@ -69,10 +69,12 @@ public class EnterpPerManAction {
 	
 		
         List<EnterprisePerManage> enterpList = perManageList;
-        if(enterpList.isEmpty()){
+        if(enterpList==null  || enterpList.isEmpty()){
+        	response.setHeader("content-type", "text/html;charset=UTF-8");
+        	response.setCharacterEncoding("UTF-8");
+        	response.getWriter().write("没有可以导出的内容:     <a href='javascript:history.go(-1)'><H2> 返回<H2></a> ");
         	return;
         }
-        
         List<Map<Integer , String>>  valueMap=new ArrayList<Map<Integer,String>>();
         Map<Integer, Enterprise> enterpriseMap=constDictionary.getEnterpriseMap();
         for (int i=0;i<enterpList.size() ;i++) {

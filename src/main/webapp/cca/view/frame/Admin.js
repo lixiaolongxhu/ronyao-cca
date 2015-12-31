@@ -6,7 +6,13 @@ Ext.define('RYIVS.view.frame.Admin', {
 	alias : 'widget.layerAdmin',
 	region : 'center',
 	layout : 'border',
-	items : [ {
+	items : [{
+		xtype : 'topPanel',
+		region : 'north',
+		
+//		collapsible :true,
+		
+	},{
 		xtype : 'leftMenu',
 		region : 'west',
 		width : 300//,

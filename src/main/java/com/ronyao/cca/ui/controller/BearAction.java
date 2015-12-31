@@ -62,7 +62,10 @@ public class BearAction {
 	
 		
 		List<BearResultDto> enterpList = actionBear.getBearResultList();
-        if(enterpList.isEmpty()){
+		if(enterpList==null  || enterpList.isEmpty()){
+        	response.setHeader("content-type", "text/html;charset=UTF-8");
+        	response.setCharacterEncoding("UTF-8");
+        	response.getWriter().write("没有可以导出的内容:     <a href='javascript:history.go(-1)'><H2> 返回<H2></a> ");
         	return;
         }
         

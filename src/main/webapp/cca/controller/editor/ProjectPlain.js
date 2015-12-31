@@ -133,7 +133,8 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
 	 */
 	   exporterExcel :function(){
 	   
-   		window.location.href='../../ui/projectPlain/excel';
+   			window.location.href='../../ui/projectPlain/excel';
+//   		window.open('../../ui/projectPlain/excel', , “_blank” );
    		}
    
             
