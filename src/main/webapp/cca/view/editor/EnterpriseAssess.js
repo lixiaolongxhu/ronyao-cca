@@ -9,10 +9,12 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 	store : 'editor.EnterpriseAssess',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false,
 	
 	
 	
@@ -24,7 +26,7 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 		width : 100,
 		sortable : true,
 		dataIndex : 'category',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -47,13 +49,13 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 	
 	{
 		text : '标准',
-		width : 400,
+		width : 600,
 		dataIndex : 'standard',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : false
-		},
-		flex : 1
+		}
+	
 	},
 	
 	{
@@ -61,7 +63,7 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 				width : 100,
 				dataIndex : 'projectnumstart',
 				
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'textfield',
@@ -75,7 +77,7 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 				width : 100,
 				dataIndex : 'projectnumend',
 				
-				flex : 1,
+				
 				editor : {
 					
 					
@@ -92,8 +94,8 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 		editor : {
 			xtype : 'textfield',
 			allowBlank : true
-		},
-		flex : 1
+		}
+		
 	},
 	
 	{
@@ -103,23 +105,23 @@ Ext.define('RYIVS.view.editor.EnterpriseAssess', {
 		editor : {
 			xtype : 'textfield',
 			allowBlank : true
-		},
-		flex : 1
+		}
+	
 	},
 	
 	{
 		text : '施工企业',
-		width : 400,
+		width : 2000,
 		dataIndex : 'enterprise'
 	},
 	
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

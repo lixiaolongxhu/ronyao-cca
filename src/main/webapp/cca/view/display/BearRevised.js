@@ -8,11 +8,13 @@ Ext.define('RYIVS.view.display.BearRevised', {
 	store : 'display.BearRevised',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
-		 //引入grid 特征 - 列求和
+	forceFit :false,
+	//引入grid 特征 - 列求和
 	features: [{
         ftype: 'summary'
     }],
@@ -36,10 +38,10 @@ Ext.define('RYIVS.view.display.BearRevised', {
 	, 
 	{
 		text : '施工企业名称',
-		width : 100,
+		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -70,7 +72,7 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				width : 100,
 				dataIndex : 'line500kv',
 				
-				flex : 1,
+				
 				editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -87,7 +89,7 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				text : '220kV(个)',
 				width : 100,
 				dataIndex : 'line220kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -105,7 +107,7 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				text : '110kV(个)',
 				width : 100,
 				dataIndex : 'line110kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -122,9 +124,9 @@ Ext.define('RYIVS.view.display.BearRevised', {
 		  	 }
 		  	 ,{
 				text : '产值(万元)',
-				width : 100,
+				width : 200,
 				dataIndex : 'lineOutput',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -155,7 +157,7 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				width : 100,
 				dataIndex : 'power500kv',
 				
-				flex : 1,
+				
 				editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -172,7 +174,7 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				text : '220kV(个)',
 				width : 100,
 				dataIndex : 'power220kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -190,7 +192,7 @@ Ext.define('RYIVS.view.display.BearRevised', {
 				text : '110kV(个)',
 				width : 100,
 				dataIndex : 'power110kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -206,9 +208,9 @@ Ext.define('RYIVS.view.display.BearRevised', {
 			
 		  	 }  ,{
 				text : '产值(万元)',
-				width : 100,
+				width : 200,
 				dataIndex : 'powerOutput',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -231,9 +233,9 @@ Ext.define('RYIVS.view.display.BearRevised', {
 	
 	,{
 				text : '合计(万元)',
-				width : 100,
+				width : 200,
 				dataIndex : 'outputSum',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',

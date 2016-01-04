@@ -9,10 +9,12 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 	store : 'editor.EnterprisePerSta',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false, 
 	
 	//引入grid 特征 - 列求和
 	features: [{
@@ -24,10 +26,10 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	, {
 		text : '岗位',
-		width : 100,
+		width : 300,
 		sortable : true,
 		dataIndex : 'postclassifyid',
-		//flex : 1,
+	
 		
 		editor : {
 				allowBlank : false,
@@ -55,7 +57,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 			xtype : 'textfield',
 			allowBlank : true
 		},
-		flex : 1
+		
 	},
 	{
 	 text :"线路工程(人数)",
@@ -65,7 +67,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 				width : 100,
 				dataIndex : 'lineflatnum',
 				
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -83,7 +85,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 				text : '山区',
 				width : 100,
 				dataIndex : 'linemountainnum',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -105,7 +107,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 		text : '变电工程(人数)',
 		width : 100,
 		dataIndex : 'powernum',
-		flex : 1,
+		
 		editor : {
 			allowBlank : false,
 			xtype : 'numberfield',
@@ -120,11 +122,11 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 	},
 	
 	{
-		text : '是否允许其他<br/>岗位人员兼职',
-		width : 80,
+		text : '是否允许<br/>其他岗位<br/>人员兼职',
+		width : 100,
 		sortable : true,
 		dataIndex : 'job',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -146,22 +148,22 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 	
 	{
 		text : '备注',
-		width : 200,
+		width : 400,
 		dataIndex : 'remark',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : true
-		},
-		flex : 1
+		}
+		
 	},
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
-		width : 100,
+		text : '记录修改时间',
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

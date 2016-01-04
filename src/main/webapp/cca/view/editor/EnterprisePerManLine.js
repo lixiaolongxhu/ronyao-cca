@@ -9,10 +9,12 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 	store : 'editor.EnterprisePerManLine',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false, 
 	
 	
 	
@@ -21,10 +23,10 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 {xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	, {
 		text : '施工企业名称',
-		width : 300,
+		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -49,11 +51,11 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 	 text :"线路专业",
    
 	 columns: [{
-				text : '500kv项目经理',
+				text : '500kv<br/>项目经理',
 				width : 80,
 				dataIndex : 'onemanager',
 				
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -63,10 +65,10 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
  				}
 	
 			},{
-				text : '220kv及以下项目经理',
+				text : '220kv及以下<br/>项目经理',
 				width : 80,
 				dataIndex : 'twomanager',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -77,10 +79,10 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				}
 			
 		  	 } ,{
-				text : '220kv及以上项目总工',
+				text : '220kv及以上<br/>项目总工',
 				width : 80,
 				dataIndex : 'onechief',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -91,10 +93,10 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				}
 			
 		  	 },{
-				text : '110kv项目总工',
+				text : '110kv<br/>项目总工',
 				width : 80,
 				dataIndex : 'twochief',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -108,7 +110,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '安全员',
 				width : 80,
 				dataIndex : 'safetyofficer',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -122,7 +124,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '质检员',
 				width : 80,
 				dataIndex : 'inspector',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -136,7 +138,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '技术员',
 				width : 100,
 				dataIndex : 'technician',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -150,7 +152,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '造价员',
 				width : 100,
 				dataIndex : 'costmember',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -164,7 +166,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '资料员',
 				width : 80,
 				dataIndex : 'documenter',
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -178,7 +180,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '综合管理员',
 				width : 100,
 				dataIndex : 'integrator',
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -192,7 +194,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '材料员',
 				width : 100,
 				dataIndex : 'material',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -206,7 +208,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '协调员',
 				width : 80,
 				dataIndex : 'expeditor',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -220,7 +222,7 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 				text : '施工队长',
 				width : 100,
 				dataIndex : 'constructionteam',
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -232,9 +234,9 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 			
 		  	 },{
 				text : '施工队,技术员<br/>质检员,兼职安全员',
-				width : 100,
+				width : 150,
 				dataIndex : 'plurality',
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -248,8 +250,8 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 		  	 ,{
 				text : '合计',
 				width : 100,
-				dataIndex : 'sum',
-				flex : 1
+				dataIndex : 'sum'
+				
 		  	 }
 			
 	  ]	
@@ -259,11 +261,11 @@ Ext.define('RYIVS.view.editor.EnterprisePerManLine', {
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

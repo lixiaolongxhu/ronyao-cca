@@ -9,31 +9,32 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 	store : 'editor.EquipmentBear',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
+	forceFit :false, 
 	// 定义 colums
 	columns : [
 	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	, 
 	{
 		text : '张牵设备',
-		width : 300,
+		width : 200,
 		dataIndex : 'name',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : false
-		},
-		flex : 1
+		}
 	},
 		
 	{
 		text : '电压等级',
-		width : 200,
+		width : 100,
 		sortable : true,
 		dataIndex : 'voltagerankid',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -55,10 +56,10 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 	
 	{
 		text : '单回/双回',
-		width : 200,
+		width : 100,
 		sortable : true,
 		dataIndex : 'linetype',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -87,7 +88,7 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 				width : 100,
 				dataIndex : 'lineplain',
 				
-				flex : 1,
+				
 				editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -99,7 +100,7 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 				text : '山区',
 				width : 100,
 				dataIndex : 'linebrae',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -117,22 +118,22 @@ Ext.define('RYIVS.view.editor.EquipmentBear', {
 	
 	{
 		text : '说明',
-		width : 200,
+		width : 600,
 		dataIndex : 'explains',
 		editor : {
-			xtype : 'textfield',
+			xtype : 'textarea',
 			allowBlank : true
-		},
-		flex : 1
+		}
+	
 	},
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
-		width : 100,
+		text : '记录修改时间',
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

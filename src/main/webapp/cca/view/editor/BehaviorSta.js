@@ -9,12 +9,12 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 	store : 'editor.BehaviorSta',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
-	
-	autoScroll : true, //'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	forceFit :false, 
 	
 	
 	// 工具条
@@ -101,10 +101,10 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	, {
 		text : '不良行为等级',
-		width : 100,
+		width : 200,
 		sortable : true,
 		dataIndex : 'ranktype',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -126,62 +126,62 @@ Ext.define('RYIVS.view.editor.BehaviorSta', {
 	
 	{
 		text : '诚信',
-		width : 200,
+		width : 400,
 		dataIndex : 'sincerity',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : false
-		},
-		flex : 1
+		}
+	
 	},
 		{
 		text : '安全质量',
-		width : 200,
+		width : 400,
 		dataIndex : 'save',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : false
-		},
-		flex : 1
+		}
+		
 	},
 	{
 		text : '履约进度',
-		width : 200,
+		width : 400,
 		dataIndex : 'progress',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : false
-		},
-		flex : 1
+		}
+		
 	},
 	{
 		text : '服务',
-		width : 200,
+		width : 400,
 		dataIndex : 'service',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : false
-		},
-		flex : 1
+		}
+		
 	},
 	{
 		text : '其他',
-		width : 100,
+		width : 400,
 		dataIndex : 'other',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : true
-		},
-		flex : 1
+		}
+		
 	},
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

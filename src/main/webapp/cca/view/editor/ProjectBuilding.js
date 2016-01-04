@@ -10,10 +10,12 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 	store:'editor.ProjectBuilding',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false,
 	
 	
 	viewConfig: {
@@ -91,17 +93,17 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 		{xtype: 'rownumberer',minWidth :30,text :'序号'}, //设置grid 行号	
 		{
 			text : '主管单位',
-			width : 200,
+			width : 100,
 			sortable : true,
-			dataIndex : 'supervisorunit',
-			flex : 1
+			dataIndex : 'supervisorunit'
+			
 		},
 		 {
 		text : '施工企业名称',
-		width : 300,
+		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
-		flex : 1,
+	
 		
 		editor : {
 				allowBlank : false,
@@ -124,10 +126,10 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 	
 	 {
 		text : '项目年份',
-		width : 200,
+		width : 100,
 		sortable : true,
 		dataIndex : 'year',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -156,7 +158,7 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 			text : '500kV(个)',
 			width : 100,
 			dataIndex : 'line500kv',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -174,7 +176,7 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 			text : '220kV(个)',
 			width : 100,
 			dataIndex : 'line220kv',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -193,7 +195,7 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 			text : '110kV(个)',
 			width : 100,
 			dataIndex : 'line110kv',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -220,7 +222,7 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 			text : '500kV(个)',
 			width : 100,
 			dataIndex : 'power500kv',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -239,7 +241,7 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 			text : '220kV(个)',
 			width : 100,
 			dataIndex : 'power220kv',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -257,7 +259,7 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 			text : '110kV(个)',
 			width : 100,
 			dataIndex : 'power110kv',
-			flex : 1,
+		
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -276,13 +278,14 @@ Ext.define('RYIVS.view.editor.ProjectBuilding', {
 	  ]	
 	}
 	,
+
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

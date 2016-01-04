@@ -22,7 +22,7 @@ Ext.define('RYIVS.view.frame.LeftMenu', {
 //    	,
 //   	 	padding: '-100px'
 //	},
-	//width : document.documentElement.clientWidth*0.10,
+	//width : 200,
 	bodyStyle: 'background-color:#a3c6c7;',
 	store : Ext.create('Ext.data.TreeStore', {
 				// 数据代理

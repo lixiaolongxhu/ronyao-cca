@@ -4,15 +4,17 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.enterpriseEquip',
 	title : '施工装备信息',
-	iconCls : 's_user',
+	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.EnterpriseEquip',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false, 
 	
 	//引入grid 特征 - 列求和
 	features: [{
@@ -27,7 +29,7 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -56,7 +58,7 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 				width : 200,
 				dataIndex : 'bigequipment',
 				
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -73,7 +75,7 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 				text : '小张牵设备(套)',
 				width : 200,
 				dataIndex : 'smallequipment',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -92,7 +94,7 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 				text : '合计',
 				width : 300,
 				dataIndex : 'sum',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('小计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -106,11 +108,11 @@ Ext.define('RYIVS.view.editor.EnterpriseEquip', {
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

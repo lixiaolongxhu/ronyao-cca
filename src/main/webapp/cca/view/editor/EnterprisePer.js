@@ -11,11 +11,12 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	store : 'editor.EnterprisePer',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
-//    width: 800, //Ext.get("content").getWidth(),
+	forceFit :false, 
 		// 工具条
 	tbar : [ {
 		text : '添加',
@@ -125,9 +126,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	 columns: [
 		 	{
 			text : '一级',
-			width : 60,
+			width : 100,
 			dataIndex : 'constructorone',
-			flex : 1,
+			//flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -138,9 +139,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			}
 		  }, {
 			text : '二级',
-			width : 60,
+			width : 100,
 			dataIndex : 'constructortwo',
-			flex : 1,
+		//	flex : 1,
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -152,9 +153,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '合计',
-			width : 60,
-			dataIndex : 'constructortotal',
-			flex : 1
+			width : 100,
+			dataIndex : 'constructortotal'
+			
 		  } 
 	
 			
@@ -167,9 +168,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	 columns: [
 		 	{
 			text : '中级',
-			width : 60,
+			width : 100,
 			dataIndex : 'staffmiddle',
-			flex : 1,
+		
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -180,9 +181,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			}
 		  }, {
 			text : '高级',
-			width : 60,
+			width : 100,
 			dataIndex : 'staffhigh',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -196,7 +197,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			text : '合计',
 			width : 60,
 			dataIndex : 'stafftotal',
-			flex : 1
+			
 		  } 
 	
 			
@@ -209,9 +210,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	 columns: [
 		 	{
 			text : '中级',
-			width : 60,
+			width : 100,
 			dataIndex : 'skillmiddle',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -222,9 +223,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			}
 		  }, {
 			text : '高级',
-			width : 60,
+			width : 100,
 			dataIndex : 'skillhigh',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -236,9 +237,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '技师',
-			width : 60,
+			width : 100,
 			dataIndex : 'skilltech',
-			flex : 1,
+		
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -250,9 +251,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '高级技师',
-			width : 60,
+			width : 100,
 			dataIndex : 'skilltechhigh',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -264,9 +265,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '合计',
-			width : 60,
-			dataIndex : 'skilltotal',
-			flex : 1
+			width : 100,
+			dataIndex : 'skilltotal'
+			
 		  } 
 	
 			

@@ -10,10 +10,13 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	store:'editor.ProjectPlain',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false,
+	
 	
 	
 	viewConfig: {
@@ -91,10 +94,10 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 		{xtype: 'rownumberer',minWidth :30,text :'序号'}, //设置grid 行号	
 		{
 		text : '电压等级',
-		width : 200,
+		width : 100,
 		sortable : true,
 		dataIndex : 'voltagerankclassifyid',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -116,10 +119,10 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	
 	 {
 		text : '项目年份',
-		width : 200,
+		width : 100,
 		sortable : true,
 		dataIndex : 'year',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -141,9 +144,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	},
 	 {
 			text : '项目个数(个)',
-			width : 200,
+			width : 100,
 			dataIndex : 'projectnum',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -165,9 +168,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	 columns: [
 		 	{
 			text : '线路工程数(个)',
-			width : 100,
+			width : 150,
 			dataIndex : 'lineproject',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -183,9 +186,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 		  }, {
 			text : '变电工程数(个)',
-			width : 100,
+			width : 150,
 			dataIndex : 'powerproject',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -211,9 +214,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 	 columns: [
 		 	{
 			text : '线路工程数(个)',
-			width : 100,
+			width : 150,
 			dataIndex : 'assesslineproject',
-			flex : 1,
+		
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -231,7 +234,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 			text : '变电工程数(个)',
 			width : 100,
 			dataIndex : 'assesspowerproject',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -254,7 +257,7 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
 			text : '线路长度(公里)',
 			width : 100,
 			dataIndex : 'linelength',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -270,9 +273,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 	}, {
 			text : '变电容量(万千伏安)',
-			width : 100,
+			width : 150,
 			dataIndex : 'volume',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -288,9 +291,9 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
        		    }
 	}, {
 			text : '总投资(亿元)',
-			width : 100,
+			width : 150,
 			dataIndex : 'investment',
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'textfield',
@@ -305,13 +308,14 @@ Ext.define('RYIVS.view.editor.ProjectPlain', {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
        		    }
 	},
+
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

@@ -8,11 +8,12 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 	store : 'display.ProjectBuildBear',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
-	
+	forceFit :false,
 	 
     //引入grid 特征 - 列求和
 	features: [{
@@ -41,18 +42,18 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 		text : '主管单位',
 		width : 100,
 		sortable : true,
-		dataIndex : 'supervisorunit',
-		flex : 1
+		dataIndex : 'supervisorunit'
+		
 		
 		
 		
 	},
 	{
 		text : '施工企业名称',
-		width : 100,
+		width : 200,
 		sortable : true,
-		dataIndex : 'enterpriseName',
-		flex : 1
+		dataIndex : 'enterpriseName'
+		
 		
 		
 		
@@ -68,7 +69,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 				width : 100,
 				dataIndex : 'line500kv',
 				
-				flex : 1,
+				
 				editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -85,7 +86,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 				text : '220kV(个)',
 				width : 100,
 				dataIndex : 'line220kv',
-				flex : 1,
+			
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -103,7 +104,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 				text : '110kV(个)',
 				width : 100,
 				dataIndex : 'line110kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -130,7 +131,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 				width : 100,
 				dataIndex : 'power500kv',
 				
-				flex : 1,
+				
 				editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -147,7 +148,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 				text : '220kV(个)',
 				width : 100,
 				dataIndex : 'power220kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -165,7 +166,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 				text : '110kV(个)',
 				width : 100,
 				dataIndex : 'power110kv',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',

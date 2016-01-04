@@ -8,10 +8,12 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 	store : 'display.BearContrastProOutput',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
+	forceFit :false,
 	features: [{
         ftype: 'summary'
     }],
@@ -36,24 +38,24 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 	{
 		text : '主管单位',
 		width : 100,
-		dataIndex : 'supervisorunit',
-		flex : 1
+		dataIndex : 'supervisorunit'
+		
 		
 	},
 	
 		{
 		text : '施工企业名称',
-		width : 100,
+		width : 150,
 		dataIndex : 'enterpriseName',
-		flex : 1
+		
 		
 	},
 	
 	{
 				text : '评估值(万元)',
-				width : 100,
+				width : 150,
 				dataIndex : 'outputSum',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -62,9 +64,9 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 			
 	},{
 				text : '近三年产值平均值(万元)',
-				width : 100,
+				width : 150,
 				dataIndex : 'treeYearOutputAverage',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -73,10 +75,10 @@ Ext.define('RYIVS.view.display.BearContrastProOutput', {
 			
 	} ,{
 				text : '差额(万元)',
-				width : 100,
+				width : 150,
 				dataIndex : 'constrast',
 				
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 

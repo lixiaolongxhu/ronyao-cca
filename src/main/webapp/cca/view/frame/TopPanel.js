@@ -7,7 +7,8 @@ Ext.define('RYIVS.view.frame.TopPanel', {
 		
 		frame :false,
 		header :false,
-		height: '15%',
+		//height: '15%', //采用百分比的方式
+		height :100, //固定高度
 		//设置背景色或者图片
 		html:'<img src="res/img/top.jpg" height=100% , width=100%></img>'
 		

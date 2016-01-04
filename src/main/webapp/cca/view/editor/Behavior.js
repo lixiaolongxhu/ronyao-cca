@@ -3,15 +3,17 @@ Ext.define('RYIVS.view.editor.Behavior', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.behavior',
 	title : '不良行为影响修正系数',
-	iconCls : 's_user',
+	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.Behavior',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true,
+	forceFit :false,
 	
 	   dockedItems: [{
    	 	xtype: 'toolbar',
@@ -66,10 +68,10 @@ Ext.define('RYIVS.view.editor.Behavior', {
 {xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
 	,{
 		text : '施工企业名称',
-		width : 100,
+		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -91,10 +93,10 @@ Ext.define('RYIVS.view.editor.Behavior', {
 	
 	 {
 		text : '不良行为发生年份',
-		width : 100,
+		width : 200,
 		sortable : true,
 		dataIndex : 'year',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -119,9 +121,9 @@ Ext.define('RYIVS.view.editor.Behavior', {
    
 	 columns: [{
 				text : '严重不良行为次数',
-				width : 100,
+				width : 200,
 				dataIndex : 'seriousbadnum',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -131,9 +133,9 @@ Ext.define('RYIVS.view.editor.Behavior', {
 				}
 			},{
 				text : '一般不良行为次数',
-				width : 100,
+				width : 200,
 				dataIndex : 'generalbadnum',
-				flex : 1,
+				
 				editor : {
 					allowBlank : false,
 					xtype : 'numberfield',
@@ -148,17 +150,17 @@ Ext.define('RYIVS.view.editor.Behavior', {
 	},{
 		text : '修正系数',
 		width : 100,
-		dataIndex : 'correction',
-		flex : 1
+		dataIndex : 'correction'
+		
 		
 	},
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

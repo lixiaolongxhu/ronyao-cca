@@ -7,10 +7,27 @@ Ext.define('RYIVS.controller.frame.LeftMenu', {
 	
 	init : function() {
 	 	this.control({
+	 		
       		'leftMenu':{
-        		itemclick : this.treeItemClick
+        		itemclick : this.treeItemClick,
+        		afterrender : this.onAfterrender
      		 }
    		 });
+	},
+	
+	/**
+	 * 界面建立时只调用一次
+	 * 
+	 * @param {}
+	 *            pa
+	 * @param {}
+	 *            options
+	 */
+	onAfterrender : function(pa, options) {	
+		//根据浏览器宽度 动态设置treepanel 宽度   
+		var  width=document.documentElement.clientWidth*0.2;
+		//alert(width);
+		pa.setWidth(width);
 	},
 	
 	/**树性菜单点击事件.

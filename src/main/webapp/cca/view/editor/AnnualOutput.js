@@ -9,10 +9,12 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 	store : 'editor.AnnualOutput',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
+	forceFit :false, 
 	// 定义 colums
 	columns : [ 
 	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
@@ -21,7 +23,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 		width : 200,
 		sortable : true,
 		dataIndex : 'voltagerankid',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -46,7 +48,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 		width : 200,
 		sortable : true,
 		dataIndex : 'projecttype',
-		//flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -71,7 +73,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 			width : 100,
 			dataIndex : 'timelimit',
 				
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -87,7 +89,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 			width : 100,
 			dataIndex : 'projectnum',
 				
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'textfield',
@@ -102,7 +104,7 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 			width : 100,
 			dataIndex : 'annualoutput',
 				
-			flex : 1,
+			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -114,22 +116,22 @@ Ext.define('RYIVS.view.editor.AnnualOutput', {
 	
 	{
 		text : '备注',
-		width : 200,
+		width : 400,
 		dataIndex : 'remark',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : true
-		},
-		flex : 1
+		}
+	
 	},
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
-		width : 100,
+		text : '记录修改时间',
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

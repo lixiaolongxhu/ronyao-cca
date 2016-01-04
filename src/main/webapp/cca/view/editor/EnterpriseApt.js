@@ -11,12 +11,12 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	store : 'editor.EnterpriseApt',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
-	
-	autoScroll : true, //'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	forceFit :false, 
 	
 	
 	// 工具条
@@ -105,10 +105,10 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号	
 	, {
 		text : '企业资质',
-		width : 200,
+		width : 100,
 		sortable : true,
 		dataIndex : 'aptitudeid',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -130,10 +130,10 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	
 	 {
 		text : '等级',
-		width : 150,
+		width : 100,
 		sortable : true,
 		dataIndex : 'aptituderank',
-		flex : 1,
+		
 		
 		editor : {
 				allowBlank : false,
@@ -153,55 +153,52 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 		}
 	},{
 		text : '资质要求',
-		width : 300,
+		width : 200,
 		dataIndex : 'qualifications',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : false
-		},
-		flex : 1
+		}
+		
 	},
 	{
 	 text :"企业人员",
    
 	 columns: [{
 				text : '执业资格',
-				width : 200,
+				width : 300,
 				dataIndex : 'practicing',
 				editor : {
 					xtype : 'textarea',
 					allowBlank : true
-				},
-				flex : 1
+				}
+				
 			},{
 				text : '技术负责人',
-				width : 200,
+				width : 300,
 				dataIndex : 'charge',
 				editor : {
 					xtype : 'textarea',
 					allowBlank : false
-				},
-				flex : 1
+				}
 			
 		  	 } ,{
 				text : '技术人员',
-				width : 200,
+				width : 300,
 				dataIndex : 'technical',
 				editor : {
 					xtype : 'textarea',
 					allowBlank : false
-				},
-				flex : 1
+				}
 			
 		  	 } ,{
 				text : '技能人员',
-				width : 200,
+				width : 300,
 				dataIndex : 'skills',
 				editor : {
 					xtype : 'textarea',
 					allowBlank : false
-				},
-				flex : 1
+				}
 			
 		  	 }
 	
@@ -209,22 +206,22 @@ Ext.define('RYIVS.view.editor.EnterpriseApt', {
 	  ]	
 	},{
 		text : '承包范围',
-		width : 300,
+		width : 400,
 		dataIndex : 'jobrange',
 		editor : {
 			xtype : 'textarea',
 			allowBlank : false
 		},
-		flex : 1
+		
 	},
 
 	{
 		text : '记录创建时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '修改时间',
-		width : 100,
+		width : 200,
 		dataIndex : 'updatetime'
 	}
 	

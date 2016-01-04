@@ -8,10 +8,13 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 	store : 'display.BearContrastProNum',
 	// 定义 autoload
 	autoload : false,
+	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+	autoScroll :true, 
 	//True 为 Panel 填充画面,默认为false.
 	frame : true, 
 	//设 置为true，则强制列自适应成可用宽度
-	forceFit :true, 
+	forceFit :false,
+	
 	//引入grid 特征 - 列求和
 	features: [{
         ftype: 'summary'
@@ -37,16 +40,16 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 	{
 		text : '主管单位',
 		width : 100,
-		dataIndex : 'supervisorunit',
-		flex : 1
+		dataIndex : 'supervisorunit'
+		
 		
 	},
 	
 		{
 		text : '施工企业名称',
-		width : 100,
-		dataIndex : 'enterpriseName',
-		flex : 1
+		width : 150,
+		dataIndex : 'enterpriseName'
+		
 		
 	},
 	
@@ -56,10 +59,10 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
    
 	 columns: [{
 				text : '500kV(个)',
-				width : 100,
+				width : 150,
 				dataIndex : 'projectNumSum500kv',
 				
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -67,9 +70,9 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 				
 			 },{
 				text : '220kV(个)',
-				width : 100,
+				width : 150,
 				dataIndex : 'proejctNumSum220kv',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -79,9 +82,9 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 		  	 },
 	 		{
 				text : '110kV(个)',
-				width : 100,
+				width : 150,
 				dataIndex : 'projectNumSum110kv',
-				flex : 1,
+			
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -91,9 +94,9 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 		  	 } ,
 		  	 {
 				text : '合计',
-				width : 100,
+				width : 150,
 				dataIndex : 'projectNumSum',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -107,9 +110,9 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 	}
 	,{
 				text : '近三年平均承载项目个数',
-				width : 100,
+				width : 150,
 				dataIndex : 'treeYearProjectAverage',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
@@ -121,9 +124,9 @@ Ext.define('RYIVS.view.display.BearContrastProNum', {
 				text : '项目评估个数与<br/>' +
 						'近三年平均承载<br/>' +
 						'工程个数的差额',
-				width : 100,
+				width : 150,
 				dataIndex : 'constrast',
-				flex : 1,
+				
 				summaryType: 'sum' , //引入grid 特征后 - 列求和: 详细见Ext.grid.feature.Summary的api
 				summaryRenderer: function(value, summaryData, dataIndex) {
            			 return Ext.String.format('合计: {0} ', value, value !== 1 ? 's' : ''); 
