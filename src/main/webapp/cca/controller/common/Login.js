@@ -16,6 +16,10 @@ Ext.define('RYIVS.controller.common.Login', {
 	init : function() {
 		var me = this;
 		this.control({
+			'loginForm' : {
+				
+				afterrender : this.onAfterrender
+			},
 			'loginForm textfield' : {
 				keydown : me.onKeydown
 			},
@@ -34,6 +38,22 @@ Ext.define('RYIVS.controller.common.Login', {
 			me.getUsername().focus(true);
 		}, 400);
 	},
+	
+	/**
+	 * 界面建立时只调用一次
+	 * 
+	 * @param {}
+	 *            pa
+	 * @param {}
+	 *            options
+	 */
+	onAfterrender : function(pa, options) {
+		
+//		var  height=document.documentElement.clientHeight*0.1;
+//		alert(height);
+//		pa.setHeight(height);
+	},
+	
 	//监听按键
 	onKeydown : function(view, event) {
 		//回车键提交表单

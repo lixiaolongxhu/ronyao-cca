@@ -9,12 +9,16 @@ Ext.define('RYIVS.view.common.Login', {
            
     border: false,// 没有边框
     frame: true,
+    
+   // height :document.documentElement.clientHeight*0.2,
+   // minHeight :200,
+   // maxHeight :300,
   
     style: { //formpanel位置  
           marginRight: document.documentElement.clientWidth-document.documentElement.clientWidth*0.81,
           marginLeft: document.documentElement.clientWidth-document.documentElement.clientWidth*0.4,
           marginTop: document.documentElement.clientHeight-document.documentElement.clientHeight*0.65,
-          marginBottom: document.documentElement.clientHeight-document.documentElement.clientHeight*0.7
+          marginBottom: document.documentElement.clientHeight-document.documentElement.clientHeight*0.65
     },
     //文本框的宽度配置
     defaults: { 
