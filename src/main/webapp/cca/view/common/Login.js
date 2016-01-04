@@ -13,7 +13,7 @@ Ext.define('RYIVS.view.common.Login', {
     style: { //formpanel位置  
           marginRight: document.documentElement.clientWidth-document.documentElement.clientWidth*0.81,
           marginLeft: document.documentElement.clientWidth-document.documentElement.clientWidth*0.4,
-          marginTop: document.documentElement.clientHeight-document.documentElement.clientHeight*0.6,
+          marginTop: document.documentElement.clientHeight-document.documentElement.clientHeight*0.65,
           marginBottom: document.documentElement.clientHeight-document.documentElement.clientHeight*0.7
     },
     //文本框的宽度配置
