@@ -23,7 +23,7 @@ Ext.define('RYIVS.view.frame.LeftMenu', {
 //   	 	padding: '-100px'
 //	},
 	//width : 200,
-	bodyStyle: 'background-color:#a3c6c7;',
+	bodyStyle: 'background-color:#acd0ce;',
 	store : Ext.create('Ext.data.TreeStore', {
 				// 数据代理
 			    nodeParam : 'parentId',  //这个属性是异步加载主要特征，通过该节点去请求子节点
