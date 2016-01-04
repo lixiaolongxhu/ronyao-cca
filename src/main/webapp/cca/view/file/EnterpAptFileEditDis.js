@@ -1,83 +1,12 @@
 /**企业资质图片编辑维护管理.
  * 
  */
-Ext.define('RYIVS.view.file.EnterpAptFileEdit', {
+Ext.define('RYIVS.view.file.EnterpAptFileEditDis', {
 	extend : 'Ext.grid.Panel',
-	alias : 'widget.enterpAptFileEdit',
+	alias : 'widget.enterpAptFileEditDis',
 	height : 600,
 	store : 'file.EnterpAptFileEdit',
 	tbar : [{
-		xtype : 'button',
-		text : '删除',
-		itemId:'deleteButton',
-		iconCls:'s_del',
-		handler : function() {
-			
-			Ext.Msg.show({
-				title : '删除警告',
-				msg : '请再次确认删除，删除该数据将删除与之相关联的数据',
-				buttons : Ext.Msg.YESNO,
-				fn : function(rst) {
-					
-					var ctlType = this.ownerCt.ownerCt.ownerCt.xtype;
-					var temp = this.ownerCt.ownerCt;
-					if (rst != 'no') {
-						var sm = this.ownerCt.ownerCt.getSelectionModel();
-//						this.ownerCt.ownerCt.rowEditing.cancelEdit();
-						this.ownerCt.ownerCt.store.remove(sm.getSelection());
-						if (this.ownerCt.ownerCt.store.getCount() > 0) {
-							sm.select(0);
-						}
-					}
-					
-				},
-				scope : this,
-				icon : Ext.window.MessageBox.QUESTION
-			});
-		
-//			Ext.Msg.show({
-//				title : '删除警告',
-//				msg : '请确认删除',
-//				buttons : Ext.Msg.YESNO,
-//				fn : function(rst) {
-//					var temp = this.ownerCt.ownerCt;
-//					if (rst != 'no') {
-//						var sm = this.ownerCt.ownerCt.getSelectionModel();
-//						var selection = sm.getSelection();					
-//						actionLayerList.destroy(selection[0].data, function(obj) {
-//							if (obj == -1) {
-//								Ext.Msg.show({
-//									title : '失败',
-//									msg : '删除失败，请先删除该层上的设备！',
-//									buttons : Ext.Msg.OK,
-//									icon : Ext.Msg.ERROR,
-//									scope : this,
-//									fn : function(btn) {
-//										if (btn == 'ok') {
-//											return false;
-//										}
-//									}
-//								});
-//							}
-//						});
-//						
-//						//this.ownerCt.ownerCt.store.remove(selection[0]);
-//						if (this.ownerCt.ownerCt.store.getCount() > 0) {
-//							sm.select(0);
-//						}
-//						config = {
-//							callback:function(){
-//								controller.gisLayerEditor.reDrawGisLayers();
-//							}
-//						}
-//						temp.getStore().load(config);
-//					}
-//				},
-//				scope : this,
-//				icon : Ext.window.MessageBox.QUESTION
-//			});
-		}
-	},{
 		xtype : 'button',
 		text : '刷新',
 		iconCls:'s_sync',
@@ -158,6 +87,7 @@ Ext.define('RYIVS.view.file.EnterpAptFileEdit', {
 		dataIndex : "path",
 		minWidth :800,
 		flex :2,
+		
 		renderer : function(val) {
 			return '<image width="100%" height="50%" src="res/file/' + val + '">'
 		}
@@ -166,9 +96,9 @@ Ext.define('RYIVS.view.file.EnterpAptFileEdit', {
 	columnLines:true,
 	
 	listeners : {
-		'selectionchange' : function(view, records) {
-			this.down('#deleteButton').setDisabled(!records.length);
-		}
+//		'selectionchange' : function(view, records) {
+//			this.down('#deleteButton').setDisabled(!records.length);
+//		}
 	},
 	
 	

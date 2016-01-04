@@ -43,7 +43,7 @@ Ext.define('RYIVS.controller.frame.LeftMenu', {
 		  var centerPanel = Ext.getCmp('centerPanel');
 		  var id =record.raw.id+record.raw.text;
 		  var n = centerPanel.getComponent(id);  
-		//alert(record.raw.url);
+		  //alert(id);
 		  if (!n &&  record.raw.leaf==true) { // 判断是否已经打开该面板 (为叶子节点时执行点击事件)
                  n = centerPanel.add({  
                           'id' : id,  

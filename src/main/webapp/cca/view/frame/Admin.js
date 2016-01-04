@@ -8,13 +8,13 @@ Ext.define('RYIVS.view.frame.Admin', {
 	layout : 'border',
 	items : [{
 		xtype : 'topPanel',
-		region : 'north',
+		region : 'north'
 		
 //		collapsible :true,
 		
 	},{
 		xtype : 'leftMenu',
-		region : 'west',
+		region : 'west'
 	
 //		collapsible :true,
 		
@@ -23,8 +23,9 @@ Ext.define('RYIVS.view.frame.Admin', {
 		xtype : 'centerPanel',
 		activeTab : 0,
 		items : [ {
-			xtype : 'enterprise',  //管理员用户默认打开企业基本信息
-			 closable : true // 通过html载入目标页  ,显示关闭按钮	
+			 xtype : 'enterprise',  //管理员用户默认打开企业基本信息
+			 closable : true, // 通过html载入目标页  ,显示关闭按钮	
+			 id:'1资质信息' // 对应数据库信息permission --- id+name
 		}
 		
 		]

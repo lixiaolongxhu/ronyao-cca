@@ -21,7 +21,7 @@ Ext.application({
 
 	appFolder : 'cca',
 
-	controllers : [ 'frame.Admin','frame.LeftMenu','frame.BottomBar','frame.Center','frame.TopPanel',
+	controllers : [ 'frame.User','frame.LeftMenu','frame.BottomBar','frame.Center','frame.TopPanel',
 					
 					'common.EditPassword',
 	
@@ -34,7 +34,7 @@ Ext.application({
 				 	'display.EnterpriseAptLookover','display.BehaviorStaLookover','display.Bear','display.BearRevised','display.BearContrastProNum',
 				 	'display.BearContrastProOutput','display.ProjectBuildBear',
 				 	
-				 	'file.EnterpAptFileDis','file.EnterpAptFileMan','file.EnterpPerFileMan'
+				 	'file.EnterpAptFileDis','file.EnterpPerFileDis'
 				  ],
 
 
@@ -58,7 +58,7 @@ Ext.application({
 			minWidth : 800,
 			
 			items : [{
-				xtype : 'layerAdmin'
+				xtype : 'layerUser'
 			}]
 		});
 

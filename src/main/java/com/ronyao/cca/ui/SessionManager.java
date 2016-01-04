@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.dao.UserMapper;
@@ -109,17 +110,20 @@ public class SessionManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/app")
-	public String genApp(Model model) {
+	public ModelAndView genApp(Model model) {
 		
 		if (this.user == null) {
 			// 未登陆
 			LOG.info("用户未登录,跳转到登录界面");
-			return "AppLogin";
-		} else {
-//			// 已经登陆
-			LOG.info("用户已登录,跳转到主界面");	
-			return "AppAdmin";
+			return  new  ModelAndView("AppLogin");
+		} else  if(this.user.getLoginname().equals("admin")){
+			// 已经登陆
+			LOG.info("Admin用户已登录,跳转到主界面");	
+			 return  new  ModelAndView("AppAdmin");
 
+		}else {
+			LOG.info("User用户已登录,跳转到主界面");	
+			return  new  ModelAndView( "AppUser");
 		}
 	};
 

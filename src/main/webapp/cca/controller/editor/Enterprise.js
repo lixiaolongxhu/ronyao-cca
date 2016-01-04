@@ -4,13 +4,12 @@
 Ext.define('RYIVS.controller.editor.Enterprise', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.Enterprise'],
-	views :  ['editor.Enterprise','file.EnterpAptFileMan','file.EnterpAptFileEdit','file.EnterpAptFileUpload'],
+	views :  ['editor.Enterprise','file.EnterpAptFileMan','file.EnterpAptFileEdit','file.EnterpAptFileUpload','display.Enterprise'],
 	stores : ['editor.Enterprise'],
 
 	init : function() {
 		this.control({
-			'enterprise ':{
-        	
+			 'enterprise ':{
 				afterrender:this.onAfterrender
      		 },
       		
@@ -18,6 +17,16 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
         		click : this.aptFileManager
      		 },
      		  'enterprise button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 },
+     		 
+     		 'displayEnterprise ':{
+				afterrender:this.onAfterrenderDis
+     		 },
+     		  'displayEnterprise button[itemId=buttonAptFileManager]':{
+        		click : this.aptFileDisplay
+     		 },
+     		  'displayEnterprise button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
    		 });
@@ -33,13 +42,21 @@ Ext.define('RYIVS.controller.editor.Enterprise', {
 	onAfterrender : function(pa, options) {
 		pa.getStore().load();			
 	},
+	onAfterrenderDis : function(pa, options) {
+		pa.getStore().load();			
+	},
 	
 	/**企业资质文件管理
 	 * 
 	 */
    aptFileManager :function(){
+   	
    		Ext.create("RYIVS.view.file.EnterpAptFileMan").show();
    },
+   aptFileDisplay :function(){
+   		Ext.create("RYIVS.view.file.EnterpAptFileDis").show();
+   },
+   
 	/**excel 导出
 	 * 
 	 */

@@ -1,11 +1,9 @@
 Ext.define('RYIVS.controller.frame.User', {
 	extend : 'Ext.app.Controller',
+	views : [ 'frame.User' ,'frame.TopPanel'],
 
-	views : [ 'frame.User' ],
+	init : function() {
 
-	refs : [ {
-		selector : 'tabpanel',
-		ref : 'tabPanel'
-	} ]
+	}
 
 });
