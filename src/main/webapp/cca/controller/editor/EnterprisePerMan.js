@@ -2,8 +2,10 @@
 Ext.define('RYIVS.controller.editor.EnterprisePerMan', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.EnterprisePerMan'],
-	views :  ['editor.EnterprisePerManLine','editor.EnterprisePerManPower'],
+	
 	stores : ['editor.EnterprisePerManLine','editor.EnterprisePerManPower'],
+	
+	views :  ['editor.EnterprisePerManLine','display.EnterprisePerManLine','editor.EnterprisePerManPower','display.EnterprisePerManPower'],
 
 	init : function() {
 		this.control({
@@ -21,6 +23,23 @@ Ext.define('RYIVS.controller.editor.EnterprisePerMan', {
         		click : this.exporterExcelLine
      		 },
      		 'enterprisePerManPower button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcelPower
+     		 },
+     		 
+     		 'displayEnterprisePerManLine ':{
+        	
+				afterrender:this.onAfterrenderLine
+     		 },
+			
+			 'displayEnterprisePerManPower ':{
+        	
+				afterrender:this.onAfterrenderPower
+     		 },
+			
+      		 'displayEnterprisePerManLine button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcelLine
+     		 },
+     		 'displayEnterprisePerManPower button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcelPower
      		 }
    		 });

@@ -2,9 +2,11 @@
 Ext.define('RYIVS.controller.editor.EnterpriseEquip', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.EnterpriseEquip'],
-	views :  ['editor.EnterpriseEquip'],
-	stores : ['editor.EnterpriseEquip'],
 
+	stores : ['editor.EnterpriseEquip'],
+	
+	views :  ['editor.EnterpriseEquip','display.EnterpriseEquip'],
+	
 	init : function() {
 		this.control({
 			'enterpriseEquip ':{
@@ -13,6 +15,16 @@ Ext.define('RYIVS.controller.editor.EnterpriseEquip', {
      		 },
       		
      		  'enterpriseEquip button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 },
+     		 
+     		 
+     		 'displayEnterpriseEquip ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
+      		
+     		  'displayEnterpriseEquip button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
      		 

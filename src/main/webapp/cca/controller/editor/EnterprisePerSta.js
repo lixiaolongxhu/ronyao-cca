@@ -2,9 +2,11 @@
 Ext.define('RYIVS.controller.editor.EnterprisePerSta', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.EnterprisePerSta'],
-	views :  ['editor.EnterprisePerSta'],
+
 	stores : ['editor.EnterprisePerSta'],
 
+	views :  ['editor.EnterprisePerSta','display.EnterprisePerSta'],
+	
 	init : function() {
 		this.control({
       		 'enterprisePerSta ':{
@@ -13,6 +15,15 @@ Ext.define('RYIVS.controller.editor.EnterprisePerSta', {
      		 },
      		
      		  'enterprisePerSta button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 },
+     		 
+     		 'displayEnterprisePerSta ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
+     		
+     		  'displayEnterprisePerSta button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
    		 });

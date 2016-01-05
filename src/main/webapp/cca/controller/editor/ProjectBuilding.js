@@ -2,16 +2,19 @@
 Ext.define('RYIVS.controller.editor.ProjectBuilding', {
 			extend : 'Ext.app.Controller',
 			models : ['editor.ProjectBuild'],
-			views : ['editor.ProjectBuilding'],
+			
 			stores : ['editor.ProjectBuilding'],
+			
+			views : ['editor.ProjectBuilding','display.ProjectBuilding'],
+			
 			refs : [ {
 				ref : 'projectBuildGrid',
 				selector : 'projectBuilding'
 			}
-//			,{
-//				ref : 'userLogPagingToolBar',
-//				selector : 'gridEditUserLog pagingtoolbar[id=pagingtool]'
-//			}
+			,{
+				ref : 'projectBuildGridDis',
+				selector : 'displayProjectBuilding'
+			}
 			],
 			init : function() {	
 				this.control({
@@ -33,6 +36,23 @@ Ext.define('RYIVS.controller.editor.ProjectBuilding', {
 							},
      		 				 'projectBuilding button[itemId=buttonExporterExcel]':{
         						click : this.exporterExcel
+     						},
+     						
+     						'displayProjectBuilding' : {
+								
+								afterrender:this.onAfterrenderDis
+							},
+							
+
+							'displayProjectBuilding button[itemId=refreshButton]' : {
+								click : this.onRefresh
+							},
+							'displayProjectBuilding button[itemId=searchButton]' : {
+								click:this.onSearch
+							},
+     		 				
+							'displayProjectBuilding button[itemId=buttonExporterExcel]':{
+        						click : this.exporterExcel
      						 }
 
 						});
@@ -45,6 +65,15 @@ Ext.define('RYIVS.controller.editor.ProjectBuilding', {
 		
 				var searchYear = this.getProjectBuildGrid().query('#projectBuildingSearchYear')[0].getValue()+'';	
 				var store = this.getProjectBuildGrid().items.items[0].store;
+				store.proxy.setExtraParam("searchYear", searchYear);
+				store.load({params:{page:1,start:0,limit:36}});
+				
+			},
+			
+		    onAfterrenderDis : function(pa, options) {
+		
+				var searchYear = this.getProjectBuildGridDis().query('#projectBuildingSearchYear')[0].getValue()+'';	
+				var store = this.getProjectBuildGridDis().items.items[0].store;
 				store.proxy.setExtraParam("searchYear", searchYear);
 				store.load({params:{page:1,start:0,limit:36}});
 				

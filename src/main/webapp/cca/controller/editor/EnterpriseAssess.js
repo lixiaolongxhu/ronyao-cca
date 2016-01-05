@@ -2,8 +2,10 @@
 Ext.define('RYIVS.controller.editor.EnterpriseAssess', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.EnterpriseAssess'],
-	views :  ['editor.EnterpriseAssess'],
+	
 	stores : ['editor.EnterpriseAssess'],
+	
+	views :  ['editor.EnterpriseAssess','display.EnterpriseAssess'],
 
 	init : function() {
 		this.control({
@@ -12,6 +14,13 @@ Ext.define('RYIVS.controller.editor.EnterpriseAssess', {
 				afterrender:this.onAfterrender
      		 },
      		  'enterpriseAssess button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 },
+     		 'displayEnterpriseAssess ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
+     		  'displayEnterpriseAssess button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
    		 });

@@ -2,16 +2,19 @@
 Ext.define('RYIVS.controller.editor.ProjectPlain', {
 			extend : 'Ext.app.Controller',
 			models : ['editor.ProjectPlain'],
-			views : ['editor.ProjectPlain'],
+			
 			stores : ['editor.ProjectPlain'],
+			
+			views : ['editor.ProjectPlain','display.ProjectPlain'],
+			
 			refs : [ {
 				ref : 'projectPlainGrid',
 				selector : 'projectPlain'
+			},
+ 			{
+				ref : 'projectPlainGridDis',
+				selector : 'displayProjectPlain'
 			}
-//			,{
-//				ref : 'userLogPagingToolBar',
-//				selector : 'gridEditUserLog pagingtoolbar[id=pagingtool]'
-//			}
 			],
 			init : function() {	
 				this.control({
@@ -33,6 +36,19 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
 							},
      		 				'projectPlain button[itemId=buttonExporterExcel]':{
         						click : this.exporterExcel
+     		 				},
+     		 				'displayProjectPlain' : {
+								
+								afterrender:this.onAfterrenderDis
+							},
+							'displayProjectPlain button[itemId=refreshButton]' : {
+								click : this.onRefresh
+							},
+							'displayProjectPlain button[itemId=searchButton]' : {
+								click:this.onSearch
+							},
+     		 				'displayProjectPlain button[itemId=buttonExporterExcel]':{
+        						click : this.exporterExcel
      		 				}
 
 						});
@@ -42,9 +58,18 @@ Ext.define('RYIVS.controller.editor.ProjectPlain', {
 			
 			//界面建立时只调用一次
 			onAfterrender : function(pa, options) {
-		
-				var searchYear = this.getProjectPlainGrid().query('#searchYear')[0].getValue()+'';	
-				var store = this.getProjectPlainGrid().items.items[0].store;
+				var projectPlainGrid=this.getProjectPlainGrid();
+				var searchYear = projectPlainGrid.query('#searchYear')[0].getValue()+'';	
+				var store = projectPlainGrid.items.items[0].store;
+				store.proxy.setExtraParam("searchYear", searchYear);
+				store.load({params:{page:1,start:0,limit:36}});
+				
+			},
+			
+			onAfterrenderDis : function(pa, options) {
+				var projectPlainGridDis=this.getProjectPlainGridDis();
+				var searchYear =projectPlainGridDis .query('#searchYear')[0].getValue()+'';	
+				var store = projectPlainGridDis.items.items[0].store;
 				store.proxy.setExtraParam("searchYear", searchYear);
 				store.load({params:{page:1,start:0,limit:36}});
 				

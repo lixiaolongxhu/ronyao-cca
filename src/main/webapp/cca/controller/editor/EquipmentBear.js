@@ -2,8 +2,9 @@
 Ext.define('RYIVS.controller.editor.EquipmentBear', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.EquipmentBear'],
-	views :  ['editor.EquipmentBear'],
+	
 	stores : ['editor.EquipmentBear'],
+	views :  ['editor.EquipmentBear','display.EquipmentBear'],
 
 	init : function() {
 		this.control({
@@ -14,6 +15,15 @@ Ext.define('RYIVS.controller.editor.EquipmentBear', {
       		
      	
      		  'equipmentBear button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 },
+     		 'displayEquipmentBear ':{
+        	
+				afterrender:this.onAfterrender
+     		  },
+      		
+     	
+     		  'displayEquipmentBear button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
    		 });

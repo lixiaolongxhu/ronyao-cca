@@ -1,8 +1,8 @@
 
-Ext.define('RYIVS.view.editor.EnterprisePerSta', {
-	requires : [ 'RYIVS.lib.GridEditBase' ],
-	extend : 'RYIVS.lib.GridEditBase',
-	alias : 'widget.enterprisePerSta',
+Ext.define('RYIVS.view.display.EnterprisePerSta', {
+	requires : [ 'RYIVS.lib.GridEditBaseDis' ],
+	extend : 'RYIVS.lib.GridEditBaseDis',
+	alias : 'widget.displayEnterprisePerSta',
 	title : '企业自身主要人员评估(施工项目部人员构成)',
 	iconCls : 's_user',
 	// 定义 store
@@ -16,7 +16,6 @@ Ext.define('RYIVS.view.editor.EnterprisePerSta', {
 	//设 置为true，则强制列自适应成可用宽度
 	forceFit :false, 
 	
-
 	
 	// 定义 colums
 	columns : [ 

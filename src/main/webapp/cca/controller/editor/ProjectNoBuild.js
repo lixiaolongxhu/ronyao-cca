@@ -2,22 +2,26 @@
 Ext.define('RYIVS.controller.editor.ProjectNoBuild', {
 			extend : 'Ext.app.Controller',
 			models : ['editor.ProjectBuild'],
-			views : ['editor.ProjectNoBuild'],
+		
 			stores : ['editor.ProjectNoBuild'],
+			
+				views : ['editor.ProjectNoBuild','display.ProjectNoBuild'],
+			
 			refs : [ {
 				selector : 'projectNoBuild',
 				ref : 'projectBuildGrid'
 				
+			},
+			{
+				selector : 'displayProjectNoBuild',
+				ref : 'projectBuildGridDis'
+				
 			}
-//			,{
-//				ref : 'userLogPagingToolBar',
-//				selector : 'gridEditUserLog pagingtoolbar[id=pagingtool]'
-//			}
 			],
 			init : function() {	
 				this.control({
 							'projectNoBuild' : {
-								activate : this.onActivate,
+								
 								afterrender:this.onAfterrender
 							},
 							'projectNoBuild button[itemId=addButton]' : {
@@ -34,17 +38,27 @@ Ext.define('RYIVS.controller.editor.ProjectNoBuild', {
 							},
      		 				 'projectNoBuild button[itemId=buttonExporterExcel]':{
         						click : this.exporterExcel
+     						},
+     						 
+     						'displayProjectNoBuild' : {
+								
+								afterrender:this.onAfterrenderDis
+							},
+							'displayProjectNoBuild button[itemId=refreshButton]' : {
+								click : this.onRefresh
+							},
+							'displayProjectNoBuild button[itemId=searchButton]' : {
+								click:this.onSearch
+							},
+     		 				'displayProjectNoBuild button[itemId=buttonExporterExcel]':{
+        						click : this.exporterExcel
      						 }
 
 						});
-				controller.UserLogGrid = this;
+				
 			},
 
-			// 当标签激活时
-			onActivate : function(pa, options) {
 			
-
-			},
 			//界面建立时只调用一次
 			onAfterrender : function(pa, options) {
 		
@@ -55,7 +69,14 @@ Ext.define('RYIVS.controller.editor.ProjectNoBuild', {
 				
 			},
 			
-			
+			onAfterrenderDis : function(pa, options) {
+		
+				var searchYear = this.getProjectBuildGridDis().query('#projectNoBuildSearchYear')[0].getValue()+'';	
+				var store = this.getProjectBuildGridDis().items.items[0].store;
+				store.proxy.setExtraParam("searchYear", searchYear);
+				store.load({params:{page:1,start:0,limit:36}});
+				
+			},
 			
 			onAdd : function(obj){
 			

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2016-01-04 09:56:12
+Date: 2016-01-05 15:13:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,7 +96,7 @@ CREATE TABLE `behavior` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `behavior_enterpriseId_fk` (`enterpriseId`,`year`) USING BTREE,
   CONSTRAINT `behavior_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
@@ -127,6 +127,7 @@ INSERT INTO `behavior` VALUES ('23', '100', '2015', '0', '0', '1.00', '2015-12-3
 INSERT INTO `behavior` VALUES ('24', '101', '2015', '0', '0', '1.00', '2015-12-30 16:10:24', '');
 INSERT INTO `behavior` VALUES ('25', '102', '2015', '4', '1', '0.60', '2015-12-30 16:11:12', '');
 INSERT INTO `behavior` VALUES ('26', '103', '2015', '1', '0', '1.00', '2015-12-30 16:11:23', '');
+INSERT INTO `behavior` VALUES ('27', '78', '2014', '0', '0', '1.00', '2016-01-05 13:57:13', '');
 
 -- ----------------------------
 -- Table structure for behavior_standard
@@ -343,11 +344,12 @@ CREATE TABLE `enterprise_file` (
   CONSTRAINT `enterprise_fileaptitudeRankId_fk` FOREIGN KEY (`aptitudeRankId`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enterprise_file_aptitudeId_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`),
   CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_file
 -- ----------------------------
+INSERT INTO `enterprise_file` VALUES ('1', '78', '1', '1', '1', '20160104144929145.jpg', '2016-01-04 14:49:29', null);
 
 -- ----------------------------
 -- Table structure for enterprise_person
@@ -421,11 +423,12 @@ CREATE TABLE `enterprise_per_file` (
   PRIMARY KEY (`id`),
   KEY `enterprise_person_enterprisePerId_fk` (`enterprisePerId`),
   CONSTRAINT `enterprise_person_enterprisePerId_fk` FOREIGN KEY (`enterprisePerId`) REFERENCES `enterprise_person` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_per_file
 -- ----------------------------
+INSERT INTO `enterprise_per_file` VALUES ('1', '78', '3', '中级以上职称人员', '二级', '20160104162837381.jpg', '1', '2016-01-04 16:28:37', null);
 
 -- ----------------------------
 -- Table structure for enterprise_per_manage
@@ -593,12 +596,12 @@ CREATE TABLE `permission` (
   `updateTime` varchar(0) DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `permission_name_index` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES ('1', '2', '资质信息', 'enterprise', '2', '2级菜单', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('1', '2', '资质信息', 'enterprise', '2', '2级菜单 1资质信息--tabpanel id', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('2', '0', '企业基本信息', '', '2', '1级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('3', '2', '人员信息', 'enterprisePer', '2', '2级菜单', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('5', '0', '施工承载能力评估', '', '2', '1级菜单', '0', '1', null, null);
@@ -626,6 +629,29 @@ INSERT INTO `permission` VALUES ('26', '24', '各施工单位已承揽工程情�
 INSERT INTO `permission` VALUES ('27', '26', '在建工程情况', 'projectBuilding', '2', '在建工程情况', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('28', '26', '中标未开工情况', 'projectNoBuild', '2', '中标未开工情况', '0', '1', null, null);
 INSERT INTO `permission` VALUES ('29', '24', '施工单位剩余承载能力', 'projectBuildBear', '2', '施工单位剩余承载能力', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('31', '2', '资质信息.', 'displayEnterprise', '2', '31资质信息(查看)     -- tabpanel id', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('32', '2', '人员信息.', 'displayEnterprisePer', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('33', '6', '企业资质对施工承载能力评估.', 'displayEnterpriseApt', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('34', '6', '企业自身主要人员评估标准.', 'displayEnterprisePerSta', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('35', '6', '机具设备对工程承载力的评估.', 'displayEquipmentBear', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('36', '6', '施工项目团队工程施工产值.', 'displayAnnualOutput', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('37', '6', '施工企业不良行文分类标准.', 'displayBehaviorSta', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('38', '12', '线路专业人员.', 'displayEnterprisePerManLine', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('39', '12', '变电专业人员.', 'displayEnterprisePerManPower', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('40', '5', '施工装备信息.', 'displayEnterpriseEquip', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('41', '5', '承载能力计算结果.', 'bear', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('42', '44', '不良行为影响修正系数.', 'displayBehavior', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('43', '44', '不良行为影响修正结果.', 'bearRevised', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('44', '5', '不良行为影响.', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('45', '5', '施工企业评估分类.', 'displayEnterpriseAssess', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('46', '5', '评估情况与近三年承揽情况的比较.', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('47', '46', '工程数量对比情况.', 'bearContrastProNum', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('48', '46', '产值对比情况.', 'bearContrastProOutput', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('49', '24', '下一年度公司新开工项目情况.', 'displayProjectPlain', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('50', '24', '各施工单位已承揽工程情况.', '', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('51', '50', '在建工程情况.', 'displayProjectBuilding', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('52', '50', '中标未开工情况.', 'displayProjectNoBuild', '2', '', '0', '1', null, null);
+INSERT INTO `permission` VALUES ('53', '24', '施工单位剩余承载能力.', 'projectBuildBear', '2', '', '0', '1', null, null);
 
 -- ----------------------------
 -- Table structure for post_classify
@@ -751,7 +777,7 @@ CREATE TABLE `project_plain` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `project_new_voltageRankClassifyId_fk` (`voltageRankClassifyId`,`year`) USING BTREE,
   CONSTRAINT `project_new_voltageRankClassifyId_fk` FOREIGN KEY (`voltageRankClassifyId`) REFERENCES `voltage_rank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project_plain
@@ -759,6 +785,7 @@ CREATE TABLE `project_plain` (
 INSERT INTO `project_plain` VALUES ('1', '2', '2016', '5', '6', '3', '16', '13', '822', '325', '40.90', '2015-12-17 16:25:38', '2015-12-28 10:33:16');
 INSERT INTO `project_plain` VALUES ('4', '3', '2016', '18', '13', '12', '38', '46', '1237', '450', '36.90', '2015-12-17 16:29:50', '2015-12-28 10:33:53');
 INSERT INTO `project_plain` VALUES ('8', '4', '2016', '47', '30', '22', '39', '9', '1187', '270', '24.80', '2015-12-18 10:26:52', '2015-12-28 10:34:43');
+INSERT INTO `project_plain` VALUES ('9', '1', '2015', '1', '2', '3', '4', '0', '0', '0', '0.00', '2016-01-05 14:26:14', '2016-01-05 14:48:52');
 
 -- ----------------------------
 -- Table structure for role
@@ -829,6 +856,34 @@ INSERT INTO `role_permission_link` VALUES ('1', '26', '1', '', '');
 INSERT INTO `role_permission_link` VALUES ('1', '27', '1', '', '');
 INSERT INTO `role_permission_link` VALUES ('1', '28', '1', '', '');
 INSERT INTO `role_permission_link` VALUES ('1', '29', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '2', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '5', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '6', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '12', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '24', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '31', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '32', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '33', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '34', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '35', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '36', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '37', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '38', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '39', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '40', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '41', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '42', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '43', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '44', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '45', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '46', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '47', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '48', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '49', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '50', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '51', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '52', '1', '', '');
+INSERT INTO `role_permission_link` VALUES ('2', '53', '1', '', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -869,7 +924,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=584 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=682 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1457,6 +1512,104 @@ INSERT INTO `user_log` VALUES ('580', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('581', '1', '操作模块:会话管理,用户登陆.', '2015-12-31 12:16:33', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('582', '1', '操作模块:会话管理,用户登陆.', '2015-12-31 12:22:50', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('583', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 09:12:51', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('584', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 11:02:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('585', '1', '会话超时，用户退出.', '2016-01-04 12:09:42', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('586', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 13:57:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('587', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 13:59:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('588', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:12:37', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('589', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:12:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('590', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:18:18', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('591', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:22:12', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('592', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:22:27', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('593', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:24:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('594', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:24:55', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('595', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:33:32', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('596', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:42:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('597', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:44:34', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('598', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:46:48', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('599', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:49:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('600', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 14:54:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('601', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:54:31', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('602', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 14:59:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('603', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 15:06:21', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('604', '2', '会话超时，用户退出.', '2016-01-04 15:28:01', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('605', '1', '会话超时，用户退出.', '2016-01-04 15:38:31', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('606', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 15:44:56', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('607', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 15:46:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('608', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 15:48:54', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('609', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 15:49:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('610', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 15:50:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('611', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 15:51:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('612', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 15:52:11', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('613', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 15:57:16', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('614', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 15:57:44', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('615', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 16:02:51', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('616', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:08:04', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('617', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:09:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('618', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:10:41', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('619', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:14:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('620', '2', '会话超时，用户退出.', '2016-01-04 16:20:01', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('621', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:28:02', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('622', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 16:28:14', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('623', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:29:32', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('624', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:35:05', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('625', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:41:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('626', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 16:48:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('627', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 16:56:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('628', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 17:09:31', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('629', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 17:10:10', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('630', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 17:11:43', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('631', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 17:12:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('632', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 17:12:25', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('633', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 17:12:50', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('634', '1', '操作模块:会话管理,用户登陆.', '2016-01-04 17:19:59', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('635', '2', '操作模块:会话管理,用户登陆.', '2016-01-04 17:20:27', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('636', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 09:46:56', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('637', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 09:56:42', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('638', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 10:05:36', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('639', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:09:20', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('640', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:09:41', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('641', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:10:35', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('642', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:11:24', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('643', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:13:54', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('644', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:15:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('645', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:25:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('646', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:26:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('647', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:30:19', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('648', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:36:57', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('649', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:40:28', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('650', '2', '会话超时，用户退出.', '2016-01-05 10:40:58', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('651', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 10:49:29', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('652', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:49:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('653', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 10:56:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('654', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 11:11:20', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('655', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 11:26:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('656', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 11:28:17', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('657', '1', '会话超时，用户退出.', '2016-01-05 11:30:28', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('658', '2', '会话超时，用户退出.', '2016-01-05 11:58:58', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('659', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:23:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('660', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:29:55', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('661', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 13:30:11', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('662', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:32:46', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('663', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:35:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('664', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:38:39', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('665', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:40:09', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('666', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:42:57', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('667', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:48:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('668', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 13:56:49', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('669', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 13:57:33', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('670', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:07:40', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('671', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:17:08', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('672', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 14:25:38', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('673', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:26:30', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('674', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:31:07', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('675', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:36:13', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('676', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:40:52', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('677', '1', '会话超时，用户退出.', '2016-01-05 14:46:58', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('678', '1', '操作模块:会话管理,用户登陆.', '2016-01-05 14:47:53', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('679', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:49:22', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('680', '2', '会话超时，用户退出.', '2016-01-05 14:54:58', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('681', '2', '会话超时，用户退出.', '2016-01-05 15:01:28', '192.168.1.240', '');
 
 -- ----------------------------
 -- Table structure for user_role_link

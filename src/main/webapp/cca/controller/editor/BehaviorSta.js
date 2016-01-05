@@ -2,8 +2,10 @@
 Ext.define('RYIVS.controller.editor.BehaviorSta', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.BehaviorSta'],
-	views :  ['editor.BehaviorSta'],
+
 	stores : ['editor.BehaviorSta'],
+	
+	views :  ['editor.BehaviorSta','display.BehaviorSta'],
 
 	init : function() {
 		this.control({
@@ -16,7 +18,19 @@ Ext.define('RYIVS.controller.editor.BehaviorSta', {
      		 },
      		 'behaviorSta button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
+     		 },
+     		 'displayBehaviorSta ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
+      		 'displayBehaviorSta button[itemId=buttonLookOver]':{
+        		click : this.lookOver
+     		 },
+     		 'displayBehaviorSta button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
      		 }
+     		 
+     		 
    		 });
 	},
 	

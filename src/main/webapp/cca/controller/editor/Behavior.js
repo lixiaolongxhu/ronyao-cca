@@ -1,11 +1,17 @@
 Ext.define('RYIVS.controller.editor.Behavior', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.Behavior'],
-	views : ['editor.Behavior'],
+	
 	stores : ['editor.Behavior'],
+	views : ['editor.Behavior','display.Behavior'],
+	
 	refs : [ {
 				ref : 'behaviorGrid',
 				selector : 'behavior'
+			},
+			{
+				ref : 'behaviorGridDis',
+				selector : 'displayBehavior'
 			}],
 	init : function() {
 		this.control({
@@ -27,6 +33,22 @@ Ext.define('RYIVS.controller.editor.Behavior', {
 						click : this.onSearch
 					},
 					'behavior button[itemId=buttonExporterExcel]' : {
+						click : this.exporterExcel
+					},
+					
+					
+					'displayBehavior' : {
+					
+						afterrender : this.onAfterrenderDis
+					},
+					
+					'displayBehavior button[itemId=refreshButton]' : {
+						click : this.onRefresh
+					},
+					'displayBehavior button[itemId=searchButton]' : {
+						click : this.onSearch
+					},
+					'displayBehavior button[itemId=buttonExporterExcel]' : {
 						click : this.exporterExcel
 					}
 
@@ -57,6 +79,23 @@ Ext.define('RYIVS.controller.editor.Behavior', {
 					}
 				});
 	},
+	onAfterrenderDis : function(pa, options) {
+		var searchYear =this.getBehaviorGridDis()
+				.query('#behaviorSearchYear')[0].getValue()
+				+ '';
+				
+		//alert("searchYear="+searchYear)
+		var store = this.getBehaviorGridDis().items.items[0].store;
+		store.proxy.setExtraParam("searchYear", searchYear);
+		store.load({
+					params : {
+						page : 1,
+						start : 0,
+						limit : 36
+					}
+				});
+	},
+	
 	/**
 	 * excel 导出
 	 * 

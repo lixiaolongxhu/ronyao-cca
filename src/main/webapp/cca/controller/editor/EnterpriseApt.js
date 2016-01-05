@@ -2,8 +2,10 @@
 Ext.define('RYIVS.controller.editor.EnterpriseApt', {
 	extend : 'Ext.app.Controller',
 	models : ['editor.EnterpriseApt'],
-	views :  ['editor.EnterpriseApt'],
+	
 	stores : ['editor.EnterpriseApt'],
+	
+	views :  ['editor.EnterpriseApt','display.EnterpriseApt'],
 
 	init : function() {
 		this.control({
@@ -11,10 +13,23 @@ Ext.define('RYIVS.controller.editor.EnterpriseApt', {
         	
 				afterrender:this.onAfterrender
      		 },
+     		 		 
       		'enterpriseApt button[itemId=buttonLookOver]':{
         		click : this.lookOver
      		 },
      		 'enterpriseApt button[itemId=buttonExporterExcel]':{
+        		click : this.exporterExcel
+     		 },
+     		 
+     		 'displayEnterpriseApt ':{
+        	
+				afterrender:this.onAfterrender
+     		 },
+     		  
+      		 'displayEnterpriseApt button[itemId=buttonLookOver]':{
+        		click : this.lookOver
+     		 },
+     		 'displayEnterpriseApt button[itemId=buttonExporterExcel]':{
         		click : this.exporterExcel
      		 }
    		 });

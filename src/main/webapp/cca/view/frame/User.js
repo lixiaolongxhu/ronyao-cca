@@ -25,7 +25,7 @@ Ext.define('RYIVS.view.frame.User', {
 		items : [ {
 			 xtype : 'displayEnterprise',  //用户用户默认打开企业基本信息
 			 closable : true, // 通过html载入目标页  ,显示关闭按钮	
-			 id:'31资质信息(查看)' //对应数据库信息permission --- id+name
+			 id:'31资质信息.' //对应数据库信息permission --- id+name
 		}
 		
 		]
