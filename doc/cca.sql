@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2016-01-05 15:13:18
+Date: 2016-01-06 14:18:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -596,7 +596,7 @@ CREATE TABLE `permission` (
   `updateTime` varchar(0) DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `permission_name_index` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of permission
@@ -777,7 +777,7 @@ CREATE TABLE `project_plain` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `project_new_voltageRankClassifyId_fk` (`voltageRankClassifyId`,`year`) USING BTREE,
   CONSTRAINT `project_new_voltageRankClassifyId_fk` FOREIGN KEY (`voltageRankClassifyId`) REFERENCES `voltage_rank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project_plain
@@ -924,7 +924,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=682 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=684 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1610,6 +1610,8 @@ INSERT INTO `user_log` VALUES ('678', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('679', '2', '操作模块:会话管理,用户登陆.', '2016-01-05 14:49:22', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('680', '2', '会话超时，用户退出.', '2016-01-05 14:54:58', '192.168.1.240', '');
 INSERT INTO `user_log` VALUES ('681', '2', '会话超时，用户退出.', '2016-01-05 15:01:28', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('682', '2', '会话超时，用户退出.', '2016-01-05 15:42:28', '192.168.1.240', '');
+INSERT INTO `user_log` VALUES ('683', '2', '操作模块:会话管理,用户登陆.', '2016-01-06 13:48:33', '127.0.0.1', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
