@@ -5,7 +5,7 @@ Ext.define('RYIVS.view.display.Enterprise', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.displayEnterprise',
-	title : '企业(资质)基本信息',
+	title : '资质信息',
 	iconCls : 's_equipment',
 	region : 'center',
 	//定义 store

@@ -5,7 +5,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 	requires : [ 'RYIVS.lib.GridEditBase' ],
 	extend : 'RYIVS.lib.GridEditBase',
 	alias : 'widget.enterprise',
-	title : '企业(资质)基本信息',
+	title : '资质信息',
 	iconCls : 's_equipment',
 	region : 'center',
 	//定义 store
