@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.ronyao.cca.constant.ConstAnnualOutput;
@@ -45,6 +46,7 @@ import com.ronyao.cca.service.dto.ProjectConfigDto;
  *
  */
 @Service
+@Scope(value="prototype") //设置为多列模式,默认单例
 public class BearImp implements Bear {
 	
 	private static final Logger  LOG=LoggerFactory.getLogger(BearImp.class);
@@ -75,6 +77,8 @@ public class BearImp implements Bear {
 	
 	@Resource
 	private EnterpriseMapper enterpriseMapper;
+	
+	//---------------------------变量-------------------------------
 	
 
 	/**电压等级分类key :value   value : voltageRankClassify
