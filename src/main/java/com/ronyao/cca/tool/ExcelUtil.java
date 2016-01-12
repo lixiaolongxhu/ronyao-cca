@@ -79,7 +79,9 @@ public class ExcelUtil {
             Map<Integer, String> enter = columnValue.get(i);  
             // 第四步，创建单元格，并设置值  
             for(int j=0;j<headerName.size();j++){
-            	 row.createCell(j).setCellValue(enter.get(j));  
+            	HSSFCell  hsscell= row.createCell(j);
+            	hsscell.setCellStyle(style); //设置内容共内容样式
+            	hsscell.setCellValue(enter.get(j));   //设置列表内容值
             }
 //          row.createCell(0).setCellValue(enter.getSupervisorunit());  
 //          row.createCell(1).setCellValue(enter.getFullname());  

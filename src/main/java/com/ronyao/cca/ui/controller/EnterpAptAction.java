@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ronyao.cca.constant.ConstDictionary;
 import com.ronyao.cca.db.model.AptitudeClassify;
 import com.ronyao.cca.db.model.AptitudeRankClassify;
-import com.ronyao.cca.db.model.EnterpriseAptitude;
+import com.ronyao.cca.db.model.EnterpriseAptitudeWithBLOBs;
 import com.ronyao.cca.tool.ExcelUtil;
 import com.ronyao.cca.ui.extDirect.ActionEnterpApt;
 
@@ -59,7 +59,7 @@ public class EnterpAptAction {
 				
 	
 
-        List<EnterpriseAptitude> enterpList = actionEnterpApt.getEnterpriseAptitudeList();
+        List<EnterpriseAptitudeWithBLOBs> enterpList = actionEnterpApt.getEnterpriseAptitudeList();
         if(enterpList==null  || enterpList.isEmpty()){
         	response.setHeader("content-type", "text/html;charset=UTF-8");
         	response.setCharacterEncoding("UTF-8");
@@ -71,7 +71,7 @@ public class EnterpAptAction {
         Map<Byte, AptitudeRankClassify> aptitudeRankClassifyMap=constDictionary.getAptitudeRankClassifyMap();
         Map<Byte, AptitudeClassify> aptitudeClassifyMap=constDictionary.getAptitudeClassifyMap();
         for (int i=0;i<enterpList.size() ;i++) {
-        	EnterpriseAptitude enter=enterpList.get(i);
+        	EnterpriseAptitudeWithBLOBs enter=enterpList.get(i);
         	 Map<Integer , String>  map=new HashMap<Integer, String>();
         	 
         	 map.put(0, String.valueOf(i+1));

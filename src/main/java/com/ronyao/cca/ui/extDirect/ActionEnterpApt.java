@@ -11,6 +11,7 @@ import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadResult;
 import com.ronyao.cca.db.dao.EnterpriseAptitudeMapper;
 import com.ronyao.cca.db.model.EnterpriseAptitude;
 import com.ronyao.cca.db.model.EnterpriseAptitudeExample;
+import com.ronyao.cca.db.model.EnterpriseAptitudeWithBLOBs;
 import com.ronyao.cca.tool.DateUtil;
 
 /**企业资质标准分类表信息
@@ -24,29 +25,29 @@ public class ActionEnterpApt {
 	@Autowired
 	private EnterpriseAptitudeMapper enterprisAptitudeMaper;
 	
-	private List<EnterpriseAptitude> enterpriseAptitudeList=null;
+	private List<EnterpriseAptitudeWithBLOBs> enterpriseAptitudeList=null;
 	
-	public List<EnterpriseAptitude> getEnterpriseAptitudeList(){
+	public List<EnterpriseAptitudeWithBLOBs> getEnterpriseAptitudeList(){
 		if(enterpriseAptitudeList==null){
 			EnterpriseAptitudeExample eExample = new EnterpriseAptitudeExample();
-			enterpriseAptitudeList=enterprisAptitudeMaper.selectByExample(eExample);
+			enterpriseAptitudeList=enterprisAptitudeMaper.selectByExampleWithBLOBs(eExample);
 		}
 		return enterpriseAptitudeList;
 	}
 	
 	// 列表
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_READ, group = "store")
-	public ExtDirectStoreReadResult<EnterpriseAptitude> read(
+	public ExtDirectStoreReadResult<EnterpriseAptitudeWithBLOBs> read(
 			ExtDirectStoreReadRequest request) {
 		EnterpriseAptitudeExample eExample = new EnterpriseAptitudeExample();
-		enterpriseAptitudeList=enterprisAptitudeMaper.selectByExample(eExample);
-		return new ExtDirectStoreReadResult<EnterpriseAptitude>(enterpriseAptitudeList);
+		enterpriseAptitudeList=enterprisAptitudeMaper.selectByExampleWithBLOBs(eExample);
+		return new ExtDirectStoreReadResult<EnterpriseAptitudeWithBLOBs>(enterpriseAptitudeList);
 	}
 
 	// 插入
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_MODIFY, group = "store")
-	public ExtDirectStoreReadResult<EnterpriseAptitude> create(List<EnterpriseAptitude> enterpriseAptList) {
-		EnterpriseAptitude  ep = enterpriseAptList.get(0);
+	public ExtDirectStoreReadResult<EnterpriseAptitude> create(List<EnterpriseAptitudeWithBLOBs> enterpriseAptList) {
+		EnterpriseAptitudeWithBLOBs  ep = enterpriseAptList.get(0);
 		ep.setCreatetime(DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT0));
 		enterprisAptitudeMaper.insert(ep);
 		return new ExtDirectStoreReadResult<EnterpriseAptitude>(ep);
@@ -55,18 +56,18 @@ public class ActionEnterpApt {
 
 	// 修改
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_MODIFY, group = "store")
-	public int update(List<EnterpriseAptitude> enterpriseAptList) {
+	public int update(List<EnterpriseAptitudeWithBLOBs> enterpriseAptList) {
 		
-		EnterpriseAptitude  ep = enterpriseAptList.get(0);
+		EnterpriseAptitudeWithBLOBs  ep = enterpriseAptList.get(0);
 		ep.setUpdatetime(DateUtil.dateToString(new Date(), DateUtil.DATAFORMAT0));
-		return enterprisAptitudeMaper.updateByPrimaryKey(ep);
+		return enterprisAptitudeMaper.updateByPrimaryKeyWithBLOBs(ep);
 	}
 
 	
 
 	// 删除
 	@ExtDirectMethod(value = ExtDirectMethodType.STORE_MODIFY, group = "store")
-	public int destroy(List<EnterpriseAptitude> enterprisesAptitude) {
+	public int destroy(List<EnterpriseAptitudeWithBLOBs> enterprisesAptitude) {
 		return enterprisAptitudeMaper.deleteByPrimaryKey(enterprisesAptitude.get(0).getId());
 	}
 	

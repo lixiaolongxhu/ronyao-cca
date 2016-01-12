@@ -9,15 +9,8 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	iconCls : 's_user',
 	// 定义 store
 	store : 'editor.EnterprisePer',
-	// 定义 autoload
-	autoload : false,
-	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-	autoScroll :true, 
-	//True 为 Panel 填充画面,默认为false.
-	frame : true, 
-	//设 置为true，则强制列自适应成可用宽度
-	forceFit :false, 
-		// 工具条
+	
+	// 工具条
 	tbar : [ {
 		text : '添加',
 		icon : 'res/icon/add.png',
@@ -95,9 +88,15 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
     
 	// 定义 colums
 	columns : [ 
-	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	//设置grid 行号
+	{	xtype: 'rownumberer',
+		align :'center',  //设置列头及单元格的对齐方向。 可取值: 'left', 'center', and 'right'
+		minWidth :30,
+		text :'序号'
+	} 
 	, {
 		text : '施工企业名称',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
@@ -124,8 +123,10 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	 text :"国家注册建造师 ",
    
 	 columns: [
+	 
 		 	{
 			text : '一级',
+			align :'center',
 			width : 100,
 			dataIndex : 'constructorone',
 			//flex : 1,
@@ -139,6 +140,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			}
 		  }, {
 			text : '二级',
+			align :'center',
 			width : 100,
 			dataIndex : 'constructortwo',
 		//	flex : 1,
@@ -153,6 +155,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '合计',
+			align :'center',
 			width : 100,
 			dataIndex : 'constructortotal'
 			
@@ -168,6 +171,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	 columns: [
 		 	{
 			text : '中级',
+			align :'center',
 			width : 100,
 			dataIndex : 'staffmiddle',
 		
@@ -181,9 +185,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			}
 		  }, {
 			text : '高级',
+			align :'center',
 			width : 100,
 			dataIndex : 'staffhigh',
-			
 			editor : {
 				allowBlank : false,
 				xtype : 'numberfield',
@@ -195,8 +199,9 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '合计',
+			align :'center',
 			width : 60,
-			dataIndex : 'stafftotal',
+			dataIndex : 'stafftotal'
 			
 		  } 
 	
@@ -210,6 +215,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	 columns: [
 		 	{
 			text : '中级',
+			align :'center',
 			width : 100,
 			dataIndex : 'skillmiddle',
 			
@@ -223,6 +229,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 			}
 		  }, {
 			text : '高级',
+			align :'center',
 			width : 100,
 			dataIndex : 'skillhigh',
 			
@@ -237,6 +244,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '技师',
+			align :'center',
 			width : 100,
 			dataIndex : 'skilltech',
 		
@@ -251,6 +259,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '高级技师',
+			align :'center',
 			width : 100,
 			dataIndex : 'skilltechhigh',
 			
@@ -265,6 +274,7 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 		  },
 		  {
 			text : '合计',
+			align :'center',
 			width : 100,
 			dataIndex : 'skilltotal'
 			
@@ -274,10 +284,12 @@ Ext.define('RYIVS.view.editor.EnterprisePer', {
 	  ]	
 	},{
 		text : '记录创建时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'createtime'
 	}, {
-		text : '修改时间',
+		text : '记录修改时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'updatetime'
 	}

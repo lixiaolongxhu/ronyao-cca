@@ -1,7 +1,15 @@
-/*Panel 边缘高亮*/
+/*ExtJS Panel 边缘高亮*/
 
 .borderred  .x-panel-header, .borderred  .x-panel-body {
 	border-color: red;
+}
+
+/*ExtJS重新设置表格行高，不要改公用样式只是针对当前表格。*/
+.custom-grid-row{
+ 
+	vertical-align : center;/**单元格垂直居中**/ 
+    height:30px;  /** grid 重新设置的行高度**/
+
 }
 
 

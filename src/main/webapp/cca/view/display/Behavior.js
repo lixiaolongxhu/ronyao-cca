@@ -1,21 +1,23 @@
 
 Ext.define('RYIVS.view.display.Behavior', {
-	extend : 'Ext.grid.Panel',
+	requires : [ 'RYIVS.lib.GridEditBaseDis' ],
+	extend : 'RYIVS.lib.GridEditBaseDis',
 	alias : 'widget.displayBehavior',
 	title : '不良行为影响修正系数',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.Behavior',
-	// 定义 autoload
-	autoload : false,
-	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-	autoScroll :true, 
-	//True 为 Panel 填充画面,默认为false.
-	frame : true, 
-	//设 置为true，则强制列自适应成可用宽度
-	forceFit :false,
+//	// 定义 autoload
+//	autoload : false,
+//	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
+//	autoScroll :true, 
+//	//True 为 Panel 填充画面,默认为false.
+//	frame : true, 
+//	//设 置为true，则强制列自适应成可用宽度
+//	forceFit :false,
 	
-	   dockedItems: [{
+	//工具条
+	dockedItems: [{
    	 	xtype: 'toolbar',
    	 	items: [{
 	        itemId: 'refreshButton',
@@ -50,9 +52,15 @@ Ext.define('RYIVS.view.display.Behavior', {
 	
 	// 定义 colums
 	columns : [ 
-	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	//设置grid 行号
+	{	xtype: 'rownumberer',
+		align :'center',  //设置列头及单元格的对齐方向。 可取值: 'left', 'center', and 'right'
+		minWidth :30,
+		text :'序号'
+	}
 	,{
 		text : '施工企业名称',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
@@ -78,6 +86,7 @@ Ext.define('RYIVS.view.display.Behavior', {
 	
 	 {
 		text : '不良行为发生年份',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'year',
@@ -106,6 +115,7 @@ Ext.define('RYIVS.view.display.Behavior', {
    
 	 columns: [{
 				text : '严重不良行为次数',
+				align :'center',
 				width : 200,
 				dataIndex : 'seriousbadnum',
 				
@@ -118,6 +128,7 @@ Ext.define('RYIVS.view.display.Behavior', {
 				}
 			},{
 				text : '一般不良行为次数',
+				align :'center',
 				width : 200,
 				dataIndex : 'generalbadnum',
 				
@@ -134,6 +145,7 @@ Ext.define('RYIVS.view.display.Behavior', {
 	  ]	
 	},{
 		text : '修正系数',
+		align :'center',
 		width : 100,
 		dataIndex : 'correction'
 		
@@ -141,10 +153,12 @@ Ext.define('RYIVS.view.display.Behavior', {
 	},
 	{
 		text : '记录创建时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'updatetime'
 	}

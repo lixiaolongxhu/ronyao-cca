@@ -5,9 +5,9 @@
 
 
 
-Ext.define('RYIVS.lib.GridEditBaseDis', {
+Ext.define('RYIVS.lib.GridEditBaseDisNoToolbar', {
 	extend : 'Ext.grid.Panel',
-	alias : 'widget.gridEditBaseDis',
+	alias : 'widget.gridEditBaseDisNoToolbar',
 	
 	//居中布局
 	region : 'center',
@@ -39,27 +39,6 @@ Ext.define('RYIVS.lib.GridEditBaseDis', {
         ftype: 'summary'
     }],
     
-	// 默认工具条
-	tbar : [ {
-		itemId : 'buttonRefresh',
-		text : '刷新',
-		icon : 'res/icon/sync.png',
-		handler : function() {
-			this.ownerCt.ownerCt.store.load();
-		}
-	} 
-	, {
-		itemId : 'buttonExporterExcel',
-		text : '导出Excel',
-		icon : 'res/icon/export.gif'	
-    }],
-
-	listeners : {
-		'selectionchange' : function(view, records) {
-//			this.down('#buttonDelete').setDisabled(!records.length);
-		}
-	},
-
 	
 
 	initComponent : function() {
