@@ -11,7 +11,7 @@ Ext.define('RYIVS.view.common.Login', {
     frame: true,
     
     //面板的最小宽度
-    minHeight :200,
+    minHeight :205,
   
     style: { //formpanel  marginRight,marginBottom位置    top 或者 bottom 只有一个会起作用，不会同时起作用。
          
