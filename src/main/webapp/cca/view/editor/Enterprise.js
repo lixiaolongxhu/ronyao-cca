@@ -400,7 +400,7 @@ Ext.define('RYIVS.view.editor.Enterprise', {
 			
 	  ]	
 	}, {
-		text : '记录创建<br/>时间',
+		text : '记录创建时间',
 		align :'center',
 		width : 200,
 		//flex : 1,

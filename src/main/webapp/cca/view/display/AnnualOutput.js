@@ -7,19 +7,18 @@ Ext.define('RYIVS.view.display.AnnualOutput', {
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.AnnualOutput',
-	// 定义 autoload
-	autoload : false,
-	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-	autoScroll :true, 
-	//True 为 Panel 填充画面,默认为false.
-	frame : true, 
-	//设 置为true，则强制列自适应成可用宽度
-	forceFit :false, 
+	
 	// 定义 colums
 	columns : [ 
-	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
+	//设置grid 行号
+	{	xtype: 'rownumberer',
+		align :'center',  //设置列头及单元格的对齐方向。 可取值: 'left', 'center', and 'right'
+		minWidth :30,
+		text :'序号'
+	} 
 	,{
 		text : '电压等级',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'voltagerankid',
@@ -45,6 +44,7 @@ Ext.define('RYIVS.view.display.AnnualOutput', {
 	
 	{
 		text : '施工项目类型',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'projecttype',
@@ -70,6 +70,7 @@ Ext.define('RYIVS.view.display.AnnualOutput', {
 	
 	{
 			text : '合理工期(月)',
+			align :'center',
 			width : 100,
 			dataIndex : 'timelimit',
 				
@@ -86,6 +87,7 @@ Ext.define('RYIVS.view.display.AnnualOutput', {
 
 	{
 			text : '单个项目部完成<br/>项目数量(个/年)',
+			align :'center',
 			width : 100,
 			dataIndex : 'projectnum',
 				
@@ -101,6 +103,7 @@ Ext.define('RYIVS.view.display.AnnualOutput', {
 	
 	{
 			text : '年产值(万元/年)',
+			align :'center',
 			width : 100,
 			dataIndex : 'annualoutput',
 				
@@ -116,21 +119,29 @@ Ext.define('RYIVS.view.display.AnnualOutput', {
 	
 	{
 		text : '备注',
+		align :'center',
 		width : 400,
 		dataIndex : 'remark',
 		editor : {
 			xtype : 'textfield',
 			allowBlank : true
+		},
+		renderer : function (value, meta, record) {
+			//自动换行渲染
+			meta.style = 'white-space:normal;word-break:break-all;';
+			return value;
 		}
 	
 	},
 
 	{
 		text : '记录创建时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'updatetime'
 	}

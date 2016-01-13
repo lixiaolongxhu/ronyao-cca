@@ -1,33 +1,15 @@
 
 
 Ext.define('RYIVS.view.display.ProjectPlain', {
-	extend : 'Ext.grid.Panel',
+	requires : [ 'RYIVS.lib.GridEditBaseDisNoToolbar' ],
+	extend : 'RYIVS.lib.GridEditBaseDisNoToolbar',
 	alias : 'widget.displayProjectPlain',
 	title : '下一年公司新开工项目情况',
 	iconCls : 's_equipment',
 	store:'editor.ProjectPlain',
-	// 定义 autoload
-	autoload : false,
-	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-	autoScroll :true, 
-	//True 为 Panel 填充画面,默认为false.
-	frame : true, 
-	//设 置为true，则强制列自适应成可用宽度
-	forceFit :false,
 	
-	
-	
-	viewConfig: {
-		emptyText:'<div style="text-align:center; padding:50px; color:gray">没有数据可显示</div>',
-        deferEmptyText:false
-    },
     
-    //引入grid 特征 - 列求和
-	features: [{
-        ftype: 'summary'
-    }],
-    
-dockedItems: [{
+	dockedItems: [{
    	 	xtype: 'toolbar',
    	 	items: [{
 	        itemId: 'refreshButton',
@@ -70,9 +52,16 @@ dockedItems: [{
 	// 定义 colums
 	columns : [
 
-		{xtype: 'rownumberer',minWidth :30,text :'序号'}, //设置grid 行号	
+		{	
+		xtype: 'rownumberer',
+		align :'center',  //设置列头及单元格的对齐方向。 可取值: 'left', 'center', and 'right'
+		minWidth :30,
+		text :'序号'
+		} 
+		,
 		{
 		text : '电压等级',
+		align :'center', 
 		width : 100,
 		sortable : true,
 		dataIndex : 'voltagerankclassifyid',
@@ -98,6 +87,7 @@ dockedItems: [{
 	
 	 {
 		text : '项目年份',
+		align :'center', 
 		width : 100,
 		sortable : true,
 		dataIndex : 'year',
@@ -123,6 +113,7 @@ dockedItems: [{
 	},
 	 {
 			text : '项目个数(个)',
+			align :'center', 
 			width : 100,
 			dataIndex : 'projectnum',
 			
@@ -147,6 +138,7 @@ dockedItems: [{
 	 columns: [
 		 	{
 			text : '线路工程数(个)',
+			align :'center', 
 			width : 150,
 			dataIndex : 'lineproject',
 			
@@ -165,6 +157,7 @@ dockedItems: [{
        		    }
 		  }, {
 			text : '变电工程数(个)',
+			align :'center', 
 			width : 150,
 			dataIndex : 'powerproject',
 			
@@ -193,6 +186,7 @@ dockedItems: [{
 	 columns: [
 		 	{
 			text : '线路工程数(个)',
+			align :'center', 
 			width : 150,
 			dataIndex : 'assesslineproject',
 		
@@ -211,6 +205,7 @@ dockedItems: [{
        		    }
 		  }, {
 			text : '变电工程数(个)',
+			align :'center', 
 			width : 100,
 			dataIndex : 'assesspowerproject',
 			
@@ -234,6 +229,7 @@ dockedItems: [{
 	}
 	, {
 			text : '线路长度(公里)',
+			align :'center', 
 			width : 100,
 			dataIndex : 'linelength',
 			
@@ -252,6 +248,7 @@ dockedItems: [{
        		    }
 	}, {
 			text : '变电容量(万千伏安)',
+			align :'center', 
 			width : 150,
 			dataIndex : 'volume',
 			
@@ -270,6 +267,7 @@ dockedItems: [{
        		    }
 	}, {
 			text : '总投资(亿元)',
+			align :'center', 
 			width : 150,
 			dataIndex : 'investment',
 			
@@ -290,10 +288,12 @@ dockedItems: [{
 
 	{
 		text : '记录创建时间',
+		align :'center', 
 		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
+		align :'center', 
 		width : 200,
 		dataIndex : 'updatetime'
 	}

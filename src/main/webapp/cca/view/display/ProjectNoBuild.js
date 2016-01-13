@@ -1,32 +1,13 @@
 
 
 Ext.define('RYIVS.view.display.ProjectNoBuild', {
-	extend : 'Ext.grid.Panel',
-//		requires : [ 'RYIVS.lib.GridEditBase' ],
-//	extend : 'RYIVS.lib.GridEditBase',
+	requires : [ 'RYIVS.lib.GridEditBaseDisNoToolbar' ],
+	extend : 'RYIVS.lib.GridEditBaseDisNoToolbar',
 	alias : 'widget.displayProjectNoBuild',
 	title : '中标未开工情况',
 	iconCls : 's_equipment',
 	store:'editor.ProjectNoBuild',
-	// 定义 autoload
-	autoload : false,
-	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-	autoScroll :true, 
-	//True 为 Panel 填充画面,默认为false.
-	frame : true, 
-	//设 置为true，则强制列自适应成可用宽度
-	forceFit :false,
 	
-	
-	viewConfig: {
-		emptyText:'<div style="text-align:center; padding:50px; color:gray">没有数据可显示</div>',
-        deferEmptyText:false
-    },
-    
-    //引入grid 特征 - 列求和
-	features: [{
-        ftype: 'summary'
-    }],
     
     dockedItems: [{
    	 	xtype: 'toolbar',
@@ -69,22 +50,24 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
     
 	// 定义 colums
 	columns : [
-//		{
-//		text : 'ID',
-//		sortable : true,
-//		dataIndex : 'id',
-//		flex : 1
-//		},
-		{xtype: 'rownumberer',minWidth :30,text :'序号'}, //设置grid 行号	
+	{	
+		xtype: 'rownumberer',
+		align :'center',  //设置列头及单元格的对齐方向。 可取值: 'left', 'center', and 'right'
+		minWidth :30,
+		text :'序号'
+		} 
+		,
 		 
 		{
 			text : '主管单位',
+			align :'center',
 			width : 100,
 			sortable : true,
 			dataIndex : 'supervisorunit'
 			
 		},{
 		text : '施工企业名称',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseid',
@@ -110,6 +93,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
 	
 	 {
 		text : '项目年份',
+		align :'center',
 		width : 100,
 		sortable : true,
 		dataIndex : 'year',
@@ -140,6 +124,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
    
 	 columns: [ {
 			text : '500kV(个)',
+			align :'center',
 			width : 100,
 			dataIndex : 'line500kv',
 			
@@ -159,6 +144,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
 		  }
 		 	, {
 			text : '220kV(个)',
+			align :'center',
 			width : 100,
 			dataIndex : 'line220kv',
 			
@@ -177,6 +163,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
        		    }
 		  },{
 			text : '110kV(个)',
+			align :'center',
 			width : 100,
 			dataIndex : 'line110kv',
 			
@@ -204,6 +191,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
    
 	 columns: [ {
 			text : '500kV(个)',
+			align :'center',
 			width : 100,
 			dataIndex : 'power500kv',
 			
@@ -223,6 +211,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
 		  }
 		 	, {
 			text : '220kV(个)',
+			align :'center',
 			width : 100,
 			dataIndex : 'power220kv',
 			
@@ -241,6 +230,7 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
        		    }
 		  },{
 			text : '110kV(个)',
+			align :'center',
 			width : 100,
 			dataIndex : 'power110kv',
 			
@@ -265,10 +255,12 @@ Ext.define('RYIVS.view.display.ProjectNoBuild', {
 
 	{
 		text : '记录创建时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'createtime'
 	}, {
 		text : '记录修改时间',
+		align :'center',
 		width : 200,
 		dataIndex : 'updatetime'
 	}

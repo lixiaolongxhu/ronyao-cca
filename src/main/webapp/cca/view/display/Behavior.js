@@ -1,20 +1,13 @@
 
 Ext.define('RYIVS.view.display.Behavior', {
-	requires : [ 'RYIVS.lib.GridEditBaseDis' ],
-	extend : 'RYIVS.lib.GridEditBaseDis',
+	requires : [ 'RYIVS.lib.GridEditBaseDisNoToolbar' ],
+	extend : 'RYIVS.lib.GridEditBaseDisNoToolbar',
 	alias : 'widget.displayBehavior',
 	title : '不良行为影响修正系数',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'editor.Behavior',
-//	// 定义 autoload
-//	autoload : false,
-//	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-//	autoScroll :true, 
-//	//True 为 Panel 填充画面,默认为false.
-//	frame : true, 
-//	//设 置为true，则强制列自适应成可用宽度
-//	forceFit :false,
+
 	
 	//工具条
 	dockedItems: [{
