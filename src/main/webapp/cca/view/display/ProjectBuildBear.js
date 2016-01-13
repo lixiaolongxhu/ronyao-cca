@@ -1,71 +1,46 @@
 
 Ext.define('RYIVS.view.display.ProjectBuildBear', {
-	extend : 'Ext.grid.Panel',
+	requires : [ 'RYIVS.lib.GridEditBaseDis' ],
+	extend : 'RYIVS.lib.GridEditBaseDis',
 	alias : 'widget.projectBuildBear',
 	title : '施工单位剩余承载能力',
 	iconCls : 's_equipment',
 	// 定义 store
 	store : 'display.ProjectBuildBear',
-	// 定义 autoload
-	autoload : false,
-	//'true'使用溢出：'自动'的组件布局元素，并在必要时自动显示滚动条
-	autoScroll :true, 
-	//True 为 Panel 填充画面,默认为false.
-	frame : true, 
-	//设 置为true，则强制列自适应成可用宽度
-	forceFit :false,
-	 
-    //引入grid 特征 - 列求和
-	features: [{
-        ftype: 'summary'
-    }],
-    
-	// 工具条
-	tbar : [{
-		itemId : 'buttonRefresh',
-		text : '刷新',
-		icon : 'res/icon/sync.png',
-		handler : function() {
-			this.ownerCt.ownerCt.store.load();
-		}
-	} , {
-		itemId : 'buttonExporterExcel',
-		text : '导出Excel',
-		icon : 'res/icon/export.gif'	
-    }],
+	
 	
 	// 定义 colums
 	columns : [
-	{xtype: 'rownumberer',minWidth :30,text :'序号'} //设置grid 行号
-	, 
+	//设置grid 行号
+	{	xtype: 'rownumberer',
+		align :'center',  //设置列头及单元格的对齐方向。 可取值: 'left', 'center', and 'right'
+		minWidth :30,
+		text :'序号'
+	}
+	,
 	{
 		text : '主管单位',
+		align :'center',
 		width : 100,
 		sortable : true,
 		dataIndex : 'supervisorunit'
-		
-		
-		
-		
+	
 	},
 	{
 		text : '施工企业名称',
+		align :'center',
 		width : 200,
 		sortable : true,
 		dataIndex : 'enterpriseName'
-		
-		
-		
-		
+			
 	},
-	
-	
 	
 	{
 	 text :"还可以承担线路工程",
    
 	 columns: [{
 				text : '500kV(个)',
+				align :'center',
 				width : 100,
 				dataIndex : 'line500kv',
 				
@@ -84,6 +59,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
        		    }
 			},{
 				text : '220kV(个)',
+				align :'center',
 				width : 100,
 				dataIndex : 'line220kv',
 			
@@ -102,6 +78,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 			
 		  	 } ,{
 				text : '110kV(个)',
+				align :'center',
 				width : 100,
 				dataIndex : 'line110kv',
 				
@@ -128,6 +105,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
    
 	 columns: [{
 				text : '500kV(个)',
+				align :'center',
 				width : 100,
 				dataIndex : 'power500kv',
 				
@@ -146,6 +124,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
        		    }
 			},{
 				text : '220kV(个)',
+				align :'center',
 				width : 100,
 				dataIndex : 'power220kv',
 				
@@ -164,6 +143,7 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 			
 		  	 },{
 				text : '110kV(个)',
+				align :'center',
 				width : 100,
 				dataIndex : 'power110kv',
 				
@@ -183,16 +163,8 @@ Ext.define('RYIVS.view.display.ProjectBuildBear', {
 	}
 	
 	
-	
-	
-	
-	
 	],
-	//设置没有数据显示文本
-	viewConfig: {
-		emptyText:'<div style="text-align:center; padding:50px; color:gray">没有数据可显示</div>',
-        deferEmptyText:false
-    },
+	
 	initComponent : function() {
 		this.callParent(arguments);
 	}
