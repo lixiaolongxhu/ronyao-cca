@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : 127.0.0.1
-Source Server Version : 50527
+Source Server Version : 50710
 Source Host           : 127.0.0.1:3306
 Source Database       : cca
 
 Target Server Type    : MYSQL
-Target Server Version : 50527
+Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 2016-01-13 15:06:47
+Date: 2016-01-15 16:45:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,7 +51,7 @@ INSERT INTO `annual_output` VALUES ('15', '4', '2', '12', '1.00', '1400', '', '2
 -- ----------------------------
 DROP TABLE IF EXISTS `aptituderank_classify`;
 CREATE TABLE `aptituderank_classify` (
-  `id` tinyint(4) NOT NULL COMMENT '企业资质信息等级',
+  `id` tinyint(4) NOT NULL COMMENT '企业资质信息等级( -1 无等级 1 一级 2 二级 3 三级)',
   `name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `behavior`;
 CREATE TABLE `behavior` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业行为记录表',
   `enterpriseId` int(11) DEFAULT '0' COMMENT '施工企业表外键',
-  `year` int(10) DEFAULT '0' COMMENT '不良行为发生年月',
+  `year` int(10) DEFAULT '0' COMMENT '不良行为发生年份',
   `generalbadNum` tinyint(4) DEFAULT '0' COMMENT '一般不良行为次数',
   `seriousBadNum` tinyint(4) DEFAULT '0' COMMENT '严重不良行为次数',
   `correction` decimal(10,2) DEFAULT NULL COMMENT '修正系数',
@@ -96,7 +96,7 @@ CREATE TABLE `behavior` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `behavior_enterpriseId_fk` (`enterpriseId`,`year`) USING BTREE,
   CONSTRAINT `behavior_enterpriseId_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
@@ -172,48 +172,48 @@ CREATE TABLE `enterprise` (
   `outputBefore` int(8) DEFAULT '0' COMMENT '当前年份对应的前年产值',
   `outputBeforeLast` int(8) DEFAULT '0' COMMENT '当前年份对应的上前年产值',
   `project` int(4) DEFAULT '0' COMMENT '近三年工程数量',
-  `createTime` varchar(20) DEFAULT NULL,
-  `updateTime` varchar(20) DEFAULT NULL,
   `projectLast` int(8) DEFAULT '0' COMMENT '当前年份对应的去年完成的工程数',
   `projectBefore` int(8) DEFAULT '0' COMMENT '当前年份对应的前年完成的工程数',
   `projectBeforeLast` int(8) DEFAULT '0' COMMENT '当前年份对应的上前年完成的工程数',
+  `createTime` varchar(20) DEFAULT NULL,
+  `updateTime` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_fullname_id` (`fullName`),
   KEY `enter_overallRank_id_fk` (`overallRank`),
   KEY `enter_professionRank_id_fk` (`professionRank`),
   CONSTRAINT `enter_overallRank_id_fk` FOREIGN KEY (`overallRank`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enter_professionRank_id_fk` FOREIGN KEY (`professionRank`) REFERENCES `aptituderank_classify` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise
 -- ----------------------------
-INSERT INTO `enterprise` VALUES ('78', '四川公司', '四川送变电', '四川电力送变电建设公司', '1', '8800', '40030', '1069', '1', '1', '249625', '249625', '0', '0', '30', '2015-12-29 11:22:29', '2015-12-29 11:23:06', '10', '10', '10');
-INSERT INTO `enterprise` VALUES ('79', '科锐得', '四川蜀能', '四川蜀能电力有限公司', '2', '7107', '0', '602', '-1', '1', '163338', '163338', '0', '0', '29', '2015-12-29 11:24:24', '', '10', '10', '9');
-INSERT INTO `enterprise` VALUES ('80', '成都', '成都电建', '四川电力建设公司', '2', '10000', '20768', '332', '1', '2', '125716', '125716', '0', '0', '54', '2015-12-29 11:25:53', '', '54', '0', '0');
-INSERT INTO `enterprise` VALUES ('81', '成都', '成都供用电', '成都供用电工程公司', '2', '2100', '10400', '384', '-1', '2', '43233', '43233', '0', '0', '40', '2015-12-29 11:27:28', '2015-12-30 14:31:58', '20', '15', '5');
-INSERT INTO `enterprise` VALUES ('82', '成都', '成都宏业', '四川宏业电力集团有限公司', '2', '10000', '26143', '1087', '2', '2', '14168', '14168', '0', '0', '12', '2015-12-29 11:29:07', '', '12', '0', '0');
-INSERT INTO `enterprise` VALUES ('83', '乐山', '乐山嘉能佳', '四川嘉能佳电力集团有限责任公司', '2', '11396', '14470', '131', '2', '-1', '43500', '43400', '40', '60', '25', '2015-12-29 12:12:37', '', '10', '2', '13');
-INSERT INTO `enterprise` VALUES ('84', '攀枝花', '攀枝花网源', '攀枝花网源电力建设工程公司', '2', '4500', '11940', '1254', '2', '2', '17217', '17217', '0', '0', '10', '2015-12-29 13:20:44', '', '10', '0', '0');
-INSERT INTO `enterprise` VALUES ('85', '德阳', '德阳明源', '德阳明源电力（集团）有限公司', '2', '7000', '23018', '215', '1', '-1', '46514', '46514', '0', '0', '22', '2015-12-29 13:22:13', '', '22', '0', '0');
-INSERT INTO `enterprise` VALUES ('86', '眉山', '眉山多能', '眉山多能电力建设有限责任公司', '2', '2400', '4336', '173', '-1', '2', '6160', '6160', '0', '0', '8', '2015-12-29 13:23:41', '', '8', '0', '0');
-INSERT INTO `enterprise` VALUES ('87', '雅安', '雅安科元', '雅安科元电力建设有限公司', '2', '1200', '25152', '653', '-1', '3', '10055', '10055', '0', '0', '14', '2015-12-29 13:26:14', '', '14', '0', '0');
-INSERT INTO `enterprise` VALUES ('88', '达州', '达州惠特', '四川惠特电力投资建设有限公司', '2', '4800', '13100', '465', '2', '-1', '26884', '26884', '0', '0', '19', '2015-12-29 13:29:04', '', '19', '0', '0');
-INSERT INTO `enterprise` VALUES ('89', '绵阳', '绵阳启明星', '绵阳启明星集团有限公司', '2', '6000', '28000', '544', '2', '-1', '65900', '65900', '0', '0', '51', '2015-12-29 13:30:37', '', '51', '0', '0');
-INSERT INTO `enterprise` VALUES ('90', '宜宾', '宜宾远能', '宜宾远能电业集团有限责任公司', '2', '6202', '5500', '471', '2', '-1', '12106', '12106', '0', '0', '10', '2015-12-29 13:32:24', '', '10', '0', '0');
-INSERT INTO `enterprise` VALUES ('91', '凉山', '西昌电力', '西昌电力工程公司', '2', '2400', '807', '402', '2', '2', '9473', '9473', '0', '0', '15', '2015-12-29 13:33:35', '', '15', '0', '0');
-INSERT INTO `enterprise` VALUES ('92', '内江', '内江星原', '内江星原电力集团有限责任公司', '2', '5000', '37360', '764', '2', '2', '19491', '19491', '0', '0', '22', '2015-12-29 13:34:59', '', '22', '0', '0');
-INSERT INTO `enterprise` VALUES ('93', '广元', '广元电力', '广元电力开发总公司', '2', '4000', '14022', '1452', '-1', '2', '6134', '6134', '0', '0', '5', '2015-12-29 13:36:33', '', '5', '0', '0');
-INSERT INTO `enterprise` VALUES ('94', '广元', '广元天源', '四川苍溪天源电力开发有限公司', '2', '1500', '2235', '203', '-1', '3', '1027', '1027', '0', '0', '2', '2015-12-29 13:37:36', '', '2', '0', '0');
-INSERT INTO `enterprise` VALUES ('95', '泸州', '泸州合能', '泸州合能实业有限责任公司', '2', '4888', '8731', '80', '2', '2', '11634', '11634', '0', '0', '8', '2015-12-29 13:40:04', '', '8', '0', '0');
-INSERT INTO `enterprise` VALUES ('96', '南充', '南充恒通', '四川南充恒通电力有限公司', '2', '4100', '6529', '500', '2', '-1', '23193', '23193', '0', '0', '6', '2015-12-29 13:41:12', '', '6', '0', '0');
-INSERT INTO `enterprise` VALUES ('97', '自贡', '自贡电建', '自贡电力建设集团有限公司', '2', '2418', '2608', '417', '-1', '2', '16012', '16012', '0', '0', '7', '2015-12-29 13:42:13', '', '7', '0', '0');
-INSERT INTO `enterprise` VALUES ('98', '广安', '广安和源', '四川和源电力有限公司', '2', '2056', '3947', '299', '-1', '2', '25770', '25770', '0', '0', '10', '2015-12-29 13:43:25', '', '10', '0', '0');
-INSERT INTO `enterprise` VALUES ('99', '资阳', '资阳资源', '资阳资源电力集团有限公司', '2', '5125', '6301', '1359', '-1', '2', '13246', '13246', '0', '0', '8', '2015-12-29 13:44:32', '', '8', '0', '0');
-INSERT INTO `enterprise` VALUES ('100', '遂宁', '遂宁江源', '遂宁市江源实业有限公司', '2', '2400', '2387', '466', '-1', '2', '12947', '12947', '0', '0', '10', '2015-12-29 13:46:11', '', '10', '0', '0');
-INSERT INTO `enterprise` VALUES ('101', '巴中', '巴中和兴', '四川巴中和兴电力有限责任公司', '2', '2460', '2660', '519', '-1', '2', '12475', '12475', '0', '0', '6', '2015-12-29 13:50:01', '', '6', '0', '0');
-INSERT INTO `enterprise` VALUES ('102', '甘孜', '甘孜电建', '甘孜电力建设有限公司', '2', '1200', '3246', '12', '-1', '3', '0', '0', '0', '0', '0', '2015-12-29 13:51:30', '', '0', '0', '0');
-INSERT INTO `enterprise` VALUES ('103', '格瑞德', '电力实业', '四川电力实业总公司', '2', '2400', '0', '238', '2', '2', '10150', '10150', '0', '0', '6', '2015-12-29 13:52:43', '', '6', '0', '0');
+INSERT INTO `enterprise` VALUES ('78', '四川公司', '四川送变电', '四川电力送变电建设公司', '1', '8800', '40030', '1069', '1', '1', '249625', '249625', '0', '0', '30', '10', '10', '10', '2015-12-29 11:22:29', '2015-12-29 11:23:06');
+INSERT INTO `enterprise` VALUES ('79', '科锐得', '四川蜀能', '四川蜀能电力有限公司', '2', '7107', '0', '602', '-1', '1', '163338', '163338', '0', '0', '29', '10', '10', '9', '2015-12-29 11:24:24', '');
+INSERT INTO `enterprise` VALUES ('80', '成都', '成都电建', '四川电力建设公司', '2', '10000', '20768', '332', '1', '2', '125716', '125716', '0', '0', '54', '54', '0', '0', '2015-12-29 11:25:53', '');
+INSERT INTO `enterprise` VALUES ('81', '成都', '成都供用电', '成都供用电工程公司', '2', '2100', '10400', '384', '-1', '2', '43233', '43233', '0', '0', '40', '20', '15', '5', '2015-12-29 11:27:28', '2015-12-30 14:31:58');
+INSERT INTO `enterprise` VALUES ('82', '成都', '成都宏业', '四川宏业电力集团有限公司', '2', '10000', '26143', '1087', '2', '2', '14168', '14168', '0', '0', '12', '12', '0', '0', '2015-12-29 11:29:07', '');
+INSERT INTO `enterprise` VALUES ('83', '乐山', '乐山嘉能佳', '四川嘉能佳电力集团有限责任公司', '2', '11396', '14470', '131', '2', '-1', '43500', '43400', '40', '60', '25', '10', '2', '13', '2015-12-29 12:12:37', '');
+INSERT INTO `enterprise` VALUES ('84', '攀枝花', '攀枝花网源', '攀枝花网源电力建设工程公司', '2', '4500', '11940', '1254', '2', '2', '17217', '17217', '0', '0', '10', '10', '0', '0', '2015-12-29 13:20:44', '');
+INSERT INTO `enterprise` VALUES ('85', '德阳', '德阳明源', '德阳明源电力（集团）有限公司', '2', '7000', '23018', '215', '1', '-1', '46514', '46514', '0', '0', '22', '22', '0', '0', '2015-12-29 13:22:13', '');
+INSERT INTO `enterprise` VALUES ('86', '眉山', '眉山多能', '眉山多能电力建设有限责任公司', '2', '2400', '4336', '173', '-1', '2', '6160', '6160', '0', '0', '8', '8', '0', '0', '2015-12-29 13:23:41', '');
+INSERT INTO `enterprise` VALUES ('87', '雅安', '雅安科元', '雅安科元电力建设有限公司', '2', '1200', '25152', '653', '-1', '3', '10055', '10055', '0', '0', '14', '14', '0', '0', '2015-12-29 13:26:14', '');
+INSERT INTO `enterprise` VALUES ('88', '达州', '达州惠特', '四川惠特电力投资建设有限公司', '2', '4800', '13100', '465', '2', '-1', '26884', '26884', '0', '0', '19', '19', '0', '0', '2015-12-29 13:29:04', '');
+INSERT INTO `enterprise` VALUES ('89', '绵阳', '绵阳启明星', '绵阳启明星集团有限公司', '2', '6000', '28000', '544', '2', '-1', '65900', '65900', '0', '0', '51', '51', '0', '0', '2015-12-29 13:30:37', '');
+INSERT INTO `enterprise` VALUES ('90', '宜宾', '宜宾远能', '宜宾远能电业集团有限责任公司', '2', '6202', '5500', '471', '2', '-1', '12106', '12106', '0', '0', '10', '10', '0', '0', '2015-12-29 13:32:24', '');
+INSERT INTO `enterprise` VALUES ('91', '凉山', '西昌电力', '西昌电力工程公司', '2', '2400', '807', '402', '2', '2', '9473', '9473', '0', '0', '15', '15', '0', '0', '2015-12-29 13:33:35', '');
+INSERT INTO `enterprise` VALUES ('92', '内江', '内江星原', '内江星原电力集团有限责任公司', '2', '5000', '37360', '764', '2', '2', '19491', '19491', '0', '0', '22', '22', '0', '0', '2015-12-29 13:34:59', '');
+INSERT INTO `enterprise` VALUES ('93', '广元', '广元电力', '广元电力开发总公司', '2', '4000', '14022', '1452', '-1', '2', '6134', '6134', '0', '0', '5', '5', '0', '0', '2015-12-29 13:36:33', '');
+INSERT INTO `enterprise` VALUES ('94', '广元', '广元天源', '四川苍溪天源电力开发有限公司', '2', '1500', '2235', '203', '-1', '3', '1027', '1027', '0', '0', '2', '2', '0', '0', '2015-12-29 13:37:36', '');
+INSERT INTO `enterprise` VALUES ('95', '泸州', '泸州合能', '泸州合能实业有限责任公司', '2', '4888', '8731', '80', '2', '2', '11634', '11634', '0', '0', '8', '8', '0', '0', '2015-12-29 13:40:04', '');
+INSERT INTO `enterprise` VALUES ('96', '南充', '南充恒通', '四川南充恒通电力有限公司', '2', '4100', '6529', '500', '2', '-1', '23193', '23193', '0', '0', '6', '6', '0', '0', '2015-12-29 13:41:12', '');
+INSERT INTO `enterprise` VALUES ('97', '自贡', '自贡电建', '自贡电力建设集团有限公司', '2', '2418', '2608', '417', '-1', '2', '16012', '16012', '0', '0', '7', '7', '0', '0', '2015-12-29 13:42:13', '');
+INSERT INTO `enterprise` VALUES ('98', '广安', '广安和源', '四川和源电力有限公司', '2', '2056', '3947', '299', '-1', '2', '25770', '25770', '0', '0', '10', '10', '0', '0', '2015-12-29 13:43:25', '');
+INSERT INTO `enterprise` VALUES ('99', '资阳', '资阳资源', '资阳资源电力集团有限公司', '2', '5125', '6301', '1359', '-1', '2', '13246', '13246', '0', '0', '8', '8', '0', '0', '2015-12-29 13:44:32', '');
+INSERT INTO `enterprise` VALUES ('100', '遂宁', '遂宁江源', '遂宁市江源实业有限公司', '2', '2400', '2387', '466', '-1', '2', '12947', '12947', '0', '0', '10', '10', '0', '0', '2015-12-29 13:46:11', '');
+INSERT INTO `enterprise` VALUES ('101', '巴中', '巴中和兴', '四川巴中和兴电力有限责任公司', '2', '2460', '2660', '519', '-1', '2', '12475', '12475', '0', '0', '6', '6', '0', '0', '2015-12-29 13:50:01', '');
+INSERT INTO `enterprise` VALUES ('102', '甘孜', '甘孜电建', '甘孜电力建设有限公司', '2', '1200', '3246', '12', '-1', '3', '0', '0', '0', '0', '0', '0', '0', '0', '2015-12-29 13:51:30', '');
+INSERT INTO `enterprise` VALUES ('103', '格瑞德', '电力实业', '四川电力实业总公司', '2', '2400', '0', '238', '2', '2', '10150', '10150', '0', '0', '6', '6', '0', '0', '2015-12-29 13:52:43', '');
 
 -- ----------------------------
 -- Table structure for enterprise_aptitude
@@ -253,7 +253,7 @@ INSERT INTO `enterprise_aptitude` VALUES ('11', '2', '3', '净资产800万元以
 -- ----------------------------
 DROP TABLE IF EXISTS `enterprise_assess`;
 CREATE TABLE `enterprise_assess` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业批过分类(与修正后的承载能力对比)',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '施工企业评估分类(与修正后的承载能力对比)',
   `category` varchar(10) DEFAULT '' COMMENT '类别',
   `standard` varchar(255) DEFAULT '' COMMENT '标准',
   `projectNumStart` int(4) DEFAULT '0' COMMENT '可承载工程数量  大于该数',
@@ -292,7 +292,7 @@ CREATE TABLE `enterprise_equipment` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `enter_equipement_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enter_equipement_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_equipment
@@ -341,10 +341,10 @@ CREATE TABLE `enterprise_file` (
   KEY `enterprise_file_id_fk` (`enterpriseId`),
   KEY `enterprise_file_aptitudeId_fk` (`aptitudeId`),
   KEY `enterprise_fileaptitudeRankId_fk` (`aptitudeRankId`),
-  CONSTRAINT `enterprise_fileaptitudeRankId_fk` FOREIGN KEY (`aptitudeRankId`) REFERENCES `aptituderank_classify` (`id`),
   CONSTRAINT `enterprise_file_aptitudeId_fk` FOREIGN KEY (`aptitudeId`) REFERENCES `aptitude_classify` (`id`),
-  CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  CONSTRAINT `enterprise_file_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`),
+  CONSTRAINT `enterprise_fileaptitudeRankId_fk` FOREIGN KEY (`aptitudeRankId`) REFERENCES `aptituderank_classify` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_file
@@ -374,7 +374,7 @@ CREATE TABLE `enterprise_person` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `enterprise_per_id_fk` (`enterpriseId`) USING BTREE,
   CONSTRAINT `enterprise_per_id_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_person
@@ -423,7 +423,7 @@ CREATE TABLE `enterprise_per_file` (
   PRIMARY KEY (`id`),
   KEY `enterprise_person_enterprisePerId_fk` (`enterprisePerId`),
   CONSTRAINT `enterprise_person_enterprisePerId_fk` FOREIGN KEY (`enterprisePerId`) REFERENCES `enterprise_person` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_per_file
@@ -458,7 +458,7 @@ CREATE TABLE `enterprise_per_manage` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_enter_fk` (`enterpriseId`,`professionType`) USING BTREE,
   CONSTRAINT `person_enter_fk` FOREIGN KEY (`enterpriseId`) REFERENCES `enterprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of enterprise_per_manage
@@ -925,7 +925,7 @@ CREATE TABLE `user_log` (
   PRIMARY KEY (`id`),
   KEY `user_log_uid_fk` (`uid`),
   CONSTRAINT `user_log_uid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=726 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=728 DEFAULT CHARSET=utf8 COMMENT='用户日志表';
 
 -- ----------------------------
 -- Records of user_log
@@ -1655,6 +1655,8 @@ INSERT INTO `user_log` VALUES ('722', '1', '操作模块:会话管理,用户登�
 INSERT INTO `user_log` VALUES ('723', '2', '操作模块:会话管理,用户登陆.', '2016-01-13 13:20:03', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('724', '1', '操作模块:会话管理,用户登陆.', '2016-01-13 13:23:52', '0:0:0:0:0:0:0:1', '');
 INSERT INTO `user_log` VALUES ('725', '2', '操作模块:会话管理,用户登陆.', '2016-01-13 13:24:12', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('726', '2', '操作模块:会话管理,用户登陆.', '2016-01-13 15:44:21', '0:0:0:0:0:0:0:1', '');
+INSERT INTO `user_log` VALUES ('727', '2', '会话超时，用户退出.', '2016-01-13 16:15:01', '192.168.1.240', '');
 
 -- ----------------------------
 -- Table structure for user_role_link
